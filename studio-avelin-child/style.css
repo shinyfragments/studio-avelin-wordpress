@@ -1,0 +1,2080 @@
+/*
+Theme Name: Studio Avelin Child
+Theme URI: https://studio-avelin.com
+Description: Child Theme für Studio Avelin auf Basis von Twenty Twenty-Four
+Author: Michael
+Author URI: https://studio-avelin.com
+Template: twentytwentyfour
+Version: 1.0
+Text Domain: studio-avelin-child
+*/
+
+/* =========================================================
+   STUDIO AVELIN – DESIGN TOKENS
+   ========================================================= */
+
+:root {
+  --sa-color-black: #111111;
+  --sa-color-charcoal: #3D3D3D;
+  --sa-color-muted: rgba(17, 17, 17, 0.62);
+  --sa-color-line: rgba(17, 17, 17, 0.12);
+  --sa-color-soft-line: rgba(17, 17, 17, 0.08);
+  --sa-color-off-white: #F2F2F2;
+  --sa-color-lime: #C7F000;
+
+  --sa-font-primary: "Poppins", sans-serif;
+  --sa-font-secondary: "Raleway", sans-serif;
+
+  --sa-container: 1600px;
+  --sa-page-padding: 96px;
+  --sa-page-padding-tablet: 48px;
+  --sa-page-padding-mobile: 28px;
+
+  --sa-transition: 0.25s ease;
+
+  --wp--preset--color--base: #F2F2F2;
+  --wp--preset--color--base-2: #F2F2F2;
+  --wp--preset--font-family--body: "Raleway", sans-serif;
+  --wp--preset--font-family--heading: "Poppins", sans-serif;
+}
+
+/* =========================================================
+   STUDIO AVELIN – BASE
+   ========================================================= */
+
+html {
+  scroll-behavior: smooth;
+  background: var(--sa-color-off-white);
+}
+
+body {
+  margin: 0;
+  background: var(--sa-color-off-white) !important;
+  color: var(--sa-color-black);
+  font-family: var(--sa-font-secondary);
+  line-height: 1.5;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+
+body * {
+  box-sizing: border-box;
+}
+
+body.home .wp-site-blocks,
+body.home main,
+body.home .entry-content {
+  width: 100%;
+  max-width: none !important;
+  margin: 0 !important;
+  padding-top: 0 !important;
+  background: var(--sa-color-off-white) !important;
+}
+
+body.home .wp-site-blocks > * {
+  margin-block-start: 0 !important;
+}
+
+body.home .entry-content.has-global-padding,
+body.home .entry-content .has-global-padding {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+body.home .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
+  max-width: none !important;
+}
+
+body.home .wp-block-spacer {
+  height: 0 !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+}
+
+body.home figure,
+body.home .wp-block-image {
+  margin: 0 !important;
+}
+
+body.home img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 0 !important;
+}
+
+body.home a {
+  color: inherit;
+  text-decoration: none;
+}
+
+body.home button {
+  font-family: var(--sa-font-primary);
+}
+
+body.home button,
+body.home button:hover,
+body.home button:focus,
+body.home button:active,
+body.home button:focus-visible {
+  box-shadow: none !important;
+}
+
+body.home a:focus-visible,
+body.home button:focus-visible {
+  outline: 1px solid var(--sa-color-black);
+  outline-offset: 4px;
+}
+
+body.home p {
+  margin: 0;
+  color: var(--sa-color-black);
+  font-family: var(--sa-font-secondary);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+body.home h1,
+body.home h2,
+body.home h3,
+body.home h4,
+body.home h5,
+body.home h6 {
+  margin: 0;
+  color: var(--sa-color-black);
+  font-family: var(--sa-font-primary);
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+body.home h1 {
+  font-size: clamp(56px, 6.6vw, 108px);
+  line-height: 0.9;
+  letter-spacing: -0.065em;
+}
+
+body.home h2 {
+  font-size: clamp(42px, 4.4vw, 72px);
+  line-height: 0.92;
+  letter-spacing: -0.055em;
+}
+
+body.home h3 {
+  font-size: clamp(30px, 2.6vw, 44px);
+  line-height: 0.96;
+  letter-spacing: -0.045em;
+}
+
+body.home .sa-container,
+body.home .sa-selected-work,
+body.home .sa-home-hero > .sa-container,
+body.home .sa-home-about > .sa-container,
+body.home .sa-home-experiments > .sa-container,
+body.home .sa-home-contact > .sa-container,
+body.home .sa-contact-grid,
+body.home #sa-container-sa-grid-2 {
+  width: min(calc(100% - var(--sa-page-padding)), var(--sa-container)) !important;
+  max-width: var(--sa-container) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+body.home .sa-section {
+  position: relative;
+  padding-top: 88px !important;
+  padding-bottom: 104px !important;
+}
+
+body.home .sa-section-line,
+body.home .sa-home-about,
+body.home .sa-home-experiments,
+body.home .sa-home-contact {
+  border-top: 1px solid var(--sa-color-line) !important;
+}
+
+body.home .sa-meta,
+body.home .sa-section-number,
+body.home .sa-work-count,
+body.home .sa-work-meta p,
+body.home .sa-home-about p:first-child,
+body.home .sa-home-experiments > .sa-container > p:first-child,
+body.home .sa-home-contact p:first-child {
+  font-family: var(--sa-font-primary) !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: var(--sa-color-muted) !important;
+}
+
+body.home .wp-block-button__link {
+  background: transparent !important;
+  color: var(--sa-color-black) !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  font-family: var(--sa-font-primary) !important;
+  font-size: 12px !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  transition: opacity var(--sa-transition), transform var(--sa-transition);
+}
+
+body.home .wp-block-button__link::after {
+  content: "→";
+  display: inline-block;
+  margin-left: 16px;
+  font-size: 18px;
+  line-height: 1;
+}
+
+body.home .wp-block-button__link:hover {
+  opacity: 0.72;
+  transform: translateX(4px);
+}
+
+.page .wp-block-post-title {
+  display: none;
+}
+
+/* =========================================================
+   STUDIO AVELIN – HEADER
+   ========================================================= */
+
+body.home .sa-site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 0 !important;
+  border-bottom: 1px solid var(--sa-color-soft-line) !important;
+  background: rgba(242, 242, 242, 0.86) !important;
+  backdrop-filter: blur(14px);
+}
+
+body.home .sa-site-header > .wp-block-group {
+  padding-top: 22px !important;
+  padding-bottom: 22px !important;
+  background: transparent !important;
+}
+
+body.home .sa-header-inner {
+  position: relative;
+  display: grid !important;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 40px;
+  width: min(calc(100% - var(--sa-page-padding)), var(--sa-container)) !important;
+  max-width: var(--sa-container) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding: 0 !important;
+}
+
+body.home .sa-site-header .wp-block-site-title {
+  margin: 0 !important;
+}
+
+body.home .sa-site-header .wp-block-site-title a {
+  display: inline-flex;
+  align-items: baseline;
+  color: var(--sa-color-black) !important;
+  font-family: var(--sa-font-primary) !important;
+  font-size: clamp(24px, 2.2vw, 34px) !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  letter-spacing: -0.065em !important;
+  text-transform: uppercase;
+  text-decoration: none !important;
+}
+
+body.home .sa-site-header .wp-block-site-title a::after {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-left: 6px;
+  border-radius: 50%;
+  background: var(--sa-color-lime);
+  transform: translateY(-1px);
+}
+
+body.home .sa-site-header .wp-block-navigation {
+  justify-self: end;
+  margin: 0 !important;
+}
+
+body.home .sa-site-header .wp-block-navigation__container {
+  display: flex !important;
+  align-items: center;
+  gap: clamp(28px, 3.4vw, 56px) !important;
+}
+
+body.home .sa-site-header .wp-block-navigation-item__content {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--sa-color-black) !important;
+  font-family: var(--sa-font-primary) !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  line-height: 1.3 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase;
+  text-decoration: none !important;
+}
+
+body.home .sa-site-header .wp-block-navigation-item:nth-child(1) .wp-block-navigation-item__content::before {
+  content: "01";
+}
+
+body.home .sa-site-header .wp-block-navigation-item:nth-child(2) .wp-block-navigation-item__content::before {
+  content: "02";
+}
+
+body.home .sa-site-header .wp-block-navigation-item:nth-child(3) .wp-block-navigation-item__content::before {
+  content: "03";
+}
+
+body.home .sa-site-header .wp-block-navigation-item:nth-child(4) .wp-block-navigation-item__content::before {
+  content: "04";
+}
+
+body.home .sa-site-header .wp-block-navigation-item__content::before {
+  color: rgba(17, 17, 17, 0.42);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+}
+
+body.home .sa-site-header .wp-block-navigation-item__content::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 0;
+  height: 1px;
+  background: var(--sa-color-black);
+  transition: width var(--sa-transition);
+}
+
+body.home .sa-site-header .wp-block-navigation-item__content:hover::after {
+  width: 100%;
+}
+
+body.home .sa-header-inner::after {
+  content: "";
+  justify-self: end;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(17, 17, 17, 0.22);
+  border-radius: 50%;
+  background: radial-gradient(circle at center, var(--sa-color-black) 0 3px, transparent 4px);
+}
+
+/* =========================================================
+   STUDIO AVELIN – HERO
+   ========================================================= */
+
+body.home .sa-home-hero {
+  position: relative;
+  min-height: auto !important;
+  padding-top: 36px !important;
+  padding-bottom: 88px !important;
+  overflow: hidden;
+  background: var(--sa-color-off-white);
+}
+
+body.home .sa-home-hero::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 54%;
+  width: 100%;
+  height: 1px;
+  background: var(--sa-color-soft-line);
+  pointer-events: none;
+}
+
+body.home .sa-home-hero::after {
+  content: "AVELIN";
+  position: absolute;
+  left: -0.08em;
+  bottom: -0.08em;
+  z-index: 0;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(17, 17, 17, 0.04);
+  font-family: var(--sa-font-primary);
+  font-size: clamp(96px, 16vw, 220px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.08em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+body.home .sa-home-hero > .sa-container {
+  position: relative;
+  z-index: 2;
+  display: grid !important;
+  grid-template-columns: minmax(360px, 0.92fr) minmax(460px, 1.08fr) !important;
+  gap: clamp(32px, 4vw, 72px) !important;
+  align-items: center !important;
+  min-height: 0 !important;
+}
+
+body.home .sa-home-hero > .sa-container > .wp-block-group:first-child,
+body.home .sa-home-hero > .sa-container > .wp-block-group:last-child {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+body.home .sa-home-hero .sa-meta:first-child {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px !important;
+}
+
+body.home .sa-home-hero .sa-meta:first-child::before {
+  content: "";
+  width: 42px;
+  height: 1px;
+  background: var(--sa-color-black);
+}
+
+body.home .sa-home-hero h1 {
+  max-width: 6.8ch !important;
+  margin-bottom: 24px !important;
+}
+
+body.home .sa-home-hero .sa-muted {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 18px !important;
+}
+
+body.home .sa-home-hero .sa-muted::after {
+  content: "";
+  width: 72px;
+  height: 1px;
+  background: rgba(17, 17, 17, 0.42);
+}
+
+body.home .sa-home-hero > .sa-container > .wp-block-group:last-child {
+  position: relative;
+  min-height: clamp(520px, 48vw, 680px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible !important;
+}
+
+body.home .sa-home-hero > .sa-container > .wp-block-group:last-child::before {
+  content: "";
+  position: absolute;
+  right: 18px;
+  top: -10px;
+  z-index: 2;
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+  background: var(--sa-color-lime);
+  mix-blend-mode: multiply;
+}
+
+body.home .sa-home-hero > .sa-container > .wp-block-group:last-child::after {
+  content: "";
+  position: absolute;
+  left: -10px;
+  bottom: 38px;
+  z-index: 3;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--sa-color-black);
+}
+
+/* Freigestelltes Hero-Bild */
+body.home .sa-home-hero .wp-block-image,
+body.home .sa-home-hero .sa-hero-portrait {
+  position: relative !important;
+  z-index: 1 !important;
+  width: 100% !important;
+  max-width: 760px !important;
+  min-height: 0 !important;
+  margin: 0 auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: visible !important;
+  background: transparent !important;
+}
+
+body.home .sa-home-hero .wp-block-image img,
+body.home .sa-home-hero .sa-hero-portrait img {
+  display: block !important;
+  width: min(100%, 760px) !important;
+  max-width: 760px !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+  background: transparent !important;
+  filter: drop-shadow(0 28px 42px rgba(17, 17, 17, 0.12)) contrast(1.03) !important;
+}
+
+
+/* =========================================================
+   STUDIO AVELIN – SELECTED WORK
+   ========================================================= */
+
+body.home .sa-selected-work {
+  display: grid !important;
+  grid-template-columns: 300px minmax(0, 1fr) !important;
+  gap: 64px !important;
+  align-items: start !important;
+  padding-top: 72px !important;
+  padding-bottom: 96px !important;
+}
+
+body.home .sa-work-intro {
+  padding-top: 8px !important;
+}
+
+body.home .sa-work-intro h2 {
+  max-width: 8ch !important;
+  margin: 0 0 28px !important;
+}
+
+body.home .sa-work-intro p {
+  max-width: 270px !important;
+  font-size: 15px !important;
+  line-height: 1.7 !important;
+}
+
+body.home .sa-work-slider,
+body.home .sa-work-card,
+body.home .sa-work-image-wrap,
+body.home .sa-work-meta,
+body.home .sa-work-nav {
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+body.home .sa-work-slider::before,
+body.home .sa-work-slider::after,
+body.home .sa-work-card::before,
+body.home .sa-work-card::after,
+body.home .sa-work-image-wrap::before,
+body.home .sa-work-image-wrap::after {
+  display: none !important;
+  content: none !important;
+}
+
+body.home .sa-work-card {
+  position: relative !important;
+  display: grid !important;
+  grid-template-columns: 220px minmax(0, 1fr) 84px !important;
+  min-height: 420px !important;
+  background: transparent !important;
+  overflow: visible !important;
+}
+
+body.home .sa-work-meta {
+  position: relative !important;
+  z-index: 2 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: 420px !important;
+  padding: 34px 28px !important;
+  background: rgba(242, 242, 242, 0.46) !important;
+  border: 0 !important;
+}
+
+body.home .sa-work-count {
+  margin: 0 0 24px !important;
+}
+
+body.home .sa-work-meta h3 {
+  margin: 0 0 10px !important;
+}
+
+body.home .sa-work-meta p {
+  max-width: 18ch !important;
+  margin: 0 !important;
+}
+
+body.home .sa-work-link {
+  margin-top: auto !important;
+  color: var(--sa-color-black);
+  font-family: var(--sa-font-primary);
+  font-size: 12px;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: opacity var(--sa-transition), transform var(--sa-transition);
+}
+
+body.home .sa-work-link:hover {
+  opacity: 0.72;
+}
+
+body.home .sa-work-link span {
+  display: block;
+  margin-top: 8px;
+  font-size: 22px;
+  line-height: 1;
+}
+
+body.home .sa-work-image-wrap {
+  position: relative !important;
+  z-index: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 420px !important;
+  height: 420px !important;
+  padding: 0 !important;
+  background:
+    radial-gradient(circle at 52% 68%, rgba(17, 17, 17, 0.08), transparent 42%),
+    linear-gradient(135deg, rgba(242, 242, 242, 0.30), rgba(242, 242, 242, 0.04)) !important;
+  overflow: visible !important;
+  border: 0 !important;
+}
+
+body.home .sa-work-image-wrap::before {
+  content: "";
+  position: absolute;
+  left: 7%;
+  right: 7%;
+  bottom: 72px;
+  height: 1px;
+  background: rgba(17, 17, 17, 0.08);
+  z-index: 0;
+}
+
+body.home .sa-work-image {
+  position: relative !important;
+  z-index: 2 !important;
+  display: block !important;
+  width: 118% !important;
+  height: auto !important;
+  max-width: none !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+  transform: translate(-4%, 7%) !important;
+  filter: drop-shadow(0 30px 36px rgba(17, 17, 17, 0.22)) !important;
+}
+
+body.home .sa-work-nav {
+  position: relative !important;
+  z-index: 2 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: 420px !important;
+  padding: 34px 14px !important;
+  background: rgba(242, 242, 242, 0.46) !important;
+  border: 0 !important;
+}
+
+body.home .sa-work-card,
+body.home .sa-work-meta,
+body.home .sa-work-image-wrap,
+body.home .sa-work-nav {
+  border-top: 0 !important;
+  border-right: 0 !important;
+  border-bottom: 0 !important;
+  border-left: 0 !important;
+}
+
+body.home .sa-work-index {
+  position: relative !important;
+  margin: 0 0 24px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  color: var(--sa-color-black);
+  font-family: var(--sa-font-primary);
+  font-size: 12px !important;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  text-align: left !important;
+  cursor: pointer;
+}
+
+body.home .sa-work-index::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 0;
+  height: 1px;
+  background: var(--sa-color-black);
+  transform: translateY(-50%);
+}
+
+body.home .sa-work-index.is-active::after {
+  width: 32px;
+}
+
+body.home .sa-work-arrows {
+  margin-top: auto !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+}
+
+body.home .sa-work-arrow,
+body.home .sa-work-arrow:hover,
+body.home .sa-work-arrow:focus,
+body.home .sa-work-arrow:active,
+body.home .sa-work-arrow:focus-visible {
+  width: auto !important;
+  height: auto !important;
+  padding: 0 !important;
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  color: var(--sa-color-black);
+  font-size: 30px !important;
+  line-height: 1 !important;
+  cursor: pointer;
+}
+
+body.home .sa-work-badge {
+  display: none !important;
+}
+
+/* =========================================================
+   STUDIO AVELIN – ABOUT
+   ========================================================= */
+
+body.home .sa-home-about {
+  position: relative;
+  padding-top: 68px !important;
+  padding-bottom: 52px !important;
+  overflow: hidden;
+}
+
+body.home .sa-home-about::before {
+  content: "03";
+  position: absolute;
+  right: 4vw;
+  top: 28px;
+  z-index: 0;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(17, 17, 17, 0.05);
+  font-family: var(--sa-font-primary);
+  font-size: clamp(120px, 18vw, 280px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.08em;
+  pointer-events: none;
+}
+
+body.home .sa-home-about::after {
+  content: "";
+  position: absolute;
+  right: 6vw !important;
+  top: 64px !important;
+  z-index: 1;
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 50%;
+  background: var(--sa-color-lime);
+}
+
+body.home .sa-home-about > .sa-container {
+  position: relative;
+  z-index: 2;
+  display: grid !important;
+  grid-template-columns: 320px minmax(0, 1fr) !important;
+  gap: 64px !important;
+  align-items: start !important;
+}
+
+body.home .sa-home-about > .sa-container > .wp-block-group:first-child,
+body.home .sa-home-about > .sa-container > .wp-block-group:last-child {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+body.home .sa-home-about h2 {
+  max-width: 7ch;
+}
+
+body.home .sa-home-about > .sa-container > .wp-block-group:last-child > p:first-child {
+  max-width: 22ch !important;
+  margin: 0 0 22px !important;
+  color: var(--sa-color-black) !important;
+  font-family: var(--sa-font-primary) !important;
+  font-size: clamp(34px, 3.6vw, 58px) !important;
+  font-weight: 500 !important;
+  line-height: 0.98 !important;
+  letter-spacing: -0.055em !important;
+  text-transform: uppercase !important;
+}
+
+body.home .sa-home-about > .sa-container > .wp-block-group:last-child::after {
+  content: "";
+  display: block;
+  width: min(100%, 560px);
+  height: 1px;
+  margin-top: 28px;
+  background: var(--sa-color-line);
+}
+
+
+/* =========================================================
+   STUDIO AVELIN – EXPERIMENTS
+   ========================================================= */
+
+body.home .sa-home-experiments {
+  position: relative;
+  padding-top: 68px !important;
+  padding-bottom: 96px !important;
+  overflow: hidden;
+}
+
+/* Hintergrundschrift entfernt: hier zu dominant und optisch unruhig */
+body.home .sa-home-experiments::before {
+  display: none !important;
+  content: none !important;
+}
+
+body.home .sa-home-experiments > .sa-container {
+  position: relative;
+  z-index: 2;
+  display: grid !important;
+  grid-template-columns: 360px minmax(0, 1fr) !important;
+  column-gap: 72px !important;
+  row-gap: 34px !important;
+  align-items: start;
+}
+
+/* Nummer */
+body.home .sa-home-experiments > .sa-container > p:first-child {
+  grid-column: 1;
+  grid-row: 1;
+  margin: 0 0 14px !important;
+}
+
+/* Headline */
+body.home .sa-home-experiments > .sa-container > h2 {
+  grid-column: 1;
+  grid-row: 2;
+  max-width: 8ch;
+  margin: 0 !important;
+  color: var(--sa-color-black) !important;
+}
+
+/* Beschreibung rechts oben als eigener Block */
+body.home .sa-home-experiments > .sa-container > p:nth-of-type(2) {
+  grid-column: 2;
+  grid-row: 2;
+  max-width: 560px !important;
+  margin: 6px 0 22px !important;
+  color: var(--sa-color-black) !important;
+  font-family: var(--sa-font-secondary) !important;
+  font-size: 16px !important;
+  line-height: 1.65 !important;
+}
+
+/* CTA direkt unter Beschreibung */
+body.home .sa-home-experiments > .sa-container > .wp-block-buttons {
+  grid-column: 2;
+  grid-row: 3;
+  margin-top: -12px !important;
+}
+
+/* Galerie klar unterhalb */
+body.home .sa-experiments-gallery {
+  grid-column: 1 / -1;
+  position: relative;
+  display: grid !important;
+  grid-template-columns: 1fr 1.1fr 1fr !important;
+  gap: 28px !important;
+  align-items: end !important;
+  margin-top: 20px !important;
+  padding-top: 28px !important;
+}
+
+/* dezente Linie statt großer Background-Typo */
+body.home .sa-experiments-gallery::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--sa-color-line);
+}
+
+/* Karten */
+body.home .sa-experiments-gallery > .sa-exp-card {
+  position: relative;
+  width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: visible;
+}
+
+/* Bildflächen */
+body.home .sa-experiments-gallery > .sa-exp-card .wp-block-image {
+  position: relative;
+  width: 100% !important;
+  overflow: hidden !important;
+  background: transparent !important;
+  line-height: 0 !important;
+}
+
+/* Bilder */
+body.home .sa-experiments-gallery > .sa-exp-card .wp-block-image img {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  object-fit: cover !important;
+  filter: contrast(1.02);
+  transition: transform 0.45s ease, filter 0.45s ease;
+}
+
+body.home .sa-experiments-gallery > .sa-exp-card:hover .wp-block-image img {
+  transform: scale(1.025);
+  filter: contrast(1.06);
+}
+
+/* linke Card */
+body.home .sa-experiments-gallery > .sa-exp-card-1 {
+  margin-top: 34px !important;
+}
+
+body.home .sa-experiments-gallery > .sa-exp-card-1 .wp-block-image {
+  height: 360px !important;
+}
+
+/* mittlere Card */
+body.home .sa-experiments-gallery > .sa-exp-card-2 {
+  margin-top: 0 !important;
+}
+
+body.home .sa-experiments-gallery > .sa-exp-card-2 .wp-block-image {
+  height: 280px !important;
+}
+
+/* rechte Card */
+body.home .sa-experiments-gallery > .sa-exp-card-3 {
+  margin-top: 34px !important;
+}
+
+body.home .sa-experiments-gallery > .sa-exp-card-3 .wp-block-image {
+  height: 360px !important;
+}
+
+/* technische Bild-Labels entfernt: zu unruhig für diese Sektion */
+body.home .sa-experiments-gallery > .sa-exp-card::before,
+body.home .sa-experiments-gallery > .sa-exp-card::after {
+  display: none !important;
+  content: none !important;
+}
+
+
+/* =========================================================
+   STUDIO AVELIN – CONTACT
+   ========================================================= */
+
+body.home .sa-home-contact {
+  position: relative;
+  padding-top: 88px !important;
+  padding-bottom: 110px !important;
+  overflow: hidden;
+}
+
+body.home .sa-home-contact::before {
+  content: "CONTACT";
+  position: absolute;
+  left: 0;
+  bottom: -0.22em;
+  z-index: 0;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(17, 17, 17, 0.05);
+  font-family: var(--sa-font-primary);
+  font-size: clamp(110px, 19vw, 330px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.08em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+body.home .sa-home-contact::after {
+  content: "";
+  position: absolute;
+  right: 42px;
+  top: 56px;
+  z-index: 1;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: var(--sa-color-lime);
+}
+
+body.home .sa-contact-grid {
+  position: relative;
+  z-index: 2;
+  display: grid !important;
+  grid-template-columns: minmax(320px, 0.85fr) minmax(480px, 1.15fr) !important;
+  gap: clamp(56px, 8vw, 132px) !important;
+  align-items: start;
+}
+
+body.home #sa-container-sa-grid-2 {
+  position: relative;
+  z-index: 2;
+}
+
+body.home .sa-contact-left,
+body.home #sa-container-sa-grid-2 {
+  max-width: 560px;
+}
+
+body.home .sa-contact-left p:first-child,
+body.home #sa-container-sa-grid-2 > p:first-child {
+  margin: 0 0 22px !important;
+  font-family: var(--sa-font-primary) !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: var(--sa-color-muted) !important;
+}
+
+body.home .sa-home-contact h2 {
+  max-width: 9ch;
+  margin: 0 0 36px !important;
+  font-size: clamp(44px, 5.2vw, 86px) !important;
+  line-height: 0.9 !important;
+}
+
+body.home .sa-home-contact .wp-block-buttons {
+  margin-top: 0 !important;
+}
+
+body.home .sa-contact-right {
+  max-width: 680px !important;
+  padding-top: 18px !important;
+}
+
+/* Kontaktzeilen – verhindert, dass die E-Mail als Meta-Text behandelt wird */
+body.home .sa-contact-right p,
+body.home .sa-contact-right p:first-child {
+  position: relative;
+  margin: 0 !important;
+  padding: 22px 40px 22px 0 !important;
+  border-bottom: 1px solid var(--sa-color-line);
+  color: var(--sa-color-black) !important;
+  font-family: var(--sa-font-primary) !important;
+  font-size: clamp(24px, 2.4vw, 38px) !important;
+  font-weight: 500 !important;
+  line-height: 1.05 !important;
+  letter-spacing: -0.035em !important;
+  text-transform: uppercase !important;
+}
+
+body.home .sa-contact-right p:first-child {
+  border-top: 1px solid var(--sa-color-line);
+  font-size: clamp(22px, 2vw, 34px) !important;
+  letter-spacing: -0.03em !important;
+}
+
+body.home .sa-contact-right p::after {
+  content: "→";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  font-size: 22px;
+  line-height: 1;
+  transform: translateY(-50%);
+  transition: transform var(--sa-transition);
+}
+
+body.home .sa-contact-right p:hover::after {
+  transform: translate(6px, -50%);
+}
+
+
+/* =========================================================
+   STUDIO AVELIN – FOOTER
+   ========================================================= */
+
+body.home footer.wp-block-template-part {
+  position: relative;
+  margin-top: 0 !important;
+  background: var(--sa-color-off-white) !important;
+  border-top: 1px solid var(--sa-color-line);
+}
+
+body.home footer.wp-block-template-part > .wp-block-group {
+  width: min(calc(100% - var(--sa-page-padding)), var(--sa-container)) !important;
+  max-width: var(--sa-container) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding: 42px 0 34px !important;
+}
+
+body.home footer.wp-block-template-part .wp-block-columns {
+  display: grid !important;
+  grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.2fr) !important;
+  gap: clamp(48px, 8vw, 140px) !important;
+  align-items: start !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+}
+
+body.home footer.wp-block-template-part .wp-block-column:nth-child(2):empty {
+  display: none !important;
+}
+
+body.home footer.wp-block-template-part .wp-block-site-title {
+  margin: 0 0 10px !important;
+}
+
+body.home footer.wp-block-template-part .wp-block-site-title a {
+  color: var(--sa-color-black) !important;
+  font-family: var(--sa-font-primary) !important;
+  font-size: clamp(24px, 2.4vw, 38px) !important;
+  font-weight: 700 !important;
+  line-height: 0.95 !important;
+  letter-spacing: -0.065em !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+}
+
+body.home footer.wp-block-template-part .wp-block-site-title a::after {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-left: 6px;
+  border-radius: 50%;
+  background: var(--sa-color-lime);
+  vertical-align: baseline;
+}
+
+body.home footer.wp-block-template-part .wp-block-site-tagline {
+  margin: 0 !important;
+  color: var(--sa-color-muted) !important;
+  font-family: var(--sa-font-primary) !important;
+  font-size: 12px !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+}
+
+body.home footer.wp-block-template-part .wp-block-column:last-child > .wp-block-group {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 24px !important;
+  align-items: start !important;
+  width: 100% !important;
+}
+
+body.home footer.wp-block-template-part h2 {
+  margin: 0 0 18px !important;
+  color: var(--sa-color-black) !important;
+  font-family: var(--sa-font-primary) !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+}
+
+body.home footer.wp-block-template-part .wp-block-navigation,
+body.home footer.wp-block-template-part .wp-block-navigation__container {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 10px !important;
+}
+
+body.home footer.wp-block-template-part .wp-block-navigation-item__content {
+  color: rgba(17, 17, 17, 0.68) !important;
+  font-family: var(--sa-font-secondary) !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  text-decoration: none !important;
+}
+
+body.home footer.wp-block-template-part .wp-block-navigation-item__content:hover {
+  color: var(--sa-color-black) !important;
+  transform: translateX(4px);
+}
+
+body.home footer.wp-block-template-part::after {
+  content: "© Studio Avelin";
+  display: block;
+  width: min(calc(100% - var(--sa-page-padding)), var(--sa-container));
+  max-width: var(--sa-container);
+  margin: 0 auto;
+  padding: 20px 0 28px;
+  border-top: 1px solid var(--sa-color-line);
+  color: rgba(17, 17, 17, 0.5);
+  font-family: var(--sa-font-primary);
+  font-size: 11px;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   STUDIO AVELIN – RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1024px) {
+  body.home .sa-container,
+  body.home .sa-selected-work,
+  body.home .sa-home-hero > .sa-container,
+  body.home .sa-home-about > .sa-container,
+  body.home .sa-home-experiments > .sa-container,
+  body.home .sa-home-contact > .sa-container,
+  body.home .sa-contact-grid,
+  body.home #sa-container-sa-grid-2,
+  body.home .sa-header-inner,
+  body.home footer.wp-block-template-part > .wp-block-group,
+  body.home footer.wp-block-template-part::after {
+    width: min(calc(100% - var(--sa-page-padding-tablet)), var(--sa-container)) !important;
+  }
+
+  body.home .sa-header-inner {
+    grid-template-columns: auto 1fr;
+  }
+
+  body.home .sa-header-inner::after {
+    display: none;
+  }
+
+  body.home .sa-home-hero,
+  body.home .sa-selected-work,
+  body.home .sa-home-about,
+  body.home .sa-home-experiments,
+  body.home .sa-home-contact {
+    padding-top: 64px !important;
+    padding-bottom: 84px !important;
+  }
+
+  body.home .sa-home-hero > .sa-container,
+  body.home .sa-home-about > .sa-container,
+  body.home .sa-home-experiments > .sa-container,
+  body.home .sa-home-contact > .sa-container,
+  body.home .sa-contact-grid,
+  body.home #sa-container-sa-grid-2 {
+    grid-template-columns: 1fr !important;
+    gap: 36px !important;
+  }
+
+  body.home .sa-selected-work {
+    display: block !important;
+  }
+
+  body.home .sa-work-intro {
+    margin-bottom: 40px !important;
+  }
+
+  body.home .sa-work-card {
+    grid-template-columns: 1fr !important;
+  }
+
+  body.home .sa-work-meta,
+  body.home .sa-work-nav {
+    min-height: auto !important;
+  }
+
+  body.home .sa-work-image-wrap {
+    height: 360px !important;
+    min-height: 360px !important;
+  }
+
+  body.home .sa-work-nav {
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 20px !important;
+  }
+
+  body.home .sa-work-index {
+    margin: 0 !important;
+  }
+
+  body.home .sa-work-index::after {
+    display: none !important;
+  }
+
+  body.home .sa-work-arrows {
+    margin-left: auto !important;
+    margin-top: 0 !important;
+  }
+
+  body.home .sa-experiments-gallery {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
+
+  body.home .sa-experiments-gallery > .sa-exp-card-1,
+  body.home .sa-experiments-gallery > .sa-exp-card-2,
+  body.home .sa-experiments-gallery > .sa-exp-card-3 {
+    margin-top: 0 !important;
+  }
+
+  body.home .sa-experiments-gallery > .sa-exp-card-1 .wp-block-image,
+  body.home .sa-experiments-gallery > .sa-exp-card-2 .wp-block-image,
+  body.home .sa-experiments-gallery > .sa-exp-card-3 .wp-block-image {
+    height: 320px !important;
+  }
+
+  body.home footer.wp-block-template-part .wp-block-columns {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
+
+  body.home footer.wp-block-template-part .wp-block-column:last-child > .wp-block-group {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 767px) {
+  body.home .sa-container,
+  body.home .sa-selected-work,
+  body.home .sa-home-hero > .sa-container,
+  body.home .sa-home-about > .sa-container,
+  body.home .sa-home-experiments > .sa-container,
+  body.home .sa-home-contact > .sa-container,
+  body.home .sa-contact-grid,
+  body.home #sa-container-sa-grid-2,
+  body.home .sa-header-inner,
+  body.home footer.wp-block-template-part > .wp-block-group,
+  body.home footer.wp-block-template-part::after {
+    width: min(calc(100% - var(--sa-page-padding-mobile)), var(--sa-container)) !important;
+  }
+
+  body.home h1 {
+    font-size: clamp(44px, 14vw, 72px);
+  }
+
+  body.home h2 {
+    font-size: clamp(34px, 10vw, 52px);
+  }
+
+  body.home h3 {
+    font-size: clamp(26px, 8vw, 38px);
+  }
+
+  body.home p {
+    font-size: 14px;
+  }
+
+  body.home .sa-site-header > .wp-block-group {
+    padding-top: 18px !important;
+    padding-bottom: 18px !important;
+  }
+
+  body.home .sa-site-header .wp-block-site-title a {
+    font-size: 23px !important;
+  }
+
+  body.home .sa-site-header .wp-block-navigation-item__content::before {
+    display: none;
+  }
+
+  body.home .sa-home-hero::after,
+  body.home .sa-home-about::before,
+  body.home .sa-home-experiments::before,
+  body.home .sa-home-contact::before {
+    display: none;
+  }
+
+  body.home .sa-home-hero > .sa-container > .wp-block-group:last-child::before,
+  body.home .sa-home-about::after,
+  body.home .sa-home-contact::after {
+    display: none;
+  }
+
+  body.home .sa-home-hero > .sa-container > .wp-block-group:last-child {
+    min-height: 360px !important;
+  }
+
+  body.home .sa-home-hero .wp-block-image,
+  body.home .sa-home-hero .sa-hero-portrait {
+    max-width: 100% !important;
+  }
+
+  body.home .sa-home-hero .wp-block-image img,
+  body.home .sa-home-hero .sa-hero-portrait img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    object-fit: contain !important;
+  }
+
+  body.home .sa-work-image-wrap {
+    height: 300px !important;
+    min-height: 300px !important;
+    overflow: hidden !important;
+  }
+
+  body.home .sa-work-image {
+    width: 110% !important;
+    transform: translate(-3%, 6%) !important;
+  }
+
+  body.home .sa-contact-right p {
+    padding: 18px 34px 18px 0;
+    font-size: clamp(20px, 7vw, 32px) !important;
+  }
+
+  body.home footer.wp-block-template-part .wp-block-column:last-child > .wp-block-group {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+  }
+}
+
+
+/* =========================================================
+   STUDIO AVELIN – EXPERIMENTS RESPONSIVE OVERRIDES
+   ========================================================= */
+
+@media (max-width: 1024px) {
+  body.home .sa-home-experiments > .sa-container {
+    grid-template-columns: 1fr !important;
+    row-gap: 22px !important;
+  }
+
+  body.home .sa-home-experiments > .sa-container > p:first-child,
+  body.home .sa-home-experiments > .sa-container > h2,
+  body.home .sa-home-experiments > .sa-container > p:nth-of-type(2),
+  body.home .sa-home-experiments > .sa-container > .wp-block-buttons {
+    grid-column: 1 !important;
+    grid-row: auto !important;
+  }
+
+  body.home .sa-home-experiments > .sa-container > p:nth-of-type(2) {
+    max-width: 720px !important;
+    margin: 0 !important;
+  }
+
+  body.home .sa-home-experiments > .sa-container > .wp-block-buttons {
+    margin-top: 0 !important;
+  }
+
+  body.home .sa-experiments-gallery {
+    grid-template-columns: 1fr !important;
+    gap: 34px !important;
+    margin-top: 12px !important;
+  }
+
+  body.home .sa-experiments-gallery > .sa-exp-card-1,
+  body.home .sa-experiments-gallery > .sa-exp-card-2,
+  body.home .sa-experiments-gallery > .sa-exp-card-3 {
+    margin-top: 0 !important;
+  }
+
+  body.home .sa-experiments-gallery > .sa-exp-card-1 .wp-block-image,
+  body.home .sa-experiments-gallery > .sa-exp-card-2 .wp-block-image,
+  body.home .sa-experiments-gallery > .sa-exp-card-3 .wp-block-image {
+    height: 320px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  body.home .sa-home-experiments {
+    padding-top: 56px !important;
+    padding-bottom: 76px !important;
+  }
+
+  body.home .sa-experiments-gallery {
+    gap: 28px !important;
+  }
+
+  body.home .sa-experiments-gallery > .sa-exp-card-1 .wp-block-image,
+  body.home .sa-experiments-gallery > .sa-exp-card-2 .wp-block-image,
+  body.home .sa-experiments-gallery > .sa-exp-card-3 .wp-block-image {
+    height: 280px !important;
+  }
+}
+
+/* =========================================================
+   MAAIKE FIEBUS – MONROE ONEPAGER
+   ========================================================= */
+
+.mf-page {
+  --mf-bg: #fff8f6;
+  --mf-bg-soft: #f8e8e5;
+  --mf-card: #ffffff;
+  --mf-rose: #c96f83;
+  --mf-rose-dark: #9f4c61;
+  --mf-blush: #f3cbd0;
+  --mf-text: #2d2528;
+  --mf-muted: #7a666c;
+  --mf-border: rgba(159, 76, 97, 0.16);
+  --mf-shadow: 0 22px 60px rgba(86, 45, 56, 0.10);
+
+  background: var(--mf-bg);
+  color: var(--mf-text);
+  font-family: inherit;
+  overflow: hidden;
+}
+
+.mf-page * {
+  box-sizing: border-box;
+}
+
+.mf-section,
+.mf-footer {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 96px 24px;
+}
+
+.mf-section-title {
+  margin: 0 0 24px;
+  color: var(--mf-text);
+  font-size: clamp(2rem, 4vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
+.mf-center {
+  text-align: center;
+}
+
+.mf-section-text,
+.mf-hero-text {
+  color: var(--mf-muted);
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  line-height: 1.75;
+  max-width: 620px;
+}
+
+.mf-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  margin: 0 0 24px;
+  padding: 8px 14px;
+  border: 1px solid var(--mf-border);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--mf-rose-dark);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Maaike – Hero */
+
+.mf-hero {
+  position: relative;
+  max-width: 100%;
+  padding-top: 72px;
+  padding-bottom: 112px;
+  background:
+    radial-gradient(circle at 85% 20%, rgba(243, 203, 208, 0.45), transparent 32%),
+    radial-gradient(circle at 8% 18%, rgba(255, 255, 255, 0.9), transparent 28%),
+    linear-gradient(135deg, #fffaf8 0%, #f8e8e5 100%);
+}
+
+.mf-hero > .wp-block-columns {
+  max-width: 1180px;
+  margin: 0 auto;
+  align-items: center !important;
+  gap: clamp(32px, 6vw, 80px);
+}
+
+.mf-hero-title {
+  margin: 0;
+  color: var(--mf-text);
+  font-size: clamp(3.2rem, 8vw, 7.25rem);
+  line-height: 0.94;
+  letter-spacing: -0.07em;
+}
+
+.mf-hero-subtitle {
+  margin: 18px 0 18px;
+  color: var(--mf-rose-dark);
+  font-size: clamp(1.25rem, 2.2vw, 2rem);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.mf-button-row {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+
+.mf-button-row .wp-block-button__link {
+  padding: 15px 24px;
+  border-radius: 999px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.mf-button-row .wp-block-button__link:hover {
+  transform: translateY(-2px);
+}
+
+.mf-btn-primary .wp-block-button__link,
+.wp-block-button.mf-btn-primary .wp-block-button__link {
+  background: var(--mf-rose-dark);
+  color: #ffffff;
+  box-shadow: 0 16px 34px rgba(159, 76, 97, 0.25);
+}
+
+.mf-btn-secondary .wp-block-button__link,
+.wp-block-button.mf-btn-secondary .wp-block-button__link {
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--mf-rose-dark);
+  border: 1px solid var(--mf-border);
+}
+
+.mf-hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.mf-badge {
+  width: fit-content;
+  margin: 0;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid var(--mf-border);
+  color: var(--mf-rose-dark);
+  font-weight: 700;
+  box-shadow: 0 12px 30px rgba(86, 45, 56, 0.06);
+}
+
+.mf-hero-image {
+  position: relative;
+  margin: 0;
+}
+
+.mf-hero-image img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 34px;
+  box-shadow: var(--mf-shadow);
+  border: 10px solid rgba(255, 255, 255, 0.72);
+}
+
+.mf-hero-decoration {
+  position: absolute;
+  right: 8%;
+  bottom: 8%;
+  color: rgba(201, 111, 131, 0.22);
+  font-size: 8rem;
+  line-height: 1;
+  pointer-events: none;
+}
+
+/* Maaike – About */
+
+.mf-about {
+  background: var(--mf-bg);
+}
+
+.mf-about > .wp-block-columns {
+  align-items: center !important;
+  gap: clamp(32px, 5vw, 72px);
+}
+
+.mf-heart-decoration {
+  margin: 28px 0 0;
+  color: rgba(201, 111, 131, 0.35);
+  font-size: 4rem;
+  line-height: 1;
+}
+
+.mf-card-grid {
+  display: grid;
+  gap: 22px;
+}
+
+.mf-card-grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.mf-card-grid-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.mf-card {
+  padding: 28px;
+  border-radius: 28px;
+  background: var(--mf-card);
+  border: 1px solid var(--mf-border);
+  box-shadow: 0 18px 46px rgba(86, 45, 56, 0.07);
+}
+
+.mf-card h3,
+.mf-image-card h3,
+.mf-step h3 {
+  margin: 0 0 10px;
+  color: var(--mf-text);
+  font-size: 1.15rem;
+  line-height: 1.25;
+}
+
+.mf-card p,
+.mf-image-card p,
+.mf-step p {
+  margin: 0;
+  color: var(--mf-muted);
+  line-height: 1.6;
+}
+
+/* Maaike – Experience Cards */
+
+.mf-experience {
+  max-width: 100%;
+  background: linear-gradient(180deg, #fff8f6 0%, #f8e8e5 100%);
+}
+
+.mf-experience > * {
+  max-width: 1180px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mf-image-card {
+  overflow: hidden;
+  border-radius: 30px;
+  background: var(--mf-card);
+  border: 1px solid var(--mf-border);
+  box-shadow: 0 18px 46px rgba(86, 45, 56, 0.08);
+}
+
+.mf-image-card figure,
+.mf-image-card .wp-block-image {
+  margin: 0;
+}
+
+.mf-image-card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+.mf-image-card h3,
+.mf-image-card p {
+  padding-left: 22px;
+  padding-right: 22px;
+}
+
+.mf-image-card h3 {
+  padding-top: 22px;
+}
+
+.mf-image-card p {
+  padding-bottom: 26px;
+}
+
+.mf-soft-note {
+  margin-top: 36px;
+  color: var(--mf-rose-dark);
+  font-weight: 700;
+}
+
+/* Maaike – Process */
+
+.mf-steps {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 48px;
+}
+
+.mf-step {
+  position: relative;
+  padding: 28px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid var(--mf-border);
+  text-align: center;
+  box-shadow: 0 18px 46px rgba(86, 45, 56, 0.06);
+}
+
+.mf-step-number {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background: var(--mf-rose-dark);
+  color: #ffffff;
+  font-weight: 800;
+}
+
+/* Maaike – Testimonials */
+
+.mf-testimonials {
+  max-width: 100%;
+  background:
+    radial-gradient(circle at 12% 28%, rgba(255, 255, 255, 0.95), transparent 28%),
+    linear-gradient(135deg, #f8e8e5 0%, #fff8f6 100%);
+}
+
+.mf-testimonials > * {
+  max-width: 1180px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mf-testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 36px;
+}
+
+.mf-testimonial {
+  padding: 34px;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.74);
+  border: 1px solid var(--mf-border);
+  box-shadow: 0 18px 46px rgba(86, 45, 56, 0.07);
+}
+
+.mf-testimonial p:first-child {
+  margin: 0 0 18px;
+  color: var(--mf-text);
+  font-size: 1.35rem;
+  line-height: 1.45;
+}
+
+.mf-testimonial-name {
+  margin: 0;
+  color: var(--mf-rose-dark);
+  font-weight: 700;
+}
+
+/* Maaike – Inquiry / Form */
+
+.mf-inquiry {
+  max-width: 1180px;
+}
+
+.mf-inquiry > .wp-block-columns {
+  align-items: center !important;
+  gap: clamp(32px, 5vw, 72px);
+  padding: clamp(32px, 5vw, 64px);
+  border-radius: 40px;
+  background:
+    radial-gradient(circle at 8% 14%, rgba(255, 255, 255, 0.95), transparent 30%),
+    linear-gradient(135deg, #f3cbd0 0%, #fff8f6 100%);
+  box-shadow: var(--mf-shadow);
+}
+
+.mf-form-placeholder {
+  padding: 28px;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid var(--mf-border);
+  box-shadow: 0 18px 46px rgba(86, 45, 56, 0.08);
+}
+
+.mf-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.mf-form-field-full {
+  grid-column: 1 / -1;
+}
+
+.mf-form-field input,
+.mf-form-field select,
+.mf-form-field textarea {
+  width: 100%;
+  min-height: 52px;
+  padding: 14px 16px;
+  border: 1px solid var(--mf-border);
+  border-radius: 16px;
+  background: #ffffff;
+  color: var(--mf-text);
+  font: inherit;
+  outline: none;
+}
+
+.mf-form-field textarea {
+  min-height: 132px;
+  resize: vertical;
+}
+
+.mf-form-field input:focus,
+.mf-form-field select:focus,
+.mf-form-field textarea:focus {
+  border-color: rgba(159, 76, 97, 0.48);
+  box-shadow: 0 0 0 4px rgba(201, 111, 131, 0.12);
+}
+
+.mf-form-consent {
+  color: var(--mf-muted);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.mf-form-consent .wpcf7-list-item {
+  margin: 0;
+}
+
+.mf-submit,
+.wpcf7-submit.mf-submit {
+  width: 100%;
+  min-height: 56px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--mf-rose-dark);
+  color: #ffffff;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 16px 34px rgba(159, 76, 97, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.mf-submit:hover,
+.wpcf7-submit.mf-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 42px rgba(159, 76, 97, 0.32);
+}
+
+.mf-form-note {
+  margin: 18px 0 0;
+  color: var(--mf-rose-dark);
+  font-weight: 700;
+  text-align: center;
+}
+
+.wpcf7-not-valid-tip {
+  margin-top: 8px;
+  color: #9f4c61;
+  font-size: 0.85rem;
+}
+
+.wpcf7-response-output {
+  margin: 18px 0 0 !important;
+  padding: 14px 16px !important;
+  border-radius: 16px;
+  border-color: var(--mf-border) !important;
+}
+
+/* Maaike – Footer */
+
+.mf-footer {
+  margin-top: 40px;
+  padding-top: 42px;
+  padding-bottom: 42px;
+  border-top: 1px solid var(--mf-border);
+  color: var(--mf-muted);
+}
+
+.mf-footer h3,
+.mf-footer p {
+  margin-top: 0;
+}
+
+.mf-footer strong,
+.mf-footer h3 {
+  color: var(--mf-text);
+}
+
+/* Maaike – Responsive */
+
+@media (max-width: 1024px) {
+  .mf-card-grid-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .mf-card-grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .mf-steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 782px) {
+  .mf-section,
+  .mf-footer {
+    padding: 72px 20px;
+  }
+
+  .mf-hero {
+    padding-top: 56px;
+    padding-bottom: 80px;
+  }
+
+  .mf-hero > .wp-block-columns,
+  .mf-about > .wp-block-columns,
+  .mf-inquiry > .wp-block-columns {
+    gap: 36px;
+  }
+
+  .mf-hero-title {
+    font-size: clamp(3rem, 16vw, 5rem);
+  }
+
+  .mf-card-grid-4,
+  .mf-steps,
+  .mf-testimonial-grid,
+  .mf-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mf-inquiry > .wp-block-columns {
+    padding: 28px;
+    border-radius: 30px;
+  }
+
+  .mf-form-placeholder {
+    padding: 20px;
+  }
+
+  .mf-button-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .mf-button-row .wp-block-button,
+  .mf-button-row .wp-block-button__link {
+    width: 100%;
+    text-align: center;
+  }
+}

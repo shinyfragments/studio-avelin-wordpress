@@ -1,0 +1,21 @@
+.DS_Store
+node_modules/
+dist/
+build/
+
+# WordPress core should not be stored here
+wp-admin/
+wp-includes/
+wp-content/uploads/
+wp-content/cache/
+wp-content/upgrade/
+wp-content/backup*/
+
+# Local/editor files
+.vscode/
+*.log
+.env
+.env.local
+
+# FTP temp files
+*.tmp
