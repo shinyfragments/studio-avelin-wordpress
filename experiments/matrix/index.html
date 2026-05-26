@@ -3,21 +3,17 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Studio Avelin — Experiments</title>
+  <title>Studio Avelin — Morph Grid</title>
 
   <style>
     :root {
       --sa-bg: #050505;
-      --sa-bg-2: #120018;
+      --sa-bg-2: #0a0808;
       --sa-lime: #C7F000;
-      --sa-lime-soft: rgba(199, 240, 0, 0.16);
+      --sa-lime-soft: rgba(199, 240, 0, 0.12);
       --sa-purple: #2B073C;
-      --sa-purple-soft: rgba(168, 70, 255, 0.22);
       --sa-white: #F2F2F2;
-      --sa-line: rgba(242, 242, 242, 0.13);
-      --sa-line-strong: rgba(199, 240, 0, 0.36);
       --sa-font: "Poppins", "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      --sa-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
     }
 
     * {
@@ -48,433 +44,491 @@
       display: grid;
       place-items: center;
       background:
-        radial-gradient(circle at 50% 52%, rgba(199, 240, 0, 0.14), transparent 0 17%, transparent 42%),
-        radial-gradient(circle at 50% 52%, rgba(105, 18, 140, 0.42), transparent 0 45%),
-        radial-gradient(circle at 12% 18%, rgba(199, 240, 0, 0.06), transparent 0 22%),
-        radial-gradient(circle at 86% 80%, rgba(168, 70, 255, 0.22), transparent 0 28%),
-        linear-gradient(135deg, #030303, var(--sa-bg-2) 52%, #070707);
+        radial-gradient(circle at 35% 40%, rgba(199, 240, 0, 0.08) 0%, transparent 35%),
+        radial-gradient(circle at 65% 65%, rgba(43, 7, 60, 0.35) 0%, transparent 40%),
+        radial-gradient(circle at 20% 80%, rgba(199, 240, 0, 0.04) 0%, transparent 30%),
+        linear-gradient(135deg, #030303 0%, var(--sa-bg-2) 50%, #050505 100%);
     }
 
-    .sa-brand {
+    /* ============ Header / Brand ============ */
+    .sa-header {
       position: absolute;
-      top: clamp(22px, 4vw, 54px);
-      left: clamp(22px, 4vw, 54px);
+      top: clamp(20px, 3vw, 48px);
+      left: clamp(20px, 3vw, 48px);
       z-index: 20;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.72rem;
-      color: rgba(199, 240, 0, 0.9);
-      font-family: var(--sa-mono);
-      font-size: clamp(0.72rem, 0.95vw, 0.9rem);
-      line-height: 1;
-      letter-spacing: 0.08em;
+      color: var(--sa-lime);
+      font-size: clamp(0.75rem, 1vw, 0.95rem);
+      font-weight: 400;
+      letter-spacing: 0.05em;
       text-decoration: none;
-      text-transform: lowercase;
       opacity: 0;
-      transform: translateY(-8px);
-      animation: saFadeIn 900ms cubic-bezier(.16, 1, .3, 1) forwards 480ms;
+      transform: translateY(-12px);
+      animation: morphFadeIn 900ms cubic-bezier(0.16, 1, 0.3, 1) forwards 400ms;
     }
 
-    .sa-brand::before {
-      content: "";
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--sa-lime);
-      box-shadow: 0 0 22px rgba(199, 240, 0, 0.82);
-      animation: saDotPulse 2600ms ease-in-out infinite;
+    /* ============ Main Content Area ============ */
+    .sa-content {
+      position: relative;
+      z-index: 15;
+      display: grid;
+      place-items: center;
+      width: min(95vw, 1400px);
+      height: auto;
+      pointer-events: none;
     }
 
-    .sa-meta {
+    /* ============ Word Display ============ */
+    .sa-word-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 200px;
+      opacity: 0;
+      transform: scale(0.92);
+      animation: morphContentIn 1000ms cubic-bezier(0.16, 1, 0.3, 1) forwards 500ms;
+    }
+
+    .sa-word-background {
       position: absolute;
-      right: clamp(22px, 4vw, 54px);
-      bottom: clamp(22px, 4vw, 54px);
-      z-index: 20;
-      color: rgba(242, 242, 242, 0.45);
-      font-family: var(--sa-mono);
-      font-size: clamp(0.62rem, 0.85vw, 0.78rem);
-      line-height: 1.8;
-      letter-spacing: 0.08em;
-      text-align: right;
-      text-transform: uppercase;
-      opacity: 0;
-      transform: translateY(8px);
-      animation: saFadeIn 900ms cubic-bezier(.16, 1, .3, 1) forwards 760ms;
+      width: clamp(300px, 60vw, 800px);
+      height: clamp(150px, 30vh, 400px);
+      border-radius: 50%;
+      background: radial-gradient(
+        ellipse at center,
+        rgba(199, 240, 0, 0.15) 0%,
+        rgba(199, 240, 0, 0.08) 30%,
+        transparent 70%
+      );
+      filter: blur(80px);
+      animation: morphGlowPulse 4s ease-in-out infinite;
     }
 
-    .sa-meta strong {
-      color: rgba(199, 240, 0, 0.8);
+    @keyframes morphGlowPulse {
+      0%, 100% {
+        transform: scale(0.95);
+        opacity: 0.7;
+      }
+      50% {
+        transform: scale(1.08);
+        opacity: 1;
+      }
+    }
+
+    .sa-word {
+      position: relative;
+      z-index: 2;
+      margin: 0;
+      color: var(--sa-lime);
+      font-size: clamp(3.5rem, 12vw, 14rem);
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: -0.05em;
+      text-align: center;
+      text-transform: lowercase;
+      text-shadow:
+        0 0 20px rgba(199, 240, 0, 0.4),
+        0 0 60px rgba(199, 240, 0, 0.2),
+        0 0 120px rgba(199, 240, 0, 0.1);
+      will-change: transform, opacity, filter;
+    }
+
+    .sa-word.is-out {
+      animation: morphWordOut 500ms cubic-bezier(0.4, 0, 0.6, 1) forwards;
+    }
+
+    .sa-word.is-in {
+      animation: morphWordIn 600ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes morphWordOut {
+      0% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        filter: blur(0);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(0.8) translateY(-30px);
+        filter: blur(20px);
+      }
+    }
+
+    @keyframes morphWordIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(30px);
+        filter: blur(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        filter: blur(0);
+      }
+    }
+
+    /* ============ Footer / Meta ============ */
+    .sa-footer {
+      position: absolute;
+      bottom: clamp(20px, 3vw, 48px);
+      right: clamp(20px, 3vw, 48px);
+      z-index: 20;
+      text-align: right;
+      font-size: clamp(0.65rem, 0.9vw, 0.85rem);
+      line-height: 1.6;
+      letter-spacing: 0.04em;
+      text-transform: lowercase;
+      color: rgba(242, 242, 242, 0.5);
+      opacity: 0;
+      transform: translateY(12px);
+      animation: morphFadeIn 900ms cubic-bezier(0.16, 1, 0.3, 1) forwards 600ms;
+    }
+
+    .sa-footer-label {
+      color: var(--sa-lime);
       font-weight: 500;
     }
 
-    .sa-layout-field {
+    /* ============ Background Grid System ============ */
+    .sa-background {
       position: absolute;
-      inset: -12%;
-      z-index: 2;
+      inset: 0;
+      z-index: 1;
       pointer-events: none;
-      transform: rotate(-6deg);
-      opacity: 0;
-      animation: saFieldIn 1200ms cubic-bezier(.16, 1, .3, 1) forwards 320ms;
+      overflow: hidden;
     }
 
-    .sa-frame {
+    .sa-grid-cards {
       position: absolute;
-      border: 1px solid var(--sa-line);
-      border-radius: clamp(18px, 2.4vw, 36px);
-      background:
-        linear-gradient(135deg, rgba(242, 242, 242, 0.055), rgba(242, 242, 242, 0.015)),
-        radial-gradient(circle at 18% 18%, rgba(199, 240, 0, 0.09), transparent 0 36%);
-      box-shadow:
-        inset 0 0 0 1px rgba(255, 255, 255, 0.025),
-        0 26px 90px rgba(0, 0, 0, 0.26);
-      backdrop-filter: blur(2px);
-      animation: saFloat var(--duration) ease-in-out infinite alternate;
+      inset: -10%;
+      opacity: 0;
+      animation: morphGridFadeIn 1200ms cubic-bezier(0.16, 1, 0.3, 1) forwards 300ms;
+    }
+
+    .sa-card {
+      position: absolute;
+      border: 1px solid rgba(199, 240, 0, 0.18);
+      border-radius: clamp(12px, 2vw, 28px);
+      background: radial-gradient(
+        circle at 20% 20%,
+        rgba(199, 240, 0, 0.08),
+        rgba(199, 240, 0, 0.02) 40%,
+        transparent 100%
+      );
+      backdrop-filter: blur(1px);
+      animation: morphFloat var(--duration) ease-in-out infinite;
       animation-delay: var(--delay);
     }
 
-    .sa-frame::before,
-    .sa-frame::after {
+    .sa-card::before {
       content: "";
       position: absolute;
-      border-radius: 999px;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
       background: var(--sa-lime);
-      opacity: 0.72;
-      box-shadow: 0 0 22px rgba(199, 240, 0, 0.64);
+      opacity: 0.6;
+      box-shadow: 0 0 12px rgba(199, 240, 0, 0.5);
+      top: clamp(8px, 1.2vw, 14px);
+      left: clamp(8px, 1.2vw, 14px);
+      animation: morphDotPulse 2.5s ease-in-out infinite;
+      animation-delay: var(--dot-delay);
     }
 
-    .sa-frame::before {
-      top: clamp(14px, 1.5vw, 22px);
-      left: clamp(14px, 1.5vw, 22px);
-      width: 7px;
-      height: 7px;
+    .sa-card--1 {
+      width: 28vw;
+      height: 32vh;
+      left: 4%;
+      top: 12%;
+      --duration: 8s;
+      --delay: 0s;
+      --dot-delay: 0.3s;
     }
 
-    .sa-frame::after {
-      right: clamp(14px, 1.5vw, 22px);
-      bottom: clamp(14px, 1.5vw, 22px);
-      width: 36%;
-      height: 1px;
-      opacity: 0.44;
-    }
-
-    .sa-frame--a {
-      width: 34vw;
-      height: 28vh;
-      left: 5%;
-      top: 16%;
-      --duration: 7.5s;
-      --delay: -1s;
-    }
-
-    .sa-frame--b {
-      width: 25vw;
-      height: 42vh;
-      right: 6%;
-      top: 8%;
-      --duration: 9s;
-      --delay: -2.5s;
-    }
-
-    .sa-frame--c {
-      width: 39vw;
-      height: 22vh;
-      right: 12%;
-      bottom: 9%;
-      --duration: 8.4s;
-      --delay: -4s;
-    }
-
-    .sa-frame--d {
+    .sa-card--2 {
       width: 22vw;
-      height: 34vh;
-      left: 9%;
-      bottom: 4%;
+      height: 26vh;
+      right: 5%;
+      top: 18%;
+      --duration: 9s;
+      --delay: -1.2s;
+      --dot-delay: 0.6s;
+    }
+
+    .sa-card--3 {
+      width: 35vw;
+      height: 24vh;
+      right: 8%;
+      bottom: 14%;
+      --duration: 7.5s;
+      --delay: -2.4s;
+      --dot-delay: 1s;
+    }
+
+    .sa-card--4 {
+      width: 24vw;
+      height: 28vh;
+      left: 6%;
+      bottom: 10%;
       --duration: 10s;
-      --delay: -1.8s;
+      --delay: -1.6s;
+      --dot-delay: 0.2s;
     }
 
-    .sa-frame--e {
-      width: 19vw;
-      height: 16vh;
-      left: 42%;
-      top: 7%;
-      border-color: rgba(199, 240, 0, 0.22);
-      --duration: 6.8s;
-      --delay: -3.1s;
+    .sa-card--5 {
+      width: 18vw;
+      height: 20vh;
+      left: 45%;
+      top: 6%;
+      border-color: rgba(199, 240, 0, 0.12);
+      --duration: 7s;
+      --delay: -2.8s;
+      --dot-delay: 1.2s;
     }
 
+    @keyframes morphFloat {
+      0%, 100% {
+        transform: translate3d(0, 0, 0) rotate(-0.8deg);
+      }
+      50% {
+        transform: translate3d(var(--tx, 1.2vw), var(--ty, 1.5vh), 0) rotate(0.8deg);
+      }
+    }
+
+    @keyframes morphDotPulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 0.6;
+      }
+      50% {
+        transform: scale(1.4);
+        opacity: 1;
+      }
+    }
+
+    /* ============ Connecting Lines ============ */
     .sa-lines {
       position: absolute;
       inset: 0;
-      z-index: 3;
+      z-index: 2;
       pointer-events: none;
-      opacity: 0.78;
     }
 
     .sa-line {
       position: absolute;
       height: 1px;
-      transform-origin: left center;
-      background: linear-gradient(90deg, transparent, rgba(199, 240, 0, 0.55), rgba(242, 242, 242, 0.12), transparent);
-      animation: saLineSweep var(--speed) ease-in-out infinite;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(199, 240, 0, 0.4),
+        rgba(199, 240, 0, 0.25),
+        transparent
+      );
+      animation: morphLineDraw var(--speed) ease-in-out infinite;
       animation-delay: var(--delay);
+      transform-origin: left center;
     }
 
-    .sa-line:nth-child(1) { width: 36vw; left: 18%; top: 25%; transform: rotate(12deg); --speed: 6.5s; --delay: -1s; }
-    .sa-line:nth-child(2) { width: 44vw; left: 36%; top: 37%; transform: rotate(-9deg); --speed: 7.8s; --delay: -2.4s; }
-    .sa-line:nth-child(3) { width: 30vw; left: 14%; bottom: 25%; transform: rotate(-15deg); --speed: 8.2s; --delay: -3.2s; }
-    .sa-line:nth-child(4) { width: 42vw; right: 10%; bottom: 33%; transform: rotate(7deg); --speed: 7.2s; --delay: -4.2s; }
+    .sa-line--1 {
+      width: 32vw;
+      left: 16%;
+      top: 28%;
+      transform: rotate(8deg);
+      --speed: 6s;
+      --delay: 0s;
+    }
 
+    .sa-line--2 {
+      width: 40vw;
+      left: 38%;
+      top: 42%;
+      transform: rotate(-6deg);
+      --speed: 7.5s;
+      --delay: -1.8s;
+    }
+
+    .sa-line--3 {
+      width: 28vw;
+      left: 12%;
+      bottom: 26%;
+      transform: rotate(-12deg);
+      --speed: 6.8s;
+      --delay: -2.6s;
+    }
+
+    .sa-line--4 {
+      width: 36vw;
+      right: 8%;
+      bottom: 32%;
+      transform: rotate(5deg);
+      --speed: 8s;
+      --delay: -3.4s;
+    }
+
+    @keyframes morphLineDraw {
+      0% {
+        opacity: 0.15;
+        clip-path: inset(0 100% 0 0);
+      }
+      30% {
+        opacity: 0.6;
+      }
+      70% {
+        opacity: 0.6;
+      }
+      100% {
+        opacity: 0.15;
+        clip-path: inset(0 0 0 100%);
+      }
+    }
+
+    /* ============ Ambient Dot Field ============ */
     .sa-dot-field {
       position: absolute;
       inset: 0;
-      z-index: 4;
+      z-index: 3;
       pointer-events: none;
-      background-image: radial-gradient(circle, rgba(199, 240, 0, 0.42) 0 1px, transparent 1px);
-      background-size: 56px 56px;
-      mask-image: radial-gradient(circle at center, transparent 0 22%, black 46%, transparent 82%);
-      opacity: 0.24;
-      animation: saDotDrift 18s linear infinite;
+      background-image: radial-gradient(circle, rgba(199, 240, 0, 0.35) 0 0.5px, transparent 0.5px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(circle at center, transparent 0 15%, black 40%, transparent 85%);
+      opacity: 0.16;
+      animation: morphDotDrift 20s linear infinite;
     }
 
-    .sa-word-area {
-      position: relative;
-      z-index: 12;
-      display: grid;
-      place-items: center;
-      width: min(92vw, 1280px);
-      pointer-events: none;
-      opacity: 0;
-      transform: translateY(16px) scale(0.985);
-      animation: saWordAreaIn 1100ms cubic-bezier(.16, 1, .3, 1) forwards 540ms;
+    @keyframes morphDotDrift {
+      to {
+        background-position: 128px 128px;
+      }
     }
 
-    .sa-word-glow {
+    /* ============ Accent Glow Areas ============ */
+    .sa-glow-area {
       position: absolute;
-      width: min(70vw, 840px);
-      aspect-ratio: 1 / 0.42;
       border-radius: 999px;
-      background:
-        radial-gradient(circle, rgba(199, 240, 0, 0.34), rgba(199, 240, 0, 0.13) 46%, transparent 72%);
-      filter: blur(74px);
-      opacity: 0.9;
-      transform: translateY(8%);
-      animation: saGlow 4800ms ease-in-out infinite;
-    }
-
-    .sa-word {
-      position: relative;
-      margin: 0;
-      color: var(--sa-lime);
-      font-size: clamp(4.9rem, 14vw, 17rem);
-      font-weight: 300;
-      line-height: 0.82;
-      letter-spacing: -0.078em;
-      text-align: center;
-      text-transform: lowercase;
-      text-shadow:
-        0 0 18px rgba(199, 240, 0, 0.48),
-        0 0 60px rgba(199, 240, 0, 0.32),
-        0 0 140px rgba(199, 240, 0, 0.2);
-      will-change: transform, opacity, filter;
-    }
-
-    .sa-word::before,
-    .sa-word::after {
-      content: attr(data-word);
-      position: absolute;
-      inset: 0;
+      filter: blur(120px);
       pointer-events: none;
-      opacity: 0;
-      mix-blend-mode: screen;
+      opacity: 0.08;
     }
 
-    .sa-word::before {
-      color: rgba(168, 70, 255, 0.82);
-      transform: translateX(-9px);
-      clip-path: inset(0 0 54% 0);
+    .sa-glow--primary {
+      width: 400px;
+      height: 300px;
+      background: var(--sa-lime);
+      top: 20%;
+      left: 10%;
+      animation: morphGlowShift 10s ease-in-out infinite;
     }
 
-    .sa-word::after {
-      color: rgba(242, 242, 242, 0.42);
-      transform: translateX(9px);
-      clip-path: inset(54% 0 0 0);
+    .sa-glow--secondary {
+      width: 350px;
+      height: 280px;
+      background: var(--sa-purple);
+      bottom: 15%;
+      right: 12%;
+      animation: morphGlowShift 12s ease-in-out infinite reverse;
+      animation-delay: -2s;
     }
 
-    .sa-word.is-glitch {
-      animation: saGlitchMain 460ms steps(2, end) both;
+    @keyframes morphGlowShift {
+      0%, 100% {
+        transform: translate(0, 0);
+      }
+      50% {
+        transform: translate(40px, 50px);
+      }
     }
 
-    .sa-word.is-glitch::before {
-      opacity: 0.86;
-      animation: saGlitchA 460ms steps(2, end) both;
-    }
-
-    .sa-word.is-glitch::after {
-      opacity: 0.68;
-      animation: saGlitchB 460ms steps(2, end) both;
-    }
-
-    .sa-word.is-out {
-      animation: saWordOut 420ms cubic-bezier(.7, 0, .2, 1) forwards;
-    }
-
-    .sa-word.is-in {
-      animation: saWordIn 720ms cubic-bezier(.16, 1, .3, 1) forwards;
-    }
-
-    .sa-sweep {
-      position: absolute;
-      inset: -40% -20%;
-      z-index: 8;
-      pointer-events: none;
-      background: linear-gradient(105deg, transparent 38%, rgba(199, 240, 0, 0.07) 48%, rgba(168, 70, 255, 0.11) 52%, transparent 62%);
-      transform: translateX(-38%) rotate(4deg);
-      animation: saSweep 9000ms cubic-bezier(.65, 0, .35, 1) infinite;
-      mix-blend-mode: screen;
-    }
-
-    .sa-noise {
-      position: absolute;
-      inset: -20%;
-      z-index: 16;
-      pointer-events: none;
-      opacity: 0.075;
-      background-image:
-        radial-gradient(circle at 20% 30%, rgba(255,255,255,.9) 0 1px, transparent 1px),
-        radial-gradient(circle at 70% 80%, rgba(255,255,255,.7) 0 1px, transparent 1px);
-      background-size: 64px 64px, 88px 88px;
-      animation: saNoise 7s steps(6) infinite;
-      mix-blend-mode: screen;
-    }
-
-    .sa-vignette {
-      position: absolute;
-      inset: 0;
-      z-index: 17;
-      pointer-events: none;
-      background:
-        radial-gradient(circle at center, transparent 0 31%, rgba(0, 0, 0, 0.54) 76%, rgba(0, 0, 0, 0.96) 100%),
-        linear-gradient(to bottom, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.46));
-    }
-
+    /* ============ Intro Overlay ============ */
     .sa-intro {
-      position: absolute;
+      position: fixed;
       inset: 0;
-      z-index: 30;
+      z-index: 40;
       pointer-events: none;
-      background: #030303;
-      animation: saIntro 1400ms cubic-bezier(.16, 1, .3, 1) forwards;
+      background: #050505;
+      animation: morphIntroOut 1000ms cubic-bezier(0.16, 1, 0.3, 1) forwards 300ms;
     }
 
-    @keyframes saIntro {
-      0% { opacity: 1; clip-path: inset(0 0 0 0); }
-      68% { opacity: 1; }
-      100% { opacity: 0; clip-path: inset(0 0 100% 0); }
+    @keyframes morphIntroOut {
+      0% {
+        opacity: 1;
+        clip-path: inset(0);
+      }
+      100% {
+        opacity: 0;
+        clip-path: inset(0 0 100% 0);
+      }
     }
 
-    @keyframes saFadeIn {
-      to { opacity: 1; transform: translateY(0); }
+    /* ============ Responsive ============ */
+    @media (max-width: 900px) {
+      .sa-card--1 {
+        width: 48vw;
+        height: 24vh;
+        left: -8%;
+      }
+      .sa-card--2 {
+        width: 38vw;
+        height: 20vh;
+        right: -6%;
+      }
+      .sa-card--3 {
+        width: 52vw;
+        height: 18vh;
+        right: -12%;
+      }
+      .sa-card--4 {
+        width: 42vw;
+        height: 20vh;
+        left: -10%;
+      }
+      .sa-card--5 {
+        display: none;
+      }
     }
 
-    @keyframes saDotPulse {
-      0%, 100% { transform: scale(1); opacity: 0.72; }
-      50% { transform: scale(1.35); opacity: 1; }
+    @media (max-width: 600px) {
+      .sa-word {
+        font-size: clamp(2.5rem, 10vw, 5rem);
+      }
+
+      .sa-footer {
+        display: none;
+      }
+
+      .sa-card--1,
+      .sa-card--2,
+      .sa-card--3,
+      .sa-card--4 {
+        opacity: 0.4;
+        border-color: rgba(199, 240, 0, 0.08);
+      }
+
+      .sa-line {
+        opacity: 0.1 !important;
+      }
+
+      .sa-dot-field {
+        display: none;
+      }
     }
 
-    @keyframes saFieldIn {
-      to { opacity: 1; }
-    }
-
-    @keyframes saFloat {
-      from { transform: translate3d(-0.6vw, -0.8vh, 0) rotate(-1.2deg); }
-      to { transform: translate3d(0.8vw, 0.7vh, 0) rotate(1.4deg); }
-    }
-
-    @keyframes saLineSweep {
-      0%, 100% { opacity: 0.12; clip-path: inset(0 100% 0 0); }
-      35%, 65% { opacity: 0.78; clip-path: inset(0 0 0 0); }
-      85% { opacity: 0.16; clip-path: inset(0 0 0 100%); }
-    }
-
-    @keyframes saDotDrift {
-      to { background-position: 112px 112px; }
-    }
-
-    @keyframes saWordAreaIn {
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    @keyframes saGlow {
-      0%, 100% { opacity: 0.72; transform: translateY(8%) scale(0.98); }
-      50% { opacity: 1; transform: translateY(8%) scale(1.08); }
-    }
-
-    @keyframes saSweep {
-      0%, 55% { transform: translateX(-42%) rotate(4deg); opacity: 0; }
-      65% { opacity: 1; }
-      100% { transform: translateX(42%) rotate(4deg); opacity: 0; }
-    }
-
-    @keyframes saNoise {
-      0% { transform: translate3d(0, 0, 0); }
-      25% { transform: translate3d(-2%, 1%, 0); }
-      50% { transform: translate3d(1%, -2%, 0); }
-      75% { transform: translate3d(2%, 1%, 0); }
-      100% { transform: translate3d(0, 0, 0); }
-    }
-
-    @keyframes saWordOut {
-      to { opacity: 0; transform: translateY(-0.16em) scale(0.986); filter: blur(18px); }
-    }
-
-    @keyframes saWordIn {
-      from { opacity: 0; transform: translateY(0.18em) scale(1.032); filter: blur(18px); }
-      to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
-    }
-
-    @keyframes saGlitchMain {
-      0% { transform: translate(0, 0) skewX(0deg); filter: blur(0); }
-      18% { transform: translate(-8px, 2px) skewX(-3deg); filter: blur(1px); }
-      38% { transform: translate(7px, -2px) skewX(3deg); filter: blur(0); }
-      62% { transform: translate(-3px, 0) skewX(4deg); filter: blur(1px); }
-      100% { transform: translate(0, 0) skewX(0deg); filter: blur(0); }
-    }
-
-    @keyframes saGlitchA {
-      0% { clip-path: inset(0 0 72% 0); transform: translateX(-12px); }
-      30% { clip-path: inset(22% 0 45% 0); transform: translateX(9px); }
-      60% { clip-path: inset(62% 0 18% 0); transform: translateX(-14px); }
-      100% { clip-path: inset(0 0 100% 0); opacity: 0; }
-    }
-
-    @keyframes saGlitchB {
-      0% { clip-path: inset(70% 0 0 0); transform: translateX(12px); }
-      34% { clip-path: inset(42% 0 32% 0); transform: translateX(-9px); }
-      68% { clip-path: inset(15% 0 62% 0); transform: translateX(14px); }
-      100% { clip-path: inset(100% 0 0 0); opacity: 0; }
-    }
-
-    @media (max-width: 780px) {
-      .sa-frame--a { width: 64vw; height: 20vh; left: -18%; top: 16%; }
-      .sa-frame--b { width: 42vw; height: 28vh; right: -12%; top: 12%; }
-      .sa-frame--c { width: 66vw; height: 18vh; right: -18%; bottom: 16%; }
-      .sa-frame--d { width: 44vw; height: 24vh; left: -14%; bottom: 10%; }
-      .sa-frame--e { display: none; }
-      .sa-meta { display: none; }
-    }
-
+    /* ============ Reduced Motion ============ */
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
+      *,
+      *::before,
+      *::after {
         animation: none !important;
         transition: none !important;
       }
 
-      .sa-intro { display: none; }
-      .sa-brand,
-      .sa-meta,
-      .sa-layout-field,
-      .sa-word-area {
+      .sa-intro {
+        display: none;
+      }
+
+      .sa-header,
+      .sa-content,
+      .sa-footer,
+      .sa-grid-cards {
         opacity: 1;
         transform: none;
       }
@@ -483,68 +537,70 @@
 </head>
 
 <body>
-  <main class="sa-stage" aria-label="Studio Avelin Experiments">
-    <a class="sa-brand" href="https://studio-avelin.com" aria-label="Studio Avelin Home">studio-avelin.com</a>
+  <div class="sa-intro" aria-hidden="true"></div>
 
-    <div class="sa-layout-field" aria-hidden="true">
-      <div class="sa-frame sa-frame--a"></div>
-      <div class="sa-frame sa-frame--b"></div>
-      <div class="sa-frame sa-frame--c"></div>
-      <div class="sa-frame sa-frame--d"></div>
-      <div class="sa-frame sa-frame--e"></div>
+  <main class="sa-stage" aria-label="Studio Avelin Morph Grid Experiment">
+    <!-- Header -->
+    <a href="https://studio-avelin.com" class="sa-header" aria-label="studio-avelin.com">studio-avelin.com</a>
+
+    <!-- Background Elements -->
+    <div class="sa-background">
+      <div class="sa-glow-area sa-glow--primary" aria-hidden="true"></div>
+      <div class="sa-glow-area sa-glow--secondary" aria-hidden="true"></div>
+
+      <div class="sa-grid-cards" aria-hidden="true">
+        <div class="sa-card sa-card--1"></div>
+        <div class="sa-card sa-card--2"></div>
+        <div class="sa-card sa-card--3"></div>
+        <div class="sa-card sa-card--4"></div>
+        <div class="sa-card sa-card--5"></div>
+      </div>
+
+      <div class="sa-lines" aria-hidden="true">
+        <div class="sa-line sa-line--1"></div>
+        <div class="sa-line sa-line--2"></div>
+        <div class="sa-line sa-line--3"></div>
+        <div class="sa-line sa-line--4"></div>
+      </div>
+
+      <div class="sa-dot-field" aria-hidden="true"></div>
     </div>
 
-    <div class="sa-lines" aria-hidden="true">
-      <div class="sa-line"></div>
-      <div class="sa-line"></div>
-      <div class="sa-line"></div>
-      <div class="sa-line"></div>
+    <!-- Main Content -->
+    <div class="sa-content">
+      <div class="sa-word-container">
+        <div class="sa-word-background" aria-hidden="true"></div>
+        <h1 id="morphWord" class="sa-word" data-word="design." aria-live="polite">design.</h1>
+      </div>
     </div>
 
-    <div class="sa-dot-field" aria-hidden="true"></div>
-
-    <div class="sa-word-area">
-      <div class="sa-word-glow" aria-hidden="true"></div>
-      <h1 id="saWord" class="sa-word" data-word="design." aria-live="polite">design.</h1>
+    <!-- Footer -->
+    <div class="sa-footer">
+      <div><span class="sa-footer-label">experiment</span> / morph grid</div>
     </div>
-
-    <div class="sa-meta" aria-hidden="true">
-      <strong>experiment</strong> / morph grid<br>
-      design · code · create
-    </div>
-
-    <div class="sa-sweep" aria-hidden="true"></div>
-    <div class="sa-noise" aria-hidden="true"></div>
-    <div class="sa-vignette" aria-hidden="true"></div>
-    <div class="sa-intro" aria-hidden="true"></div>
   </main>
 
   <script>
     (() => {
-      const word = document.getElementById("saWord");
+      const word = document.getElementById("morphWord");
       const words = ["design.", "code.", "create."];
       let index = 0;
       const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
       function rotateWord() {
-        word.classList.add("is-glitch");
-
-        window.setTimeout(() => {
-          word.classList.remove("is-glitch");
-          word.classList.add("is-out");
-        }, 300);
+        word.classList.add("is-out");
 
         window.setTimeout(() => {
           index = (index + 1) % words.length;
           word.textContent = words[index];
           word.dataset.word = words[index];
           word.classList.remove("is-out");
-          word.classList.add("is-in", "is-glitch");
-        }, 620);
+          word.classList.add("is-in");
+        }, 500);
 
         window.setTimeout(() => {
-          word.classList.remove("is-in", "is-glitch");
-        }, 1180);
+          word.classList.remove("is-in");
+        }, 1100);
       }
 
       if (!reducedMotion) {
