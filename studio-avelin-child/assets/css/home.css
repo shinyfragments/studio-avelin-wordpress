@@ -106,7 +106,6 @@ body:has(.sa-front) .wp-site-blocks > footer:not(.sa-front-footer) {
   position: sticky;
   top: 0;
   z-index: 80;
-  border-bottom: 1px solid var(--sa-front-line);
   background: rgba(242, 242, 242, 0.86);
   backdrop-filter: blur(14px);
 }
@@ -909,7 +908,6 @@ body:has(.sa-front) .wp-site-blocks > footer:not(.sa-front-footer) {
   display: flex;
   flex-direction: column;
   gap: 0.65rem;
-  border-top: 1px solid var(--sa-front-line);
   padding-top: 1.5rem;
   padding-bottom: 2rem;
   color: var(--sa-front-muted);
