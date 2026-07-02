@@ -202,13 +202,6 @@ body:has(.sa-front) .wp-site-blocks > footer:not(.sa-front-footer) {
   border-bottom: 1px solid var(--sa-front-line);
 }
 
-.sa-front-hero > .sa-front-grid {
-  position: absolute;
-  inset: 0;
-  opacity: 0.42;
-  pointer-events: none;
-}
-
 .sa-front-hero__inner {
   display: grid;
   gap: 2.5rem;
@@ -332,21 +325,6 @@ body:has(.sa-front) .wp-site-blocks > footer:not(.sa-front-footer) {
   transition: transform 500ms cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
-.sa-hero-visual__field::before {
-  content: "";
-  position: absolute;
-  inset: 12% 7% 8% 20%;
-  z-index: 2;
-  background:
-    linear-gradient(90deg, transparent, rgba(199, 240, 0, 0.16), transparent),
-    repeating-linear-gradient(0deg, transparent 0 9px, rgba(21, 25, 34, 0.05) 10px);
-  mix-blend-mode: multiply;
-  opacity: 0.34;
-  transform: skewY(-8deg);
-  animation: sa-hero-edge-glitch 8.5s steps(1, end) infinite;
-  pointer-events: none;
-}
-
 .sa-hero-visual__fragment {
   position: absolute;
   inset: 0;
@@ -397,7 +375,6 @@ body:has(.sa-front) .wp-site-blocks > footer:not(.sa-front-footer) {
   height: var(--sa-orbit-size);
   margin-left: calc(var(--sa-orbit-size) / -2);
   margin-top: calc(var(--sa-orbit-size) / -2);
-  border: 1px solid rgba(21, 25, 34, 0.08);
   border-radius: 999px;
   animation: sa-hero-orbit var(--sa-orbit-speed) linear infinite;
 }
@@ -498,26 +475,6 @@ body:has(.sa-front) .wp-site-blocks > footer:not(.sa-front-footer) {
   animation-delay: -6.6s;
 }
 
-.sa-hero-scan {
-  position: absolute;
-  inset: 18% 12% 12% 24%;
-  z-index: 7;
-  overflow: hidden;
-  opacity: 0.34;
-  mix-blend-mode: multiply;
-}
-
-.sa-hero-scan::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(90deg, transparent 0 26%, rgba(21, 25, 34, 0.16) 28%, transparent 31%),
-    repeating-linear-gradient(0deg, rgba(21, 25, 34, 0.06) 0 1px, transparent 1px 8px);
-  transform: translateX(-82%);
-  animation: sa-hero-scan 10s ease-in-out infinite;
-}
-
 @keyframes sa-hero-sweep {
   0% {
     stroke-dashoffset: 180;
@@ -554,38 +511,6 @@ body:has(.sa-front) .wp-site-blocks > footer:not(.sa-front-footer) {
   50% {
     opacity: 0.78;
     transform: translate3d(0.8rem, -0.55rem, 0);
-  }
-}
-
-@keyframes sa-hero-scan {
-  0%,
-  48% {
-    transform: translateX(-82%);
-  }
-
-  74%,
-  100% {
-    transform: translateX(82%);
-  }
-}
-
-@keyframes sa-hero-edge-glitch {
-  0%,
-  62%,
-  69%,
-  100% {
-    clip-path: inset(0 0 0 0);
-    transform: translate3d(0, 0, 0) skewY(-8deg);
-  }
-
-  64% {
-    clip-path: inset(18% 0 74% 0);
-    transform: translate3d(0.35rem, -0.1rem, 0) skewY(-8deg);
-  }
-
-  67% {
-    clip-path: inset(64% 0 23% 0);
-    transform: translate3d(-0.25rem, 0.08rem, 0) skewY(-8deg);
   }
 }
 
@@ -1466,13 +1391,10 @@ body:has(.sa-front) .wp-site-blocks > footer:not(.sa-front-footer) {
   .sa-hero-sweep__trace,
   .sa-hero-sweep__ghost,
   .sa-hero-orbit,
-  .sa-hero-particles span,
-  .sa-hero-scan::before,
-  .sa-hero-visual__field::before {
+  .sa-hero-particles span {
     animation: none !important;
   }
 
-  .sa-hero-scan,
   .sa-hero-particles,
   .sa-hero-orbits {
     opacity: 0.18;

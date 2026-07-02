@@ -34,16 +34,15 @@ $sa_hero_fragment_url = esc_url(get_stylesheet_directory_uri() . '/assets/img/av
 
 <main id="primary" class="sa-front">
   <section id="top" class="sa-front-hero" aria-labelledby="sa-hero-title">
-    <div class="sa-front-grid" aria-hidden="true"></div>
     <div class="sa-front__inner sa-front-hero__inner">
       <div class="sa-front-hero__content">
         <p class="sa-front-eyebrow sa-front-eyebrow--line" data-sa-reveal>Personal Studio &middot; Est. 2025</p>
         <p class="sa-front-kicker" data-sa-reveal>DESIGN. CODE. CREATE.</p>
         <h1 id="sa-hero-title" data-sa-reveal>
-          Quiet digital design with a sharp edge.
+          Shape the noise.
         </h1>
         <p class="sa-front-hero__text" data-sa-reveal>
-          a place to design. code. create.
+          Create the system.
         </p>
       </div>
 
@@ -70,8 +69,6 @@ $sa_hero_fragment_url = esc_url(get_stylesheet_directory_uri() . '/assets/img/av
             <span></span>
             <span></span>
           </div>
-
-          <div class="sa-hero-scan" aria-hidden="true"></div>
         </div>
       </div>
 
