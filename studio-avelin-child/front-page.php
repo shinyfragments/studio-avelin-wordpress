@@ -43,7 +43,7 @@ $sa_hero_fragment_url = esc_url(get_stylesheet_directory_uri() . '/assets/img/av
           Quiet digital design with a sharp edge.
         </h1>
         <p class="sa-front-hero__text" data-sa-reveal>
-          A personal space for visual ideas, code experiments and creative systems.
+          a place to design. code. create.
         </p>
       </div>
 
