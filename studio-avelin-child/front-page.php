@@ -4,6 +4,7 @@
  */
 
 $sa_portrait_url = esc_url(get_stylesheet_directory_uri() . '/assets/img/portrait.jpg');
+$sa_hero_fragment_url = esc_url(get_stylesheet_directory_uri() . '/assets/img/avelin-hero-fragment.png');
 ?>
 <!doctype html>
 <html <?php language_attributes(); ?>>
@@ -32,30 +33,45 @@ $sa_portrait_url = esc_url(get_stylesheet_directory_uri() . '/assets/img/portrai
 </header>
 
 <main id="primary" class="sa-front">
-  <section id="top" class="sa-front-hero" aria-label="Introduction">
+  <section id="top" class="sa-front-hero" aria-labelledby="sa-hero-title">
     <div class="sa-front-grid" aria-hidden="true"></div>
     <div class="sa-front__inner sa-front-hero__inner">
       <div class="sa-front-hero__content">
         <p class="sa-front-eyebrow sa-front-eyebrow--line" data-sa-reveal>Personal Studio &middot; Est. 2025</p>
-        <p class="sa-front-kicker" data-sa-reveal>Design. Code. Create.</p>
-        <h1 data-sa-reveal>
-          Simple digital things.<br>
-          Made with <span class="sa-front-highlight">care</span>.
+        <p class="sa-front-kicker" data-sa-reveal>DESIGN. CODE. CREATE.</p>
+        <h1 id="sa-hero-title" data-sa-reveal>
+          Quiet digital design with a sharp edge.
         </h1>
-        <div class="sa-front-hero__bottom" data-sa-reveal>
-          <p>
-            A personal space for small apps, visual ideas, experiments and notes on design, code and creative process.
-          </p>
-          <div class="sa-front-actions" aria-label="Intro actions">
-            <a class="sa-front-button" href="#work">
-              View Work
-              <span aria-hidden="true">-&gt;</span>
-            </a>
-            <a class="sa-front-link" href="#say-hello">
-              Say Hello
-              <span aria-hidden="true">-&gt;</span>
-            </a>
+        <p class="sa-front-hero__text" data-sa-reveal>
+          A personal space for visual ideas, code experiments and creative systems.
+        </p>
+      </div>
+
+      <div class="sa-hero-visual" data-sa-hero-visual data-sa-reveal aria-hidden="true">
+        <div class="sa-hero-visual__field">
+          <img class="sa-hero-visual__fragment" src="<?php echo $sa_hero_fragment_url; ?>" alt="" width="1448" height="1086" decoding="async" fetchpriority="high">
+
+          <svg class="sa-hero-sweep" viewBox="0 0 900 620" aria-hidden="true" focusable="false">
+            <path class="sa-hero-sweep__trace" d="M66 474 C 220 390, 338 304, 468 250 S 726 153, 858 87" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="38 118" />
+            <path class="sa-hero-sweep__ghost" d="M38 506 C 224 410, 340 330, 500 264 S 742 168, 886 112" fill="none" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" stroke-dasharray="3 18" />
+          </svg>
+
+          <div class="sa-hero-orbits" aria-hidden="true">
+            <span class="sa-hero-orbit sa-hero-orbit--one"><i></i></span>
+            <span class="sa-hero-orbit sa-hero-orbit--two"><i></i></span>
+            <span class="sa-hero-orbit sa-hero-orbit--three"><i></i></span>
           </div>
+
+          <div class="sa-hero-particles" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          <div class="sa-hero-scan" aria-hidden="true"></div>
         </div>
       </div>
 
