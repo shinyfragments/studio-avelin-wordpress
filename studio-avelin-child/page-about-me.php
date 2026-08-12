@@ -2,12 +2,7 @@
 /**
  * Studio Avelin — About Me page template.
  *
- * Mirrors the React reference implementation (src/routes/about-me.tsx):
- * a two-column layout with a compact, portrait-oriented 4:5 image on the
- * left (approx. 5/12 of the content width) and the About text on the right.
- *
- * Like front-page.php this template supplies the flat Studio Avelin header
- * and footer instead of the Twenty Twenty-Four block chrome.
+ * Designed 1:1 to match the visual specification and reference design.
  *
  * @package studio-avelin-child
  */
@@ -17,19 +12,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $sa_home         = trailingslashit( home_url( '/' ) );
-$sa_nav          = sa_child_nav_items( 'header' );
-$sa_footer_nav   = sa_child_nav_items( 'footer' );
 $sa_portrait     = get_stylesheet_directory_uri() . '/assets/img/portrait.jpg';
 $sa_has_portrait = file_exists( get_stylesheet_directory() . '/assets/img/portrait.jpg' );
-
-$sa_interests = array(
-	array( 'Calm interfaces', 'Tools that respect attention.' ),
-	array( 'Typography', 'Type as the bones of design.' ),
-	array( 'Small apps', 'Single-purpose, well-made.' ),
-	array( 'Webwork', 'HTML, CSS and the open web.' ),
-	array( 'Writing', 'Thinking through making.' ),
-	array( 'Quiet motion', 'Animation that supports, not shouts.' ),
-);
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -39,165 +23,235 @@ $sa_interests = array(
 	<?php wp_head(); ?>
 </head>
 
-<body <?php body_class( 'sa-front sa-page' ); ?>>
+<body <?php body_class( array( 'sa-front', 'sa-page', 'sa-page--about' ) ); ?>>
 <?php wp_body_open(); ?>
 
 <a class="sa-skip" href="#sa-main">Skip to content</a>
 
-<header class="sa-front-header" id="sa-header">
-	<div class="sa-front-header__inner">
-		<a class="sa-brand" href="<?php echo esc_url( $sa_home ); ?>">
-			Studio Avelin
-			<span class="sa-brand__dot" aria-hidden="true"></span>
-		</a>
+<!-- ========================= HEADER ========================= -->
+<header class="sa-about-header" id="sa-header">
+	<div class="sa-about-container">
+		<div class="sa-about-header__inner">
+			<a class="sa-about-logo" href="<?php echo esc_url( $sa_home ); ?>">
+				<span class="sa-about-logo__underline">STUDIO</span> AVELIN
+			</a>
 
-		<button class="sa-nav-toggle" type="button" aria-expanded="false" aria-controls="sa-nav" data-sa-nav-toggle>
-			<span class="sa-nav-toggle__bars" aria-hidden="true"></span>
-			<span class="sa-nav-toggle__label">Menu</span>
-		</button>
-
-		<nav class="sa-nav" id="sa-nav" aria-label="Primary">
-			<ul class="sa-nav__list">
-				<?php foreach ( $sa_nav as $item ) : ?>
-					<li class="sa-nav__item">
-						<a class="sa-nav__link" href="<?php echo esc_url( $item['url'] ); ?>"><?php echo esc_html( $item['label'] ); ?></a>
-					</li>
-				<?php endforeach; ?>
-			</ul>
-		</nav>
+			<nav class="sa-about-nav" aria-label="Primary Navigation">
+				<ul class="sa-about-nav__list">
+					<li><a class="sa-about-nav__link" href="<?php echo esc_url( $sa_home . '#work' ); ?>">WORK</a></li>
+					<li><a class="sa-about-nav__link" href="<?php echo esc_url( $sa_home . 'experiments/' ); ?>">EXPERIMENTS</a></li>
+					<li><a class="sa-about-nav__link" href="<?php echo esc_url( $sa_home . 'journal/' ); ?>">JOURNAL</a></li>
+					<li><a class="sa-about-nav__link sa-about-nav__link--active" href="<?php echo esc_url( $sa_home . 'about-me/' ); ?>">ABOUT ME</a></li>
+					<li><a class="sa-about-nav__link" href="mailto:hello@studio-avelin.com">SAY HELLO</a></li>
+				</ul>
+			</nav>
+		</div>
 	</div>
 </header>
 
+<!-- ========================= MAIN CONTENT ========================= -->
 <main class="sa-main" id="sa-main">
+	<div class="sa-about-container">
+		<div class="sa-about-grid">
 
-	<section class="sa-page-hero" aria-labelledby="sa-about-title">
-		<div class="sa-shell sa-page-hero__inner">
-			<div class="sa-about-grid">
+			<!-- LEFT COLUMN -->
+			<div class="sa-about-col-left">
+				<span class="sa-about-eyebrow">ABOUT ME</span>
 
-				<div class="sa-about-grid__media">
-					<div class="sa-about-portrait">
-						<span class="sa-about-portrait__offset" aria-hidden="true"></span>
-						<div class="sa-about-portrait__frame">
-							<?php if ( $sa_has_portrait ) : ?>
-								<img
-									class="sa-about-portrait__img"
-									src="<?php echo esc_url( $sa_portrait ); ?>"
-									width="896"
-									height="1120"
-									alt="Portrait of Michael, the person behind Studio Avelin"
-									loading="lazy"
-									decoding="async"
-								/>
-							<?php else : ?>
-								<span class="sa-about-portrait__placeholder" aria-hidden="true"></span>
-							<?php endif; ?>
-							<span class="sa-about-portrait__caption" aria-hidden="true">
-								<span class="sa-about-portrait__dot"></span>
-								Studio Avelin
-							</span>
+				<h1 class="sa-about-hero-headline">
+					hi, i’m <span class="sa-lime-text">Michael</span>.
+				</h1>
+
+				<div class="sa-about-intro">
+					<p>
+						Studio Avelin is my digital space for ideas, design and code.<br />
+						I work at the intersection of design and development &mdash; building brands, products and projects that feel clear, functional and timeless.
+					</p>
+					<p>
+						I’m interested in systems, details and the bigger picture.<br />
+						I like projects that make sense, help people and have a strong visual identity.
+					</p>
+				</div>
+
+				<!-- VALUES ROW -->
+				<div class="sa-about-values">
+					<!-- ITEM 1 -->
+					<div class="sa-about-value-item">
+						<div class="sa-about-value-icon">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+								<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+								<polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+								<line x1="12" y1="22.08" x2="12" y2="12"></line>
+							</svg>
+						</div>
+						<div class="sa-about-value-text">
+							<span>Design + Code</span>
+							<span>under one roof</span>
+						</div>
+					</div>
+
+					<!-- ITEM 2 -->
+					<div class="sa-about-value-item">
+						<div class="sa-about-value-icon">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+								<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+							</svg>
+						</div>
+						<div class="sa-about-value-text">
+							<span>Strategic.</span>
+							<span>Clear. Fast.</span>
+						</div>
+					</div>
+
+					<!-- ITEM 3 -->
+					<div class="sa-about-value-item">
+						<div class="sa-about-value-icon">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+								<circle cx="12" cy="12" r="10"></circle>
+								<circle cx="12" cy="12" r="6"></circle>
+								<circle cx="12" cy="12" r="2"></circle>
+							</svg>
+						</div>
+						<div class="sa-about-value-text">
+							<span>Focus on quality,</span>
+							<span>performance &amp; UX</span>
+						</div>
+					</div>
+
+					<!-- ITEM 4 -->
+					<div class="sa-about-value-item">
+						<div class="sa-about-value-icon">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+								<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+							</svg>
+						</div>
+						<div class="sa-about-value-text">
+							<span>Passion for</span>
+							<span>digital products</span>
 						</div>
 					</div>
 				</div>
 
-				<div class="sa-about-grid__body">
-					<p class="sa-eyebrow sa-eyebrow--dot">About</p>
+				<!-- PRIMARY CTA BUTTON -->
+				<div class="sa-about-cta-wrapper">
+					<a class="sa-about-cta-btn" href="<?php echo esc_url( $sa_home . '#work' ); ?>">
+						<span>VIEW MY WORK</span>
+						<span class="sa-about-cta-arrow">&rarr;</span>
+					</a>
+				</div>
 
-					<h1 class="sa-about-title" id="sa-about-title">
-						Hi, I&rsquo;m Michael &mdash;<br />
-						the person behind Studio Avelin.
-					</h1>
+				<!-- SKILLS & TOOLS -->
+				<div class="sa-about-skills-section">
+					<span class="sa-about-skills-label">SKILLS &amp; TOOLS</span>
+					<div class="sa-about-skills-grid">
+						<!-- COL 1 -->
+						<div class="sa-about-skills-col">
+							<h4>DESIGN</h4>
+							<ul>
+								<li>Figma</li>
+								<li>Photoshop</li>
+								<li>Illustrator</li>
+								<li>Typography</li>
+							</ul>
+						</div>
 
-					<p class="sa-about-lead">
-						Studio Avelin is my personal corner of the web. A place to design small apps,
-						sketch visual ideas and write down what I notice along the way.
-					</p>
+						<!-- COL 2 -->
+						<div class="sa-about-skills-col">
+							<h4>DEVELOPMENT</h4>
+							<ul>
+								<li>HTML / CSS / JS / TS</li>
+								<li>React</li>
+								<li>WordPress</li>
+								<li>Supabase</li>
+							</ul>
+						</div>
 
-					<p class="sa-about-lead">
-						I gravitate toward calm interfaces, careful typography and tools that stay out
-						of the way. Most of what I make starts as a small idea &mdash; and stays small
-						on purpose.
-					</p>
+						<!-- COL 3 -->
+						<div class="sa-about-skills-col">
+							<h4>TOOLS</h4>
+							<ul>
+								<li>VS Code</li>
+								<li>Git &amp; GitHub</li>
+								<li>Lovable</li>
+								<li>Vercel</li>
+							</ul>
+						</div>
 
-					<p class="sa-about-note">
-						Currently somewhere in Germany, mostly between a keyboard and a sketchbook.
-					</p>
+						<!-- COL 4 -->
+						<div class="sa-about-skills-col">
+							<h4>OTHER</h4>
+							<ul>
+								<li>SEO</li>
+								<li>Performance</li>
+								<li>Systems Thinking</li>
+								<li>Clear Processes</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
 
-					<div class="sa-about-actions">
-						<a class="sa-btn sa-btn--dark" href="mailto:hello@studio-avelin.com">
-							<span class="sa-btn__text">Say hello</span>
-							<span class="sa-btn__arrow" aria-hidden="true">&rarr;</span>
-						</a>
-						<a class="sa-link-lime" href="<?php echo esc_url( $sa_home . 'journal/' ); ?>">Read the journal</a>
+			<!-- RIGHT COLUMN -->
+			<div class="sa-about-col-right">
+				<div class="sa-about-portrait-wrapper">
+					<div class="sa-about-portrait-box">
+						<?php if ( $sa_has_portrait ) : ?>
+							<img
+								class="sa-about-portrait-img"
+								src="<?php echo esc_url( $sa_portrait ); ?>"
+								width="800"
+								height="900"
+								alt="Portrait of Michael Fiebus, the person behind Studio Avelin"
+								loading="eager"
+							/>
+						<?php else : ?>
+							<div class="sa-about-portrait-placeholder">
+								<span>MICHAEL FIEBUS</span>
+							</div>
+						<?php endif; ?>
+					</div>
+
+					<div class="sa-about-vertical-name" aria-hidden="true">
+						<span>MICHAEL FIEBUS</span>
 					</div>
 				</div>
 
-			</div>
-		</div>
-	</section>
-
-	<section class="sa-page-section" aria-label="Interests">
-		<div class="sa-shell">
-			<div class="sa-about-interests">
-				<div class="sa-about-interests__intro">
-					<p class="sa-eyebrow sa-eyebrow--dot">What I&rsquo;m into</p>
-					<h2 class="sa-about-interests__title">A short list, honestly kept.</h2>
+				<!-- MY FOCUS PANEL -->
+				<div class="sa-about-focus-panel">
+					<div class="sa-about-focus-header">
+						<svg class="sa-about-focus-star" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+							<path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" fill="#C7F000" stroke="#C7F000"></path>
+						</svg>
+						<span>MY FOCUS</span>
+					</div>
+					<ul class="sa-about-focus-list">
+						<li>Web Design &amp; Development</li>
+						<li>Digital Products &amp; Web Apps</li>
+						<li>Branding &amp; Visual Identity</li>
+						<li>Performance &amp; SEO</li>
+					</ul>
 				</div>
-				<ul class="sa-about-interests__list">
-					<?php foreach ( $sa_interests as $sa_item ) : ?>
-						<li>
-							<p class="sa-about-interests__key"><?php echo esc_html( $sa_item[0] ); ?></p>
-							<p class="sa-about-interests__val"><?php echo esc_html( $sa_item[1] ); ?></p>
-						</li>
-					<?php endforeach; ?>
-				</ul>
 			</div>
-		</div>
-	</section>
 
+		</div>
+	</div>
 </main>
 
-<footer class="sa-front-footer" id="sa-footer">
-	<div class="sa-shell">
-		<div class="sa-front-footer__top">
-			<div class="sa-front-footer__brand">
-				<a class="sa-brand sa-brand--footer" href="<?php echo esc_url( $sa_home ); ?>">
-					Studio Avelin
-					<span class="sa-brand__dot" aria-hidden="true"></span>
-				</a>
-				<p class="sa-front-footer__tag">Design. Code. Create.</p>
+<!-- ========================= FOOTER ========================= -->
+<footer class="sa-about-footer" id="sa-footer">
+	<div class="sa-about-container">
+		<div class="sa-about-footer__inner">
+			<div class="sa-about-footer__left">
+				&copy; <?php echo esc_html( gmdate( 'Y' ) ); ?> STUDIO AVELIN
 			</div>
-
-			<div class="sa-front-footer__cols">
-				<div class="sa-front-footer__col">
-					<h2 class="sa-front-footer__heading">Explore</h2>
-					<ul>
-						<?php foreach ( $sa_footer_nav as $item ) : ?>
-							<li><a href="<?php echo esc_url( $item['url'] ); ?>"><?php echo esc_html( $item['label'] ); ?></a></li>
-						<?php endforeach; ?>
-					</ul>
-				</div>
-
-				<div class="sa-front-footer__col">
-					<h2 class="sa-front-footer__heading">Legal</h2>
-					<ul>
-						<li><a href="<?php echo esc_url( $sa_home . 'datenschutzerklaerung/' ); ?>">Datenschutzerkl&auml;rung</a></li>
-						<li><a href="<?php echo esc_url( $sa_home . 'impressum/' ); ?>">Impressum</a></li>
-					</ul>
-				</div>
-
-				<div class="sa-front-footer__col">
-					<h2 class="sa-front-footer__heading">Social</h2>
-					<ul>
-						<li><a href="https://instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-						<li><a href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-					</ul>
-				</div>
+			<div class="sa-about-footer__center">
+				BASED IN NRW, GERMANY
 			</div>
-		</div>
-
-		<div class="sa-front-footer__bottom">
-			<p>&copy; <?php echo esc_html( gmdate( 'Y' ) ); ?> Studio Avelin</p>
-			<p><a href="mailto:hello@studio-avelin.com">hello@studio-avelin.com</a></p>
+			<div class="sa-about-footer__right">
+				<a href="https://instagram.com/" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
+				<a href="https://github.com/studio-avelin" target="_blank" rel="noopener noreferrer">GITHUB</a>
+				<a href="mailto:hello@studio-avelin.com">E-MAIL</a>
+			</div>
 		</div>
 	</div>
 </footer>

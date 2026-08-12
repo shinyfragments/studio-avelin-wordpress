@@ -56,10 +56,10 @@ function sa_child_enqueue_assets() {
 	$theme_dir = get_stylesheet_directory();
 	$theme_uri = get_stylesheet_directory_uri();
 
-	// Google Fonts — Poppins (display) + Raleway (body).
+	// Google Fonts — Inter + Poppins + Raleway.
 	wp_enqueue_style(
 		'sa-google-fonts',
-		'https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&family=Raleway:wght@300;400;500;600&display=swap',
+		'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@200;300;400;500&family=Raleway:wght@300;400;500;600&display=swap',
 		array(),
 		null
 	);
@@ -243,6 +243,12 @@ function sa_child_legal_template_include( $template ) {
 		$slug = get_post_field( 'post_name', get_post() );
 		if ( 'datenschutzerklaerung' === $slug || 'datenschutz' === $slug ) {
 			$php_template = get_stylesheet_directory() . '/page-datenschutzerklaerung.php';
+			if ( file_exists( $php_template ) ) {
+				return $php_template;
+			}
+		}
+		if ( 'about-me' === $slug || 'about' === $slug ) {
+			$php_template = get_stylesheet_directory() . '/page-about-me.php';
 			if ( file_exists( $php_template ) ) {
 				return $php_template;
 			}

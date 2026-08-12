@@ -439,3 +439,484 @@
   color: var(--sa-ink, #151922) !important;
   margin: 0 !important;
 }
+
+/* ==========================================================================
+   Studio Avelin — About Me Specification Implementation
+   Exact match for layout, typography, proportions, grid, colors & hierarchy.
+   ========================================================================== */
+
+body.sa-page--about {
+  background-color: #F2F2F2 !important;
+  color: #151922 !important;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+.sa-about-container {
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: clamp(1.5rem, 4vw, 4rem);
+  box-sizing: border-box;
+}
+
+/* ------------------------------------------------------------- Header --- */
+
+.sa-about-header {
+  height: 90px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(21, 25, 34, 0.15);
+  background: #F2F2F2;
+  position: relative;
+  z-index: 10;
+}
+
+.sa-about-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.sa-about-logo {
+  font-family: "Inter", sans-serif;
+  font-size: 1.125rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #151922;
+  text-decoration: none;
+}
+
+.sa-about-logo__underline {
+  border-bottom: 2px solid #151922;
+  padding-bottom: 1px;
+}
+
+.sa-about-nav__list {
+  display: flex;
+  align-items: center;
+  gap: 2.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sa-about-nav__link {
+  font-family: "Inter", sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #151922;
+  text-decoration: none;
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
+  transition: border-color 200ms ease, color 200ms ease;
+}
+
+.sa-about-nav__link:hover {
+  color: #151922;
+  border-bottom-color: rgba(21, 25, 34, 0.4);
+}
+
+.sa-about-nav__link--active {
+  border-bottom-color: #C7F000 !important;
+}
+
+/* ----------------------------------------------------------- Main Grid --- */
+
+body.sa-page--about .sa-main {
+  padding-top: 4.5rem;
+  padding-bottom: 5rem;
+}
+
+.sa-about-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3.5rem;
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .sa-about-grid {
+    grid-template-columns: minmax(0, 55fr) minmax(0, 45fr);
+    gap: 4.5rem;
+  }
+}
+
+/* -------------------------------------------------------- Left Column --- */
+
+.sa-about-eyebrow {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #151922;
+  margin-bottom: 1.25rem;
+}
+
+.sa-about-hero-headline {
+  font-family: "Inter", sans-serif;
+  font-size: clamp(3rem, 5.5vw, 4.5rem);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+  color: #151922;
+  margin: 0 0 2.25rem 0;
+}
+
+.sa-lime-text {
+  color: #C7F000 !important;
+  font-weight: 400;
+}
+
+.sa-about-intro {
+  max-width: 600px;
+  margin-bottom: 3.5rem;
+}
+
+.sa-about-intro p {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: #151922;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+}
+
+.sa-about-intro p:last-child {
+  margin-bottom: 0;
+}
+
+/* Values Row */
+
+.sa-about-values {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem 1rem;
+  border-top: 1px solid rgba(21, 25, 34, 0.15);
+  border-bottom: 1px solid rgba(21, 25, 34, 0.15);
+  padding: 1.75rem 0;
+  margin-bottom: 2.75rem;
+}
+
+@media (min-width: 640px) {
+  .sa-about-values {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+}
+
+.sa-about-value-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .sa-about-value-item {
+    border-right: 1px solid rgba(21, 25, 34, 0.15);
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+  .sa-about-value-item:first-child {
+    padding-left: 0;
+  }
+  .sa-about-value-item:last-child {
+    border-right: none;
+    padding-right: 0;
+  }
+}
+
+.sa-about-value-icon {
+  width: 22px;
+  height: 22px;
+  color: #151922;
+}
+
+.sa-about-value-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.sa-about-value-text {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.84375rem;
+  line-height: 1.35;
+  color: #151922;
+  font-weight: 500;
+}
+
+/* Primary CTA Button */
+
+.sa-about-cta-wrapper {
+  margin-bottom: 4rem;
+}
+
+.sa-about-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 220px;
+  height: 50px;
+  padding: 0 1.5rem;
+  background: #0A0A0B;
+  color: #C7F000;
+  text-decoration: none;
+  font-family: "Inter", sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 0;
+  transition: background 250ms ease, color 250ms ease;
+  box-sizing: border-box;
+}
+
+.sa-about-cta-btn:hover {
+  background: #C7F000;
+  color: #0A0A0B;
+}
+
+.sa-about-cta-arrow {
+  font-size: 1.1rem;
+}
+
+/* Skills & Tools Section */
+
+.sa-about-skills-section {
+  margin-top: 1rem;
+}
+
+.sa-about-skills-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #151922;
+  margin-bottom: 1.75rem;
+}
+
+.sa-about-skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem 1.5rem;
+  border-top: 1px solid rgba(21, 25, 34, 0.15);
+  padding-top: 1.75rem;
+}
+
+@media (min-width: 640px) {
+  .sa-about-skills-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+}
+
+.sa-about-skills-col {
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .sa-about-skills-col {
+    border-right: 1px solid rgba(21, 25, 34, 0.15);
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+  .sa-about-skills-col:first-child {
+    padding-left: 0;
+  }
+  .sa-about-skills-col:last-child {
+    border-right: none;
+    padding-right: 0;
+  }
+}
+
+.sa-about-skills-col h4 {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #151922;
+  margin: 0 0 1rem 0;
+}
+
+.sa-about-skills-col ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sa-about-skills-col li {
+  font-size: 0.90625rem;
+  line-height: 1.8;
+  color: #6F7174;
+}
+
+/* ------------------------------------------------------- Right Column --- */
+
+.sa-about-col-right {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.sa-about-portrait-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+}
+
+.sa-about-portrait-box {
+  width: 100%;
+  aspect-ratio: 4 / 4.5;
+  background: #E5E5E5;
+  overflow: hidden;
+}
+
+.sa-about-portrait-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  filter: grayscale(100%);
+  display: block;
+}
+
+.sa-about-portrait-placeholder {
+  width: 100%;
+  height: 100%;
+  background: #222;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  letter-spacing: 0.2em;
+}
+
+.sa-about-vertical-name {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .sa-about-vertical-name {
+    display: block;
+    position: absolute;
+    right: -2.25rem;
+    top: 0;
+    height: 100%;
+    writing-mode: vertical-rl;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #151922;
+  }
+}
+
+/* Dark Focus Panel */
+
+.sa-about-focus-panel {
+  background: #0A0A0B;
+  color: #ffffff;
+  padding: 2.25rem 2.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.sa-about-focus-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.75rem;
+}
+
+.sa-about-focus-star {
+  width: 16px;
+  height: 16px;
+}
+
+.sa-about-focus-header span {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #C7F000;
+}
+
+.sa-about-focus-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sa-about-focus-list li {
+  font-size: 1.03125rem;
+  font-weight: 400;
+  color: #FFFFFF;
+  padding: 1.125rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.sa-about-focus-list li:first-child {
+  padding-top: 0;
+}
+
+.sa-about-focus-list li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* ------------------------------------------------------------- Footer --- */
+
+.sa-about-footer {
+  background: #0A0A0B;
+  color: rgba(255, 255, 255, 0.7);
+  height: 90px;
+  display: flex;
+  align-items: center;
+  margin-top: 5rem;
+}
+
+.sa-about-footer__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
+  .sa-about-footer__inner {
+    flex-direction: row;
+    gap: 0;
+  }
+}
+
+.sa-about-footer__right {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.sa-about-footer__right a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: color 200ms ease;
+}
+
+.sa-about-footer__right a:hover {
+  color: #C7F000;
+}
