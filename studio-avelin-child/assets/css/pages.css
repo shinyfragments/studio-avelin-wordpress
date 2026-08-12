@@ -1,0 +1,441 @@
+/* ==========================================================================
+   Studio Avelin — inner pages (About Me, etc.)
+   Loaded in addition to style.css and home.css (shared chrome + tokens).
+   ========================================================================== */
+
+.sa-page-hero {
+  overflow-x: clip;
+}
+
+.sa-page-hero__inner {
+  padding-top: 6rem;
+  padding-bottom: 5rem;
+}
+
+@media (min-width: 900px) {
+  .sa-page-hero__inner {
+    padding-top: 8rem;
+    padding-bottom: 7rem;
+  }
+}
+
+.sa-page-section {
+  border-top: 1px solid var(--sa-line-soft, rgba(21, 25, 34, 0.08));
+  padding: 5rem 0;
+}
+
+@media (min-width: 900px) {
+  .sa-page-section {
+    padding: 8rem 0;
+  }
+}
+
+/* ------------------------------------------------------- About: layout --- */
+
+.sa-about-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+@media (min-width: 900px) {
+  .sa-about-grid {
+    /* ~40% portrait / ~60% text, mirroring the 5/12 + 7/12 React grid. */
+    grid-template-columns: minmax(0, 40fr) minmax(0, 60fr);
+    gap: 5rem;
+  }
+}
+
+/* --------------------------------------------- About: portrait (4 / 5) --- */
+
+.sa-about-grid__media {
+  /* Keeps the portrait compact instead of filling the whole column. */
+  width: 100%;
+  max-width: min(100%, 440px);
+  margin: 0 auto;
+}
+
+@media (min-width: 900px) {
+  .sa-about-grid__media {
+    margin: 0;
+  }
+}
+
+.sa-about-portrait {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+}
+
+.sa-about-portrait__offset {
+  position: absolute;
+  inset: -0.5rem;
+  border: 1px solid rgba(21, 25, 34, 0.2);
+  transform: translate(0.5rem, 0.5rem);
+  transition: transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  pointer-events: none;
+}
+
+@media (min-width: 900px) {
+  .sa-about-portrait__offset {
+    inset: -1rem;
+    transform: translate(1rem, 1rem);
+  }
+}
+
+.sa-about-portrait:hover .sa-about-portrait__offset {
+  transform: translate(0.5rem, 0.5rem);
+}
+
+.sa-about-portrait__frame {
+  position: relative;
+  overflow: hidden;
+}
+
+.sa-about-portrait__img,
+.sa-about-portrait__placeholder {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  filter: grayscale(15%);
+  transition: transform 1400ms ease, filter 900ms ease;
+  background: var(--sa-surface, #ececec);
+}
+
+.sa-about-portrait:hover .sa-about-portrait__img {
+  transform: scale(1.04);
+  filter: grayscale(0%);
+}
+
+.sa-about-portrait__caption {
+  position: absolute;
+  left: 0.75rem;
+  bottom: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--sa-font-display, "Poppins", sans-serif);
+  font-size: 0.625rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--sa-bg, #f2f2f2);
+  mix-blend-mode: difference;
+  pointer-events: none;
+}
+
+.sa-about-portrait__dot {
+  display: block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--sa-lime, #c7f000);
+}
+
+/* --------------------------------------------------------- About: text --- */
+
+.sa-about-title {
+  margin-top: 1.75rem;
+  font-family: var(--sa-font-display, "Poppins", sans-serif);
+  font-weight: 300;
+  font-size: clamp(2.25rem, 5vw, 4rem);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+}
+
+.sa-about-lead {
+  margin-top: 1.75rem;
+  max-width: 40rem;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: rgba(21, 25, 34, 0.8);
+}
+
+@media (min-width: 900px) {
+  .sa-about-title {
+    margin-top: 2.5rem;
+  }
+
+  .sa-about-lead {
+    margin-top: 2rem;
+    font-size: 1.1875rem;
+  }
+}
+
+.sa-about-note {
+  margin-top: 1.5rem;
+  max-width: 40rem;
+  font-style: italic;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--sa-muted, rgba(21, 25, 34, 0.6));
+}
+
+.sa-about-actions {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+@media (min-width: 900px) {
+  .sa-about-actions {
+    margin-top: 3.5rem;
+  }
+}
+
+/* ---------------------------------------------------- About: interests --- */
+
+.sa-about-interests {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+
+@media (min-width: 900px) {
+  .sa-about-interests {
+    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+    gap: 2.5rem 5rem;
+  }
+}
+
+.sa-about-interests__title {
+  margin-top: 1.5rem;
+  font-family: var(--sa-font-display, "Poppins", sans-serif);
+  font-weight: 300;
+  font-size: clamp(2rem, 3.4vw, 2.75rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.sa-about-interests__list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem 2.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 640px) {
+  .sa-about-interests__list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.sa-about-interests__list li {
+  border-top: 1px solid var(--sa-line, rgba(21, 25, 34, 0.12));
+  padding-top: 1rem;
+}
+
+.sa-about-interests__key {
+  font-family: var(--sa-font-display, "Poppins", sans-serif);
+  font-size: 1.0625rem;
+  letter-spacing: -0.01em;
+}
+
+.sa-about-interests__val {
+  margin-top: 0.375rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--sa-muted, rgba(21, 25, 34, 0.6));
+}
+
+/* -------------------------------------------------------- Legal Pages --- */
+
+.sa-legal-hero {
+  padding-top: 1.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--sa-line, rgba(21, 25, 34, 0.12));
+  margin-bottom: 2.5rem;
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+}
+
+@media (min-width: 900px) {
+  .sa-legal-hero {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+}
+
+.sa-legal-hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sa-muted, rgba(21, 25, 34, 0.6));
+  margin-bottom: 1rem;
+}
+
+.sa-legal-hero__eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--sa-lime, #c7f000);
+}
+
+.sa-legal-hero__title {
+  font-family: var(--sa-font-display, "Poppins", sans-serif);
+  font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--sa-ink, #151922);
+  margin: 0 0 1.75rem 0;
+}
+
+.sa-legal-hero__meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.95rem;
+  background: rgba(21, 25, 34, 0.04);
+  border: 1px solid var(--sa-line, rgba(21, 25, 34, 0.12));
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  color: var(--sa-muted, rgba(21, 25, 34, 0.7));
+  margin-top: 0.5rem;
+}
+
+.sa-legal-card {
+  background: var(--sa-surface, #ffffff);
+  border: 1px solid var(--sa-line, rgba(21, 25, 34, 0.12));
+  padding: 2.25rem 1.75rem;
+  margin-bottom: 2.5rem;
+  transition: border-color 300ms ease;
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+}
+
+@media (min-width: 768px) {
+  .sa-legal-card {
+    padding: 3rem 2.75rem;
+    margin-bottom: 3rem;
+  }
+}
+
+.sa-legal-card:hover {
+  border-color: rgba(21, 25, 34, 0.25);
+}
+
+.sa-legal-card__num {
+  font-family: var(--sa-font-display, "Poppins", sans-serif);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--sa-muted, rgba(21, 25, 34, 0.5));
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.sa-legal-card__num::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--sa-line, rgba(21, 25, 34, 0.12));
+}
+
+.sa-legal-card h2 {
+  font-family: var(--sa-font-display, "Poppins", sans-serif);
+  font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+  font-weight: 400;
+  line-height: 1.25;
+  color: var(--sa-ink, #151922);
+  margin-top: 0;
+  margin-bottom: 1.75rem;
+  letter-spacing: -0.01em;
+}
+
+.sa-legal-card h3 {
+  font-family: var(--sa-font-display, "Poppins", sans-serif);
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--sa-ink, #151922);
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.sa-legal-card p {
+  font-size: 1.03125rem;
+  line-height: 1.75;
+  color: var(--sa-muted, rgba(21, 25, 34, 0.85));
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+}
+
+.sa-legal-card p:last-child {
+  margin-bottom: 0;
+}
+
+.sa-legal-card strong {
+  color: var(--sa-ink, #151922);
+  font-weight: 600;
+}
+
+.sa-legal-card a {
+  color: var(--sa-ink, #151922);
+  text-decoration: none;
+  border-bottom: 1px solid var(--sa-lime, #c7f000);
+  transition: background 200ms ease;
+  padding-bottom: 1px;
+}
+
+.sa-legal-card a:hover {
+  background: rgba(199, 240, 0, 0.25);
+}
+
+.sa-legal-card ul {
+  margin: 1.25rem 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.sa-legal-card ul li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.65rem;
+  font-size: 1.03125rem;
+  line-height: 1.65;
+  color: var(--sa-muted, rgba(21, 25, 34, 0.85));
+}
+
+.sa-legal-card ul li::before {
+  content: "";
+  position: absolute;
+  left: 0.25rem;
+  top: 0.65rem;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--sa-lime, #c7f000);
+  border: 1px solid var(--sa-ink, #151922);
+}
+
+.sa-legal-box {
+  background: rgba(21, 25, 34, 0.03);
+  border: 1px solid var(--sa-line, rgba(21, 25, 34, 0.12));
+  border-left: 4px solid var(--sa-lime, #c7f000);
+  padding: 1.5rem 1.75rem;
+  margin: 2rem 0;
+}
+
+.sa-legal-box p {
+  font-size: 0.9375rem !important;
+  line-height: 1.65 !important;
+  letter-spacing: 0.02em;
+  color: var(--sa-ink, #151922) !important;
+  margin: 0 !important;
+}
