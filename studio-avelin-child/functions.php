@@ -13,6 +13,13 @@ if ( ! defined( 'SA_CHILD_VERSION' ) ) {
 	define( 'SA_CHILD_VERSION', '1.0.0' );
 }
 
+/** Output the Studio Avelin A/ browser icon. */
+function sa_child_favicon() {
+	$favicon_url = get_stylesheet_directory_uri() . '/assets/img/favicon.svg';
+	echo '<link rel="icon" href="' . esc_url( $favicon_url ) . '" type="image/svg+xml">' . "\n";
+}
+add_action( 'wp_head', 'sa_child_favicon', 100 );
+
 /**
  * Basic theme supports. Twenty Twenty-Four already declares most of these,
  * but the child theme keeps them explicit so nothing depends on parent order.
@@ -313,5 +320,4 @@ add_action( 'template_redirect', function() {
 } );
 
 require_once get_stylesheet_directory() . '/inc/sa-journal.php';
-
 

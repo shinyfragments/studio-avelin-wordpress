@@ -19,7 +19,7 @@ $request_uri = trim( parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH ), '/' );
 $is_work        = ( 'work' === $request_uri || 0 === strpos( $request_uri, 'work/' ) );
 $is_about       = ( 'about-me' === $request_uri || 'about' === $request_uri );
 $is_experiments = ( 'experiments' === $request_uri || 0 === strpos( $request_uri, 'experiments/' ) );
-$is_journal     = ( 'journal' === $request_uri || 0 === strpos( $request_uri, 'journal/' ) || is_home() || is_singular('post') );
+$is_journal     = ( 'journal' === $request_uri || 0 === strpos( $request_uri, 'journal/' ) );
 $is_contact     = false;
 ?>
 
@@ -28,10 +28,7 @@ $is_contact     = false;
 
 		<!-- BRAND LOGO & NAME -->
 		<a class="sa-brand" href="<?php echo esc_url( $sa_home_url ); ?>" aria-label="Studio Avelin home">
-			<svg class="sa-brand__logo" width="30" height="30" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img">
-				<polygon points="0,0 22,0 32,10 32,32 0,32" fill="#C7F000" />
-				<text x="14.5" y="22.5" font-family="'Geist', 'Inter', system-ui, -apple-system, sans-serif" font-weight="900" font-size="16.5" fill="#151922" text-anchor="middle" letter-spacing="-1.5px">A/</text>
-			</svg>
+			<span class="sa-brand__mark" aria-hidden="true">A<span>/</span></span>
 			<span class="sa-brand__name">Studio Avelin</span>
 		</a>
 

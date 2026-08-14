@@ -15,7 +15,10 @@ LOCAL_DIR="${IONOS_LOCAL_DIR:-studio-avelin-child}"
 BACKUP_DIR="${IONOS_BACKUP_DIR:-.deploy-backups/$(date +%Y%m%d-%H%M%S)}"
 
 FILES=(
+  "front-page.php"
   "functions.php"
+	"assets/img/favicon.svg"
+	"parts/sa-header.php"
   "parts/sa-footer.php"
   "inc/sa-journal.php"
   "journal/archive-journal.php"
@@ -26,7 +29,10 @@ FILES=(
   "journal/template-card.php"
   "journal/header.php"
   "journal/footer.php"
+	"assets/css/sa-base.css"
   "assets/css/sa-journal.css"
+	"assets/css/home.css"
+	"assets/js/home.js"
   "assets/js/sa-journal.js"
 )
 
@@ -37,7 +43,7 @@ for file in "${FILES[@]}"; do
   }
 done
 
-mkdir -p "${BACKUP_DIR}/parts"
+mkdir -p "${BACKUP_DIR}/parts" "${BACKUP_DIR}/assets/css" "${BACKUP_DIR}/assets/js"
 echo "Deploying ${#FILES[@]} Journal files to IONOS..."
 
 expect -f - "$REMOTE_USER" "$REMOTE_HOST" "$REMOTE_DIR" "$LOCAL_DIR" "$BACKUP_DIR" "${FILES[@]}" <<'EXPECT'
@@ -77,7 +83,7 @@ expect {
 }
 wait_for_prompt "authentication"
 
-foreach file [list "functions.php" "parts/sa-footer.php"] {
+foreach file [list "front-page.php" "functions.php" "parts/sa-header.php" "parts/sa-footer.php" "assets/css/home.css" "assets/css/sa-base.css" "assets/js/home.js"] {
   send -- "get $remote_dir/$file $backup_dir/$file\r"
   wait_for_prompt "backup of $file"
 }
@@ -88,6 +94,7 @@ foreach directory [list \
   "$remote_dir/parts" \
   "$remote_dir/assets" \
   "$remote_dir/assets/css" \
+  "$remote_dir/assets/img" \
   "$remote_dir/assets/js"] {
   send -- "mkdir $directory\r"
   wait_for_prompt "creating $directory" 1

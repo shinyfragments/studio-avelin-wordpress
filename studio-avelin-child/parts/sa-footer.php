@@ -28,8 +28,8 @@ $sa_home_url = trailingslashit( home_url( '/' ) );
 				</div>
 
 				<h2 class="sa-footer-statement">
-					<span class="sa-stmt-dark">DESIGN. CODE.</span>
-					<span class="sa-stmt-outline">CREATE.</span>
+					<span class="sa-stmt-dark">Design. Code.</span>
+					<span class="sa-stmt-outline">Create.</span>
 				</h2>
 			</div>
 

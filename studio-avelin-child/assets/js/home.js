@@ -64,8 +64,8 @@
         var width = linkRect.width;
 
         indicator.style.opacity = "1";
-        indicator.style.transform = "translateX(" + left + "px)";
-        indicator.style.width = width + "px";
+        indicator.style.transform =
+          "translate3d(" + left + "px, 0, 0) scaleX(" + width + ")";
       }
 
       var activeLink = getActiveLink();

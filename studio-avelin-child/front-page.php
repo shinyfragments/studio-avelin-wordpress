@@ -80,35 +80,18 @@ $sa_experiments = array(
 	),
 );
 
-$sa_posts = array(
+$sa_journal_posts = new WP_Query(
 	array(
-		'title'    => 'Building small creative tools',
-		'category' => 'Process',
-		'date'     => 'May 20, 2026',
-		'read'     => '5 min read',
-		'excerpt'  => 'Why I keep returning to small, single-purpose tools — and what they teach about design, focus and craft.',
-		'url'      => $sa_home . 'journal/building-small-creative-tools/',
-		'mark'     => 'process',
-	),
-	array(
-		'title'    => 'Why experiments belong on a personal website',
-		'category' => 'Webwork',
-		'date'     => 'April 12, 2026',
-		'read'     => '6 min read',
-		'excerpt'  => 'On showing the messy, unfinished and playful parts of the process — and why a personal site is the right home for them.',
-		'url'      => $sa_home . 'journal/why-experiments-belong-on-a-personal-website/',
-		'mark'     => 'webwork',
-	),
-	array(
-		'title'    => 'Notes on designing Studio Avelin',
-		'category' => 'Studio Notes',
-		'date'     => 'March 2, 2026',
-		'read'     => '4 min read',
-		'excerpt'  => 'Decisions, details and the thinking behind this personal space — bright, calm, intentionally simple.',
-		'url'      => $sa_home . 'journal/notes-on-designing-studio-avelin/',
-		'mark'     => 'notes',
-	),
+		'post_type'           => 'sa_journal',
+		'post_status'         => 'publish',
+		'posts_per_page'      => 3,
+		'orderby'             => 'date',
+		'order'               => 'DESC',
+		'no_found_rows'       => true,
+		'ignore_sticky_posts' => true,
+	)
 );
+$sa_journal_marks = array( 'process', 'webwork', 'notes' );
 
 /**
  * Inline SVG previews for the Work cards. Kept in the template so the theme
@@ -380,23 +363,14 @@ function sa_mark( $kind ) {
 						on design, code and creative process.
 					</p>
 
-					<div class="sa-hero__actions">
-						<a class="sa-btn sa-btn--dark" href="#work">
-							<span class="sa-btn__text">View Work</span>
-							<span class="sa-btn__arrow" aria-hidden="true">&rarr;</span>
-						</a>
-						<a class="sa-btn sa-btn--light" href="#about">
-							<span class="sa-btn__text">About</span>
-						</a>
-					</div>
+					<a class="sa-hero__cta" href="#work">
+						<span>View Work</span>
+						<span class="sa-btn__arrow" aria-hidden="true">&rarr;</span>
+					</a>
 				</div>
 			</div>
 		</div>
 
-		<div class="sa-scroll-hint" aria-hidden="true">
-			<span class="sa-scroll-hint__label">Scroll</span>
-			<span class="sa-scroll-hint__track"><span class="sa-scroll-hint__dot"></span></span>
-		</div>
 	</section>
 
 	<!-- ============================ WORK ============================ -->
@@ -579,27 +553,45 @@ function sa_mark( $kind ) {
 				</a>
 			</div>
 
+			<?php if ( $sa_journal_posts->have_posts() ) : ?>
 			<ul class="sa-journal sa-stagger">
-				<?php foreach ( $sa_posts as $post_item ) : ?>
+				<?php $sa_journal_index = 0; ?>
+				<?php while ( $sa_journal_posts->have_posts() ) : ?>
+					<?php
+					$sa_journal_posts->the_post();
+					$sa_journal_terms   = get_the_terms( get_the_ID(), 'sa_journal_category' );
+					$sa_journal_category = ( $sa_journal_terms && ! is_wp_error( $sa_journal_terms ) ) ? $sa_journal_terms[0]->name : 'Journal';
+					$sa_journal_excerpt  = get_the_excerpt();
+					$sa_journal_mark     = $sa_journal_marks[ $sa_journal_index % count( $sa_journal_marks ) ];
+					$sa_journal_index++;
+					?>
 					<li class="sa-journal__item sa-reveal">
-						<a class="sa-journal__link" href="<?php echo esc_url( $post_item['url'] ); ?>">
-							<div class="sa-journal__cover">
+						<a class="sa-journal__link" href="<?php the_permalink(); ?>">
+							<div class="sa-journal__cover<?php echo has_post_thumbnail() ? ' sa-journal__cover--image' : ''; ?>">
 								<span class="sa-grid-bg" aria-hidden="true"></span>
-								<?php sa_mark( $post_item['mark'] ); ?>
+								<?php if ( has_post_thumbnail() ) : ?>
+									<?php the_post_thumbnail( 'large', array( 'class' => 'sa-journal__image', 'loading' => 'lazy' ) ); ?>
+								<?php else : ?>
+									<?php sa_mark( $sa_journal_mark ); ?>
+								<?php endif; ?>
 								<span class="sa-journal__cat">
 									<span class="sa-journal__cat-dot" aria-hidden="true"></span>
-									<?php echo esc_html( $post_item['category'] ); ?>
+									<?php echo esc_html( $sa_journal_category ); ?>
 								</span>
-								<span class="sa-journal__read"><?php echo esc_html( $post_item['read'] ); ?></span>
+								<span class="sa-journal__read"><?php echo esc_html( sa_journal_reading_time() ); ?> min read</span>
 								<span class="sa-journal__sweep" aria-hidden="true"></span>
 							</div>
-							<h3 class="sa-journal__title"><span><?php echo esc_html( $post_item['title'] ); ?></span></h3>
-							<p class="sa-journal__excerpt"><?php echo esc_html( $post_item['excerpt'] ); ?></p>
-							<span class="sa-journal__date"><?php echo esc_html( $post_item['date'] ); ?></span>
+							<h3 class="sa-journal__title"><span><?php the_title(); ?></span></h3>
+							<?php if ( $sa_journal_excerpt ) : ?>
+								<p class="sa-journal__excerpt"><?php echo esc_html( $sa_journal_excerpt ); ?></p>
+							<?php endif; ?>
+							<span class="sa-journal__date"><?php echo esc_html( get_the_date() ); ?></span>
 						</a>
 					</li>
-				<?php endforeach; ?>
+				<?php endwhile; ?>
 			</ul>
+			<?php wp_reset_postdata(); ?>
+			<?php endif; ?>
 		</div>
 	</section>
 
@@ -622,7 +614,7 @@ function sa_mark( $kind ) {
 					<a class="sa-link-lime" href="https://instagram.com/" target="_blank" rel="noopener noreferrer">
 						Instagram <span aria-hidden="true">&#8599;</span>
 					</a>
-					<a class="sa-link-lime" href="https://github.com/" target="_blank" rel="noopener noreferrer">
+					<a class="sa-link-lime" href="https://github.com/studio-avelin" target="_blank" rel="noopener noreferrer">
 						GitHub <span aria-hidden="true">&#8599;</span>
 					</a>
 				</div>
