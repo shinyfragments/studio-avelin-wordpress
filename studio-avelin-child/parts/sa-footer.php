@@ -61,7 +61,7 @@ $sa_home_url = trailingslashit( home_url( '/' ) );
 					<span class="sa-footer-col-label">SOCIAL</span>
 					<ul class="sa-footer-links">
 						<li>
-							<a href="https://instagram.com/" target="_blank" rel="noopener noreferrer">
+							<a href="https://www.instagram.com/studio_avelin" target="_blank" rel="noopener noreferrer">
 								Instagram <span class="sa-ext-arrow" aria-hidden="true">&#x2197;</span>
 							</a>
 						</li>

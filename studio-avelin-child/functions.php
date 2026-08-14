@@ -312,5 +312,6 @@ add_action( 'template_redirect', function() {
 	}
 } );
 
+require_once get_stylesheet_directory() . '/inc/sa-journal.php';
 
 
