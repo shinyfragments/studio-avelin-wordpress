@@ -19,3 +19,4 @@ wp-content/backup*/
 
 # FTP temp files
 *.tmp
+.deploy-backups/

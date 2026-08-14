@@ -57,6 +57,18 @@ function sa_journal_register_content() {
 }
 add_action( 'init', 'sa_journal_register_content' );
 
+/** Refresh rewrite rules once when the Journal routing version changes. */
+function sa_journal_maybe_flush_rewrite_rules() {
+	$rewrite_version = '1';
+	if ( $rewrite_version === get_option( 'sa_journal_rewrite_version' ) ) {
+		return;
+	}
+
+	flush_rewrite_rules( false );
+	update_option( 'sa_journal_rewrite_version', $rewrite_version, false );
+}
+add_action( 'init', 'sa_journal_maybe_flush_rewrite_rules', 20 );
+
 /** Add the native featured-entry control. */
 function sa_journal_add_featured_box() {
 	add_meta_box( 'sa-journal-featured', __( 'Journal feature', 'studio-avelin-child' ), 'sa_journal_featured_box', 'sa_journal', 'side' );

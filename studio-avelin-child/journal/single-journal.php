@@ -9,7 +9,7 @@ $tags       = get_the_terms( get_the_ID(), 'sa_journal_tag' );
 $related    = sa_journal_related_posts( get_the_ID() );
 ?>
 <!doctype html><html <?php language_attributes(); ?>><head><meta charset="<?php bloginfo( 'charset' ); ?>"><meta name="viewport" content="width=device-width, initial-scale=1"><?php wp_head(); ?></head>
-<body <?php body_class( 'sa-subpage sa-journal-body' ); ?>><?php wp_body_open(); get_template_part( 'parts/sa-header' ); ?>
+<body <?php body_class( 'sa-subpage sa-journal-body' ); ?>><?php wp_body_open(); get_template_part( 'journal/header' ); ?>
 <main id="primary" class="sa-page sa-journal"><article class="sa-single"><div class="sa-journal-container sa-single__grid">
 	<aside class="sa-single__aside"><div class="sa-single__sticky"><a class="sa-back" href="<?php echo esc_url( get_post_type_archive_link( 'sa_journal' ) ); ?>">← <?php esc_html_e( 'Back to Journal', 'studio-avelin-child' ); ?></a>
 	<?php if ( $prepared['headings'] ) : ?><nav class="sa-toc" aria-label="<?php esc_attr_e( 'On this page', 'studio-avelin-child' ); ?>"><p class="sa-journal-label"><?php esc_html_e( 'On this page', 'studio-avelin-child' ); ?></p><ol><?php foreach ( $prepared['headings'] as $index => $heading ) : ?><li class="sa-toc__level-<?php echo esc_attr( $heading['level'] ); ?>"><span><?php echo esc_html( str_pad( $index + 1, 2, '0', STR_PAD_LEFT ) ); ?></span><a href="#<?php echo esc_attr( $heading['id'] ); ?>"><?php echo esc_html( $heading['text'] ); ?></a></li><?php endforeach; ?></ol></nav><?php endif; ?>
@@ -20,4 +20,4 @@ $related    = sa_journal_related_posts( get_the_ID() );
 	<footer class="sa-single__foot"><a href="<?php echo esc_url( get_post_type_archive_link( 'sa_journal' ) ); ?>">← <?php esc_html_e( 'Back to Journal', 'studio-avelin-child' ); ?></a><?php if ( $category ) : ?><a href="<?php echo esc_url( get_term_link( $category ) ); ?>"><?php echo esc_html( sprintf( __( 'More in %s', 'studio-avelin-child' ), $category->name ) ); ?> →</a><?php endif; ?></footer></div>
 </div></article>
 <?php if ( $related ) : ?><section class="sa-related sa-journal-container"><header><h2><?php esc_html_e( 'Related Reading', 'studio-avelin-child' ); ?></h2><a href="<?php echo esc_url( get_post_type_archive_link( 'sa_journal' ) ); ?>"><?php esc_html_e( 'All entries', 'studio-avelin-child' ); ?> →</a></header><div class="sa-journal-grid sa-journal-grid--related"><?php foreach ( $related as $post ) : setup_postdata( $post ); get_template_part( 'journal/template-card' ); endforeach; wp_reset_postdata(); ?></div></section><?php endif; ?>
-</main><?php get_template_part( 'parts/sa-footer' ); wp_footer(); ?></body></html>
+</main><?php get_template_part( 'journal/footer' ); wp_footer(); ?></body></html>

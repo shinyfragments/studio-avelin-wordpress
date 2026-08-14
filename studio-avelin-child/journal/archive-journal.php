@@ -12,7 +12,7 @@ $entries    = new WP_Query( $args );
 $categories = get_terms( array( 'taxonomy' => 'sa_journal_category', 'hide_empty' => true ) );
 ?>
 <!doctype html><html <?php language_attributes(); ?>><head><meta charset="<?php bloginfo( 'charset' ); ?>"><meta name="viewport" content="width=device-width, initial-scale=1"><?php wp_head(); ?></head>
-<body <?php body_class( 'sa-subpage sa-journal-body' ); ?>><?php wp_body_open(); get_template_part( 'parts/sa-header' ); ?>
+<body <?php body_class( 'sa-subpage sa-journal-body' ); ?>><?php wp_body_open(); get_template_part( 'journal/header' ); ?>
 <main id="primary" class="sa-page sa-journal">
 	<section class="sa-journal-hero"><div class="sa-journal-container sa-journal-hero__grid">
 		<div><p class="sa-journal-kicker"><?php echo $is_filter ? esc_html( 'Journal / ' . ucfirst( $term->taxonomy === 'sa_journal_tag' ? 'Tag' : 'Category' ) ) : esc_html__( 'Studio Avelin', 'studio-avelin-child' ); ?></p><h1><?php echo $is_filter ? esc_html( $term->name ) : wp_kses_post( "The Journal<br>of a working studio." ); ?></h1><span class="sa-journal-rule" aria-hidden="true"></span><p class="sa-journal-lede"><?php echo $is_filter && $term->description ? esc_html( $term->description ) : esc_html__( 'Notes on design, code, ideas and everything in between.', 'studio-avelin-child' ); ?></p></div>
@@ -25,4 +25,4 @@ $categories = get_terms( array( 'taxonomy' => 'sa_journal_category', 'hide_empty
 		<?php if ( $entries->have_posts() ) : ?><div class="sa-journal-grid" data-journal-grid><?php while ( $entries->have_posts() ) : $entries->the_post(); get_template_part( 'journal/template-card' ); endwhile; ?></div><p class="sa-journal-no-results" data-journal-empty hidden><?php esc_html_e( 'No entries match. Try a different search.', 'studio-avelin-child' ); ?></p><?php else : ?><p class="sa-journal-empty"><?php esc_html_e( 'Nothing here yet.', 'studio-avelin-child' ); ?></p><?php endif; ?>
 		<?php $links = paginate_links( array( 'total' => $entries->max_num_pages, 'current' => $paged, 'type' => 'array' ) ); if ( $links ) : ?><nav class="sa-journal-pagination" aria-label="<?php esc_attr_e( 'Journal pagination', 'studio-avelin-child' ); ?>"><?php foreach ( $links as $link ) { echo wp_kses_post( $link ); } ?></nav><?php endif; wp_reset_postdata(); ?>
 	</section>
-</main><?php get_template_part( 'parts/sa-footer' ); wp_footer(); ?></body></html>
+</main><?php get_template_part( 'journal/footer' ); wp_footer(); ?></body></html>

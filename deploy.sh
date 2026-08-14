@@ -1,110 +1,106 @@
 #!/usr/bin/env bash
-# Deploy-Skript für Studio Avelin Child Theme -> IONOS SFTP
+set -euo pipefail
 
-REMOTE_HOST="access-5020051294.webspace-host.com"
-REMOTE_USER="su433285"
-REMOTE_PASS="Nes00235Nolen"
-REMOTE_DIR="clickandbuilds/StudioAvelin/wp-content/themes/studio-avelin-child"
-LOCAL_DIR="studio-avelin-child"
+# Deploy only the native Journal integration to IONOS.
+# Required before running:
+#   export IONOS_SFTP_USER='...'
+#   read -rs 'IONOS_SFTP_PASSWORD?IONOS-Passwort: '
+#   export IONOS_SFTP_PASSWORD
 
-echo "🚀 Starte Deployment von ${LOCAL_DIR} zu IONOS (${REMOTE_DIR})..."
+REMOTE_HOST="${IONOS_SFTP_HOST:-access-5020051294.webspace-host.com}"
+REMOTE_USER="${IONOS_SFTP_USER:?Set IONOS_SFTP_USER before deploying.}"
+: "${IONOS_SFTP_PASSWORD:?Set IONOS_SFTP_PASSWORD before deploying.}"
+REMOTE_DIR="${IONOS_SFTP_REMOTE_DIR:-clickandbuilds/StudioAvelin/wp-content/themes/studio-avelin-child}"
+LOCAL_DIR="${IONOS_LOCAL_DIR:-studio-avelin-child}"
+BACKUP_DIR="${IONOS_BACKUP_DIR:-.deploy-backups/$(date +%Y%m%d-%H%M%S)}"
 
-expect -c "
+FILES=(
+  "functions.php"
+  "parts/sa-footer.php"
+  "inc/sa-journal.php"
+  "journal/archive-journal.php"
+  "journal/post-cover.php"
+  "journal/single-journal.php"
+  "journal/taxonomy-journal-category.php"
+  "journal/taxonomy-journal-tag.php"
+  "journal/template-card.php"
+  "journal/header.php"
+  "journal/footer.php"
+  "assets/css/sa-journal.css"
+  "assets/js/sa-journal.js"
+)
+
+for file in "${FILES[@]}"; do
+  [[ -f "${LOCAL_DIR}/${file}" ]] || {
+    echo "Missing deployment file: ${LOCAL_DIR}/${file}" >&2
+    exit 1
+  }
+done
+
+mkdir -p "${BACKUP_DIR}/parts"
+echo "Deploying ${#FILES[@]} Journal files to IONOS..."
+
+expect -f - "$REMOTE_USER" "$REMOTE_HOST" "$REMOTE_DIR" "$LOCAL_DIR" "$BACKUP_DIR" "${FILES[@]}" <<'EXPECT'
 set timeout 60
-spawn sftp -o StrictHostKeyChecking=no ${REMOTE_USER}@${REMOTE_HOST}
-expect \"password:\"
-send \"${REMOTE_PASS}\r\"
-expect \"sftp>\"
 
-send \"mkdir ${REMOTE_DIR}\r\"
-expect \"sftp>\"
-send \"mkdir ${REMOTE_DIR}/templates\r\"
-expect \"sftp>\"
-send \"mkdir ${REMOTE_DIR}/patterns\r\"
-expect \"sftp>\"
-send \"mkdir ${REMOTE_DIR}/inc\r\"
-expect \"sftp>\"
-send \"mkdir ${REMOTE_DIR}/parts\r\"
-expect \"sftp>\"
-send \"mkdir ${REMOTE_DIR}/assets\r\"
-expect \"sftp>\"
-send \"mkdir ${REMOTE_DIR}/assets/css\r\"
-expect \"sftp>\"
-send \"mkdir ${REMOTE_DIR}/assets/js\r\"
-expect \"sftp>\"
-send \"mkdir ${REMOTE_DIR}/js\r\"
-expect \"sftp>\"
+set remote_user [lindex $argv 0]
+set remote_host [lindex $argv 1]
+set remote_dir  [lindex $argv 2]
+set local_dir   [lindex $argv 3]
+set backup_dir  [lindex $argv 4]
+set files       [lrange $argv 5 end]
 
-send \"put ${LOCAL_DIR}/functions.php ${REMOTE_DIR}/functions.php\r\"
-expect \"sftp>\"
-send \"put ${LOCAL_DIR}/style.css ${REMOTE_DIR}/style.css\r\"
-expect \"sftp>\"
-send \"put ${LOCAL_DIR}/theme.json ${REMOTE_DIR}/theme.json\r\"
-expect \"sftp>\"
-send \"put ${LOCAL_DIR}/front-page.php ${REMOTE_DIR}/front-page.php\r\"
-expect \"sftp>\"
-send \"put ${LOCAL_DIR}/home.php ${REMOTE_DIR}/home.php\r\"
-expect \"sftp>\"
-send \"put ${LOCAL_DIR}/single.php ${REMOTE_DIR}/single.php\r\"
-expect \"sftp>\"
+proc wait_for_prompt {context {allow_failure 0}} {
+  expect {
+    -re "(?i)(permission denied|couldn't|not found|no such file)" {
+      puts stderr "$context failed"
+      exit 1
+    }
+    -re "(?i)failure" {
+      if {$allow_failure} {
+        exp_continue
+      }
+      puts stderr "$context failed"
+      exit 1
+    }
+    "sftp>" { return }
+    timeout { puts stderr "$context timed out"; exit 1 }
+    eof { puts stderr "Connection closed during $context"; exit 1 }
+  }
+}
 
-send \"put ${LOCAL_DIR}/page-about-me.php ${REMOTE_DIR}/page-about-me.php\r\"
-expect \"sftp>\"
-send \"put ${LOCAL_DIR}/page-experiments.php ${REMOTE_DIR}/page-experiments.php\r\"
-expect \"sftp>\"
-send \"put ${LOCAL_DIR}/single-experiment.php ${REMOTE_DIR}/single-experiment.php\r\"
-expect \"sftp>\"
-send \"put ${LOCAL_DIR}/page-work.php ${REMOTE_DIR}/page-work.php\r\"
-expect \"sftp>\"
-send \"put ${LOCAL_DIR}/page-work-maaike-fiebus.php ${REMOTE_DIR}/page-work-maaike-fiebus.php\r\"
-expect \"sftp>\"
-send \"put ${LOCAL_DIR}/page-work-stan.php ${REMOTE_DIR}/page-work-stan.php\r\"
-expect \"sftp>\"
-send \"put ${LOCAL_DIR}/page-work-stat.php ${REMOTE_DIR}/page-work-stat.php\r\"
-expect \"sftp>\"
-send \"put ${LOCAL_DIR}/page-work-stau.php ${REMOTE_DIR}/page-work-stau.php\r\"
-expect \"sftp>\"
-send \"put ${LOCAL_DIR}/page-datenschutzerklaerung.php ${REMOTE_DIR}/page-datenschutzerklaerung.php\r\"
-expect \"sftp>\"
-send \"put ${LOCAL_DIR}/page-datenschutz.php ${REMOTE_DIR}/page-datenschutz.php\r\"
-expect \"sftp>\"
-send \"put ${LOCAL_DIR}/page-impressum.php ${REMOTE_DIR}/page-impressum.php\r\"
-expect \"sftp>\"
+spawn sftp -o StrictHostKeyChecking=accept-new -- "${remote_user}@${remote_host}"
+expect {
+  -re "(?i)password:" { send -- "$env(IONOS_SFTP_PASSWORD)\r" }
+  timeout { puts stderr "Password prompt timed out"; exit 1 }
+  eof { puts stderr "Connection closed before authentication"; exit 1 }
+}
+wait_for_prompt "authentication"
 
-send \"put ${LOCAL_DIR}/assets/css/home.css ${REMOTE_DIR}/assets/css/home.css\r\"
-expect \"sftp>\"
-send \"put ${LOCAL_DIR}/assets/css/sa-base.css ${REMOTE_DIR}/assets/css/sa-base.css\r\"
-expect \"sftp>\"
-send \"put ${LOCAL_DIR}/assets/css/journal.css ${REMOTE_DIR}/assets/css/journal.css\r\"
-expect \"sftp>\"
-send \"put ${LOCAL_DIR}/assets/css/pages.css ${REMOTE_DIR}/assets/css/pages.css\r\"
-expect \"sftp>\"
+foreach file [list "functions.php" "parts/sa-footer.php"] {
+  send -- "get $remote_dir/$file $backup_dir/$file\r"
+  wait_for_prompt "backup of $file"
+}
 
-send \"put ${LOCAL_DIR}/assets/js/home.js ${REMOTE_DIR}/assets/js/home.js\r\"
-expect \"sftp>\"
-send \"put ${LOCAL_DIR}/js/sa-work-slider.js ${REMOTE_DIR}/js/sa-work-slider.js\r\"
-expect \"sftp>\"
+foreach directory [list \
+  "$remote_dir/inc" \
+  "$remote_dir/journal" \
+  "$remote_dir/parts" \
+  "$remote_dir/assets" \
+  "$remote_dir/assets/css" \
+  "$remote_dir/assets/js"] {
+  send -- "mkdir $directory\r"
+  wait_for_prompt "creating $directory" 1
+}
 
-send \"mkdir ${REMOTE_DIR}/parts\r\"
-expect \"sftp>\"
-send \"put ${LOCAL_DIR}/parts/sa-header.php ${REMOTE_DIR}/parts/sa-header.php\r\"
-expect \"sftp>\"
-send \"put ${LOCAL_DIR}/parts/sa-footer.php ${REMOTE_DIR}/parts/sa-footer.php\r\"
-expect \"sftp>\"
-send \"put ${LOCAL_DIR}/patterns/datenschutz.php ${REMOTE_DIR}/patterns/datenschutz.php\r\"
-expect \"sftp>\"
-send \"put ${LOCAL_DIR}/patterns/impressum.php ${REMOTE_DIR}/patterns/impressum.php\r\"
-expect \"sftp>\"
+foreach file $files {
+  send -- "put $local_dir/$file $remote_dir/$file\r"
+  wait_for_prompt "upload of $file"
+}
 
-send \"put ${LOCAL_DIR}/templates/page-datenschutz.html ${REMOTE_DIR}/templates/page-datenschutz.html\r\"
-expect \"sftp>\"
-send \"put ${LOCAL_DIR}/templates/page-datenschutzerklaerung.html ${REMOTE_DIR}/templates/page-datenschutzerklaerung.html\r\"
-expect \"sftp>\"
-send \"put ${LOCAL_DIR}/templates/page-impressum.html ${REMOTE_DIR}/templates/page-impressum.html\r\"
-expect \"sftp>\"
+send -- "bye\r"
+expect eof
+EXPECT
 
-send \"bye\r\"
-interact
-"
-
-echo "✅ Deployment erfolgreich abgeschlossen!"
+echo "Journal deployment completed successfully."
+echo "Previous functions/footer saved in: ${BACKUP_DIR}"
