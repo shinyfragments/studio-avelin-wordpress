@@ -83,45 +83,50 @@ function sa_child_enqueue_assets() {
 		SA_CHILD_VERSION
 	);
 
-	// Inner pages (About Me, etc.): shared chrome styles + page styles, no hero JS.
-	if ( ! is_front_page() && is_page() ) {
-		$home_css = $theme_dir . '/assets/css/home.css';
+	// Shared Studio Avelin CSS files (base tokens, header/footer chrome, page layouts).
+	$base_css = $theme_dir . '/assets/css/sa-base.css';
+	if ( file_exists( $base_css ) ) {
 		wp_enqueue_style(
-			'sa-home',
-			$theme_uri . '/assets/css/home.css',
+			'sa-base',
+			$theme_uri . '/assets/css/sa-base.css',
 			array( 'sa-child-style' ),
-			file_exists( $home_css ) ? (string) filemtime( $home_css ) : SA_CHILD_VERSION
-		);
-
-		$pages_css = $theme_dir . '/assets/css/pages.css';
-		wp_enqueue_style(
-			'sa-pages',
-			$theme_uri . '/assets/css/pages.css',
-			array( 'sa-home' ),
-			file_exists( $pages_css ) ? (string) filemtime( $pages_css ) : SA_CHILD_VERSION
+			(string) filemtime( $base_css )
 		);
 	}
 
-	// Homepage-only assets.
-	if ( is_front_page() ) {
-		$css_path = $theme_dir . '/assets/css/home.css';
+	$home_css = $theme_dir . '/assets/css/home.css';
+	if ( file_exists( $home_css ) ) {
 		wp_enqueue_style(
 			'sa-home',
 			$theme_uri . '/assets/css/home.css',
 			array( 'sa-child-style' ),
-			file_exists( $css_path ) ? (string) filemtime( $css_path ) : SA_CHILD_VERSION
+			(string) filemtime( $home_css )
 		);
+	}
 
-		$js_path = $theme_dir . '/assets/js/home.js';
+	$home_js = $theme_dir . '/assets/js/home.js';
+	if ( file_exists( $home_js ) ) {
 		wp_enqueue_script(
 			'sa-home',
 			$theme_uri . '/assets/js/home.js',
 			array(),
-			file_exists( $js_path ) ? (string) filemtime( $js_path ) : SA_CHILD_VERSION,
+			(string) filemtime( $home_js ),
 			true
 		);
+	}
 
-		// Optional work slider — only loaded when the file actually exists.
+	$pages_css = $theme_dir . '/assets/css/pages.css';
+	if ( file_exists( $pages_css ) ) {
+		wp_enqueue_style(
+			'sa-pages',
+			$theme_uri . '/assets/css/pages.css',
+			array( 'sa-home' ),
+			(string) filemtime( $pages_css )
+		);
+	}
+
+	// Optional work slider — only loaded when on front page and file exists.
+	if ( is_front_page() ) {
 		$slider_path = $theme_dir . '/js/sa-work-slider.js';
 		if ( file_exists( $slider_path ) ) {
 			wp_enqueue_script(
@@ -263,4 +268,49 @@ function sa_child_legal_template_include( $template ) {
 	return $template;
 }
 add_filter( 'template_include', 'sa_child_legal_template_include', 99 );
+
+add_action( 'template_redirect', function() {
+	if ( is_admin() ) {
+		return;
+	}
+	$request_uri = trim( parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH ), '/' );
+	if ( 'about-me' === $request_uri || 'about' === $request_uri ) {
+		status_header( 200 );
+		$GLOBALS['wp_query']->is_404 = false;
+		include get_stylesheet_directory() . '/page-about-me.php';
+		exit;
+	}
+	if ( 'experiments' === $request_uri ) {
+		status_header( 200 );
+		$GLOBALS['wp_query']->is_404 = false;
+		include get_stylesheet_directory() . '/page-experiments.php';
+		exit;
+	}
+	if ( 0 === strpos( $request_uri, 'experiments/' ) ) {
+		status_header( 200 );
+		$GLOBALS['wp_query']->is_404 = false;
+		include get_stylesheet_directory() . '/single-experiment.php';
+		exit;
+	}
+	if ( 'work' === $request_uri ) {
+		status_header( 200 );
+		$GLOBALS['wp_query']->is_404 = false;
+		include get_stylesheet_directory() . '/page-work.php';
+		exit;
+	}
+	if ( 0 === strpos( $request_uri, 'work/' ) ) {
+		status_header( 200 );
+		$GLOBALS['wp_query']->is_404 = false;
+		$sub = trim( str_replace( 'work/', '', $request_uri ), '/' );
+		$file = get_stylesheet_directory() . '/page-work-' . $sub . '.php';
+		if ( file_exists( $file ) ) {
+			include $file;
+		} else {
+			include get_stylesheet_directory() . '/page-work.php';
+		}
+		exit;
+	}
+} );
+
+
 

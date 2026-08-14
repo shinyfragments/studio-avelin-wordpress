@@ -1,24 +1,91 @@
 <?php
 /**
- * Studio Avelin shared subpage header.
- * Mirrors the homepage header markup so subpages stay visually identical.
+ * Studio Avelin global header component.
+ *
+ * Full-width minimal header with custom A/ monogram logo, desktop baseline navigation,
+ * dynamic sliding lime indicator, and mobile menu toggle.
+ *
+ * @package studio-avelin-child
  */
-if (!defined('ABSPATH')) {
-    exit;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
+
+$sa_home_url = trailingslashit( home_url( '/' ) );
+$request_uri = trim( parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH ), '/' );
+
+// Determine active page dynamically
+$is_work        = ( 'work' === $request_uri || 0 === strpos( $request_uri, 'work/' ) );
+$is_about       = ( 'about-me' === $request_uri || 'about' === $request_uri );
+$is_experiments = ( 'experiments' === $request_uri || 0 === strpos( $request_uri, 'experiments/' ) );
+$is_journal     = ( 'journal' === $request_uri || 0 === strpos( $request_uri, 'journal/' ) || is_home() || is_singular('post') );
+$is_contact     = false;
 ?>
-<header class="sa-front-header" aria-label="Studio Avelin navigation">
-  <div class="sa-front-header__inner">
-    <a class="sa-front-brand" href="<?php echo esc_url(home_url('/')); ?>" aria-label="Studio Avelin home">Studio Avelin</a>
 
-    <nav class="sa-front-nav" aria-label="Primary navigation">
-      <a href="<?php echo esc_url(home_url('/#work')); ?>">Work</a>
-      <a href="<?php echo esc_url(home_url('/#about')); ?>">About</a>
-      <a href="<?php echo esc_url(home_url('/experiments/')); ?>">Experiments</a>
-      <a href="<?php echo esc_url(home_url('/journal/')); ?>">Journal</a>
-      <a href="<?php echo esc_url(home_url('/#contact')); ?>">Say Hello</a>
-    </nav>
+<header class="sa-front-header" id="sa-header">
+	<div class="sa-front-header__inner">
 
-    <a class="sa-front-header__hello" href="<?php echo esc_url(home_url('/#contact')); ?>">Hello</a>
-  </div>
+		<!-- BRAND LOGO & NAME -->
+		<a class="sa-brand" href="<?php echo esc_url( $sa_home_url ); ?>" aria-label="Studio Avelin home">
+			<svg class="sa-brand__logo" width="30" height="30" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img">
+				<polygon points="0,0 22,0 32,10 32,32 0,32" fill="#C7F000" />
+				<text x="14.5" y="22.5" font-family="'Geist', 'Inter', system-ui, -apple-system, sans-serif" font-weight="900" font-size="16.5" fill="#151922" text-anchor="middle" letter-spacing="-1.5px">A/</text>
+			</svg>
+			<span class="sa-brand__name">Studio Avelin</span>
+		</a>
+
+		<!-- DESKTOP NAVIGATION WITH BASELINE & SLIDING INDICATOR -->
+		<nav class="sa-front-nav" aria-label="Primary navigation" data-sa-nav>
+			<ul class="sa-front-nav__list">
+				<li class="sa-front-nav__item">
+					<a class="sa-front-nav__link<?php echo $is_work ? ' is-active' : ''; ?>" href="<?php echo esc_url( $sa_home_url . 'work/' ); ?>">Work</a>
+				</li>
+				<li class="sa-front-nav__item">
+					<a class="sa-front-nav__link<?php echo $is_about ? ' is-active' : ''; ?>" href="<?php echo esc_url( $sa_home_url . 'about-me/' ); ?>">About</a>
+				</li>
+				<li class="sa-front-nav__item">
+					<a class="sa-front-nav__link<?php echo $is_experiments ? ' is-active' : ''; ?>" href="<?php echo esc_url( $sa_home_url . 'experiments/' ); ?>">Experiments</a>
+				</li>
+				<li class="sa-front-nav__item">
+					<a class="sa-front-nav__link<?php echo $is_journal ? ' is-active' : ''; ?>" href="<?php echo esc_url( $sa_home_url . 'journal/' ); ?>">Journal</a>
+				</li>
+				<li class="sa-front-nav__item">
+					<a class="sa-front-nav__link<?php echo $is_contact ? ' is-active' : ''; ?>" href="mailto:hello@studio-avelin.com">Contact</a>
+				</li>
+			</ul>
+
+			<!-- BASELINE & SLIDING LIME SEGMENT -->
+			<div class="sa-nav-baseline" aria-hidden="true">
+				<span class="sa-nav-baseline__indicator"></span>
+			</div>
+		</nav>
+
+		<!-- MOBILE MENU TOGGLE BUTTON -->
+		<button class="sa-nav-toggle" type="button" aria-expanded="false" aria-controls="sa-mobile-menu" aria-label="Toggle navigation menu" data-sa-nav-toggle>
+			<span class="sa-nav-toggle__label">Menu</span>
+		</button>
+
+	</div>
+
+	<!-- MOBILE DROPDOWN MENU -->
+	<div class="sa-mobile-menu" id="sa-mobile-menu" aria-label="Mobile navigation" data-sa-mobile-menu>
+		<ul class="sa-mobile-menu__list">
+			<li>
+				<a class="sa-mobile-menu__link<?php echo $is_work ? ' is-active' : ''; ?>" href="<?php echo esc_url( $sa_home_url . 'work/' ); ?>">Work</a>
+			</li>
+			<li>
+				<a class="sa-mobile-menu__link<?php echo $is_about ? ' is-active' : ''; ?>" href="<?php echo esc_url( $sa_home_url . 'about-me/' ); ?>">About</a>
+			</li>
+			<li>
+				<a class="sa-mobile-menu__link<?php echo $is_experiments ? ' is-active' : ''; ?>" href="<?php echo esc_url( $sa_home_url . 'experiments/' ); ?>">Experiments</a>
+			</li>
+			<li>
+				<a class="sa-mobile-menu__link<?php echo $is_journal ? ' is-active' : ''; ?>" href="<?php echo esc_url( $sa_home_url . 'journal/' ); ?>">Journal</a>
+			</li>
+			<li>
+				<a class="sa-mobile-menu__link<?php echo $is_contact ? ' is-active' : ''; ?>" href="mailto:hello@studio-avelin.com">Contact</a>
+			</li>
+		</ul>
+	</div>
 </header>

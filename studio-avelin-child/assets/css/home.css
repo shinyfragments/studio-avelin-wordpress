@@ -1346,102 +1346,30 @@ a.sa-exp__link:hover .sa-exp__line {
 
 /* --------------------------------------------------------------- Footer --- */
 
-.sa-front-footer {
-  border-top: 1px solid var(--sa-line);
-  background: var(--sa-bg);
-  padding: 3.5rem 0 2.25rem;
-  font-size: 0.9rem;
-}
-
-@media (min-width: 900px) {
-  .sa-front-footer {
-    padding: 5rem 0 2.5rem;
-  }
-}
-
-.sa-front-footer__top {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2.75rem;
-}
-
-@media (min-width: 900px) {
-  .sa-front-footer__top {
-    grid-template-columns: 1fr 2fr;
-    gap: 4rem;
-  }
-}
-
-.sa-front-footer__tag {
-  margin-top: 0.85rem;
-  font-family: var(--sa-font-display);
-  font-size: 0.65rem;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--sa-muted);
-}
-
-.sa-front-footer__cols {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 2rem;
-}
-
-@media (min-width: 640px) {
-  .sa-front-footer__cols {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-.sa-front-footer__heading {
-  font-family: var(--sa-font-display);
-  font-size: 0.6rem;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--sa-muted);
-  margin-bottom: 1.1rem;
-  font-weight: 500;
-}
-
-.sa-front-footer__col li + li {
-  margin-top: 0.7rem;
-}
-
-.sa-front-footer__col a {
-  position: relative;
-  font-family: var(--sa-font-display);
-  font-size: 0.82rem;
-  color: var(--sa-ink-soft);
-  background-image: linear-gradient(currentColor, currentColor);
-  background-size: 0% 1px;
-  background-position: 0 100%;
-  background-repeat: no-repeat;
-  transition: background-size 400ms ease;
-}
-
-.sa-front-footer__col a:hover {
-  background-size: 100% 1px;
-}
-
-.sa-front-footer__bottom {
-  margin-top: 3rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--sa-line);
-  display: flex;
-  flex-direction: column;
+.sa-brand {
+  display: inline-flex;
+  align-items: center;
   gap: 0.5rem;
-  font-family: var(--sa-font-display);
-  font-size: 0.72rem;
-  color: var(--sa-muted);
+  font-family: var(--sa-font-display, "Poppins", sans-serif);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--sa-ink);
+  text-decoration: none;
+  line-height: 1;
 }
 
-@media (min-width: 640px) {
-  .sa-front-footer__bottom {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
+.sa-brand__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--sa-lime, #C7F000);
+  border: 1px solid var(--sa-ink, #151922);
+  display: inline-block;
+  flex-shrink: 0;
+  margin: 0;
 }
+
+/* (Footer styles consolidated in sa-base.css for global consistency) */
 
 /* ------------------------------------------------------- Reduced motion --- */
 

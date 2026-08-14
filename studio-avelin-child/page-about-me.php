@@ -2,7 +2,7 @@
 /**
  * Studio Avelin — About Me page template.
  *
- * Designed 1:1 to match the visual specification and reference design.
+ * Uses the exact Studio Avelin header and footer matching the homepage and legal pages.
  *
  * @package studio-avelin-child
  */
@@ -12,6 +12,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $sa_home         = trailingslashit( home_url( '/' ) );
+$sa_nav          = sa_child_nav_items( 'header' );
+$sa_footer_nav   = sa_child_nav_items( 'footer' );
 $sa_portrait     = get_stylesheet_directory_uri() . '/assets/img/portrait.jpg';
 $sa_has_portrait = file_exists( get_stylesheet_directory() . '/assets/img/portrait.jpg' );
 ?>
@@ -23,34 +25,15 @@ $sa_has_portrait = file_exists( get_stylesheet_directory() . '/assets/img/portra
 	<?php wp_head(); ?>
 </head>
 
-<body <?php body_class( array( 'sa-front', 'sa-page', 'sa-page--about' ) ); ?>>
+<body <?php body_class( array( 'home', 'sa-front', 'sa-page', 'sa-page--about' ) ); ?>>
 <?php wp_body_open(); ?>
 
 <a class="sa-skip" href="#sa-main">Skip to content</a>
 
-<!-- ========================= HEADER ========================= -->
-<header class="sa-about-header" id="sa-header">
-	<div class="sa-about-container">
-		<div class="sa-about-header__inner">
-			<a class="sa-about-logo" href="<?php echo esc_url( $sa_home ); ?>">
-				<span class="sa-about-logo__underline">STUDIO</span> AVELIN
-			</a>
-
-			<nav class="sa-about-nav" aria-label="Primary Navigation">
-				<ul class="sa-about-nav__list">
-					<li><a class="sa-about-nav__link" href="<?php echo esc_url( $sa_home . '#work' ); ?>">WORK</a></li>
-					<li><a class="sa-about-nav__link" href="<?php echo esc_url( $sa_home . 'experiments/' ); ?>">EXPERIMENTS</a></li>
-					<li><a class="sa-about-nav__link" href="<?php echo esc_url( $sa_home . 'journal/' ); ?>">JOURNAL</a></li>
-					<li><a class="sa-about-nav__link sa-about-nav__link--active" href="<?php echo esc_url( $sa_home . 'about-me/' ); ?>">ABOUT ME</a></li>
-					<li><a class="sa-about-nav__link" href="mailto:hello@studio-avelin.com">SAY HELLO</a></li>
-				</ul>
-			</nav>
-		</div>
-	</div>
-</header>
+<?php get_template_part( 'parts/sa-header' ); ?>
 
 <!-- ========================= MAIN CONTENT ========================= -->
-<main class="sa-main" id="sa-main">
+<main class="sa-main" id="sa-main" style="padding-top: 3.5rem; padding-bottom: 5rem;">
 	<div class="sa-about-container">
 		<div class="sa-about-grid">
 
@@ -237,24 +220,7 @@ $sa_has_portrait = file_exists( get_stylesheet_directory() . '/assets/img/portra
 	</div>
 </main>
 
-<!-- ========================= FOOTER ========================= -->
-<footer class="sa-about-footer" id="sa-footer">
-	<div class="sa-about-container">
-		<div class="sa-about-footer__inner">
-			<div class="sa-about-footer__left">
-				&copy; <?php echo esc_html( gmdate( 'Y' ) ); ?> STUDIO AVELIN
-			</div>
-			<div class="sa-about-footer__center">
-				BASED IN NRW, GERMANY
-			</div>
-			<div class="sa-about-footer__right">
-				<a href="https://instagram.com/" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
-				<a href="https://github.com/studio-avelin" target="_blank" rel="noopener noreferrer">GITHUB</a>
-				<a href="mailto:hello@studio-avelin.com">E-MAIL</a>
-			</div>
-		</div>
-	</div>
-</footer>
+<?php get_template_part( 'parts/sa-footer' ); ?>
 
 <?php wp_footer(); ?>
 </body>
