@@ -294,7 +294,7 @@
             wob: rand(0.4, 1.5),
             wobPhase: rand(0, 6.283),
             alpha: rand(0.45, 1.2),
-            wide: Math.random() < 0.08
+            wide: Math.random() < 0.025
           });
         }
         bands.push(band);
@@ -310,24 +310,19 @@
 
     function seedTraces() {
       traces.length = 0;
-      var count = small ? 18 : width < 1100 ? 34 : 50;
-      var maxLen = small ? 90 : 150;
+      var maxLen = small ? 76 : 132;
 
-      for (var i = 0; i < count; i++) {
-        var trail = new Float32Array(maxLen * 2);
-        var lime = i % 5 === 0;
-        traces.push({
-          x: rand(-width * 0.35, width),
-          y: rand(height * 0.04, height * 0.96),
-          speed: rand(0.8, 1.8) * (lime ? 1.15 : 1),
-          len: 0,
-          maxLen: maxLen,
-          trail: trail,
-          lime: lime,
-          alpha: lime ? rand(0.55, 0.9) : rand(0.22, 0.5),
-          wsize: lime ? rand(0.9, 1.4) : rand(0.6, 1.3)
-        });
-      }
+      traces.push({
+        x: -width * 0.18,
+        y: rand(height * 0.14, height * 0.86),
+        speed: small ? 0.68 : 0.78,
+        len: 0,
+        maxLen: maxLen,
+        trail: new Float32Array(maxLen * 2),
+        alpha: small ? 0.14 : 0.2,
+        wsize: small ? 1.05 : 1.2,
+        wait: rand(1.8, 3.5)
+      });
     }
 
     function seedParticles() {
@@ -461,7 +456,7 @@
           } else {
             ctx.strokeStyle = inkFade;
             ctx.globalAlpha = band.alpha * line.alpha;
-            ctx.lineWidth = line.wide ? 1.7 : 0.95;
+            ctx.lineWidth = line.wide ? 1.25 : 0.95;
           }
           ctx.stroke();
         }
@@ -469,20 +464,27 @@
       ctx.globalAlpha = 1;
     }
 
-    /* Layer 5a — streamline traces advected through the direction field. */
+    /* Layer 5a — one restrained signal impulse with a generous pause. */
     function drawTraces(t, dt) {
-      var i, k, tr, ang, n, idx;
+      var i, k, tr, ang, n, idx, progress, fadeIn, fadeOut, envelope;
 
       for (i = 0; i < traces.length; i++) {
         tr = traces[i];
+        if (tr.wait > 0) {
+          tr.wait -= dt;
+          continue;
+        }
+
         ang = flowAngle(tr.x, tr.y, t);
         tr.x += Math.cos(ang) * tr.speed * dt * 62 + tr.speed * dt * 44;
         tr.y += Math.sin(ang) * tr.speed * dt * 62;
 
         if (tr.x > width + 60 || tr.y < -80 || tr.y > height + 80) {
-          tr.x = rand(-width * 0.35, width * 0.06);
-          tr.y = rand(height * 0.05, height * 0.95);
+          tr.x = -width * 0.18;
+          tr.y = rand(height * 0.14, height * 0.86);
           tr.len = 0;
+          tr.wait = rand(7, 11);
+          continue;
         }
 
         n = tr.maxLen;
@@ -502,17 +504,15 @@
         ctx.beginPath();
         ctx.moveTo(tr.trail[0], tr.trail[1]);
         for (k = 1; k < tr.len; k++) ctx.lineTo(tr.trail[k * 2], tr.trail[k * 2 + 1]);
-        ctx.strokeStyle = tr.lime ? limeFade : inkFade;
-        ctx.globalAlpha = tr.alpha;
+        progress = Math.max(0, Math.min(1, (tr.x + width * 0.18) / (width * 1.18)));
+        fadeIn = Math.min(1, progress / 0.16);
+        fadeOut = Math.min(1, (1 - progress) / 0.34);
+        envelope = Math.max(0, Math.min(fadeIn, fadeOut));
+
+        ctx.strokeStyle = inkFade;
+        ctx.globalAlpha = tr.alpha * envelope;
         ctx.lineWidth = tr.wsize;
         ctx.stroke();
-
-        /* head marker — a small signal point riding the flow */
-        ctx.beginPath();
-        ctx.arc(tr.x, tr.y, tr.lime ? 2.1 : 1.2, 0, 6.283);
-        ctx.fillStyle = tr.lime ? "rgba(" + LIME + ", 0.95)" : "rgba(" + INK + ", 0.5)";
-        ctx.globalAlpha = tr.x > width * 0.35 ? 1 : 0.55;
-        ctx.fill();
       }
       ctx.globalAlpha = 1;
     }
