@@ -62,27 +62,27 @@ $current_exp = isset( $exp_details[ $exp_slug ] ) ? $exp_details[ $exp_slug ] : 
 <?php get_template_part( 'parts/sa-header' ); ?>
 
 <!-- ========================= MAIN EXPERIMENT CANVAS ========================= -->
-<main class="sa-main" id="sa-main" style="padding-top: 3rem; padding-bottom: 5rem;">
+<main class="sa-main sa-exp-single" id="sa-main">
 	<div class="sa-about-container">
 
 		<!-- TOP NAVIGATION LINK -->
-		<div style="margin-bottom: 2rem;">
-			<a href="<?php echo esc_url( $sa_home . 'experiments/' ); ?>" class="sa-exp-back-link" style="display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.8125rem; letter-spacing: 0.12em; font-weight: 600; text-transform: uppercase; color: #151922; text-decoration: none;">
+		<div class="sa-exp-single__back">
+			<a href="<?php echo esc_url( $sa_home . 'experiments/' ); ?>" class="sa-exp-back-link">
 				&larr; Back to Experiments
 			</a>
 		</div>
 
 		<!-- EXPERIMENT HERO HEAD -->
-		<div style="margin-bottom: 2.5rem; max-width: 700px;">
-			<span style="display: block; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: #6F7174; margin-bottom: 0.75rem;"><?php echo esc_html( $current_exp['eyebrow'] ); ?></span>
-			<h1 style="font-family: 'Inter', sans-serif; font-size: clamp(2.25rem, 4vw, 3.5rem); font-weight: 400; line-height: 1.05; letter-spacing: -0.02em; color: #151922; margin: 0 0 1rem 0;"><?php echo esc_html( $current_exp['title'] ); ?></h1>
-			<p style="font-size: 1.1rem; line-height: 1.6; color: #151922; margin: 0 0 1rem 0;"><?php echo esc_html( $current_exp['desc'] ); ?></p>
-			<span style="display: inline-block; font-size: 0.75rem; letter-spacing: 0.15em; font-weight: 600; text-transform: uppercase; color: var(--sa-muted); background: rgba(21, 25, 34, 0.05); padding: 0.35rem 0.75rem; border: 1px solid rgba(21, 25, 34, 0.12);"><?php echo esc_html( $current_exp['meta'] ); ?></span>
+		<div class="sa-exp-single__head">
+			<span class="sa-exp-single__eyebrow"><?php echo esc_html( $current_exp['eyebrow'] ); ?></span>
+			<h1 class="sa-exp-single__title"><?php echo esc_html( $current_exp['title'] ); ?></h1>
+			<p class="sa-exp-single__desc"><?php echo esc_html( $current_exp['desc'] ); ?></p>
+			<span class="sa-exp-single__meta"><?php echo esc_html( $current_exp['meta'] ); ?></span>
 		</div>
 
 		<!-- INTERACTIVE CANVAS DISPLAY CONTAINER -->
-		<div class="sa-exp-stage" style="width: 100%; aspect-ratio: 16 / 9; max-height: 600px; background: #0A0A0B; position: relative; overflow: hidden; border: 1px solid rgba(21, 25, 34, 0.15);">
-			<canvas id="sa-exp-single-canvas" style="width: 100%; height: 100%; display: block;"></canvas>
+		<div class="sa-exp-stage">
+			<canvas id="sa-exp-single-canvas" class="sa-exp-single__canvas"></canvas>
 		</div>
 
 	</div>

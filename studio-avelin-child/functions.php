@@ -22,8 +22,27 @@ add_action( 'wp_head', 'sa_child_favicon', 100 );
 
 /** Return the intentional browser and search-result title for Studio pages. */
 function sa_child_document_title( $title ) {
+	$request_path = trim( (string) wp_parse_url( $_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH ), '/' );
+	$studio_titles = array(
+		'work'        => 'Work - Studio Avelin',
+		'experiments' => 'Experiments - Studio Avelin',
+		'about-me'    => 'About Me - Studio Avelin',
+		'about'       => 'About Me - Studio Avelin',
+		'work/stan'   => 'STAN - Studio Avelin',
+		'work/stat'   => 'StAT - Studio Avelin',
+		'work/stau'   => 'StAU - Studio Avelin',
+	);
+
 	if ( is_front_page() ) {
 		return 'Studio Avelin - Design. Code. Create.';
+	}
+
+	if ( isset( $studio_titles[ $request_path ] ) ) {
+		return $studio_titles[ $request_path ];
+	}
+
+	if ( 0 === strpos( $request_path, 'experiments/' ) ) {
+		return ucwords( str_replace( '-', ' ', basename( $request_path ) ) ) . ' - Studio Avelin';
 	}
 
 	if ( is_post_type_archive( 'sa_journal' ) ) {

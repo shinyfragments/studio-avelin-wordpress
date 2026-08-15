@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Deploy only the native Journal integration to IONOS.
+# Deploy the maintained Studio Avelin child-theme files to IONOS.
 # Required before running:
 #   export IONOS_SFTP_USER='...'
 #   read -rs 'IONOS_SFTP_PASSWORD?IONOS-Passwort: '
@@ -17,6 +17,7 @@ BACKUP_DIR="${IONOS_BACKUP_DIR:-.deploy-backups/$(date +%Y%m%d-%H%M%S)}"
 FILES=(
   "front-page.php"
   "functions.php"
+	"single-experiment.php"
 	"assets/img/favicon.svg"
 	"parts/sa-header.php"
   "parts/sa-footer.php"
@@ -45,7 +46,7 @@ for file in "${FILES[@]}"; do
 done
 
 mkdir -p "${BACKUP_DIR}/parts" "${BACKUP_DIR}/assets/css" "${BACKUP_DIR}/assets/js"
-echo "Deploying ${#FILES[@]} Journal files to IONOS..."
+echo "Deploying ${#FILES[@]} child-theme files to IONOS..."
 
 expect -f - "$REMOTE_USER" "$REMOTE_HOST" "$REMOTE_DIR" "$LOCAL_DIR" "$BACKUP_DIR" "${FILES[@]}" <<'EXPECT'
 set timeout 60
@@ -84,7 +85,7 @@ expect {
 }
 wait_for_prompt "authentication"
 
-foreach file [list "front-page.php" "functions.php" "parts/sa-header.php" "parts/sa-footer.php" "assets/css/home.css" "assets/css/pages.css" "assets/css/sa-base.css" "assets/js/home.js"] {
+foreach file [list "front-page.php" "functions.php" "single-experiment.php" "parts/sa-header.php" "parts/sa-footer.php" "assets/css/home.css" "assets/css/pages.css" "assets/css/sa-base.css" "assets/js/home.js"] {
   send -- "get $remote_dir/$file $backup_dir/$file\r"
   wait_for_prompt "backup of $file"
 }
@@ -110,5 +111,5 @@ send -- "bye\r"
 expect eof
 EXPECT
 
-echo "Journal deployment completed successfully."
-echo "Previous functions/footer saved in: ${BACKUP_DIR}"
+echo "Child-theme deployment completed successfully."
+echo "Previous site files saved in: ${BACKUP_DIR}"

@@ -1792,3 +1792,114 @@ body.sa-page--experiments .sa-exp-card__title,
 body.sa-page--experiments .sa-exp-process-headline {
   font-family: var(--sa-font-display, "Poppins", sans-serif);
 }
+
+/* Experiment detail: align its rhythm and type with the Experiments index. */
+.sa-exp-single {
+  padding-block: 3.5rem 5rem;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.sa-exp-single__back {
+  margin-bottom: 2rem;
+}
+
+.sa-exp-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #151922;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: transform 400ms cubic-bezier(0.2, 0.7, 0.2, 1), color 200ms ease;
+}
+
+.sa-exp-back-link:hover,
+.sa-exp-back-link:focus-visible {
+  color: #0A0A0B;
+  transform: translateX(-4px);
+}
+
+.sa-exp-single__head {
+  max-width: 43.75rem;
+  margin-bottom: 2.5rem;
+}
+
+.sa-exp-single__eyebrow {
+  display: block;
+  margin-bottom: 0.75rem;
+  color: #6F7174;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.sa-page .sa-exp-single__title {
+  margin: 0 0 1rem;
+  color: #151922;
+  font-family: var(--sa-font-display, "Poppins", sans-serif);
+  font-size: clamp(2.25rem, 4vw, 3.5rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.sa-exp-single__desc {
+  margin: 0 0 1.25rem;
+  color: #151922;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.sa-exp-single__meta {
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  border: 1px solid rgba(21, 25, 34, 0.12);
+  background: rgba(21, 25, 34, 0.05);
+  color: var(--sa-muted, #6F7174);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.sa-exp-stage {
+  position: relative;
+  width: 100%;
+  max-height: 600px;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  border: 1px solid rgba(21, 25, 34, 0.15);
+  background: #0A0A0B;
+}
+
+.sa-exp-single__canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 767px) {
+  .sa-exp-single {
+    padding-block: 3rem 4rem;
+  }
+
+  .sa-exp-single__back {
+    margin-bottom: 1.75rem;
+  }
+
+  .sa-exp-single__head {
+    margin-bottom: 2rem;
+  }
+
+  .sa-page .sa-exp-single__title {
+    font-size: clamp(2rem, 10vw, 2.5rem);
+  }
+
+  .sa-exp-single__desc {
+    font-size: 1rem;
+  }
+}
