@@ -27,7 +27,6 @@ if (empty($sa_project) || !is_array($sa_project)) {
 
 <main id="primary" class="sa-page">
   <section class="sa-page-head" aria-labelledby="sa-project-title">
-    <div class="sa-front-grid" aria-hidden="true"></div>
     <div class="sa-page__inner sa-page-head__inner">
       <p class="sa-front-eyebrow sa-front-eyebrow--line">Project Note</p>
       <h1 id="sa-project-title"><?php echo esc_html($sa_project['title']); ?></h1>

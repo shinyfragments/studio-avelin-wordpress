@@ -31,6 +31,7 @@ function sa_child_document_title( $title ) {
 		'work/stan'   => 'STAN - Studio Avelin',
 		'work/stat'   => 'StAT - Studio Avelin',
 		'work/stau'   => 'StAU - Studio Avelin',
+		'work/monroe-toyparty-landingpage' => 'Portfolio Page - Studio Avelin',
 	);
 
 	if ( is_front_page() ) {
@@ -342,6 +343,10 @@ add_action( 'template_redirect', function() {
 		return;
 	}
 	$request_uri = trim( parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH ), '/' );
+	if ( 'work/maaike-fiebus' === $request_uri ) {
+		wp_safe_redirect( home_url( '/work/monroe-toyparty-landingpage/' ), 301 );
+		exit;
+	}
 	if ( 'about-me' === $request_uri || 'about' === $request_uri ) {
 		status_header( 200 );
 		$GLOBALS['wp_query']->is_404 = false;

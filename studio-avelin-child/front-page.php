@@ -35,6 +35,15 @@ $sa_projects = array(
 		'visual'   => 'notes',
 	),
 	array(
+		'name'     => 'Portfolio Page',
+		'full'     => 'MONROE Toyparty Landingpage',
+		'status'   => 'Live',
+		'text'     => 'A warm, discreet portfolio and landing page with a clear visual direction and a direct path from first impression to contact.',
+		'url'      => $sa_home . 'work/monroe-toyparty-landingpage/',
+		'external' => false,
+		'visual'   => 'maaike',
+	),
+	array(
 		'name'     => 'StAT',
 		'full'     => 'Studio Avelin Training',
 		'status'   => 'In Development',
@@ -42,15 +51,6 @@ $sa_projects = array(
 		'url'      => '',
 		'external' => false,
 		'visual'   => 'training',
-	),
-	array(
-		'name'     => 'StAU',
-		'full'     => 'Studio Avelin Travel Planner',
-		'status'   => 'Concept',
-		'text'     => 'A small travel planning and trip journal concept for organizing ideas, routes and memories.',
-		'url'      => '',
-		'external' => false,
-		'visual'   => 'travel',
 	),
 );
 
@@ -106,6 +106,45 @@ $sa_journal_marks = array( 'process', 'webwork', 'notes' );
  */
 function sa_project_visual( $kind ) {
 	switch ( $kind ) {
+	case 'maaike':
+			?>
+			<svg class="sa-visual" viewBox="0 0 480 300" role="img" aria-label="Editorial portfolio website preview" preserveAspectRatio="xMidYMid slice">
+				<rect width="480" height="300" fill="#f7f1ef" />
+				<rect width="480" height="28" fill="#fffaf7" />
+				<circle cx="16" cy="14" r="3.5" fill="#d9cfcc" />
+				<circle cx="28" cy="14" r="3.5" fill="#c9b4b1" />
+				<circle cx="40" cy="14" r="3.5" fill="#8e6668" />
+				<rect x="60" y="10" width="54" height="7" rx="3.5" fill="#2b2728" opacity="0.82" />
+				<g fill="#6f6263" opacity="0.7">
+					<rect x="338" y="11" width="28" height="5" rx="2.5" />
+					<rect x="378" y="11" width="28" height="5" rx="2.5" />
+					<rect x="418" y="11" width="38" height="5" rx="2.5" />
+				</g>
+				<rect y="28" width="480" height="184" fill="#fffaf7" />
+				<rect x="28" y="54" width="52" height="5" rx="2.5" fill="#a77b7c" />
+				<rect x="28" y="76" width="186" height="15" rx="2" fill="#2b2728" />
+				<rect x="28" y="99" width="154" height="15" rx="2" fill="#2b2728" />
+				<rect x="28" y="128" width="172" height="6" rx="3" fill="#cfc2bf" />
+				<rect x="28" y="142" width="150" height="6" rx="3" fill="#ded3d0" />
+				<rect x="28" y="165" width="72" height="24" rx="12" fill="#8e6668" />
+				<rect x="112" y="174" width="58" height="6" rx="3" fill="#6f6263" opacity="0.52" />
+				<rect x="244" y="48" width="208" height="146" rx="2" fill="#ead6d2" />
+				<path d="M244 48 H368 C338 80 322 121 326 194 H244 Z" fill="#d5aaa5" />
+				<path d="M452 48 V194 H326 C360 162 382 113 390 48 Z" fill="#8e6668" />
+				<circle cx="388" cy="112" r="40" fill="#f3e7e2" opacity="0.88" />
+				<circle cx="388" cy="112" r="24" fill="#c58e8d" opacity="0.82" />
+				<path d="M356 180 C372 154 397 145 432 148" fill="none" stroke="#fffaf7" stroke-width="2" opacity="0.75" />
+				<rect y="212" width="480" height="88" fill="#f0e6e2" />
+				<rect x="28" y="232" width="92" height="8" rx="4" fill="#2b2728" opacity="0.78" />
+				<rect x="28" y="250" width="154" height="5" rx="2.5" fill="#c9bbb8" />
+				<rect x="28" y="262" width="126" height="5" rx="2.5" fill="#d8ccc8" />
+				<rect x="224" y="228" width="66" height="50" rx="2" fill="#c99996" />
+				<rect x="302" y="228" width="66" height="50" rx="2" fill="#8e6668" />
+				<rect x="380" y="228" width="72" height="50" rx="2" fill="#2b2728" />
+			</svg>
+			<?php
+			break;
+
 		case 'notes':
 			?>
 			<svg class="sa-visual" viewBox="0 0 480 300" role="img" aria-label="Notes app interface preview" preserveAspectRatio="xMidYMid slice">
@@ -385,8 +424,8 @@ function sa_mark( $kind ) {
 				<p class="sa-eyebrow sa-eyebrow--dot sa-reveal">Projects &middot; 01&ndash;03</p>
 				<h2 class="sa-section__title sa-reveal" id="sa-work-title">Selected Work</h2>
 				<p class="sa-section__intro sa-reveal">
-					Personal projects under the Studio Avelin umbrella &mdash; small, useful,
-					made with care.
+					Selected client work and independent products &mdash; clear in purpose,
+					designed and built with care.
 				</p>
 			</div>
 
@@ -409,7 +448,6 @@ function sa_mark( $kind ) {
 								<span class="sa-bracket sa-bracket--br" aria-hidden="true"></span>
 								<div class="sa-work__frame">
 									<?php sa_project_visual( $project['visual'] ); ?>
-									<span class="sa-work__frame-label"><?php echo esc_html( $project['name'] ); ?> &middot; preview</span>
 								</div>
 							</div>
 

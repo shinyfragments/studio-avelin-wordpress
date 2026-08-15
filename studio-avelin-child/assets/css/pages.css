@@ -1225,6 +1225,65 @@ body.sa-page--experiments .sa-main {
   margin-bottom: 5rem;
 }
 
+.sa-work-client-preview {
+  position: relative;
+  min-height: 28rem;
+  overflow: hidden;
+  background: #23262D;
+}
+
+.sa-work-client-preview img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 28rem;
+  object-fit: cover;
+  object-position: center 24%;
+}
+
+.sa-work-client-preview__label {
+  position: absolute;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background: rgba(35, 38, 45, 0.92);
+  color: #FFFFFF;
+}
+
+.sa-work-client-preview__label span {
+  color: #C7F000;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.sa-work-client-preview__label strong {
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-align: right;
+}
+
+@media (max-width: 767px) {
+  .sa-work-client-preview,
+  .sa-work-client-preview img {
+    min-height: 20rem;
+  }
+
+  .sa-work-client-preview__label {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .sa-work-client-preview__label strong {
+    text-align: left;
+  }
+}
+
 .sa-work-featured-grid {
   display: grid;
   grid-template-columns: 1fr;

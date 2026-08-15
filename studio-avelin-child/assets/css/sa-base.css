@@ -19,6 +19,23 @@
   font-family: var(--sa-font-secondary, "Raleway", sans-serif);
 }
 
+.sa-subpage {
+  --sa-shell: 1400px;
+  --sa-pad: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .sa-subpage {
+    --sa-pad: 3rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .sa-subpage {
+    --sa-pad: 5rem;
+  }
+}
+
 body:has(.sa-page) .wp-site-blocks > header:not(.sa-front-header),
 body:has(.sa-page) .wp-site-blocks > .wp-block-template-part:first-child:not(.sa-front-header),
 body:has(.sa-page) .wp-site-blocks > footer:not(.sa-front-footer) {
@@ -362,12 +379,14 @@ body.sa-menu-open {
   border-bottom: 2px solid #C7F000;
   padding-bottom: 0.25rem;
 }
-  padding: 0 0.9rem;
-  font-family: var(--sa-font-primary, "Poppins", sans-serif);
-  font-size: 0.72rem;
-}
 
 /* ---------- Shared page primitives ---------- */
+
+.sa-page__inner {
+  width: min(calc(100% - 3rem), 1400px);
+  margin-right: auto;
+  margin-left: auto;
+}
 
 .sa-front-grid {
   background-image:

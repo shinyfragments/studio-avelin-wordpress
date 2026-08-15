@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" role="img" aria-labelledby="title">
+  <title id="title">Editorial portfolio website preview</title>
+  <rect width="480" height="300" fill="#f7f1ef"/>
+  <rect width="480" height="28" fill="#fffaf7"/>
+  <circle cx="16" cy="14" r="3.5" fill="#d9cfcc"/>
+  <circle cx="28" cy="14" r="3.5" fill="#c9b4b1"/>
+  <circle cx="40" cy="14" r="3.5" fill="#8e6668"/>
+  <rect x="60" y="10" width="54" height="7" rx="3.5" fill="#2b2728" opacity=".82"/>
+  <g fill="#6f6263" opacity=".7">
+    <rect x="338" y="11" width="28" height="5" rx="2.5"/>
+    <rect x="378" y="11" width="28" height="5" rx="2.5"/>
+    <rect x="418" y="11" width="38" height="5" rx="2.5"/>
+  </g>
+  <rect y="28" width="480" height="184" fill="#fffaf7"/>
+  <rect x="28" y="54" width="52" height="5" rx="2.5" fill="#a77b7c"/>
+  <rect x="28" y="76" width="186" height="15" rx="2" fill="#2b2728"/>
+  <rect x="28" y="99" width="154" height="15" rx="2" fill="#2b2728"/>
+  <rect x="28" y="128" width="172" height="6" rx="3" fill="#cfc2bf"/>
+  <rect x="28" y="142" width="150" height="6" rx="3" fill="#ded3d0"/>
+  <rect x="28" y="165" width="72" height="24" rx="12" fill="#8e6668"/>
+  <rect x="112" y="174" width="58" height="6" rx="3" fill="#6f6263" opacity=".52"/>
+  <rect x="244" y="48" width="208" height="146" rx="2" fill="#ead6d2"/>
+  <path d="M244 48h124c-30 32-46 73-42 146h-82Z" fill="#d5aaa5"/>
+  <path d="M452 48v146H326c34-32 56-81 64-146Z" fill="#8e6668"/>
+  <circle cx="388" cy="112" r="40" fill="#f3e7e2" opacity=".88"/>
+  <circle cx="388" cy="112" r="24" fill="#c58e8d" opacity=".82"/>
+  <path d="M356 180c16-26 41-35 76-32" fill="none" stroke="#fffaf7" stroke-width="2" opacity=".75"/>
+  <rect y="212" width="480" height="88" fill="#f0e6e2"/>
+  <rect x="28" y="232" width="92" height="8" rx="4" fill="#2b2728" opacity=".78"/>
+  <rect x="28" y="250" width="154" height="5" rx="2.5" fill="#c9bbb8"/>
+  <rect x="28" y="262" width="126" height="5" rx="2.5" fill="#d8ccc8"/>
+  <rect x="224" y="228" width="66" height="50" rx="2" fill="#c99996"/>
+  <rect x="302" y="228" width="66" height="50" rx="2" fill="#8e6668"/>
+  <rect x="380" y="228" width="72" height="50" rx="2" fill="#2b2728"/>
+</svg>

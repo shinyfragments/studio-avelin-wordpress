@@ -2,8 +2,7 @@
 /**
  * Studio Avelin — Work page template.
  *
- * Product-focused and deliberate presentation of Studio Avelin's core digital products:
- * 01 STAN (Live), 02 StAT (In Development), 03 StAU (Concept).
+ * Selected client work and independent Studio Avelin products.
  *
  * @package studio-avelin-child
  */
@@ -56,9 +55,9 @@ $sa_footer_nav = sa_child_nav_items( 'footer' );
 				<div class="sa-exp-hero-note">
 					<span class="sa-exp-lime-line" aria-hidden="true"></span>
 					<p class="sa-exp-hero-note__text">
-						Independent projects.<br />
+						Client work and independent products.<br />
 						Designed, built and refined<br />
-						one idea at a time.
+						with direct collaboration.
 					</p>
 				</div>
 			</div>
@@ -66,7 +65,7 @@ $sa_footer_nav = sa_child_nav_items( 'footer' );
 
 		<!-- INDEX BAR -->
 		<div class="sa-work-index-bar">
-			<span>PROJECTS &middot; 01&mdash;03</span>
+			<span>PROJECTS &middot; 01&mdash;04</span>
 		</div>
 
 		<!-- ================= PROJECT 01: FEATURED (STAN) ================= -->
@@ -165,11 +164,46 @@ $sa_footer_nav = sa_child_nav_items( 'footer' );
 		<!-- SECTION DIVIDER -->
 		<div class="sa-work-divider"></div>
 
-		<!-- ================= SECONDARY PROJECTS (02 + 03) ================= -->
+		<!-- ================= PROJECT 02: PORTFOLIO PAGE ================= -->
+		<section class="sa-work-featured-section sa-work-client-section">
+			<div class="sa-work-featured-grid">
+				<div class="sa-work-featured-info">
+					<div class="sa-work-meta-top">
+						<span class="sa-work-num">02</span>
+						<span class="sa-work-status-tag sa-work-status-tag--live"><span class="sa-work-status-dot"></span> LIVE</span>
+						<span class="sa-exp-card__eyebrow">CLIENT WEBSITE</span>
+					</div>
+					<h2 class="sa-work-title">Portfolio Page</h2>
+					<span class="sa-work-fullname">MONROE Toyparty Landingpage</span>
+					<h3 class="sa-work-tagline">Warm, discreet and easy to approach.</h3>
+					<p class="sa-work-desc">A focused portfolio and landing page for an independent MONROE consultant. The visual direction balances warmth and discretion, while the structure makes the offer understandable and contact deliberately simple.</p>
+					<div class="sa-work-details-row">
+						<div class="sa-work-detail-item"><span class="sa-work-detail-label">TYPE</span><span class="sa-work-detail-val">Client landing page</span></div>
+						<div class="sa-work-detail-item"><span class="sa-work-detail-label">ROLE</span><span class="sa-work-detail-val">Design, development, copy support</span></div>
+						<div class="sa-work-detail-item"><span class="sa-work-detail-label">FOCUS</span><span class="sa-work-detail-val">Identity, clarity, contact</span></div>
+					</div>
+					<div class="sa-work-cta-box" style="margin-top: 2rem;">
+						<a class="sa-about-cta-btn" href="<?php echo esc_url( $sa_home . 'work/monroe-toyparty-landingpage/' ); ?>"><span>VIEW PROJECT</span><span class="sa-about-cta-arrow">&rarr;</span></a>
+					</div>
+				</div>
+				<div class="sa-work-featured-preview">
+					<div class="sa-work-browser-frame">
+						<div class="sa-work-browser-bar"><span class="sa-work-browser-dot"></span><span class="sa-work-browser-dot"></span><span class="sa-work-browser-dot"></span><span class="sa-work-browser-url">LIVE PORTFOLIO PAGE</span></div>
+						<div class="sa-work-browser-content sa-work-client-preview">
+							<img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/img/project-portfolio-visual.svg' ); ?>" alt="Editorial portfolio website preview" loading="lazy" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<div class="sa-work-divider"></div>
+
+		<!-- ================= SECONDARY PROJECTS (03 + 04) ================= -->
 		<section class="sa-work-secondary-section">
 			<div class="sa-work-secondary-grid">
 
-				<!-- PROJECT 02: StAT -->
+				<!-- PROJECT 03: StAT -->
 				<article class="sa-work-sec-card">
 					<div class="sa-work-sec-preview sa-work-sec-preview--dark">
 						<div class="sa-work-stat-mockup">
@@ -192,7 +226,7 @@ $sa_footer_nav = sa_child_nav_items( 'footer' );
 
 					<div class="sa-work-sec-body">
 						<div class="sa-work-meta-top">
-							<span class="sa-work-num">02</span>
+							<span class="sa-work-num">03</span>
 							<span class="sa-work-status-tag sa-work-status-tag--dev">IN DEVELOPMENT</span>
 							<span class="sa-exp-card__eyebrow">DIGITAL PRODUCT</span>
 						</div>
@@ -213,7 +247,7 @@ $sa_footer_nav = sa_child_nav_items( 'footer' );
 					</div>
 				</article>
 
-				<!-- PROJECT 03: StAU -->
+				<!-- PROJECT 04: StAU -->
 				<article class="sa-work-sec-card">
 					<div class="sa-work-sec-preview sa-work-sec-preview--light">
 						<div class="sa-work-stau-mockup">
@@ -235,7 +269,7 @@ $sa_footer_nav = sa_child_nav_items( 'footer' );
 
 					<div class="sa-work-sec-body">
 						<div class="sa-work-meta-top">
-							<span class="sa-work-num">03</span>
+							<span class="sa-work-num">04</span>
 							<span class="sa-work-status-tag sa-work-status-tag--concept">CONCEPT</span>
 							<span class="sa-exp-card__eyebrow">PRODUCT CONCEPT</span>
 						</div>

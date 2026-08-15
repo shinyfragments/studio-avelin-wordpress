@@ -811,6 +811,12 @@ a:hover .sa-btn__arrow {
   height: 100%;
 }
 
+img.sa-visual {
+  display: block;
+  object-fit: cover;
+  object-position: center 25%;
+}
+
 .sa-work__frame-label {
   position: absolute;
   top: 0.65rem;

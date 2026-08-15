@@ -20,9 +20,13 @@ FILES=(
 	"single-experiment.php"
 	"page-experiments.php"
 	"page-about-me.php"
+	"page-work.php"
+	"page-work-monroe-toyparty-landingpage.php"
 	"assets/img/favicon.svg"
 	"assets/img/portrait.jpg"
+	"assets/img/project-portfolio-visual.svg"
 	"parts/sa-header.php"
+  "parts/sa-project-note.php"
   "parts/sa-footer.php"
   "inc/sa-journal.php"
   "journal/archive-journal.php"
@@ -88,7 +92,7 @@ expect {
 }
 wait_for_prompt "authentication"
 
-foreach file [list "front-page.php" "functions.php" "single-experiment.php" "page-experiments.php" "page-about-me.php" "parts/sa-header.php" "parts/sa-footer.php" "assets/img/portrait.jpg" "assets/css/home.css" "assets/css/pages.css" "assets/css/sa-base.css" "assets/js/home.js"] {
+foreach file [list "front-page.php" "functions.php" "single-experiment.php" "page-experiments.php" "page-about-me.php" "page-work.php" "page-work-monroe-toyparty-landingpage.php" "parts/sa-header.php" "parts/sa-project-note.php" "parts/sa-footer.php" "assets/img/portrait.jpg" "assets/img/project-portfolio-visual.svg" "assets/css/home.css" "assets/css/pages.css" "assets/css/sa-base.css" "assets/js/home.js"] {
   send -- "get $remote_dir/$file $backup_dir/$file\r"
   wait_for_prompt "backup of $file"
 }
