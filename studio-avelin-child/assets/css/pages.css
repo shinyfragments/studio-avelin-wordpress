@@ -1074,12 +1074,12 @@ body.sa-page--about .sa-main {
   color: #6F7174;
 }
 
-.sa-exp-card__title {
+.sa-page .sa-exp-card__title {
   font-family: "Inter", sans-serif;
   font-size: 1.35rem;
   font-weight: 500;
   color: #151922;
-  margin: 0 0 0.75rem 0;
+  margin: 0 0 1rem 0;
 }
 
 .sa-exp-card__desc {
@@ -1288,12 +1288,12 @@ body.sa-page--about .sa-main {
   margin-bottom: 1.25rem;
 }
 
-.sa-work-tagline {
+.sa-page .sa-work-tagline {
   font-family: "Inter", sans-serif;
   font-size: 1.4rem;
   font-weight: 400;
   color: #151922;
-  margin: 0 0 1rem 0;
+  margin: 0 0 1.25rem 0;
   line-height: 1.25;
 }
 
@@ -1730,5 +1730,3 @@ body.sa-page--about .sa-main {
   color: #0A0A0B;
   border-color: #151922;
 }
-
-

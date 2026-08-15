@@ -701,8 +701,8 @@ a:hover .sa-btn__arrow {
   line-height: 1.05;
 }
 
-.sa-section__intro {
-  margin-top: 1.35rem;
+.sa-front .sa-section__intro {
+  margin-top: 1.5rem;
   max-width: 34rem;
   color: var(--sa-muted);
   font-size: 1rem;
@@ -748,7 +748,7 @@ a:hover .sa-btn__arrow {
 .sa-work__link {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem;
+  gap: 2.5rem;
   padding: 2.75rem 0;
 }
 
@@ -1126,9 +1126,9 @@ a.sa-exp__link:hover .sa-exp__title {
   transform: translateY(-4px);
 }
 
-.sa-exp__text {
+.sa-front .sa-exp__text {
   position: relative;
-  margin-top: 0.6rem;
+  margin-top: 0.75rem;
   font-size: 0.85rem;
   line-height: 1.65;
   color: var(--sa-muted);
