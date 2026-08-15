@@ -41,8 +41,9 @@ $sa_home_url = trailingslashit( home_url( '/' ) );
 					<span class="sa-footer-col-label">EXPLORE</span>
 					<ul class="sa-footer-links">
 						<li><a href="<?php echo esc_url( $sa_home_url . 'work/' ); ?>">Work</a></li>
+						<li><a href="<?php echo esc_url( $sa_home_url . '#services' ); ?>">Services</a></li>
 						<li><a href="<?php echo esc_url( $sa_home_url . 'about-me/' ); ?>">About</a></li>
-						<li><a href="<?php echo esc_url( $sa_home_url . 'experiments/' ); ?>">Experiments</a></li>
+						<li><a href="<?php echo esc_url( $sa_home_url . 'experiments/' ); ?>">Explorations</a></li>
 						<li><a href="<?php echo esc_url( $sa_home_url . 'journal/' ); ?>">Journal</a></li>
 					</ul>
 				</div>

@@ -391,26 +391,31 @@ function sa_mark( $kind ) {
 			<div class="sa-hero__content sa-stagger">
 				<div class="sa-eyebrow-row sa-reveal">
 					<span class="sa-rule" aria-hidden="true"></span>
-					<span class="sa-eyebrow">Personal Studio &middot; Est. 2025</span>
+					<span class="sa-eyebrow">Independent Web Design &amp; Development</span>
 				</div>
 
 				<p class="sa-claim sa-reveal">DESIGN. <span>CODE.</span> CREATE.</p>
 
 				<h1 class="sa-hero__title sa-reveal">
-					Simple digital things.<br />
-					Made with care.
+					Thoughtful websites.<br />
+					Designed and built with care.
 				</h1>
 
 				<div class="sa-hero__foot sa-reveal">
 					<p class="sa-hero__lead">
-						A personal space for small apps, visual ideas, experiments and notes
-						on design, code and creative process.
+						Studio Avelin creates custom websites for independent professionals,
+						small businesses and focused digital products.
 					</p>
 
-					<a class="sa-hero__cta" href="#work">
-						<span>View Work</span>
-						<span class="sa-btn__arrow" aria-hidden="true">&rarr;</span>
-					</a>
+					<div class="sa-hero__actions">
+						<a class="sa-hero__cta" href="#work">
+							<span>View Work</span>
+							<span class="sa-btn__arrow" aria-hidden="true">&rarr;</span>
+						</a>
+						<a class="sa-link-lime sa-hero__project-link" href="#contact">
+							Start a Project <span class="sa-btn__arrow" aria-hidden="true">&rarr;</span>
+						</a>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -477,6 +482,37 @@ function sa_mark( $kind ) {
 		</div>
 	</section>
 
+	<!-- ========================== SERVICES ========================== -->
+	<section class="sa-section" id="services" aria-labelledby="sa-services-title">
+		<div class="sa-shell">
+			<div class="sa-section__head sa-stagger">
+				<p class="sa-eyebrow sa-eyebrow--dot sa-reveal">Services</p>
+				<h2 class="sa-section__title sa-reveal" id="sa-services-title">Design and development, kept focused.</h2>
+				<p class="sa-section__intro sa-reveal">
+					Direct collaboration from the first idea to a carefully built, responsive website.
+				</p>
+			</div>
+
+			<ul class="sa-services sa-stagger">
+				<li class="sa-services__item sa-reveal">
+					<span class="sa-services__index">01</span>
+					<h3 class="sa-services__title">Custom Websites</h3>
+					<p class="sa-services__text">Distinctive, responsive websites designed and built around a clear purpose.</p>
+				</li>
+				<li class="sa-services__item sa-reveal">
+					<span class="sa-services__index">02</span>
+					<h3 class="sa-services__title">Landing Pages &amp; Portfolios</h3>
+					<p class="sa-services__text">Focused pages for independent professionals, services, products and launches.</p>
+				</li>
+				<li class="sa-services__item sa-reveal">
+					<span class="sa-services__index">03</span>
+					<h3 class="sa-services__title">WordPress &amp; Editorial Systems</h3>
+					<p class="sa-services__text">Flexible publishing setups that remain easy to maintain after launch.</p>
+				</li>
+			</ul>
+		</div>
+	</section>
+
 	<!-- ============================ ABOUT ============================ -->
 	<section class="sa-section" id="about" aria-labelledby="sa-about-title">
 		<div class="sa-shell">
@@ -510,7 +546,7 @@ function sa_mark( $kind ) {
 				<div class="sa-about__body sa-reveal">
 					<p class="sa-eyebrow sa-eyebrow--dot">About</p>
 					<h2 class="sa-about__title" id="sa-about-title">
-						Studio Avelin is my personal space for designing, building and exploring ideas &mdash; from small web apps to visual experiments and written notes.
+						Studio Avelin is the independent design and development practice of Michael Fiebus &mdash; focused on thoughtful websites, useful digital products and direct collaboration.
 					</h2>
 					<a class="sa-link-lime" href="<?php echo esc_url( $sa_home . 'about-me/' ); ?>">
 						More About Me <span class="sa-btn__arrow" aria-hidden="true">&rarr;</span>

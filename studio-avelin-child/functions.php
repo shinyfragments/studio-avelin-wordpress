@@ -267,11 +267,15 @@ function sa_child_nav_items( $context = 'header' ) {
 				'url'   => $home . '#work',
 			),
 			array(
+				'label' => 'Services',
+				'url'   => $home . '#services',
+			),
+			array(
 				'label' => 'About',
 				'url'   => $home . '#about',
 			),
 			array(
-				'label' => 'Experiments',
+				'label' => 'Explorations',
 				'url'   => $home . 'experiments/',
 			),
 			array(
@@ -290,12 +294,12 @@ function sa_child_nav_items( $context = 'header' ) {
 			'url'   => $prefix . '#work',
 		),
 		array(
-			'label' => 'About',
-			'url'   => $prefix . '#about',
+			'label' => 'Services',
+			'url'   => $prefix . '#services',
 		),
 		array(
-			'label' => 'Experiments',
-			'url'   => $home . 'experiments/',
+			'label' => 'About',
+			'url'   => $prefix . '#about',
 		),
 		array(
 			'label' => 'Journal',

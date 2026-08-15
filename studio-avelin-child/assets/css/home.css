@@ -566,6 +566,13 @@ a:hover .sa-btn__arrow {
   line-height: 1.7;
 }
 
+.sa-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem 1.75rem;
+}
+
 .sa-hero__cta {
   display: inline-flex;
   align-items: center;
@@ -595,6 +602,10 @@ a:hover .sa-btn__arrow {
   transform: translateX(6px);
 }
 
+.sa-hero__project-link {
+  font-size: 0.9rem;
+}
+
 @media (min-width: 900px) {
   .sa-hero__foot {
     flex-direction: row;
@@ -611,6 +622,11 @@ a:hover .sa-btn__arrow {
 
   .sa-hero__cta {
     align-self: flex-end;
+  }
+
+  .sa-hero__actions {
+    align-self: flex-end;
+    justify-content: flex-end;
   }
 }
 
@@ -921,6 +937,63 @@ img.sa-visual {
 
 .sa-inline-cta--muted {
   color: var(--sa-muted);
+}
+
+/* ------------------------------------------------------------- Services --- */
+
+.sa-services {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-top: 3.5rem;
+  border-top: 1px solid var(--sa-line);
+}
+
+.sa-services__item {
+  position: relative;
+  padding: 2.25rem 0;
+  border-bottom: 1px solid var(--sa-line);
+}
+
+.sa-services__index {
+  display: block;
+  color: var(--sa-muted);
+  font-family: var(--sa-font-display);
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+}
+
+.sa-services__title {
+  margin-top: 1.5rem;
+  max-width: 16rem;
+  font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.sa-services__text {
+  margin-top: 1rem;
+  max-width: 22rem;
+  color: var(--sa-muted);
+  line-height: 1.75;
+}
+
+@media (min-width: 820px) {
+  .sa-services {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .sa-services__item {
+    min-height: 18rem;
+    padding: 2.5rem 2.25rem 3rem;
+  }
+
+  .sa-services__item:first-child {
+    padding-left: 0;
+  }
+
+  .sa-services__item + .sa-services__item {
+    border-left: 1px solid var(--sa-line);
+  }
 }
 
 /* ---------------------------------------------------------------- About --- */
