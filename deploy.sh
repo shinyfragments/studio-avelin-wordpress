@@ -19,7 +19,9 @@ FILES=(
   "functions.php"
 	"single-experiment.php"
 	"page-experiments.php"
+	"page-about-me.php"
 	"assets/img/favicon.svg"
+	"assets/img/portrait.jpg"
 	"parts/sa-header.php"
   "parts/sa-footer.php"
   "inc/sa-journal.php"
@@ -46,7 +48,7 @@ for file in "${FILES[@]}"; do
   }
 done
 
-mkdir -p "${BACKUP_DIR}/parts" "${BACKUP_DIR}/assets/css" "${BACKUP_DIR}/assets/js"
+mkdir -p "${BACKUP_DIR}/parts" "${BACKUP_DIR}/assets/css" "${BACKUP_DIR}/assets/img" "${BACKUP_DIR}/assets/js"
 echo "Deploying ${#FILES[@]} child-theme files to IONOS..."
 
 expect -f - "$REMOTE_USER" "$REMOTE_HOST" "$REMOTE_DIR" "$LOCAL_DIR" "$BACKUP_DIR" "${FILES[@]}" <<'EXPECT'
@@ -86,7 +88,7 @@ expect {
 }
 wait_for_prompt "authentication"
 
-foreach file [list "front-page.php" "functions.php" "single-experiment.php" "page-experiments.php" "parts/sa-header.php" "parts/sa-footer.php" "assets/css/home.css" "assets/css/pages.css" "assets/css/sa-base.css" "assets/js/home.js"] {
+foreach file [list "front-page.php" "functions.php" "single-experiment.php" "page-experiments.php" "page-about-me.php" "parts/sa-header.php" "parts/sa-footer.php" "assets/img/portrait.jpg" "assets/css/home.css" "assets/css/pages.css" "assets/css/sa-base.css" "assets/js/home.js"] {
   send -- "get $remote_dir/$file $backup_dir/$file\r"
   wait_for_prompt "backup of $file"
 }

@@ -16,7 +16,7 @@ $is_taxonomy   = is_tax( array( 'sa_journal_category', 'sa_journal_tag' ) );
 		<nav class="sa-journal-nav" aria-label="<?php esc_attr_e( 'Journal navigation', 'studio-avelin-child' ); ?>">
 			<a class="<?php echo ! $is_taxonomy ? 'is-active' : ''; ?>" href="<?php echo esc_url( $archive_url ); ?>"><?php esc_html_e( 'Journal', 'studio-avelin-child' ); ?></a>
 			<a class="<?php echo $is_taxonomy ? 'is-active' : ''; ?>" href="<?php echo esc_url( $categories_url ); ?>"><?php esc_html_e( 'Categories', 'studio-avelin-child' ); ?></a>
-			<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Studio', 'studio-avelin-child' ); ?> <span aria-hidden="true">↗</span></a>
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Studio', 'studio-avelin-child' ); ?></a>
 		</nav>
 	</div>
 </header>

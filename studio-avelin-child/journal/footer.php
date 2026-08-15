@@ -12,8 +12,8 @@ $home_url = trailingslashit( home_url( '/' ) );
 		</div>
 		<nav class="sa-journal-footer__nav" aria-label="<?php esc_attr_e( 'Studio and social links', 'studio-avelin-child' ); ?>">
 			<ul>
-				<li><a href="<?php echo esc_url( $home_url ); ?>"><?php esc_html_e( 'Studio Avelin', 'studio-avelin-child' ); ?> <span aria-hidden="true">↗</span></a></li>
-				<li><a href="https://www.instagram.com/studio_avelin" target="_blank" rel="noopener noreferrer">Instagram <span aria-hidden="true">↗</span></a></li>
+				<li><a href="<?php echo esc_url( $home_url ); ?>"><?php esc_html_e( 'Studio Avelin', 'studio-avelin-child' ); ?></a></li>
+				<li><a href="https://www.instagram.com/studio_avelin" target="_blank" rel="noopener noreferrer">Instagram</a></li>
 			</ul>
 		</nav>
 		<nav class="sa-journal-footer__nav" aria-label="<?php esc_attr_e( 'Legal links', 'studio-avelin-child' ); ?>">

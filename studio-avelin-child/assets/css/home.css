@@ -981,21 +981,41 @@ a:hover .sa-btn__arrow {
 }
 
 .sa-about__mark {
-  display: block;
+  display: flex;
   position: absolute;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
   right: -1.25rem;
   bottom: -1.25rem;
   width: 7.5rem;
   height: 7.5rem;
-  background: #FAFAFA;
-  border: 1px solid var(--sa-line, rgba(21, 25, 34, 0.12));
+  background: #23262D;
+  border: 1px solid #151922;
   padding: 0.85rem;
   z-index: 2;
 }
 
-.sa-about__mark svg {
-  width: 100%;
-  height: 100%;
+.sa-about__mark-logo {
+  color: #FFFFFF;
+  font-family: var(--sa-font-display, "Poppins", sans-serif);
+  font-size: 2.4rem;
+  font-weight: 500;
+  letter-spacing: -0.08em;
+  line-height: 1;
+}
+
+.sa-about__mark-logo > span {
+  color: var(--sa-lime, #C7F000);
+}
+
+.sa-about__mark-name {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.52rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .sa-about__title {

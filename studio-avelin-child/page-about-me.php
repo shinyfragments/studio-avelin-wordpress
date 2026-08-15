@@ -14,8 +14,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 $sa_home         = trailingslashit( home_url( '/' ) );
 $sa_nav          = sa_child_nav_items( 'header' );
 $sa_footer_nav   = sa_child_nav_items( 'footer' );
-$sa_portrait     = get_stylesheet_directory_uri() . '/assets/img/portrait.jpg';
-$sa_has_portrait = file_exists( get_stylesheet_directory() . '/assets/img/portrait.jpg' );
+$sa_portrait_path = get_stylesheet_directory() . '/assets/img/portrait.jpg';
+$sa_has_portrait  = file_exists( $sa_portrait_path );
+$sa_portrait      = add_query_arg(
+	'ver',
+	$sa_has_portrait ? filemtime( $sa_portrait_path ) : SA_CHILD_VERSION,
+	get_stylesheet_directory_uri() . '/assets/img/portrait.jpg'
+);
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -47,12 +52,10 @@ $sa_has_portrait = file_exists( get_stylesheet_directory() . '/assets/img/portra
 
 				<div class="sa-about-intro">
 					<p>
-						Studio Avelin is my digital space for ideas, design and code.<br />
-						I work at the intersection of design and development &mdash; building brands, products and projects that feel clear, functional and timeless.
+						Studio Avelin is an independent design and development studio by Michael Fiebus. I create visual identities, websites and digital products &mdash; combining clear design, thoughtful systems and hands-on development.
 					</p>
 					<p>
-						I’m interested in systems, details and the bigger picture.<br />
-						I like projects that make sense, help people and have a strong visual identity.
+						I work directly with clients and collaborators, from the first idea to the finished result. The process stays close, clear and deliberately small.
 					</p>
 				</div>
 
@@ -68,8 +71,8 @@ $sa_has_portrait = file_exists( get_stylesheet_directory() . '/assets/img/portra
 							</svg>
 						</div>
 						<div class="sa-about-value-text">
-							<span>Design + Code</span>
-							<span>under one roof</span>
+							<span>Design + development</span>
+							<span>in one process</span>
 						</div>
 					</div>
 
@@ -81,8 +84,8 @@ $sa_has_portrait = file_exists( get_stylesheet_directory() . '/assets/img/portra
 							</svg>
 						</div>
 						<div class="sa-about-value-text">
-							<span>Strategic.</span>
-							<span>Clear. Fast.</span>
+							<span>Direct collaboration</span>
+							<span>without detours</span>
 						</div>
 					</div>
 
@@ -96,8 +99,8 @@ $sa_has_portrait = file_exists( get_stylesheet_directory() . '/assets/img/portra
 							</svg>
 						</div>
 						<div class="sa-about-value-text">
-							<span>Focus on quality,</span>
-							<span>performance &amp; UX</span>
+							<span>Clear systems</span>
+							<span>thoughtful details</span>
 						</div>
 					</div>
 
@@ -109,65 +112,54 @@ $sa_has_portrait = file_exists( get_stylesheet_directory() . '/assets/img/portra
 							</svg>
 						</div>
 						<div class="sa-about-value-text">
-							<span>Passion for</span>
-							<span>digital products</span>
+							<span>Built with purpose</span>
+							<span>made to last</span>
 						</div>
 					</div>
 				</div>
 
 				<!-- PRIMARY CTA BUTTON -->
 				<div class="sa-about-cta-wrapper">
-					<a class="sa-about-cta-btn" href="<?php echo esc_url( $sa_home . '#work' ); ?>">
+					<a class="sa-about-cta-btn" href="<?php echo esc_url( $sa_home . 'work/' ); ?>">
 						<span>VIEW MY WORK</span>
 						<span class="sa-about-cta-arrow">&rarr;</span>
 					</a>
 				</div>
 
-				<!-- SKILLS & TOOLS -->
+				<!-- PRACTICE -->
 				<div class="sa-about-skills-section">
-					<span class="sa-about-skills-label">SKILLS &amp; TOOLS</span>
+					<span class="sa-about-skills-label">WHAT I DO &amp; HOW I WORK</span>
 					<div class="sa-about-skills-grid">
 						<!-- COL 1 -->
 						<div class="sa-about-skills-col">
-							<h4>DESIGN</h4>
+							<h4>DESIGN &amp; IDENTITY</h4>
 							<ul>
-								<li>Figma</li>
-								<li>Photoshop</li>
-								<li>Illustrator</li>
+								<li>Visual identities</li>
+								<li>Interface design</li>
 								<li>Typography</li>
+								<li>Design systems</li>
 							</ul>
 						</div>
 
 						<!-- COL 2 -->
 						<div class="sa-about-skills-col">
-							<h4>DEVELOPMENT</h4>
+							<h4>WEBSITES &amp; PRODUCTS</h4>
 							<ul>
-								<li>HTML / CSS / JS / TS</li>
-								<li>React</li>
+								<li>Websites</li>
+								<li>Digital products</li>
+								<li>Frontend development</li>
 								<li>WordPress</li>
-								<li>Supabase</li>
 							</ul>
 						</div>
 
 						<!-- COL 3 -->
 						<div class="sa-about-skills-col">
-							<h4>TOOLS</h4>
+							<h4>PROCESS</h4>
 							<ul>
-								<li>VS Code</li>
-								<li>Git &amp; GitHub</li>
-								<li>Lovable</li>
-								<li>Vercel</li>
-							</ul>
-						</div>
-
-						<!-- COL 4 -->
-						<div class="sa-about-skills-col">
-							<h4>OTHER</h4>
-							<ul>
-								<li>SEO</li>
-								<li>Performance</li>
-								<li>Systems Thinking</li>
-								<li>Clear Processes</li>
+								<li>Direct and collaborative</li>
+								<li>Design and code together</li>
+								<li>Clear systems and decisions</li>
+								<li>Small, deliberate iterations</li>
 							</ul>
 						</div>
 					</div>
@@ -205,13 +197,13 @@ $sa_has_portrait = file_exists( get_stylesheet_directory() . '/assets/img/portra
 						<svg class="sa-about-focus-star" viewBox="0 0 24 24" fill="none" stroke="currentColor">
 							<path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" fill="#C7F000" stroke="#C7F000"></path>
 						</svg>
-						<span>MY FOCUS</span>
+						<span>AVAILABLE FOR</span>
 					</div>
 					<ul class="sa-about-focus-list">
-						<li>Web Design &amp; Development</li>
-						<li>Digital Products &amp; Web Apps</li>
-						<li>Branding &amp; Visual Identity</li>
-						<li>Performance &amp; SEO</li>
+						<li>Brand and identity projects</li>
+						<li>Websites and digital products</li>
+						<li>Selected collaborations</li>
+						<li>Long-term partnerships</li>
 					</ul>
 				</div>
 			</div>

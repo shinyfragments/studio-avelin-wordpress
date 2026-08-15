@@ -758,17 +758,6 @@ body.sa-menu-open {
   color: #C7F000;
 }
 
-.sa-ext-arrow {
-  display: inline-block;
-  font-size: 0.85em;
-  transition: transform 200ms ease;
-}
-
-.sa-footer-links a:hover .sa-ext-arrow,
-.sa-footer-email-link:hover .sa-ext-arrow {
-  transform: translate(2px, -2px);
-}
-
 /* Divider & Lime Segment Signature */
 .sa-footer-divider-wrap {
   width: 100%;

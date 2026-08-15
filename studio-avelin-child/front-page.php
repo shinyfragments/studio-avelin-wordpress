@@ -16,8 +16,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 $sa_home        = trailingslashit( home_url( '/' ) );
 $sa_nav         = sa_child_nav_items( 'header' );
 $sa_footer_nav  = sa_child_nav_items( 'footer' );
-$sa_portrait    = get_stylesheet_directory_uri() . '/assets/img/portrait.jpg';
-$sa_has_portrait = file_exists( get_stylesheet_directory() . '/assets/img/portrait.jpg' );
+$sa_portrait_path = get_stylesheet_directory() . '/assets/img/portrait.jpg';
+$sa_has_portrait  = file_exists( $sa_portrait_path );
+$sa_portrait      = add_query_arg(
+	'ver',
+	$sa_has_portrait ? filemtime( $sa_portrait_path ) : SA_CHILD_VERSION,
+	get_stylesheet_directory_uri() . '/assets/img/portrait.jpg'
+);
 
 $sa_projects = array(
 	array(
@@ -459,15 +464,8 @@ function sa_mark( $kind ) {
 						<?php endif; ?>
 					</div>
 					<div class="sa-about__mark" aria-hidden="true">
-						<svg viewBox="0 0 120 120">
-							<g stroke="#151922" opacity="0.15">
-								<path d="M0 20 H120 M0 40 H120 M0 60 H120 M0 80 H120 M0 100 H120" />
-								<path d="M20 0 V120 M40 0 V120 M60 0 V120 M80 0 V120 M100 0 V120" />
-							</g>
-							<circle cx="60" cy="60" r="45" fill="none" stroke="#151922" stroke-width="1" opacity="0.4" />
-							<path d="M20 80 C 40 40, 80 40, 100 80" fill="none" stroke="#151922" stroke-width="1.2" opacity="0.6" />
-							<circle cx="85" cy="35" r="5" fill="#c7f000" />
-						</svg>
+						<span class="sa-about__mark-logo">A<span>/</span></span>
+						<span class="sa-about__mark-name">Studio Avelin</span>
 					</div>
 				</div>
 
@@ -611,10 +609,10 @@ function sa_mark( $kind ) {
 
 				<div class="sa-contact__social sa-reveal">
 					<a class="sa-link-lime" href="https://instagram.com/" target="_blank" rel="noopener noreferrer">
-						Instagram <span aria-hidden="true">&#8599;</span>
+						Instagram
 					</a>
 					<a class="sa-link-lime" href="https://github.com/studio-avelin" target="_blank" rel="noopener noreferrer">
-						GitHub <span aria-hidden="true">&#8599;</span>
+						GitHub
 					</a>
 				</div>
 			</div>

@@ -62,12 +62,12 @@ $sa_home_url = trailingslashit( home_url( '/' ) );
 					<ul class="sa-footer-links">
 						<li>
 							<a href="https://www.instagram.com/studio_avelin" target="_blank" rel="noopener noreferrer">
-								Instagram <span class="sa-ext-arrow" aria-hidden="true">&#x2197;</span>
+								Instagram
 							</a>
 						</li>
 						<li>
 							<a href="https://github.com/studio-avelin" target="_blank" rel="noopener noreferrer">
-								GitHub <span class="sa-ext-arrow" aria-hidden="true">&#x2197;</span>
+								GitHub
 							</a>
 						</li>
 					</ul>
@@ -95,7 +95,7 @@ $sa_home_url = trailingslashit( home_url( '/' ) );
 
 			<div class="sa-footer-bottom-right">
 				<a href="mailto:hello@studio-avelin.com" class="sa-footer-email-link">
-					hello@studio-avelin.com <span class="sa-ext-arrow" aria-hidden="true">&#x2197;</span>
+					hello@studio-avelin.com
 				</a>
 			</div>
 		</div>
