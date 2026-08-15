@@ -20,8 +20,20 @@ FILES=(
   "index.html"
   "assets/legal.css"
   "assets/legal-links.js"
+  "assets/fonts.css"
+  "assets/fonts/cormorant-garamond-400.ttf"
+  "assets/fonts/cormorant-garamond-400-italic.ttf"
+  "assets/fonts/cormorant-garamond-500.ttf"
+  "assets/fonts/cormorant-garamond-500-italic.ttf"
+  "assets/fonts/cormorant-garamond-600.ttf"
+  "assets/fonts/inter-300.ttf"
+  "assets/fonts/inter-400.ttf"
+  "assets/fonts/inter-500.ttf"
+  "assets/fonts/inter-600.ttf"
   "impressum/index.html"
   "datenschutz/index.html"
+  "nl/bedrijfsgegevens/index.html"
+  "nl/privacy/index.html"
 )
 
 for file in "${FILES[@]}"; do
@@ -68,7 +80,7 @@ expect {
 }
 wait_for_prompt "authentication"
 
-foreach directory [list "$remote_dir/assets" "$remote_dir/impressum" "$remote_dir/datenschutz"] {
+foreach directory [list "$remote_dir/assets" "$remote_dir/assets/fonts" "$remote_dir/impressum" "$remote_dir/datenschutz" "$remote_dir/nl" "$remote_dir/nl/bedrijfsgegevens" "$remote_dir/nl/privacy"] {
   send -- "mkdir $directory\r"
   wait_for_prompt "creating $directory" 1
 }
