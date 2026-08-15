@@ -1730,3 +1730,19 @@ body.sa-page--about .sa-main {
   color: #0A0A0B;
   border-color: #151922;
 }
+
+/* Mobile rhythm: keep long project pages compact without changing desktop. */
+@media (max-width: 767px) {
+  .sa-work-featured-section,
+  .sa-exp-grid-section {
+    margin-bottom: 4rem;
+  }
+
+  .sa-work-divider {
+    margin-block: 4rem;
+  }
+
+  .sa-exp-process-section {
+    padding-top: 3rem;
+  }
+}
