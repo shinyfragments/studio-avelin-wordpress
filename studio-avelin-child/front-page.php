@@ -443,7 +443,6 @@ function sa_mark( $kind ) {
 						<?php if ( $sa_has_portrait ) : ?>
 							<img class="sa-about__img" src="<?php echo esc_url( $sa_portrait ); ?>"
 								alt="Portrait of the person behind Studio Avelin" loading="lazy"
-								style="aspect-ratio: 1 / 1 !important; object-fit: cover !important; width: 100% !important; height: auto !important; display: block;"
 								width="800" height="800" />
 						<?php else : ?>
 							<div class="sa-about__graphic">

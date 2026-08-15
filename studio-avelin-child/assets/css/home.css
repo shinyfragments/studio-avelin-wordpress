@@ -958,6 +958,7 @@ a:hover .sa-btn__arrow {
 
 .sa-about__img,
 .sa-about__graphic {
+  display: block;
   position: relative;
   width: 100% !important;
   height: auto !important;

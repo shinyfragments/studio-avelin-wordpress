@@ -18,6 +18,7 @@ FILES=(
   "front-page.php"
   "functions.php"
 	"single-experiment.php"
+	"page-experiments.php"
 	"assets/img/favicon.svg"
 	"parts/sa-header.php"
   "parts/sa-footer.php"
@@ -85,7 +86,7 @@ expect {
 }
 wait_for_prompt "authentication"
 
-foreach file [list "front-page.php" "functions.php" "single-experiment.php" "parts/sa-header.php" "parts/sa-footer.php" "assets/css/home.css" "assets/css/pages.css" "assets/css/sa-base.css" "assets/js/home.js"] {
+foreach file [list "front-page.php" "functions.php" "single-experiment.php" "page-experiments.php" "parts/sa-header.php" "parts/sa-footer.php" "assets/css/home.css" "assets/css/pages.css" "assets/css/sa-base.css" "assets/js/home.js"] {
   send -- "get $remote_dir/$file $backup_dir/$file\r"
   wait_for_prompt "backup of $file"
 }

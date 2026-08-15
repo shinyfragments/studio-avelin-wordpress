@@ -155,7 +155,7 @@ $sa_footer_nav = sa_child_nav_items( 'footer' );
 				<!-- EXPERIMENT 04 (FUTURE ARCHIVE PLACEHOLDER) -->
 				<article class="sa-exp-card sa-exp-card--disabled" data-tags="all">
 					<div class="sa-exp-card__inner">
-						<div class="sa-exp-card__preview sa-exp-card__preview--placeholder">
+						<div class="sa-exp-card__preview sa-exp-card__preview--placeholder" aria-hidden="true">
 							<div class="sa-exp-cursor-anim">
 								<span class="sa-exp-cursor-dot"></span>
 								<span class="sa-exp-cursor-text">LAB_READY //</span>

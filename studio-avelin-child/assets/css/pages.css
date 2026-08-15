@@ -1153,7 +1153,6 @@ body.sa-page--experiments .sa-main {
 }
 
 .sa-exp-card--disabled {
-  opacity: 0.75;
   background: rgba(21, 25, 34, 0.03);
 }
 
