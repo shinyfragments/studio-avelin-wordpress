@@ -105,6 +105,24 @@ body:has(.sa-page) .wp-site-blocks > footer:not(.sa-front-footer) {
   overflow-x: hidden;
 }
 
+/* Keep the accessibility shortcut off-canvas until it receives keyboard focus. */
+.sa-skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 2000;
+  padding: 0.75rem 1.25rem;
+  background: var(--sa-front-ink, #151922);
+  color: #fff;
+  font-family: var(--sa-font-display, "Poppins", sans-serif);
+  font-size: 0.8rem;
+}
+
+.sa-skip:focus {
+  left: 1rem;
+  top: 1rem;
+}
+
 /* ---------- Header ---------- */
 
 .sa-front-header {
@@ -451,29 +469,32 @@ body.sa-menu-open {
   font-size: 0.85rem;
 }
 
-.sa-front-button {
+.sa-page .sa-front-button {
   min-height: 3rem;
-  border-radius: 999px;
-  padding: 0 1.4rem;
-  background: var(--sa-front-ink);
-  color: var(--sa-front-bg);
-  transition: transform 260ms ease, box-shadow 260ms ease;
+  border-radius: 0;
+  padding: 0 1.5rem;
+  background: var(--sa-front-lime);
+  color: var(--sa-front-ink);
+  transition: transform 400ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    background-color 300ms ease, box-shadow 400ms ease;
 }
 
-.sa-front-button:hover {
+.sa-page .sa-front-button:hover,
+.sa-page .sa-front-button:focus-visible {
+  background: #D2FF00;
   transform: translateY(-2px);
-  box-shadow: 0 18px 40px -26px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 14px 30px -18px rgba(21, 25, 34, 0.5);
 }
 
 .sa-front-button span,
 .sa-front-link span {
   display: inline-block;
-  transition: transform 260ms ease;
+  transition: transform 400ms cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
 .sa-front-button:hover span,
 .sa-front-link:hover span {
-  transform: translateX(0.25rem);
+  transform: translateX(6px);
 }
 
 .sa-front-actions {

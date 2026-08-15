@@ -530,8 +530,13 @@ body.sa-page--about {
 /* ----------------------------------------------------------- Main Grid --- */
 
 body.sa-page--about .sa-main {
-  padding-top: 4.5rem;
+  padding-top: 3.5rem;
   padding-bottom: 5rem;
+}
+
+body.sa-page--work .sa-main,
+body.sa-page--experiments .sa-main {
+  padding-top: 3.5rem;
 }
 
 .sa-about-grid {
@@ -660,15 +665,15 @@ body.sa-page--about .sa-main {
   margin-bottom: 4rem;
 }
 
-.sa-about-cta-btn {
+.sa-page .sa-about-cta-btn {
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
   width: 220px;
   height: 50px;
   padding: 0 1.5rem;
-  background: #0A0A0B;
-  color: #C7F000;
+  background: #C7F000;
+  color: #0A0A0B;
   text-decoration: none;
   font-family: "Inter", sans-serif;
   font-size: 0.8125rem;
@@ -676,17 +681,28 @@ body.sa-page--about .sa-main {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   border-radius: 0;
-  transition: background 250ms ease, color 250ms ease;
+  transition: transform 400ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    background-color 300ms ease, box-shadow 400ms ease;
   box-sizing: border-box;
 }
 
-.sa-about-cta-btn:hover {
-  background: #C7F000;
+.sa-page .sa-about-cta-btn:hover,
+.sa-page .sa-about-cta-btn:focus-visible {
+  background: #D2FF00;
   color: #0A0A0B;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px -18px rgba(21, 25, 34, 0.5);
 }
 
 .sa-about-cta-arrow {
+  display: inline-block;
   font-size: 1.1rem;
+  transition: transform 400ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.sa-page .sa-about-cta-btn:hover .sa-about-cta-arrow,
+.sa-page .sa-about-cta-btn:focus-visible .sa-about-cta-arrow {
+  transform: translateX(6px);
 }
 
 /* Skills & Tools Section */
@@ -778,6 +794,7 @@ body.sa-page--about .sa-main {
   width: 100%;
   aspect-ratio: 4 / 4.5;
   background: #E5E5E5;
+  border: 1px solid rgba(21, 25, 34, 0.14);
   overflow: hidden;
 }
 
@@ -788,6 +805,13 @@ body.sa-page--about .sa-main {
   object-position: center top;
   filter: grayscale(100%);
   display: block;
+  transition: transform 400ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    filter 400ms ease;
+}
+
+.sa-about-portrait-box:hover .sa-about-portrait-img {
+  transform: scale(1.025);
+  filter: grayscale(85%);
 }
 
 .sa-about-portrait-placeholder {
@@ -981,7 +1005,8 @@ body.sa-page--about .sa-main {
 .sa-exp-card {
   background: #FAFAFA;
   border: 1px solid rgba(21, 25, 34, 0.14);
-  transition: transform 300ms ease, border-color 300ms ease;
+  transition: transform 400ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    border-color 300ms ease;
   display: flex;
   flex-direction: column;
 }
@@ -1119,11 +1144,11 @@ body.sa-page--about .sa-main {
 
 .sa-exp-arrow {
   display: inline-block;
-  transition: transform 300ms ease;
+  transition: transform 400ms cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
 .sa-exp-card:hover .sa-exp-arrow {
-  transform: translateX(4px);
+  transform: translateX(6px);
   color: #C7F000;
 }
 
@@ -1504,7 +1529,8 @@ body.sa-page--about .sa-main {
   border: 1px solid rgba(21, 25, 34, 0.14);
   display: flex;
   flex-direction: column;
-  transition: transform 300ms ease, border-color 300ms ease;
+  transition: transform 400ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    border-color 300ms ease;
 }
 
 .sa-work-sec-card:hover {
@@ -1745,4 +1771,24 @@ body.sa-page--about .sa-main {
   .sa-exp-process-section {
     padding-top: 3rem;
   }
+}
+
+/* Shared subpage typography: one body face and one display face. */
+body.sa-page--about .sa-main,
+body.sa-page--work .sa-main,
+body.sa-page--experiments .sa-main {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body.sa-page--about .sa-about-hero-headline,
+body.sa-page--work .sa-about-hero-headline,
+body.sa-page--work .sa-work-title,
+body.sa-page--work .sa-work-tagline,
+body.sa-page--work .sa-work-sec-title,
+body.sa-page--work .sa-exp-process-headline,
+body.sa-page--work .sa-work-contact-title,
+body.sa-page--experiments .sa-about-hero-headline,
+body.sa-page--experiments .sa-exp-card__title,
+body.sa-page--experiments .sa-exp-process-headline {
+  font-family: var(--sa-font-display, "Poppins", sans-serif);
 }
