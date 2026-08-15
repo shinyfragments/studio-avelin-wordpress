@@ -104,16 +104,25 @@
     var toggle = document.querySelector("[data-sa-nav-toggle]");
     var mobileMenu = document.querySelector("[data-sa-mobile-menu]");
     if (!toggle || !mobileMenu) return;
+    var toggleLabel = toggle.querySelector(".sa-nav-toggle__label");
 
     var close = function () {
       mobileMenu.classList.remove("is-open");
+      document.documentElement.classList.remove("sa-menu-open");
+      document.body.classList.remove("sa-menu-open");
       toggle.setAttribute("aria-expanded", "false");
+      toggle.setAttribute("aria-label", "Open navigation menu");
+      if (toggleLabel) toggleLabel.textContent = "Menu";
     };
 
     toggle.addEventListener("click", function (e) {
       e.stopPropagation();
       var open = mobileMenu.classList.toggle("is-open");
+      document.documentElement.classList.toggle("sa-menu-open", open);
+      document.body.classList.toggle("sa-menu-open", open);
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      toggle.setAttribute("aria-label", open ? "Close navigation menu" : "Open navigation menu");
+      if (toggleLabel) toggleLabel.textContent = open ? "Close" : "Menu";
     });
 
     mobileMenu.addEventListener("click", function (event) {

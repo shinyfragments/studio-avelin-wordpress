@@ -20,6 +20,48 @@ function sa_child_favicon() {
 }
 add_action( 'wp_head', 'sa_child_favicon', 100 );
 
+/** Return the intentional browser and search-result title for Studio pages. */
+function sa_child_document_title( $title ) {
+	if ( is_front_page() ) {
+		return 'Studio Avelin - Design. Code. Create.';
+	}
+
+	if ( is_post_type_archive( 'sa_journal' ) ) {
+		return 'Journal - Studio Avelin';
+	}
+
+	if ( is_singular( 'sa_journal' ) ) {
+		return get_the_title() . ' - Studio Avelin';
+	}
+
+	return $title;
+}
+add_filter( 'pre_get_document_title', 'sa_child_document_title', 100 );
+add_filter( 'wpseo_title', 'sa_child_document_title', 100 );
+
+/** Shared description for the homepage and native Journal routes. */
+function sa_child_meta_description( $description = '' ) {
+	if ( is_front_page() || is_post_type_archive( 'sa_journal' ) || is_singular( 'sa_journal' ) || is_tax( array( 'sa_journal_category', 'sa_journal_tag' ) ) ) {
+		return 'A personal studio for small digital tools, visual experiments and notes on design, code and creative process.';
+	}
+
+	return $description;
+}
+add_filter( 'wpseo_metadesc', 'sa_child_meta_description', 100 );
+
+/** Output a description when no SEO plugin is managing it. */
+function sa_child_meta_description_tag() {
+	if ( defined( 'WPSEO_VERSION' ) ) {
+		return;
+	}
+
+	$description = sa_child_meta_description();
+	if ( $description ) {
+		echo '<meta name="description" content="' . esc_attr( $description ) . '">' . "\n";
+	}
+}
+add_action( 'wp_head', 'sa_child_meta_description_tag', 2 );
+
 /**
  * Basic theme supports. Twenty Twenty-Four already declares most of these,
  * but the child theme keeps them explicit so nothing depends on parent order.
@@ -320,4 +362,3 @@ add_action( 'template_redirect', function() {
 } );
 
 require_once get_stylesheet_directory() . '/inc/sa-journal.php';
-
