@@ -17,6 +17,7 @@ $request_uri = trim( parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH ), '/' );
 
 // Determine active page dynamically
 $is_work        = ( 'work' === $request_uri || 0 === strpos( $request_uri, 'work/' ) );
+$is_services    = ( 'services' === $request_uri );
 $is_about       = ( 'about-me' === $request_uri || 'about' === $request_uri );
 $is_journal     = ( 'journal' === $request_uri || 0 === strpos( $request_uri, 'journal/' ) );
 $is_contact     = false;
@@ -38,7 +39,7 @@ $is_contact     = false;
 					<a class="sa-front-nav__link<?php echo $is_work ? ' is-active' : ''; ?>" href="<?php echo esc_url( $sa_home_url . 'work/' ); ?>">Work</a>
 				</li>
 				<li class="sa-front-nav__item">
-					<a class="sa-front-nav__link" href="<?php echo esc_url( $sa_home_url . '#services' ); ?>">Services</a>
+					<a class="sa-front-nav__link<?php echo $is_services ? ' is-active' : ''; ?>" href="<?php echo esc_url( $sa_home_url . 'services/' ); ?>">Services</a>
 				</li>
 				<li class="sa-front-nav__item">
 					<a class="sa-front-nav__link<?php echo $is_about ? ' is-active' : ''; ?>" href="<?php echo esc_url( $sa_home_url . 'about-me/' ); ?>">About</a>
@@ -71,7 +72,7 @@ $is_contact     = false;
 				<a class="sa-mobile-menu__link<?php echo $is_work ? ' is-active' : ''; ?>" href="<?php echo esc_url( $sa_home_url . 'work/' ); ?>">Work</a>
 			</li>
 			<li>
-				<a class="sa-mobile-menu__link" href="<?php echo esc_url( $sa_home_url . '#services' ); ?>">Services</a>
+				<a class="sa-mobile-menu__link<?php echo $is_services ? ' is-active' : ''; ?>" href="<?php echo esc_url( $sa_home_url . 'services/' ); ?>">Services</a>
 			</li>
 			<li>
 				<a class="sa-mobile-menu__link<?php echo $is_about ? ' is-active' : ''; ?>" href="<?php echo esc_url( $sa_home_url . 'about-me/' ); ?>">About</a>

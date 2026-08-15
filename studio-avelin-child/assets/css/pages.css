@@ -535,8 +535,308 @@ body.sa-page--about .sa-main {
 }
 
 body.sa-page--work .sa-main,
-body.sa-page--experiments .sa-main {
+body.sa-page--experiments .sa-main,
+body.sa-page--services .sa-main {
   padding-top: 3.5rem;
+}
+
+/* ==========================================================================
+   Studio Avelin — Services
+   ========================================================================== */
+
+body.sa-page--services {
+  background-color: #F2F2F2 !important;
+  color: #151922 !important;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.sa-services-page-hero {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  padding-bottom: clamp(4rem, 8vw, 7rem);
+}
+
+@media (min-width: 960px) {
+  .sa-services-page-hero {
+    grid-template-columns: minmax(0, 2fr) minmax(17rem, 0.75fr);
+    gap: clamp(4rem, 8vw, 8rem);
+    align-items: end;
+  }
+}
+
+.sa-services-page-hero__intro {
+  max-width: 43rem;
+}
+
+.sa-services-page-hero__intro p {
+  margin: 0;
+  color: #151922;
+  font-size: 1.1rem;
+  line-height: 1.65;
+}
+
+.sa-services-page-hero__intro p + p {
+  margin-top: 1rem;
+  color: #6F7174;
+}
+
+.sa-services-page-note {
+  position: relative;
+  padding: 1.5rem 0 0 1.5rem;
+  border-top: 1px solid rgba(21, 25, 34, 0.14);
+}
+
+.sa-services-page-note__line {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 4rem;
+  height: 2px;
+  background: #C7F000;
+}
+
+.sa-services-page-note p {
+  margin: 0;
+  color: #6F7174;
+  font-size: 0.875rem;
+  line-height: 1.8;
+}
+
+.sa-services-page-offers {
+  padding-block: clamp(4rem, 7vw, 6rem);
+  border-top: 1px solid rgba(21, 25, 34, 0.14);
+}
+
+.sa-services-page-section-head {
+  max-width: 49rem;
+}
+
+.sa-services-page-section-head h2,
+.sa-services-process h2,
+.sa-services-fit h2,
+.sa-services-contact h2 {
+  margin: 0;
+  font-family: var(--sa-font-display, "Poppins", sans-serif);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.sa-services-page-list {
+  margin-top: clamp(3rem, 6vw, 5rem);
+  border-top: 1px solid rgba(21, 25, 34, 0.14);
+}
+
+.sa-services-page-service {
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1.1fr) minmax(18rem, 0.9fr);
+  gap: clamp(1.5rem, 5vw, 5rem);
+  padding-block: 2.5rem;
+  border-bottom: 1px solid rgba(21, 25, 34, 0.14);
+}
+
+.sa-services-page-service__number {
+  color: #C7F000;
+  font-family: monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.sa-services-page-service__main h3 {
+  margin: 0;
+  font-family: var(--sa-font-display, "Poppins", sans-serif);
+  font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.sa-services-page-service__main p {
+  max-width: 38rem;
+  margin: 1rem 0 0;
+  color: #6F7174;
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.sa-services-page-service__details {
+  align-self: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sa-services-page-service__details li {
+  position: relative;
+  padding: 0.7rem 0 0.7rem 1.25rem;
+  border-bottom: 1px solid rgba(21, 25, 34, 0.09);
+  color: #151922;
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.sa-services-page-service__details li::before {
+  position: absolute;
+  top: 1.05rem;
+  left: 0;
+  width: 0.35rem;
+  height: 0.35rem;
+  background: #C7F000;
+  border-radius: 50%;
+  content: "";
+}
+
+.sa-services-process {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(3rem, 7vw, 6rem);
+  margin-block: clamp(4rem, 8vw, 7rem);
+  padding: clamp(2.5rem, 6vw, 5rem);
+  background: #23262D;
+  color: #FFFFFF;
+}
+
+@media (min-width: 960px) {
+  .sa-services-process {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  }
+}
+
+.sa-services-process .sa-about-eyebrow,
+.sa-services-process h2 {
+  color: #FFFFFF;
+}
+
+.sa-services-process__intro p {
+  max-width: 34rem;
+  margin: 1.5rem 0 0;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.sa-services-process__steps {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  list-style: none;
+}
+
+.sa-services-process__steps li {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(8rem, 0.55fr) 1fr;
+  gap: 1.25rem;
+  align-items: baseline;
+  padding-block: 1.35rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.sa-services-process__steps span {
+  color: #C7F000;
+  font-family: monospace;
+  font-size: 0.7rem;
+}
+
+.sa-services-process__steps strong {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.sa-services-process__steps p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.8rem;
+  line-height: 1.55;
+}
+
+.sa-services-fit {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  padding-block: clamp(3rem, 6vw, 5rem);
+  border-top: 1px solid rgba(21, 25, 34, 0.14);
+  border-bottom: 1px solid rgba(21, 25, 34, 0.14);
+}
+
+@media (min-width: 900px) {
+  .sa-services-fit {
+    grid-template-columns: minmax(0, 1.15fr) minmax(20rem, 0.85fr);
+    gap: clamp(4rem, 9vw, 9rem);
+  }
+}
+
+.sa-services-fit__body > p {
+  margin: 0 0 1.5rem;
+  color: #6F7174;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.sa-services-fit__body ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sa-services-fit__body li {
+  padding: 0.9rem 0;
+  border-top: 1px solid rgba(21, 25, 34, 0.1);
+  color: #151922;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.sa-services-contact {
+  padding-block: clamp(5rem, 9vw, 8rem);
+}
+
+.sa-services-contact p {
+  max-width: 40rem;
+  margin: 1.25rem 0 2rem;
+  color: #6F7174;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.sa-services-contact a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 2px solid #C7F000;
+  color: #151922;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  transition: color 200ms ease, border-color 200ms ease;
+}
+
+.sa-services-contact a:hover,
+.sa-services-contact a:focus-visible {
+  color: #6F7174;
+  border-color: #151922;
+}
+
+@media (max-width: 720px) {
+  .sa-services-page-service {
+    grid-template-columns: 2rem 1fr;
+    gap: 1rem;
+  }
+
+  .sa-services-page-service__details {
+    grid-column: 2;
+  }
+
+  .sa-services-process__steps li {
+    grid-template-columns: 2rem 1fr;
+  }
+
+  .sa-services-process__steps p {
+    grid-column: 2;
+  }
 }
 
 .sa-about-grid {

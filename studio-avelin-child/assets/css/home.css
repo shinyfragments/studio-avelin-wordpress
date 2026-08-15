@@ -979,19 +979,19 @@ img.sa-visual {
 
 @media (min-width: 820px) {
   .sa-services {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .sa-services__item {
-    min-height: 18rem;
+    min-height: 16rem;
     padding: 2.5rem 2.25rem 3rem;
   }
 
-  .sa-services__item:first-child {
+  .sa-services__item:nth-child(odd) {
     padding-left: 0;
   }
 
-  .sa-services__item + .sa-services__item {
+  .sa-services__item:nth-child(even) {
     border-left: 1px solid var(--sa-line);
   }
 }

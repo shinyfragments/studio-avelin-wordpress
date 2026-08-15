@@ -54,37 +54,6 @@ $sa_projects = array(
 	),
 );
 
-$sa_experiments = array(
-	array(
-		'title'  => 'Matrix',
-		'status' => 'Prototype',
-		'text'   => 'A typographic falling-character study — calm, monochrome, with a single lime pulse.',
-		'url'    => $sa_home . 'experiments/matrix/',
-		'mark'   => 'matrix',
-	),
-	array(
-		'title'  => 'Avelin Signal Grid',
-		'status' => 'Test',
-		'text'   => 'A reactive grid that responds to small signals — cursor, rhythm, time of day.',
-		'url'    => $sa_home . 'experiments/avelin-signal-grid/',
-		'mark'   => 'grid',
-	),
-	array(
-		'title'  => 'Poster Generator',
-		'status' => 'Concept',
-		'text'   => 'A small tool for generating simple, typographic posters with controlled randomness.',
-		'url'    => $sa_home . 'experiments/poster-generator/',
-		'mark'   => 'poster',
-	),
-	array(
-		'title'  => 'Future Experiments',
-		'status' => 'Coming soon',
-		'text'   => 'Sketches, half-ideas and things still finding their shape.',
-		'url'    => '',
-		'mark'   => 'future',
-	),
-);
-
 $sa_journal_posts = new WP_Query(
 	array(
 		'post_type'           => 'sa_journal',
@@ -509,7 +478,18 @@ function sa_mark( $kind ) {
 					<h3 class="sa-services__title">WordPress &amp; Editorial Systems</h3>
 					<p class="sa-services__text">Flexible publishing setups that remain easy to maintain after launch.</p>
 				</li>
+				<li class="sa-services__item sa-reveal">
+					<span class="sa-services__index">04</span>
+					<h3 class="sa-services__title">Website Refinement &amp; Ongoing Care</h3>
+					<p class="sa-services__text">Thoughtful improvements to design, structure, performance and usability &mdash; without rebuilding what already works.</p>
+				</li>
 			</ul>
+
+			<div class="sa-section__foot sa-reveal">
+				<a class="sa-link-lime" href="<?php echo esc_url( $sa_home . 'services/' ); ?>">
+					Explore services <span class="sa-btn__arrow" aria-hidden="true">&rarr;</span>
+				</a>
+			</div>
 		</div>
 	</section>
 
@@ -552,58 +532,6 @@ function sa_mark( $kind ) {
 						More About Me <span class="sa-btn__arrow" aria-hidden="true">&rarr;</span>
 					</a>
 				</div>
-			</div>
-		</div>
-	</section>
-
-	<!-- ========================= EXPERIMENTS ========================= -->
-	<section class="sa-section" id="experiments" aria-labelledby="sa-experiments-title">
-		<div class="sa-shell">
-			<div class="sa-section__head sa-stagger">
-				<p class="sa-eyebrow sa-eyebrow--dot sa-reveal">Experiments</p>
-				<h2 class="sa-section__title sa-reveal" id="sa-experiments-title">Small things, tested in the open.</h2>
-				<p class="sa-section__intro sa-reveal">
-					Concepts, prototypes, tests and visual studies. Not always finished
-					&mdash; that is the point.
-				</p>
-			</div>
-
-			<ul class="sa-exp sa-stagger">
-				<?php foreach ( $sa_experiments as $experiment ) : ?>
-					<li class="sa-exp__item sa-reveal">
-						<?php if ( $experiment['url'] ) : ?>
-							<a class="sa-exp__link" href="<?php echo esc_url( $experiment['url'] ); ?>">
-						<?php else : ?>
-							<div class="sa-exp__link sa-exp__link--static">
-						<?php endif; ?>
-							<div class="sa-exp__thumb">
-								<span class="sa-grid-bg" aria-hidden="true"></span>
-								<?php sa_mark( $experiment['mark'] ); ?>
-								<span class="sa-exp__status"><?php echo esc_html( $experiment['status'] ); ?></span>
-							</div>
-							<h3 class="sa-exp__title"><?php echo esc_html( $experiment['title'] ); ?></h3>
-							<p class="sa-exp__text"><?php echo esc_html( $experiment['text'] ); ?></p>
-							<span class="sa-exp__foot">
-								<span class="sa-exp__line" aria-hidden="true"></span>
-								<?php if ( $experiment['url'] ) : ?>
-									<span class="sa-exp__open">Open <span class="sa-btn__arrow" aria-hidden="true">&rarr;</span></span>
-								<?php else : ?>
-									<span class="sa-exp__open sa-exp__open--soon">Coming soon</span>
-								<?php endif; ?>
-							</span>
-						<?php if ( $experiment['url'] ) : ?>
-							</a>
-						<?php else : ?>
-							</div>
-						<?php endif; ?>
-					</li>
-				<?php endforeach; ?>
-			</ul>
-
-			<div class="sa-section__foot sa-reveal">
-				<a class="sa-link-lime" href="<?php echo esc_url( $sa_home . 'experiments/' ); ?>">
-					All experiments <span class="sa-btn__arrow" aria-hidden="true">&rarr;</span>
-				</a>
 			</div>
 		</div>
 	</section>

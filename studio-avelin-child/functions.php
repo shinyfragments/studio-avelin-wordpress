@@ -25,6 +25,7 @@ function sa_child_document_title( $title ) {
 	$request_path = trim( (string) wp_parse_url( $_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH ), '/' );
 	$studio_titles = array(
 		'work'        => 'Work - Studio Avelin',
+		'services'    => 'Services - Studio Avelin',
 		'experiments' => 'Experiments - Studio Avelin',
 		'about-me'    => 'About Me - Studio Avelin',
 		'about'       => 'About Me - Studio Avelin',
@@ -59,10 +60,20 @@ function sa_child_document_title( $title ) {
 add_filter( 'pre_get_document_title', 'sa_child_document_title', 100 );
 add_filter( 'wpseo_title', 'sa_child_document_title', 100 );
 
-/** Shared description for the homepage and native Journal routes. */
+/** Intentional descriptions for the homepage, Services and native Journal routes. */
 function sa_child_meta_description( $description = '' ) {
-	if ( is_front_page() || is_post_type_archive( 'sa_journal' ) || is_singular( 'sa_journal' ) || is_tax( array( 'sa_journal_category', 'sa_journal_tag' ) ) ) {
-		return 'A personal studio for small digital tools, visual experiments and notes on design, code and creative process.';
+	$request_path = trim( (string) wp_parse_url( $_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH ), '/' );
+
+	if ( is_front_page() ) {
+		return 'Studio Avelin designs and develops thoughtful custom websites for independent professionals, small businesses and focused digital products.';
+	}
+
+	if ( 'services' === $request_path ) {
+		return 'Custom websites, landing pages, portfolios and WordPress systems designed and developed through one clear, direct process.';
+	}
+
+	if ( is_post_type_archive( 'sa_journal' ) || is_singular( 'sa_journal' ) || is_tax( array( 'sa_journal_category', 'sa_journal_tag' ) ) ) {
+		return 'Notes from Studio Avelin on web design, development, digital products and the creative process.';
 	}
 
 	return $description;
@@ -268,15 +279,11 @@ function sa_child_nav_items( $context = 'header' ) {
 			),
 			array(
 				'label' => 'Services',
-				'url'   => $home . '#services',
+				'url'   => $home . 'services/',
 			),
 			array(
 				'label' => 'About',
 				'url'   => $home . '#about',
-			),
-			array(
-				'label' => 'Explorations',
-				'url'   => $home . 'experiments/',
 			),
 			array(
 				'label' => 'Journal',
@@ -295,7 +302,7 @@ function sa_child_nav_items( $context = 'header' ) {
 		),
 		array(
 			'label' => 'Services',
-			'url'   => $prefix . '#services',
+			'url'   => $home . 'services/',
 		),
 		array(
 			'label' => 'About',
@@ -331,6 +338,12 @@ function sa_child_legal_template_include( $template ) {
 				return $php_template;
 			}
 		}
+		if ( 'services' === $slug ) {
+			$php_template = get_stylesheet_directory() . '/page-services.php';
+			if ( file_exists( $php_template ) ) {
+				return $php_template;
+			}
+		}
 		if ( 'impressum' === $slug ) {
 			$php_template = get_stylesheet_directory() . '/page-impressum.php';
 			if ( file_exists( $php_template ) ) {
@@ -355,6 +368,12 @@ add_action( 'template_redirect', function() {
 		status_header( 200 );
 		$GLOBALS['wp_query']->is_404 = false;
 		include get_stylesheet_directory() . '/page-about-me.php';
+		exit;
+	}
+	if ( 'services' === $request_uri ) {
+		status_header( 200 );
+		$GLOBALS['wp_query']->is_404 = false;
+		include get_stylesheet_directory() . '/page-services.php';
 		exit;
 	}
 	if ( 'experiments' === $request_uri ) {
