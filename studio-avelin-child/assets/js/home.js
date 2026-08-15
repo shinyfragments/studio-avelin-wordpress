@@ -215,6 +215,7 @@
     var rafId = null;
     var running = false;
     var last = 0;
+    var heroVisible = true;
 
     function rand(min, max) {
       return min + Math.random() * (max - min);
@@ -262,8 +263,8 @@
 
     function seedBands() {
       bands.length = 0;
-      var bandCount = small ? 5 : width < 1100 ? 6 : 8;
-      var perBand = small ? 26 : width < 1100 ? 34 : 46;
+      var bandCount = small ? 3 : width < 1100 ? 6 : 8;
+      var perBand = small ? 14 : width < 1100 ? 34 : 46;
 
       for (var b = 0; b < bandCount; b++) {
         var depth = 0.45 + (b / Math.max(1, bandCount - 1)) * 0.55;
@@ -310,7 +311,7 @@
 
     function seedTraces() {
       traces.length = 0;
-      var maxLen = small ? 76 : 132;
+      var maxLen = small ? 44 : 132;
 
       traces.push({
         x: -width * 0.18,
@@ -327,8 +328,10 @@
 
     function seedParticles() {
       particles.length = 0;
+      if (small) return;
+
       var area = width * height;
-      var cap = small ? 22 : width < 1100 ? 40 : 60;
+      var cap = width < 1100 ? 40 : 60;
       var count = Math.max(14, Math.min(cap, Math.round(area / 26000)));
 
       for (var i = 0; i < count; i++) {
@@ -345,7 +348,10 @@
 
     function seedNodes() {
       nodes.length = 0;
-      var count = small ? 6 : 10;
+      bursts.length = 0;
+      if (small) return;
+
+      var count = 10;
       for (var i = 0; i < count; i++) {
         var bx = i < 2 ? rand(0.04, 0.3) : rand(0.34, 1.0);
         nodes.push({
@@ -358,17 +364,15 @@
           ring: bx > 0.35 && Math.random() < 0.4
         });
       }
-      bursts.length = 0;
     }
 
     function resize() {
       var rect = wrap.getBoundingClientRect();
       width = Math.max(1, Math.round(rect.width));
       height = Math.max(1, Math.round(rect.height));
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
       small = width < 760;
-      step = small ? 18 : width < 1100 ? 14 : 12;
-
+      dpr = Math.min(window.devicePixelRatio || 1, small ? 1 : 2);
+      step = small ? 30 : width < 1100 ? 14 : 12;
       canvas.width = Math.round(width * dpr);
       canvas.height = Math.round(height * dpr);
       canvas.style.width = width + "px";
@@ -577,7 +581,7 @@
           ctx.stroke();
         }
 
-        if (Math.random() < 0.0025) {
+        if (!small && Math.random() < 0.0025) {
           bursts.push({ x: x, y: y, life: 1 });
         }
       }
@@ -601,13 +605,16 @@
       ctx.clearRect(0, 0, width, height);
       drawStructure();
       drawBands(time);
-      drawParticles(time, dt);
       drawTraces(time, dt);
-      drawNodes(time);
+      if (!small) {
+        drawParticles(time, dt);
+        drawNodes(time);
+      }
     }
 
     function frame(now) {
       if (!running) return;
+
       var dt = last ? Math.min(0.05, (now - last) / 1000) : 0.016;
       last = now;
       time += dt;
@@ -654,14 +661,15 @@
 
     document.addEventListener("visibilitychange", function () {
       if (document.hidden) stop();
-      else start();
+      else if (heroVisible) start();
     });
 
     if ("IntersectionObserver" in window) {
       var heroObserver = new IntersectionObserver(
         function (entries) {
           entries.forEach(function (entry) {
-            if (entry.isIntersecting) start();
+            heroVisible = entry.isIntersecting;
+            if (heroVisible) start();
             else stop();
           });
         },
