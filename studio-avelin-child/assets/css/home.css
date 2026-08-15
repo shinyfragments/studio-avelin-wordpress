@@ -1435,7 +1435,7 @@ a.sa-exp__link:hover .sa-exp__line {
 
 .sa-contact__inner {
   position: relative;
-  max-width: 56rem;
+  max-width: 68rem;
 }
 
 .sa-contact__title {
@@ -1451,6 +1451,59 @@ a.sa-exp__link:hover .sa-exp__line {
 @media (min-width: 900px) {
   .sa-br-md {
     display: inline;
+  }
+}
+
+.sa-contact__intro {
+  max-width: 42rem;
+  margin-top: 1.5rem;
+  color: var(--sa-muted);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.sa-contact__brief {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: 2.5rem 0 0;
+  padding: 0;
+  border-top: 1px solid var(--sa-line);
+  list-style: none;
+}
+
+.sa-contact__brief li {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--sa-line);
+  color: var(--sa-ink);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.sa-contact__brief li span {
+  color: var(--sa-lime);
+  font-family: var(--sa-font-display);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+}
+
+@media (min-width: 760px) {
+  .sa-contact__brief {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .sa-contact__brief li {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .sa-contact__brief li:first-child {
+    padding-left: 0;
+  }
+
+  .sa-contact__brief li + li {
+    border-left: 1px solid var(--sa-line);
   }
 }
 
@@ -1489,8 +1542,17 @@ a.sa-exp__link:hover .sa-exp__line {
 .sa-contact__social {
   margin-top: 2.75rem;
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
   gap: 1.75rem;
+}
+
+.sa-contact__social-label {
+  color: var(--sa-muted);
+  font-family: var(--sa-font-display);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
 /* --------------------------------------------------------------- Footer --- */

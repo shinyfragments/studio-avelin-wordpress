@@ -594,23 +594,34 @@ function sa_mark( $kind ) {
 		</div>
 	</section>
 
-	<!-- ========================== SAY HELLO ========================== -->
+	<!-- ======================== START A PROJECT ======================== -->
 	<section class="sa-section sa-contact" id="contact" aria-labelledby="sa-contact-title">
 		<span class="sa-contact__glow" aria-hidden="true"></span>
 		<div class="sa-shell">
 			<div class="sa-stagger sa-contact__inner">
-				<p class="sa-eyebrow sa-eyebrow--dot sa-reveal">Say Hello</p>
+				<p class="sa-eyebrow sa-eyebrow--dot sa-reveal">Start a Project</p>
 				<h2 class="sa-contact__title sa-reveal" id="sa-contact-title">
-					For ideas, feedback, collaborations<br class="sa-br-md" /> or just a quick hello.
+					Have a website in mind?<br class="sa-br-md" /> Let&rsquo;s talk about it.
 				</h2>
 
-				<a class="sa-contact__mail sa-reveal" href="mailto:hello@studio-avelin.com">
+				<p class="sa-contact__intro sa-reveal">
+					Tell me what you are working on, what the website should do and where you are in the process. A rough outline is enough to start.
+				</p>
+
+				<ul class="sa-contact__brief sa-stagger" aria-label="Useful details for a project enquiry">
+					<li class="sa-reveal"><span>01</span>Your idea or current website</li>
+					<li class="sa-reveal"><span>02</span>The scope you have in mind</li>
+					<li class="sa-reveal"><span>03</span>Your preferred timing</li>
+				</ul>
+
+				<a class="sa-contact__mail sa-reveal" href="mailto:hello@studio-avelin.com?subject=Project%20inquiry%20%E2%80%94%20Studio%20Avelin">
 					<span class="sa-contact__mail-text">hello@studio-avelin.com</span>
 					<span class="sa-btn__arrow" aria-hidden="true">&rarr;</span>
 				</a>
 
 				<div class="sa-contact__social sa-reveal">
-					<a class="sa-link-lime" href="https://instagram.com/" target="_blank" rel="noopener noreferrer">
+					<span class="sa-contact__social-label">Elsewhere</span>
+					<a class="sa-link-lime" href="https://www.instagram.com/studio_avelin" target="_blank" rel="noopener noreferrer">
 						Instagram
 					</a>
 					<a class="sa-link-lime" href="https://github.com/studio-avelin" target="_blank" rel="noopener noreferrer">
