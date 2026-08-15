@@ -532,6 +532,84 @@ body.sa-menu-open {
   border-top: 1px solid var(--sa-front-line);
 }
 
+/* ---------- Project notes ---------- */
+
+.sa-subpage .sa-project-body {
+  max-width: 48rem;
+}
+
+.sa-subpage .sa-project-body > p {
+  color: var(--sa-front-ink);
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+.sa-subpage .sa-project-body > p + p {
+  margin-top: 1.25rem;
+}
+
+.sa-subpage .sa-detail-list {
+  display: grid;
+  margin: 3rem 0 0;
+  padding: 0;
+  border-top: 1px solid var(--sa-front-line);
+  list-style: none;
+}
+
+.sa-subpage .sa-detail-list li {
+  display: grid;
+  grid-template-columns: minmax(7rem, 0.35fr) minmax(0, 1fr);
+  gap: 1.5rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--sa-front-line);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.sa-subpage .sa-detail-label {
+  color: var(--sa-front-muted);
+  font-family: var(--sa-font-primary, "Poppins", sans-serif);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sa-subpage .sa-page-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-top: 4rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--sa-front-line);
+}
+
+.sa-subpage .sa-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+@media (max-width: 767px) {
+  .sa-subpage .sa-project-body > p {
+    font-size: 1rem;
+  }
+
+  .sa-subpage .sa-detail-list li {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+
+  .sa-subpage .sa-page-foot {
+    align-items: flex-start;
+    flex-direction: column;
+    margin-top: 3rem;
+  }
+}
+
 /* ---------- Footer ---------- */
 
 .sa-front-footer {
