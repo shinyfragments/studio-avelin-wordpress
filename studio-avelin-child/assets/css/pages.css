@@ -962,6 +962,10 @@ body.sa-page--services {
 /* Primary CTA Button */
 
 .sa-about-cta-wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.25rem 1.75rem;
   margin-bottom: 4rem;
 }
 
@@ -1003,6 +1007,26 @@ body.sa-page--services {
 .sa-page .sa-about-cta-btn:hover .sa-about-cta-arrow,
 .sa-page .sa-about-cta-btn:focus-visible .sa-about-cta-arrow {
   transform: translateX(6px);
+}
+
+.sa-about-cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid #C7F000;
+  color: #151922;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  transition: color 200ms ease, border-color 200ms ease;
+}
+
+.sa-about-cta-link:hover,
+.sa-about-cta-link:focus-visible {
+  color: #6F7174;
+  border-color: #151922;
 }
 
 /* Skills & Tools Section */
@@ -2094,6 +2118,13 @@ body.sa-page--services {
   margin: 0 0 2rem 0;
 }
 
+.sa-work-contact-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem 2rem;
+}
+
 .sa-work-contact-link {
   display: inline-flex;
   align-items: center;
@@ -2113,6 +2144,26 @@ body.sa-page--services {
 .sa-work-contact-link:hover {
   color: #0A0A0B;
   border-color: #151922;
+}
+
+.sa-work-services-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid rgba(21, 25, 34, 0.25);
+  color: #6F7174;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  transition: color 200ms ease, border-color 200ms ease;
+}
+
+.sa-work-services-link:hover,
+.sa-work-services-link:focus-visible {
+  color: #151922;
+  border-color: #C7F000;
 }
 
 /* Mobile rhythm: keep long project pages compact without changing desktop. */

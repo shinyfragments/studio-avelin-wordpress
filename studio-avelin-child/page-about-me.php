@@ -124,6 +124,9 @@ $sa_portrait      = add_query_arg(
 						<span>VIEW MY WORK</span>
 						<span class="sa-about-cta-arrow">&rarr;</span>
 					</a>
+					<a class="sa-about-cta-link" href="<?php echo esc_url( $sa_home . 'services/' ); ?>">
+						EXPLORE SERVICES <span aria-hidden="true">&rarr;</span>
+					</a>
 				</div>
 
 				<!-- PRACTICE -->

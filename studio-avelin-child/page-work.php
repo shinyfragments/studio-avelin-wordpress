@@ -326,9 +326,14 @@ $sa_footer_nav = sa_child_nav_items( 'footer' );
 			<h2 class="sa-work-contact-title">Have an idea?</h2>
 			<p class="sa-work-contact-sub">Let’s make something useful.</p>
 
-			<a class="sa-work-contact-link" href="mailto:hello@studio-avelin.com">
-				HELLO@STUDIO-AVELIN.COM <span class="sa-exp-arrow">&rarr;</span>
-			</a>
+			<div class="sa-work-contact-actions">
+				<a class="sa-work-contact-link" href="mailto:hello@studio-avelin.com?subject=Project%20inquiry%20%E2%80%94%20Studio%20Avelin">
+					HELLO@STUDIO-AVELIN.COM <span class="sa-exp-arrow">&rarr;</span>
+				</a>
+				<a class="sa-work-services-link" href="<?php echo esc_url( $sa_home . 'services/' ); ?>">
+					EXPLORE SERVICES <span aria-hidden="true">&rarr;</span>
+				</a>
+			</div>
 		</section>
 
 	</div>
