@@ -8,15 +8,15 @@ $is_taxonomy   = is_tax( array( 'sa_journal_category', 'sa_journal_tag' ) );
 ?>
 <header class="sa-journal-header">
 	<div class="sa-journal-header__inner">
-		<a class="sa-journal-brand" href="<?php echo esc_url( $archive_url ); ?>" aria-label="<?php esc_attr_e( 'Studio Avelin Journal home', 'studio-avelin-child' ); ?>">
+		<a class="sa-journal-brand" href="<?php echo esc_url( $archive_url ); ?>" aria-label="<?php echo esc_attr( sa_child_text( 'Startseite des Studio Avelin Journals', 'Studio Avelin Journal home' ) ); ?>">
 			<span class="sa-journal-brand__mark" aria-hidden="true">A<span>/</span></span>
 			<span class="sa-journal-brand__studio">Studio Avelin</span>
 			<span class="sa-journal-brand__section">Journal</span>
 		</a>
-		<nav class="sa-journal-nav" aria-label="<?php esc_attr_e( 'Journal navigation', 'studio-avelin-child' ); ?>">
+		<nav class="sa-journal-nav" aria-label="<?php echo esc_attr( sa_child_text( 'Journal-Navigation', 'Journal navigation' ) ); ?>">
 			<a class="<?php echo ! $is_taxonomy ? 'is-active' : ''; ?>" href="<?php echo esc_url( $archive_url ); ?>"><?php esc_html_e( 'Journal', 'studio-avelin-child' ); ?></a>
-			<a class="<?php echo $is_taxonomy ? 'is-active' : ''; ?>" href="<?php echo esc_url( $categories_url ); ?>"><?php esc_html_e( 'Categories', 'studio-avelin-child' ); ?></a>
-			<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Studio', 'studio-avelin-child' ); ?></a>
+			<a class="<?php echo $is_taxonomy ? 'is-active' : ''; ?>" href="<?php echo esc_url( $categories_url ); ?>"><?php echo esc_html( sa_child_text( 'Kategorien', 'Categories' ) ); ?></a>
+			<a href="<?php echo esc_url( function_exists( 'pll_home_url' ) ? pll_home_url( sa_child_language() ) : home_url( '/' ) ); ?>"><?php esc_html_e( 'Studio', 'studio-avelin-child' ); ?></a>
 		</nav>
 	</div>
 </header>
