@@ -52,10 +52,10 @@ $sa_portrait      = add_query_arg(
 
 				<div class="sa-about-intro">
 					<p>
-						<?php echo wp_kses_post( sa_child_text( 'Studio Avelin ist das unabhängige Design- und Entwicklungsstudio von Michael Fiebus. Ich gestalte visuelle Identitäten, Websites und digitale Produkte &ndash; mit klarem Design, durchdachten Systemen und direkter technischer Umsetzung.', 'Studio Avelin is an independent design and development studio by Michael Fiebus. I create visual identities, websites and digital products &mdash; combining clear design, thoughtful systems and hands-on development.' ) ); ?>
+						<?php echo wp_kses_post( sa_child_text( 'Ich bin Designer und Entwickler hinter Studio Avelin. Ich gestalte visuelle Identitäten, Websites und digitale Produkte &ndash; und setze sie auch technisch um.', 'I’m the designer and developer behind Studio Avelin. I create visual identities, websites and digital products — and build them too.' ) ); ?>
 					</p>
 					<p>
-						<?php echo esc_html( sa_child_text( 'Ich arbeite direkt mit Kunden und Projektpartnern – von der ersten Idee bis zum fertigen Ergebnis. Der Prozess bleibt persönlich, klar und bewusst überschaubar.', 'I work directly with clients and collaborators, from the first idea to the finished result. The process stays close, clear and deliberately small.' ) ); ?>
+						<?php echo esc_html( sa_child_text( 'Ich arbeite direkt mit Kunden und Projektpartnern – von der ersten Idee bis zum fertigen Ergebnis. Die Zusammenarbeit bleibt persönlich, transparent und gut überschaubar.', 'I work directly with clients and collaborators, from the first idea to the finished result. The collaboration stays personal, transparent and focused.' ) ); ?>
 					</p>
 				</div>
 
@@ -72,7 +72,7 @@ $sa_portrait      = add_query_arg(
 						</div>
 						<div class="sa-about-value-text">
 							<span><?php echo esc_html( sa_child_text( 'Design + Entwicklung', 'Design + development' ) ); ?></span>
-							<span><?php echo esc_html( sa_child_text( 'in einem Prozess', 'in one process' ) ); ?></span>
+							<span><?php echo esc_html( sa_child_text( 'gemeinsam gedacht', 'developed together' ) ); ?></span>
 						</div>
 					</div>
 
@@ -85,7 +85,7 @@ $sa_portrait      = add_query_arg(
 						</div>
 						<div class="sa-about-value-text">
 							<span><?php echo esc_html( sa_child_text( 'Direkte Zusammenarbeit', 'Direct collaboration' ) ); ?></span>
-							<span><?php echo esc_html( sa_child_text( 'ohne Umwege', 'without detours' ) ); ?></span>
+							<span><?php echo esc_html( sa_child_text( 'mit festen Ansprechpartnern', 'with one point of contact' ) ); ?></span>
 						</div>
 					</div>
 
@@ -99,8 +99,8 @@ $sa_portrait      = add_query_arg(
 							</svg>
 						</div>
 						<div class="sa-about-value-text">
-							<span><?php echo esc_html( sa_child_text( 'Klare Systeme', 'Clear systems' ) ); ?></span>
-							<span><?php echo esc_html( sa_child_text( 'durchdachte Details', 'thoughtful details' ) ); ?></span>
+							<span><?php echo esc_html( sa_child_text( 'Solide Systeme', 'Solid systems' ) ); ?></span>
+							<span><?php echo esc_html( sa_child_text( 'sorgfältige Details', 'careful details' ) ); ?></span>
 						</div>
 					</div>
 
@@ -112,8 +112,8 @@ $sa_portrait      = add_query_arg(
 							</svg>
 						</div>
 						<div class="sa-about-value-text">
-							<span><?php echo esc_html( sa_child_text( 'Mit einem Ziel gebaut', 'Built with purpose' ) ); ?></span>
-							<span><?php echo esc_html( sa_child_text( 'auf Dauer gedacht', 'made to last' ) ); ?></span>
+							<span><?php echo esc_html( sa_child_text( 'Für den Alltag gemacht', 'Made for everyday use' ) ); ?></span>
+							<span><?php echo esc_html( sa_child_text( 'auf Dauer angelegt', 'built to last' ) ); ?></span>
 						</div>
 					</div>
 				</div>
@@ -121,7 +121,7 @@ $sa_portrait      = add_query_arg(
 				<!-- PRIMARY CTA BUTTON -->
 				<div class="sa-about-cta-wrapper">
 					<a class="sa-about-cta-btn" href="<?php echo esc_url( $sa_home . 'work/' ); ?>">
-						<span><?php echo esc_html( sa_child_text( 'ARBEITEN ANSEHEN', 'VIEW MY WORK' ) ); ?></span>
+						<span><?php echo esc_html( sa_child_text( 'PROJEKTE ANSEHEN', 'VIEW MY WORK' ) ); ?></span>
 						<span class="sa-about-cta-arrow">&rarr;</span>
 					</a>
 					<a class="sa-about-cta-link" href="<?php echo esc_url( $sa_home . 'services/' ); ?>">
@@ -159,10 +159,10 @@ $sa_portrait      = add_query_arg(
 						<div class="sa-about-skills-col">
 							<h4><?php echo esc_html( sa_child_text( 'PROZESS', 'PROCESS' ) ); ?></h4>
 							<ul>
-								<li><?php echo esc_html( sa_child_text( 'Direkt und gemeinschaftlich', 'Direct and collaborative' ) ); ?></li>
+								<li><?php echo esc_html( sa_child_text( 'Direkt und partnerschaftlich', 'Direct and collaborative' ) ); ?></li>
 								<li><?php echo esc_html( sa_child_text( 'Design und Code zusammen gedacht', 'Design and code together' ) ); ?></li>
 								<li><?php echo esc_html( sa_child_text( 'Klare Systeme und Entscheidungen', 'Clear systems and decisions' ) ); ?></li>
-								<li><?php echo esc_html( sa_child_text( 'Kleine, bewusste Iterationen', 'Small, deliberate iterations' ) ); ?></li>
+								<li><?php echo esc_html( sa_child_text( 'Nachvollziehbare Schritte', 'Practical, visible steps' ) ); ?></li>
 							</ul>
 						</div>
 					</div>

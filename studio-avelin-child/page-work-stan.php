@@ -9,7 +9,7 @@ if (!defined('ABSPATH')) {
 
 $sa_project = array(
     'title'        => 'STAN — Studio Avelin Notes',
-    'summary'      => sa_child_text( 'Eine fokussierte Notiz- und Denk-App zum Sammeln von Ideen, Bereichen, Notizen und Tags.', 'A focused notes and thinking app for collecting ideas, spaces, notes and tags.' ),
+    'summary'      => sa_child_text( 'Eine ruhige Notiz- und Denk-App, die Ideen, Bereiche, Notizen und Tags an einem Ort zusammenhält.', 'A calm notes and thinking app that keeps ideas, spaces, notes and tags together in one place.' ),
     'status'       => sa_child_text( 'Live-MVP', 'Live MVP' ),
     'role'         => sa_child_text( 'Konzept, Design, Frontend, Datenmodell', 'Concept, design, frontend, data model' ),
     'stack'        => 'React, Supabase, Vercel',
@@ -18,9 +18,9 @@ $sa_project = array(
     'link_display' => 'stan.studio-avelin.com',
     'link_label'   => sa_child_text( 'STAN öffnen', 'Open STAN' ),
     'description'  => array(
-        sa_child_text( 'STAN ist ein kleines Denkwerkzeug. Es hält Ideen, Notizen, Bereiche und Tags an einem ruhigen Ort zusammen, statt sie über ein halbes Dutzend Apps zu verteilen.', 'STAN is a small thinking tool. It keeps ideas, notes, spaces and tags in one calm place instead of scattering them across half a dozen apps.' ),
-        sa_child_text( 'Die Oberfläche bleibt bewusst ruhig: zuerst schnell festhalten, dann strukturieren. Bereiche bündeln zusammengehörige Arbeit, Tags verbinden sie übergreifend und die Suche erledigt den Rest.', 'The interface stays intentionally quiet: fast capture first, structure second. Spaces group related work, tags cut across them, and search does the rest.' ),
-        sa_child_text( 'STAN läuft als eigenständiges Produkt außerhalb dieser Website. Es ist nicht in WordPress eingebettet; diese Seite dokumentiert das Projekt lediglich.', 'It runs as a separate product outside this site. Nothing about STAN is embedded into WordPress; this page is only a note about it.' ),
+        sa_child_text( 'STAN ist ein kleines Werkzeug für Notizen und Ideen. Es hält Bereiche, Texte und Tags an einem Ort zusammen, statt sie auf mehrere Apps zu verteilen.', 'STAN is a small tool for notes and ideas. It keeps spaces, notes and tags together instead of scattering them across several apps.' ),
+        sa_child_text( 'Die Oberfläche ist auf einen einfachen Ablauf ausgelegt: Gedanken schnell festhalten und später ordnen. Bereiche bündeln zusammengehörige Arbeit, Tags schaffen Verbindungen und die Suche findet den Rest.', 'The interface supports a simple flow: capture thoughts quickly, then organise them later. Spaces group related work, tags create connections and search finds the rest.' ),
+        sa_child_text( 'STAN ist ein eigenständiges Produkt und wird unabhängig von dieser Website entwickelt. Diese Projektnotiz gibt einen Einblick in Idee und Umsetzung.', 'STAN is developed as a standalone product, independently of this website. This project note offers a brief look at the idea and its implementation.' ),
     ),
 );
 

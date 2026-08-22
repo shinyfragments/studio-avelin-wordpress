@@ -33,14 +33,14 @@ $sa_home = trailingslashit( sa_child_language_url( sa_child_language() ) );
 			<div>
 				<span class="sa-about-eyebrow"><?php echo esc_html( sa_child_text( 'LEISTUNGEN', 'SERVICES' ) ); ?></span>
 				<h1 class="sa-about-hero-headline">
-					<?php echo wp_kses_post( sa_child_text( 'Websites, mit <span class="sa-lime-text">Sorgfalt</span> gestaltet.', 'websites, shaped with <span class="sa-lime-text">care</span>.' ) ); ?>
+					<?php echo wp_kses_post( sa_child_text( 'Websites, die <span class="sa-lime-text">gut aussehen</span> und gut funktionieren.', 'Websites that <span class="sa-lime-text">look good</span> and work well.' ) ); ?>
 				</h1>
 				<div class="sa-services-page-hero__intro">
 					<p>
-						<?php echo esc_html( sa_child_text( 'Studio Avelin gestaltet und entwickelt fokussierte Websites für Selbstständige, kleine Unternehmen und Menschen mit einer klaren Idee.', 'Studio Avelin designs and builds focused websites for independent professionals, small businesses and people with a clear idea.' ) ); ?>
+						<?php echo esc_html( sa_child_text( 'Studio Avelin gestaltet und entwickelt individuelle Websites für Selbstständige und kleine Unternehmen.', 'Studio Avelin designs and builds custom websites for independent professionals and small businesses.' ) ); ?>
 					</p>
 					<p>
-						<?php echo wp_kses_post( sa_child_text( 'Struktur, visuelle Richtung und Entwicklung bleiben in einem direkten Prozess &ndash; vom ersten Gespräch bis zum Launch.', 'Structure, visual direction and development stay in one direct process &mdash; from the first conversation to launch.' ) ); ?>
+						<?php echo wp_kses_post( sa_child_text( 'Von Struktur und Inhalt über das Design bis zur technischen Umsetzung bleibt alles in einem abgestimmten Prozess &ndash; vom ersten Gespräch bis zum Launch.', 'From structure and content to design and development, everything stays connected &mdash; from the first conversation to launch.' ) ); ?>
 					</p>
 				</div>
 			</div>
@@ -49,14 +49,14 @@ $sa_home = trailingslashit( sa_child_language_url( sa_child_language() ) );
 				<span class="sa-services-page-note__line" aria-hidden="true"></span>
 				<p><?php echo esc_html( sa_child_text( 'Ein kleines, unabhängiges Studio.', 'A small, independent practice.' ) ); ?></p>
 				<p><?php echo esc_html( sa_child_text( 'Direkte Zusammenarbeit.', 'Direct collaboration.' ) ); ?></p>
-				<p><?php echo esc_html( sa_child_text( 'Design und Entwicklung aus einer Hand.', 'Design and development in one place.' ) ); ?></p>
+				<p><?php echo esc_html( sa_child_text( 'Ein Ansprechpartner für Design und Entwicklung.', 'One point of contact for design and development.' ) ); ?></p>
 			</aside>
 		</section>
 
 		<section class="sa-services-page-offers" aria-labelledby="sa-services-page-offers-title">
 			<div class="sa-services-page-section-head">
 				<span class="sa-about-eyebrow"><?php echo esc_html( sa_child_text( 'WOBEI ICH HELFEN KANN', 'WHAT I CAN HELP WITH' ) ); ?></span>
-				<h2 id="sa-services-page-offers-title"><?php echo esc_html( sa_child_text( 'Eine klare Website, aufgebaut um das, was zählt.', 'A clear website, built around what matters.' ) ); ?></h2>
+				<h2 id="sa-services-page-offers-title"><?php echo esc_html( sa_child_text( 'Die passende Website für deine Arbeit.', 'The right website for the work you do.' ) ); ?></h2>
 			</div>
 
 			<div class="sa-services-page-list">
@@ -64,7 +64,7 @@ $sa_home = trailingslashit( sa_child_language_url( sa_child_language() ) );
 					<span class="sa-services-page-service__number">01</span>
 					<div class="sa-services-page-service__main">
 						<h3><?php echo esc_html( sa_child_text( 'Individuelle Websites', 'Custom Websites' ) ); ?></h3>
-						<p><?php echo esc_html( sa_child_text( 'Eine vollständige Website, abgestimmt auf deine Arbeit, Zielgruppe und Ziele – mit einer eigens für das Projekt entwickelten Struktur und visuellen Richtung.', 'A complete website shaped around your work, audience and goals, with a structure and visual direction developed specifically for the project.' ) ); ?></p>
+						<p><?php echo esc_html( sa_child_text( 'Eine vollständige Website, abgestimmt auf deine Arbeit, deine Zielgruppe und deine Ziele. Struktur und Gestaltung entstehen passend zum Projekt.', 'A complete website shaped around your work, your audience and your goals. Its structure and design are developed specifically for the project.' ) ); ?></p>
 					</div>
 					<ul class="sa-services-page-service__details">
 						<li><?php echo esc_html( sa_child_text( 'Struktur und inhaltliche Richtung', 'Structure and content direction' ) ); ?></li>
@@ -77,12 +77,12 @@ $sa_home = trailingslashit( sa_child_language_url( sa_child_language() ) );
 					<span class="sa-services-page-service__number">02</span>
 					<div class="sa-services-page-service__main">
 						<h3><?php echo esc_html( sa_child_text( 'Landingpages & Portfolios', 'Landing Pages & Portfolios' ) ); ?></h3>
-						<p><?php echo esc_html( sa_child_text( 'Ein fokussierter digitaler Auftritt für eine Person, Dienstleistung, ein Produkt oder einen Launch – klar verständlich und eigenständig genug, um im Gedächtnis zu bleiben.', 'A focused digital presence for a person, service, product or launch — clear enough to understand and distinct enough to remember.' ) ); ?></p>
+						<p><?php echo esc_html( sa_child_text( 'Ein kompakter digitaler Auftritt für eine Person, eine Dienstleistung, ein Produkt oder einen Launch – leicht verständlich und mit einem eigenständigen Charakter.', 'A compact digital presence for a person, service, product or launch — easy to understand and distinctive enough to remember.' ) ); ?></p>
 					</div>
 					<ul class="sa-services-page-service__details">
 						<li><?php echo esc_html( sa_child_text( 'Klare Seitenführung und Botschaft', 'Clear page flow and messaging' ) ); ?></li>
 						<li><?php echo esc_html( sa_child_text( 'Individuelle visuelle Richtung', 'Individual visual direction' ) ); ?></li>
-						<li><?php echo esc_html( sa_child_text( 'Fokussierter Kontakt- oder Conversion-Weg', 'Focused contact or conversion path' ) ); ?></li>
+						<li><?php echo esc_html( sa_child_text( 'Ein einfacher Weg zur Kontaktaufnahme', 'A simple path to contact or conversion' ) ); ?></li>
 					</ul>
 				</article>
 
@@ -90,7 +90,7 @@ $sa_home = trailingslashit( sa_child_language_url( sa_child_language() ) );
 					<span class="sa-services-page-service__number">03</span>
 					<div class="sa-services-page-service__main">
 						<h3><?php echo esc_html( sa_child_text( 'WordPress & redaktionelle Systeme', 'WordPress & Editorial Systems' ) ); ?></h3>
-						<p><?php echo esc_html( sa_child_text( 'Individuelle Publishing-Systeme für Websites, Journals und wachsende Inhalte, die auch nach dem Launch unkompliziert nutzbar bleiben.', 'Custom publishing systems for websites, journals and evolving content that remain straightforward to use after launch.' ) ); ?></p>
+						<p><?php echo esc_html( sa_child_text( 'Individuelle WordPress-Systeme für Websites, Journals und wachsende Inhalte – so aufgebaut, dass sie auch nach dem Launch einfach zu bedienen bleiben.', 'Custom WordPress systems for websites, journals and growing content — built to remain easy to use after launch.' ) ); ?></p>
 					</div>
 					<ul class="sa-services-page-service__details">
 						<li><?php echo esc_html( sa_child_text( 'Individuelle WordPress-Umsetzung', 'Custom WordPress implementation' ) ); ?></li>
@@ -103,7 +103,7 @@ $sa_home = trailingslashit( sa_child_language_url( sa_child_language() ) );
 					<span class="sa-services-page-service__number">04</span>
 					<div class="sa-services-page-service__main">
 						<h3><?php echo esc_html( sa_child_text( 'Website-Optimierung & laufende Betreuung', 'Website Refinement & Ongoing Care' ) ); ?></h3>
-						<p><?php echo esc_html( sa_child_text( 'Gezielte Verbesserungen für bestehende Websites, deren Grundlage funktioniert, bei denen Design, Nutzungserlebnis oder Performance aber Aufmerksamkeit brauchen.', 'Targeted improvements for an existing website when the foundation is useful but the design, experience or performance needs attention.' ) ); ?></p>
+						<p><?php echo esc_html( sa_child_text( 'Gezielte Verbesserungen für bestehende Websites, wenn die Grundlage stimmt, aber Design, Bedienbarkeit oder Performance noch besser werden können.', 'Targeted improvements for existing websites when the foundation works but the design, usability or performance can be better.' ) ); ?></p>
 					</div>
 					<ul class="sa-services-page-service__details">
 						<li><?php echo esc_html( sa_child_text( 'Verfeinerung von Design und Abständen', 'Design and spacing refinement' ) ); ?></li>
@@ -117,25 +117,25 @@ $sa_home = trailingslashit( sa_child_language_url( sa_child_language() ) );
 		<section class="sa-services-process" aria-labelledby="sa-services-process-title">
 			<div class="sa-services-process__intro">
 				<span class="sa-about-eyebrow"><?php echo esc_html( sa_child_text( 'DER PROZESS', 'THE PROCESS' ) ); ?></span>
-				<h2 id="sa-services-process-title"><?php echo esc_html( sa_child_text( 'Ein direkter Prozess.', 'One direct process.' ) ); ?></h2>
-				<p><?php echo esc_html( sa_child_text( 'Du arbeitest durchgehend direkt mit mir. Wir klären, was die Website braucht, treffen die wichtigen Entscheidungen gemeinsam und entwickeln sie als zusammenhängendes Ganzes.', 'You work directly with me throughout. We define what the website needs, make the important decisions together and refine it as one coherent piece of work.' ) ); ?></p>
+				<h2 id="sa-services-process-title"><?php echo esc_html( sa_child_text( 'Ein klarer Weg zur fertigen Website.', 'A clear process from idea to launch.' ) ); ?></h2>
+				<p><?php echo esc_html( sa_child_text( 'Du arbeitest vom Anfang bis zum Ende direkt mit mir. Gemeinsam klären wir die Anforderungen, treffen die wichtigen Entscheidungen und bringen die Website Schritt für Schritt bis zum Launch.', 'You work directly with me from start to finish. Together we define the requirements, make the important decisions and move the website forward step by step.' ) ); ?></p>
 			</div>
 
 			<ol class="sa-services-process__steps">
 				<li><span>01</span><strong><?php echo esc_html( sa_child_text( 'Verstehen', 'Understand' ) ); ?></strong><p><?php echo esc_html( sa_child_text( 'Deine Arbeit, Zielgruppe, Ziele und den tatsächlichen Umfang des Projekts.', 'Your work, audience, goals and the real scope of the project.' ) ); ?></p></li>
 				<li><span>02</span><strong><?php echo esc_html( sa_child_text( 'Strukturieren', 'Structure' ) ); ?></strong><p><?php echo esc_html( sa_child_text( 'Inhalte, Hierarchie und einen klaren Weg durch die Website.', 'Content, hierarchy and a clear path through the website.' ) ); ?></p></li>
-				<li><span>03</span><strong><?php echo esc_html( sa_child_text( 'Gestalten & entwickeln', 'Design & Build' ) ); ?></strong><p><?php echo esc_html( sa_child_text( 'Visuelle Richtung und Entwicklung werden von Anfang an gemeinsam gedacht.', 'Visual direction and development shaped together from the start.' ) ); ?></p></li>
-				<li><span>04</span><strong><?php echo esc_html( sa_child_text( 'Verfeinern & veröffentlichen', 'Refine & Launch' ) ); ?></strong><p><?php echo esc_html( sa_child_text( 'Details, responsives Verhalten, Performance und eine sorgfältige Übergabe.', 'Details, responsive behaviour, performance and a careful handover.' ) ); ?></p></li>
+				<li><span>03</span><strong><?php echo esc_html( sa_child_text( 'Gestalten & entwickeln', 'Design & Build' ) ); ?></strong><p><?php echo esc_html( sa_child_text( 'Design und technische Umsetzung entstehen gemeinsam statt nacheinander.', 'Design and development move forward together rather than as separate stages.' ) ); ?></p></li>
+				<li><span>04</span><strong><?php echo esc_html( sa_child_text( 'Verfeinern & veröffentlichen', 'Refine & Launch' ) ); ?></strong><p><?php echo esc_html( sa_child_text( 'Zum Schluss werden Details, mobile Darstellung und Performance geprüft und alles sauber übergeben.', 'Finally, the details, mobile experience and performance are checked before a clean handover.' ) ); ?></p></li>
 			</ol>
 		</section>
 
 		<section class="sa-services-fit" aria-labelledby="sa-services-fit-title">
 			<div>
 				<span class="sa-about-eyebrow"><?php echo esc_html( sa_child_text( 'GUTE ZUSAMMENARBEIT', 'A GOOD FIT' ) ); ?></span>
-				<h2 id="sa-services-fit-title"><?php echo esc_html( sa_child_text( 'Klein genug, um persönlich zu bleiben. Strukturiert genug, um es richtig zu machen.', 'Small enough to stay personal. Structured enough to do it properly.' ) ); ?></h2>
+				<h2 id="sa-services-fit-title"><?php echo esc_html( sa_child_text( 'Persönliche Zusammenarbeit ohne unnötige Umwege.', 'Personal collaboration without unnecessary layers.' ) ); ?></h2>
 			</div>
 			<div class="sa-services-fit__body">
-				<p><?php echo esc_html( sa_child_text( 'Diese Arbeitsweise passt gut, wenn dir klare Kommunikation, durchdachtes Design und der direkte Kontakt zur umsetzenden Person wichtig sind.', 'This way of working is a good fit when you value clear communication, thoughtful design and direct access to the person doing the work.' ) ); ?></p>
+				<p><?php echo esc_html( sa_child_text( 'Diese Arbeitsweise passt gut, wenn dir eine verlässliche Abstimmung, gutes Design und der direkte Kontakt zur umsetzenden Person wichtig sind.', 'This way of working is a good fit if you value reliable communication, strong design and direct contact with the person doing the work.' ) ); ?></p>
 				<ul>
 					<li><?php echo esc_html( sa_child_text( 'Du brauchst eine neue Website mit einem klaren Zweck.', 'You need a new website with a clear purpose.' ) ); ?></li>
 					<li><?php echo esc_html( sa_child_text( 'Design und Entwicklung sollen zusammengehören.', 'You want design and development to feel connected.' ) ); ?></li>

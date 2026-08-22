@@ -99,7 +99,7 @@ function sa_child_document_title( $title ) {
 	$request_path = trim( (string) wp_parse_url( $_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH ), '/' );
 	$request_path = preg_replace( '#^(?:de|en)/#', '', $request_path );
 	$studio_titles = array(
-		'work'        => sa_child_text( 'Arbeiten - Studio Avelin', 'Work - Studio Avelin' ),
+		'work'        => sa_child_text( 'Projekte - Studio Avelin', 'Work - Studio Avelin' ),
 		'services'    => sa_child_text( 'Leistungen - Studio Avelin', 'Services - Studio Avelin' ),
 		'experiments' => 'Experiments - Studio Avelin',
 		'about-me'    => sa_child_text( 'Über mich - Studio Avelin', 'About Me - Studio Avelin' ),
@@ -202,11 +202,11 @@ function sa_child_meta_description( $description = '' ) {
 	$request_path = preg_replace( '#^(?:de|en)/#', '', $request_path );
 
 	if ( is_front_page() ) {
-		return sa_child_text( 'Studio Avelin gestaltet und entwickelt durchdachte, individuelle Websites für Selbstständige, kleine Unternehmen und fokussierte digitale Produkte.', 'Studio Avelin designs and develops thoughtful custom websites for independent professionals, small businesses and focused digital products.' );
+		return sa_child_text( 'Studio Avelin gestaltet und entwickelt individuelle Websites für Selbstständige und kleine Unternehmen – persönlich, verlässlich und passend zur Aufgabe.', 'Studio Avelin designs and builds custom websites for independent professionals and small businesses — personal, reliable and shaped around the work they need to do.' );
 	}
 
 	if ( 'services' === $request_path ) {
-		return sa_child_text( 'Individuelle Websites, Landingpages, Portfolios und WordPress-Systeme – gestaltet und entwickelt in einem klaren, direkten Prozess.', 'Custom websites, landing pages, portfolios and WordPress systems designed and developed through one clear, direct process.' );
+		return sa_child_text( 'Individuelle Websites, Landingpages, Portfolios und WordPress-Systeme – von der ersten Idee bis zur technischen Umsetzung.', 'Custom websites, landing pages, portfolios and WordPress systems — from the first idea through to development and launch.' );
 	}
 
 	if ( is_post_type_archive( 'sa_journal' ) || is_singular( 'sa_journal' ) || is_tax( array( 'sa_journal_category', 'sa_journal_tag' ) ) ) {
@@ -408,7 +408,7 @@ add_action( 'init', 'sa_child_head_cleanup' );
 function sa_child_nav_items( $context = 'header' ) {
 	$home = trailingslashit( home_url( '/' ) );
 	$labels = array(
-		'work'     => sa_child_text( 'Arbeiten', 'Work' ),
+		'work'     => sa_child_text( 'Projekte', 'Work' ),
 		'services' => sa_child_text( 'Leistungen', 'Services' ),
 		'about'    => sa_child_text( 'Über mich', 'About' ),
 		'journal'  => 'Journal',

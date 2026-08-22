@@ -19,9 +19,9 @@ $sa_project = array(
     'link_display' => sa_child_text( 'Live-Landingpage öffnen', 'Open live landing page' ),
     'link_label'   => sa_child_text( 'Landingpage öffnen', 'Open the landing page' ),
     'description'  => array(
-        sa_child_text( 'Eine einzelne, warme Landingpage für MONROE Toypartys: wie ein Abend abläuft, wer ihn veranstaltet und wie eine unkomplizierte Kontaktaufnahme möglich ist.', 'A single, warm landing page for MONROE Toypartys: what an evening looks like, who hosts it, and how to get in touch without any awkwardness.' ),
-        sa_child_text( 'Die Tonalität war die größte Herausforderung. Die Seite sollte stilvoll und diskret statt laut wirken. Deshalb bleibt das Layout ruhig, die Bilder tragen die Atmosphäre und der Kontakt ist nur ein kurzes Formular entfernt.', 'The tone was the hardest part. It had to feel stylish and discreet rather than loud, so the layout stays calm, the imagery does the work and the contact step is one short form away.' ),
-        sa_child_text( 'Sie läuft als eigenständige statische Seite mit eigener visueller Richtung – bewusst getrennt vom Studio-Avelin-Designsystem und von WordPress.', 'It runs as its own static page with its own visual direction, deliberately separate from the Studio Avelin design system and from WordPress.' ),
+        sa_child_text( 'Die Landingpage erklärt, wie ein MONROE Toyparty-Abend abläuft, stellt die Gastgeberin vor und macht die Kontaktaufnahme unkompliziert.', 'The landing page explains what happens at a MONROE Toyparty, introduces the host and makes it easy to get in touch.' ),
+        sa_child_text( 'Die größte Aufgabe war die richtige Tonalität: stilvoll und diskret, aber trotzdem offen und einladend. Das Layout gibt den Bildern Raum und führt ohne Umwege zum Kontaktformular.', 'The main challenge was finding the right tone: stylish and discreet, yet open and inviting. The layout gives the imagery room and leads naturally to the contact form.' ),
+        sa_child_text( 'Die Landingpage ist statisch umgesetzt und hat eine eigene visuelle Identität – unabhängig vom Designsystem von Studio Avelin und ohne WordPress.', 'The landing page is built as a static site with its own visual identity, independent of the Studio Avelin design system and without WordPress.' ),
     ),
 );
 

@@ -72,7 +72,7 @@ if (empty($sa_project) || !is_array($sa_project)) {
 
       <div class="sa-page-foot">
         <?php $sa_language_home = function_exists( 'pll_home_url' ) ? trailingslashit( pll_home_url( sa_child_language() ) ) : trailingslashit( home_url( '/' ) ); ?>
-        <a class="sa-back-link" href="<?php echo esc_url( $sa_language_home . 'work/' ); ?>"><span aria-hidden="true">&lt;-</span> <?php echo esc_html( sa_child_text( 'Zurück zu Arbeiten', 'Back to Work' ) ); ?></a>
+        <a class="sa-back-link" href="<?php echo esc_url( $sa_language_home . 'work/' ); ?>"><span aria-hidden="true">&lt;-</span> <?php echo esc_html( sa_child_text( 'Zurück zu den Projekten', 'Back to Work' ) ); ?></a>
         <a class="sa-front-link" href="<?php echo esc_url( $sa_language_home . 'about-me/' ); ?>"><?php echo esc_html( sa_child_text( 'Über das Studio', 'About the studio' ) ); ?> <span aria-hidden="true">-&gt;</span></a>
       </div>
     </div>

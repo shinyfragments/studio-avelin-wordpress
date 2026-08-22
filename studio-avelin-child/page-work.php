@@ -39,15 +39,15 @@ $sa_footer_nav = sa_child_nav_items( 'footer' );
 		<!-- HERO SECTION -->
 		<section class="sa-exp-hero">
 			<div class="sa-exp-hero__left">
-				<span class="sa-about-eyebrow"><?php echo esc_html( sa_child_text( 'AUSGEWÄHLTE ARBEITEN', 'SELECTED WORK' ) ); ?></span>
+				<span class="sa-about-eyebrow"><?php echo esc_html( sa_child_text( 'AUSGEWÄHLTE PROJEKTE', 'SELECTED WORK' ) ); ?></span>
 
 				<h1 class="sa-about-hero-headline">
-					<?php echo wp_kses_post( sa_child_text( 'mit <span class="sa-lime-text">Sinn</span> gestaltet.', 'built with <span class="sa-lime-text">purpose</span>.' ) ); ?>
+					<?php echo wp_kses_post( sa_child_text( 'Für <span class="sa-lime-text">echte Aufgaben</span> gestaltet.', 'Built for <span class="sa-lime-text">real use</span>.' ) ); ?>
 				</h1>
 
 				<div class="sa-about-intro" style="max-width: 650px;">
 					<p>
-						<?php echo wp_kses_post( sa_child_text( 'Eine kleine Auswahl digitaler Produkte, Werkzeuge und Ideen, gestaltet und entwickelt unter dem Dach von Studio Avelin.<br />Klar im Umfang. Klar im Zweck. Gemacht, um nützlich zu sein.', 'A small collection of digital products, tools and ideas designed and built under the Studio Avelin umbrella.<br />Small in scope. Clear in purpose. Made to be useful.' ) ); ?>
+						<?php echo wp_kses_post( sa_child_text( 'Eine Auswahl aus Kundenprojekten und eigenen digitalen Produkten.<br />Überschaubar im Umfang. Durchdacht in der Umsetzung. Gemacht für den Alltag.', 'A selection of client projects and independent digital products.<br />Focused in scope. Carefully made. Useful in everyday life.' ) ); ?>
 					</p>
 				</div>
 			</div>
@@ -56,7 +56,7 @@ $sa_footer_nav = sa_child_nav_items( 'footer' );
 				<div class="sa-exp-hero-note">
 					<span class="sa-exp-lime-line" aria-hidden="true"></span>
 					<p class="sa-exp-hero-note__text">
-						<?php echo wp_kses_post( sa_child_text( 'Kundenarbeiten und eigene Produkte.<br />Gestaltet, entwickelt und verfeinert<br />in direkter Zusammenarbeit.', 'Client work and independent products.<br />Designed, built and refined<br />with direct collaboration.' ) ); ?>
+						<?php echo wp_kses_post( sa_child_text( 'Kundenprojekte und eigene Produkte.<br />Gestaltet, entwickelt und verfeinert<br />im direkten Austausch.', 'Client work and independent products.<br />Designed, built and refined<br />through direct collaboration.' ) ); ?>
 					</p>
 				</div>
 			</div>
@@ -84,10 +84,10 @@ $sa_footer_nav = sa_child_nav_items( 'footer' );
 					<h2 class="sa-work-title">STAN</h2>
 					<span class="sa-work-fullname">Studio Avelin Notes</span>
 
-					<h3 class="sa-work-tagline"><?php echo esc_html( sa_child_text( 'Ein fokussierter Ort für Ideen.', 'A focused space for ideas.' ) ); ?></h3>
+					<h3 class="sa-work-tagline"><?php echo esc_html( sa_child_text( 'Ein ruhiger Ort für Ideen.', 'A calm place for ideas.' ) ); ?></h3>
 
 					<p class="sa-work-desc">
-						<?php echo esc_html( sa_child_text( 'STAN ist eine fokussierte Notiz- und Denk-App zum Sammeln von Ideen, Bereichen, Notizen und Tags. Entwickelt, um die Dinge einfach zu halten: weniger Ablenkung, klare Struktur und ein ruhiger Ort für Gedanken, die nicht verloren gehen sollen.', 'STAN is a focused notes and thinking app for collecting ideas, spaces, notes and tags. Designed to keep things simple: fewer distractions, clear structure and a calm place for thoughts that should not get lost.' ) ); ?>
+						<?php echo esc_html( sa_child_text( 'STAN ist eine Notiz- und Denk-App für Ideen, Bereiche, Notizen und Tags. Sie reduziert Ablenkung, schafft Ordnung und gibt Gedanken einen festen Platz.', 'STAN is a notes and thinking app for ideas, spaces, notes and tags. It reduces distractions, creates structure and gives thoughts a place to stay.' ) ); ?>
 					</p>
 
 					<!-- DETAILS ROW -->
@@ -174,8 +174,8 @@ $sa_footer_nav = sa_child_nav_items( 'footer' );
 					</div>
 					<h2 class="sa-work-title">Portfolio Page</h2>
 					<span class="sa-work-fullname">MONROE Toyparty Landingpage</span>
-					<h3 class="sa-work-tagline"><?php echo esc_html( sa_child_text( 'Warm, diskret und zugänglich.', 'Warm, discreet and easy to approach.' ) ); ?></h3>
-					<p class="sa-work-desc"><?php echo esc_html( sa_child_text( 'Eine fokussierte Portfolio- und Landingpage für eine selbstständige MONROE-Beraterin. Die visuelle Richtung verbindet Wärme und Diskretion, während die Struktur das Angebot verständlich und die Kontaktaufnahme bewusst einfach macht.', 'A focused portfolio and landing page for an independent MONROE consultant. The visual direction balances warmth and discretion, while the structure makes the offer understandable and contact deliberately simple.' ) ); ?></p>
+					<h3 class="sa-work-tagline"><?php echo esc_html( sa_child_text( 'Warm, diskret und einladend.', 'Warm, discreet and approachable.' ) ); ?></h3>
+					<p class="sa-work-desc"><?php echo esc_html( sa_child_text( 'Eine Portfolio- und Landingpage für eine selbstständige MONROE-Beraterin. Gestaltung und Tonalität schaffen Vertrauen, die Struktur erklärt das Angebot und führt unkompliziert zur Kontaktaufnahme.', 'A portfolio and landing page for an independent MONROE consultant. The design and tone build trust, while the structure explains the offer and makes it easy to get in touch.' ) ); ?></p>
 					<div class="sa-work-details-row">
 						<div class="sa-work-detail-item"><span class="sa-work-detail-label"><?php echo esc_html( sa_child_text( 'TYP', 'TYPE' ) ); ?></span><span class="sa-work-detail-val"><?php echo esc_html( sa_child_text( 'Kunden-Landingpage', 'Client landing page' ) ); ?></span></div>
 						<div class="sa-work-detail-item"><span class="sa-work-detail-label"><?php echo esc_html( sa_child_text( 'ROLLE', 'ROLE' ) ); ?></span><span class="sa-work-detail-val"><?php echo esc_html( sa_child_text( 'Design, Entwicklung, Textunterstützung', 'Design, development, copy support' ) ); ?></span></div>
@@ -236,7 +236,7 @@ $sa_footer_nav = sa_child_nav_items( 'footer' );
 						<h3 class="sa-work-tagline"><?php echo esc_html( sa_child_text( 'Training ohne den Lärm.', 'Training, without the noise.' ) ); ?></h3>
 
 						<p class="sa-work-desc">
-							<?php echo esc_html( sa_child_text( 'Eine private Trainings-App zum Planen, Erfassen und Auswerten von Laufen, Krafttraining, Zielen, Strecken und Fortschritten. Aufgebaut rund um nützliche Daten, klare Routinen und eine ruhige Übersicht statt endloser Fitnessmetriken.', 'A private training app for planning, tracking and reviewing running, strength, goals, routes and progress. Built around useful data, clear routines and a calm overview instead of endless fitness metrics.' ) ); ?>
+							<?php echo esc_html( sa_child_text( 'Eine private Trainings-App zum Planen, Erfassen und Auswerten von Laufen, Krafttraining, Zielen und Strecken. Sie zeigt die Daten, die wirklich helfen – ohne endlose Fitnessmetriken.', 'A private training app for planning, tracking and reviewing running, strength work, goals and routes. It shows the data that is genuinely useful — without endless fitness metrics.' ) ); ?>
 						</p>
 
 						<div class="sa-work-sec-foot">
@@ -279,7 +279,7 @@ $sa_footer_nav = sa_child_nav_items( 'footer' );
 						<h3 class="sa-work-tagline"><?php echo esc_html( sa_child_text( 'Reisen, die in Erinnerung bleiben.', 'Trips worth remembering.' ) ); ?></h3>
 
 						<p class="sa-work-desc">
-							<?php echo wp_kses_post( sa_child_text( 'Ein ruhiges Konzept für Reiseplanung und Reisetagebuch, das Ziele, Ideen, Routen und Erinnerungen an einem Ort sammelt. Gedacht für die gesamte Reise &ndash; von der ersten gespeicherten Idee bis zu den Erinnerungen, die danach bleiben.', 'A calm travel planning and trip journal concept for collecting destinations, ideas, routes and memories in one place. Designed around the complete trip &mdash; from the first saved idea to the memories that remain afterwards.' ) ); ?>
+							<?php echo wp_kses_post( sa_child_text( 'Ein Konzept für Reiseplanung und Reisetagebuch, das Ziele, Ideen, Routen und Erinnerungen an einem Ort sammelt &ndash; von der ersten gespeicherten Idee bis zum Rückblick nach der Reise.', 'A travel planner and journal concept that brings destinations, ideas, routes and memories together — from the first saved idea to the reflections after the trip.' ) ); ?>
 						</p>
 
 						<div class="sa-work-sec-foot">
@@ -297,11 +297,11 @@ $sa_footer_nav = sa_child_nav_items( 'footer' );
 			<span class="sa-about-eyebrow"><?php echo esc_html( sa_child_text( 'DER ANSATZ', 'THE APPROACH' ) ); ?></span>
 
 			<h2 class="sa-exp-process-headline">
-				<?php echo wp_kses_post( sa_child_text( 'kleiner Umfang. <span class="sa-lime-text">starke Ideen</span>.', 'small scope. <span class="sa-lime-text">strong ideas</span>.' ) ); ?>
+				<?php echo wp_kses_post( sa_child_text( 'klein anfangen. <span class="sa-lime-text">sinnvoll weiterbauen</span>.', 'start small. <span class="sa-lime-text">build what matters</span>.' ) ); ?>
 			</h2>
 
 			<p class="sa-exp-process-desc" style="max-width: 650px;">
-				<?php echo wp_kses_post( sa_child_text( 'Ich entwickle gern fokussierte digitale Produkte rund um einen klaren Zweck.<br />Klein anfangen. Nützlich machen. Verfeinern, was zählt.', 'I like building focused digital products around a clear purpose.<br />Start small. Make it useful. Refine what matters.' ) ); ?>
+				<?php echo wp_kses_post( sa_child_text( 'Ich entwickle digitale Produkte, die eine konkrete Aufgabe gut lösen.<br />Klein anfangen. Im Alltag testen. Sinnvoll weiterentwickeln.', 'I build digital products that solve a specific problem well.<br />Start small. Test in real use. Improve what matters.' ) ); ?>
 			</p>
 
 			<!-- PROCESS STEPS LINE -->
