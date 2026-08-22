@@ -163,7 +163,6 @@ function sa_child_route_language_links() {
 		'work/stat',
 		'work/stau',
 		'work/monroe-toyparty-landingpage',
-		'journal',
 		'datenschutzerklaerung',
 		'impressum',
 	);
@@ -190,7 +189,7 @@ function sa_child_route_wpseo_canonical( $canonical ) {
 	$request_path = preg_replace( '#^(?:de|en)/#', '', $request_path );
 	$request_path = 'about' === $request_path ? 'about-me' : $request_path;
 	$request_path = 'datenschutz' === $request_path ? 'datenschutzerklaerung' : $request_path;
-	$direct_routes = array( 'services', 'about-me', 'work', 'work/stan', 'work/stat', 'work/stau', 'work/monroe-toyparty-landingpage', 'journal', 'datenschutzerklaerung', 'impressum' );
+	$direct_routes = array( 'services', 'about-me', 'work', 'work/stan', 'work/stat', 'work/stau', 'work/monroe-toyparty-landingpage', 'datenschutzerklaerung', 'impressum' );
 
 	return in_array( $request_path, $direct_routes, true ) ? false : $canonical;
 }
