@@ -632,7 +632,10 @@ function sa_child_handle_contact_form() {
 
 	$subject = sprintf( 'Projektanfrage von %s — Studio Avelin', $name );
 	$body    = "Name: {$name}\nE-Mail: {$email}\nProjekt: {$projects[$project]}\nZeitraum: " . ( $timeline ?: '–' ) . "\nSprache: " . strtoupper( $language ) . "\n\nNachricht:\n{$message}";
-	$headers = array( 'Reply-To: ' . $name . ' <' . $email . '>' );
+	$headers = array(
+		'From: Studio Avelin <hello@studio-avelin.com>',
+		'Reply-To: ' . $name . ' <' . $email . '>',
+	);
 
 	if ( wp_mail( 'hello@studio-avelin.com', $subject, $body, $headers ) ) {
 		set_transient( $rate_key, 1, 2 * MINUTE_IN_SECONDS );
