@@ -26,7 +26,7 @@ $sa_footer_nav  = sa_child_nav_items( 'footer' );
 <body <?php body_class( array( 'home', 'sa-front', 'sa-page', 'sa-page--legal' ) ); ?>>
 <?php wp_body_open(); ?>
 
-<a class="sa-skip" href="#sa-main">Skip to content</a>
+<a class="sa-skip" href="#sa-main"><?php echo esc_html( sa_child_text( 'Zum Inhalt springen', 'Skip to content' ) ); ?></a>
 
 <?php get_template_part( 'parts/sa-header' ); ?>
 

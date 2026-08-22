@@ -41,6 +41,15 @@ function sa_child_text( $german, $english ) {
 
 /** Return the best available URL for a language-switch link. */
 function sa_child_language_url( $language ) {
+	$request_path = trim( (string) wp_parse_url( $_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH ), '/' );
+	$request_path = preg_replace( '#^(?:de|en)/#', '', $request_path );
+	$legal_paths  = array( 'datenschutzerklaerung', 'datenschutz', 'impressum' );
+
+	if ( in_array( $request_path, $legal_paths, true ) ) {
+		$home = function_exists( 'pll_home_url' ) ? pll_home_url( $language ) : home_url( '/' );
+		return trailingslashit( $home ) . trailingslashit( $request_path );
+	}
+
 	if ( function_exists( 'pll_the_languages' ) ) {
 		$languages = pll_the_languages(
 			array(
@@ -95,6 +104,9 @@ function sa_child_document_title( $title ) {
 		'experiments' => 'Experiments - Studio Avelin',
 		'about-me'    => sa_child_text( 'Über mich - Studio Avelin', 'About Me - Studio Avelin' ),
 		'about'       => sa_child_text( 'Über mich - Studio Avelin', 'About Me - Studio Avelin' ),
+		'datenschutzerklaerung' => sa_child_text( 'Datenschutzerklärung - Studio Avelin', 'Privacy Policy - Studio Avelin' ),
+		'datenschutz' => sa_child_text( 'Datenschutzerklärung - Studio Avelin', 'Privacy Policy - Studio Avelin' ),
+		'impressum'   => sa_child_text( 'Impressum - Studio Avelin', 'Legal Notice - Studio Avelin' ),
 		'work/stan'   => 'STAN - Studio Avelin',
 		'work/stat'   => 'StAT - Studio Avelin',
 		'work/stau'   => 'StAU - Studio Avelin',
@@ -449,6 +461,18 @@ add_action( 'template_redirect', function() {
 		status_header( 200 );
 		$GLOBALS['wp_query']->is_404 = false;
 		include get_stylesheet_directory() . '/page-services.php';
+		exit;
+	}
+	if ( 'datenschutzerklaerung' === $request_uri || 'datenschutz' === $request_uri ) {
+		status_header( 200 );
+		$GLOBALS['wp_query']->is_404 = false;
+		include get_stylesheet_directory() . '/page-datenschutzerklaerung.php';
+		exit;
+	}
+	if ( 'impressum' === $request_uri ) {
+		status_header( 200 );
+		$GLOBALS['wp_query']->is_404 = false;
+		include get_stylesheet_directory() . '/page-impressum.php';
 		exit;
 	}
 	if ( 'experiments' === $request_uri ) {

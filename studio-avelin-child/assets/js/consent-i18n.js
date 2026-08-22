@@ -27,11 +27,13 @@
 			if ( link.textContent !== 'Privacy Policy' ) {
 				link.textContent = 'Privacy Policy';
 			}
+			link.href = `${ window.location.origin }/en/datenschutzerklaerung/`;
 		} );
 		document.querySelectorAll( '.cmplz-link.impressum' ).forEach( ( link ) => {
 			if ( link.textContent !== 'Legal Notice' ) {
 				link.textContent = 'Legal Notice';
 			}
+			link.href = `${ window.location.origin }/en/impressum/`;
 		} );
 	}
 

@@ -9,11 +9,18 @@
 
 <div class="sa-legal-hero">
 	<span class="sa-legal-hero__eyebrow">Legal Notice</span>
-	<h1 class="sa-legal-hero__title">Datenschutzerklärung</h1>
-	<span class="sa-legal-hero__meta">Stand: <?php echo date('m/Y'); ?></span>
+	<h1 class="sa-legal-hero__title"><?php echo esc_html( sa_child_text( 'Datenschutzerklärung', 'Privacy Policy' ) ); ?></h1>
+	<span class="sa-legal-hero__meta"><?php echo esc_html( sa_child_text( 'Stand: ', 'German original · Updated: ' ) ); ?><?php echo esc_html( wp_date( 'm/Y' ) ); ?></span>
 </div>
 
 <div class="sa-legal-content">
+	<?php if ( 'en' === sa_child_language() ) : ?>
+		<section class="sa-legal-card sa-legal-card--language-note">
+			<div class="sa-legal-card__num">EN</div>
+			<h2>About this privacy policy</h2>
+			<p>This page retains the complete German privacy policy below. The German text is the authoritative legal version. If you have questions about how Studio Avelin handles personal data, please contact <a href="mailto:hello@studio-avelin.com">hello@studio-avelin.com</a>.</p>
+		</section>
+	<?php endif; ?>
 
 	<!-- 01. DATENSCHUTZ AUF EINEN BLICK -->
 	<section class="sa-legal-card">

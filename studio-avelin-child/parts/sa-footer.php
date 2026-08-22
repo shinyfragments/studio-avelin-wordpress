@@ -52,8 +52,8 @@ $sa_home_url = function_exists( 'pll_home_url' ) ? trailingslashit( pll_home_url
 				<div class="sa-footer-col">
 					<span class="sa-footer-col-label"><?php echo esc_html( sa_child_text( 'RECHTLICHES', 'LEGAL' ) ); ?></span>
 					<ul class="sa-footer-links">
-						<li><a href="<?php echo esc_url( $sa_home_url . 'datenschutzerklaerung/' ); ?>">Datenschutzerkl&auml;rung</a></li>
-						<li><a href="<?php echo esc_url( $sa_home_url . 'impressum/' ); ?>">Impressum</a></li>
+						<li><a href="<?php echo esc_url( $sa_home_url . 'datenschutzerklaerung/' ); ?>"><?php echo esc_html( sa_child_text( 'Datenschutzerklärung', 'Privacy Policy' ) ); ?></a></li>
+						<li><a href="<?php echo esc_url( $sa_home_url . 'impressum/' ); ?>"><?php echo esc_html( sa_child_text( 'Impressum', 'Legal Notice' ) ); ?></a></li>
 					</ul>
 				</div>
 

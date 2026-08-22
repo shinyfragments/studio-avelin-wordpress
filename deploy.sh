@@ -21,6 +21,8 @@ FILES=(
 	"page-experiments.php"
 	"page-about-me.php"
 	"page-services.php"
+	"page-datenschutzerklaerung.php"
+	"page-impressum.php"
 	"page-work.php"
 	"page-work-stan.php"
 	"page-work-monroe-toyparty-landingpage.php"
@@ -28,8 +30,10 @@ FILES=(
 	"assets/img/portrait.jpg"
 	"assets/img/project-portfolio-visual.svg"
 	"parts/sa-header.php"
-  "parts/sa-project-note.php"
+	"parts/sa-project-note.php"
   "parts/sa-footer.php"
+	"patterns/datenschutz.php"
+	"patterns/impressum.php"
   "inc/sa-journal.php"
   "journal/archive-journal.php"
   "journal/post-cover.php"
@@ -55,7 +59,7 @@ for file in "${FILES[@]}"; do
   }
 done
 
-mkdir -p "${BACKUP_DIR}/parts" "${BACKUP_DIR}/assets/css" "${BACKUP_DIR}/assets/img" "${BACKUP_DIR}/assets/js"
+mkdir -p "${BACKUP_DIR}/parts" "${BACKUP_DIR}/patterns" "${BACKUP_DIR}/assets/css" "${BACKUP_DIR}/assets/img" "${BACKUP_DIR}/assets/js"
 echo "Deploying ${#FILES[@]} child-theme files to IONOS..."
 
 expect -f - "$REMOTE_USER" "$REMOTE_HOST" "$REMOTE_DIR" "$LOCAL_DIR" "$BACKUP_DIR" "${FILES[@]}" <<'EXPECT'
@@ -95,7 +99,7 @@ expect {
 }
 wait_for_prompt "authentication"
 
-foreach file [list "front-page.php" "functions.php" "single-experiment.php" "page-experiments.php" "page-about-me.php" "page-services.php" "page-work.php" "page-work-stan.php" "page-work-monroe-toyparty-landingpage.php" "parts/sa-header.php" "parts/sa-project-note.php" "parts/sa-footer.php" "assets/img/portrait.jpg" "assets/img/project-portfolio-visual.svg" "assets/css/home.css" "assets/css/pages.css" "assets/css/sa-base.css" "assets/js/home.js"] {
+foreach file [list "front-page.php" "functions.php" "single-experiment.php" "page-experiments.php" "page-about-me.php" "page-services.php" "page-datenschutzerklaerung.php" "page-impressum.php" "page-work.php" "page-work-stan.php" "page-work-monroe-toyparty-landingpage.php" "parts/sa-header.php" "parts/sa-project-note.php" "parts/sa-footer.php" "patterns/datenschutz.php" "patterns/impressum.php" "assets/img/portrait.jpg" "assets/img/project-portfolio-visual.svg" "assets/css/home.css" "assets/css/pages.css" "assets/css/sa-base.css" "assets/js/home.js"] {
   send -- "get $remote_dir/$file $backup_dir/$file\r"
   wait_for_prompt "backup of $file"
 }
@@ -104,6 +108,7 @@ foreach directory [list \
   "$remote_dir/inc" \
   "$remote_dir/journal" \
   "$remote_dir/parts" \
+	"$remote_dir/patterns" \
   "$remote_dir/assets" \
   "$remote_dir/assets/css" \
   "$remote_dir/assets/img" \
