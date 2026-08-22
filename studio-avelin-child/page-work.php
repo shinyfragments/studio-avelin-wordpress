@@ -326,7 +326,7 @@ $sa_footer_nav = sa_child_nav_items( 'footer' );
 
 			<div class="sa-work-contact-actions">
 				<a class="sa-work-contact-link" href="<?php echo esc_url( $sa_home . 'contact/' ); ?>">
-					HELLO@STUDIO-AVELIN.COM <span class="sa-exp-arrow">&rarr;</span>
+					<?php echo esc_html( sa_child_text( 'PROJEKT ANFRAGEN', 'SEND A PROJECT ENQUIRY' ) ); ?> <span class="sa-exp-arrow">&rarr;</span>
 				</a>
 				<a class="sa-work-services-link" href="<?php echo esc_url( $sa_home . 'services/' ); ?>">
 					<?php echo esc_html( sa_child_text( 'LEISTUNGEN ENTDECKEN', 'EXPLORE SERVICES' ) ); ?> <span aria-hidden="true">&rarr;</span>
