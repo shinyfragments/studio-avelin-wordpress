@@ -660,9 +660,9 @@ function sa_child_configure_ionos_smtp( $phpmailer ) {
 	}
 
 	$phpmailer->isSMTP();
-	$phpmailer->Host       = 'smtp.ionos.com';
-	$phpmailer->Port       = 587;
-	$phpmailer->SMTPSecure = 'tls';
+	$phpmailer->Host       = 'smtp.ionos.de';
+	$phpmailer->Port       = 465;
+	$phpmailer->SMTPSecure = 'ssl';
 	$phpmailer->SMTPAuth   = true;
 	$phpmailer->Username   = SA_SMTP_USER;
 	$phpmailer->Password   = SA_SMTP_PASSWORD;
