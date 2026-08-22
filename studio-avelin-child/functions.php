@@ -138,6 +138,64 @@ function sa_child_document_title( $title ) {
 add_filter( 'pre_get_document_title', 'sa_child_document_title', 100 );
 add_filter( 'wpseo_title', 'sa_child_document_title', 100 );
 
+/**
+ * Add canonical and language-alternate URLs for routes rendered directly by
+ * the child theme, where WordPress and Polylang do not have a normal queried
+ * translation pair from which to generate these tags.
+ */
+function sa_child_route_language_links() {
+	$request_path = trim( (string) wp_parse_url( $_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH ), '/' );
+	$request_path = preg_replace( '#^(?:de|en)/#', '', $request_path );
+
+	$aliases = array(
+		'about'      => 'about-me',
+		'datenschutz' => 'datenschutzerklaerung',
+	);
+	if ( isset( $aliases[ $request_path ] ) ) {
+		$request_path = $aliases[ $request_path ];
+	}
+
+	$direct_routes = array(
+		'services',
+		'about-me',
+		'work',
+		'work/stan',
+		'work/stat',
+		'work/stau',
+		'work/monroe-toyparty-landingpage',
+		'journal',
+		'datenschutzerklaerung',
+		'impressum',
+	);
+	if ( ! in_array( $request_path, $direct_routes, true ) ) {
+		return;
+	}
+
+	$de_home = function_exists( 'pll_home_url' ) ? trailingslashit( pll_home_url( 'de' ) ) : trailingslashit( home_url( '/' ) );
+	$en_home = function_exists( 'pll_home_url' ) ? trailingslashit( pll_home_url( 'en' ) ) : trailingslashit( home_url( '/en/' ) );
+	$de_url  = $de_home . trailingslashit( $request_path );
+	$en_url  = $en_home . trailingslashit( $request_path );
+	$current = 'en' === sa_child_language() ? $en_url : $de_url;
+
+	echo '<link rel="canonical" href="' . esc_url( $current ) . '">' . "\n";
+	echo '<link rel="alternate" hreflang="de" href="' . esc_url( $de_url ) . '">' . "\n";
+	echo '<link rel="alternate" hreflang="en" href="' . esc_url( $en_url ) . '">' . "\n";
+	echo '<link rel="alternate" hreflang="x-default" href="' . esc_url( $de_url ) . '">' . "\n";
+}
+add_action( 'wp_head', 'sa_child_route_language_links', 2 );
+
+/** Avoid a duplicate Yoast canonical on the routes covered above. */
+function sa_child_route_wpseo_canonical( $canonical ) {
+	$request_path = trim( (string) wp_parse_url( $_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH ), '/' );
+	$request_path = preg_replace( '#^(?:de|en)/#', '', $request_path );
+	$request_path = 'about' === $request_path ? 'about-me' : $request_path;
+	$request_path = 'datenschutz' === $request_path ? 'datenschutzerklaerung' : $request_path;
+	$direct_routes = array( 'services', 'about-me', 'work', 'work/stan', 'work/stat', 'work/stau', 'work/monroe-toyparty-landingpage', 'journal', 'datenschutzerklaerung', 'impressum' );
+
+	return in_array( $request_path, $direct_routes, true ) ? false : $canonical;
+}
+add_filter( 'wpseo_canonical', 'sa_child_route_wpseo_canonical', 100 );
+
 /** Intentional descriptions for the homepage, Services and native Journal routes. */
 function sa_child_meta_description( $description = '' ) {
 	$request_path = trim( (string) wp_parse_url( $_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH ), '/' );
