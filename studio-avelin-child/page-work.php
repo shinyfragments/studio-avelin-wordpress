@@ -11,7 +11,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$sa_home        = trailingslashit( home_url( '/' ) );
+$sa_home        = function_exists( 'pll_home_url' )
+	? trailingslashit( pll_home_url( sa_child_language() ) )
+	: trailingslashit( home_url( '/' ) );
 $sa_nav         = sa_child_nav_items( 'header' );
 $sa_footer_nav = sa_child_nav_items( 'footer' );
 ?>
@@ -26,7 +28,7 @@ $sa_footer_nav = sa_child_nav_items( 'footer' );
 <body <?php body_class( array( 'home', 'sa-front', 'sa-page', 'sa-page--work' ) ); ?>>
 <?php wp_body_open(); ?>
 
-<a class="sa-skip" href="#sa-main">Skip to content</a>
+<a class="sa-skip" href="#sa-main"><?php echo esc_html( sa_child_text( 'Zum Inhalt springen', 'Skip to content' ) ); ?></a>
 
 <?php get_template_part( 'parts/sa-header' ); ?>
 
@@ -37,16 +39,15 @@ $sa_footer_nav = sa_child_nav_items( 'footer' );
 		<!-- HERO SECTION -->
 		<section class="sa-exp-hero">
 			<div class="sa-exp-hero__left">
-				<span class="sa-about-eyebrow">SELECTED WORK</span>
+				<span class="sa-about-eyebrow"><?php echo esc_html( sa_child_text( 'AUSGEWÄHLTE ARBEITEN', 'SELECTED WORK' ) ); ?></span>
 
 				<h1 class="sa-about-hero-headline">
-					built with <span class="sa-lime-text">purpose</span>.
+					<?php echo wp_kses_post( sa_child_text( 'mit <span class="sa-lime-text">Sinn</span> gestaltet.', 'built with <span class="sa-lime-text">purpose</span>.' ) ); ?>
 				</h1>
 
 				<div class="sa-about-intro" style="max-width: 650px;">
 					<p>
-						A small collection of digital products, tools and ideas designed and built under the Studio Avelin umbrella.<br />
-						Small in scope. Clear in purpose. Made to be useful.
+						<?php echo wp_kses_post( sa_child_text( 'Eine kleine Auswahl digitaler Produkte, Werkzeuge und Ideen, gestaltet und entwickelt unter dem Dach von Studio Avelin.<br />Klar im Umfang. Klar im Zweck. Gemacht, um nützlich zu sein.', 'A small collection of digital products, tools and ideas designed and built under the Studio Avelin umbrella.<br />Small in scope. Clear in purpose. Made to be useful.' ) ); ?>
 					</p>
 				</div>
 			</div>
@@ -55,9 +56,7 @@ $sa_footer_nav = sa_child_nav_items( 'footer' );
 				<div class="sa-exp-hero-note">
 					<span class="sa-exp-lime-line" aria-hidden="true"></span>
 					<p class="sa-exp-hero-note__text">
-						Client work and independent products.<br />
-						Designed, built and refined<br />
-						with direct collaboration.
+						<?php echo wp_kses_post( sa_child_text( 'Kundenarbeiten und eigene Produkte.<br />Gestaltet, entwickelt und verfeinert<br />in direkter Zusammenarbeit.', 'Client work and independent products.<br />Designed, built and refined<br />with direct collaboration.' ) ); ?>
 					</p>
 				</div>
 			</div>
@@ -65,7 +64,7 @@ $sa_footer_nav = sa_child_nav_items( 'footer' );
 
 		<!-- INDEX BAR -->
 		<div class="sa-work-index-bar">
-			<span>PROJECTS &middot; 01&mdash;04</span>
+			<span><?php echo wp_kses_post( sa_child_text( 'PROJEKTE &middot; 01&mdash;04', 'PROJECTS &middot; 01&mdash;04' ) ); ?></span>
 		</div>
 
 		<!-- ================= PROJECT 01: FEATURED (STAN) ================= -->
@@ -79,37 +78,37 @@ $sa_footer_nav = sa_child_nav_items( 'footer' );
 						<span class="sa-work-status-tag sa-work-status-tag--live">
 							<span class="sa-work-status-dot"></span> LIVE
 						</span>
-						<span class="sa-exp-card__eyebrow">DIGITAL PRODUCT</span>
+						<span class="sa-exp-card__eyebrow"><?php echo esc_html( sa_child_text( 'DIGITALES PRODUKT', 'DIGITAL PRODUCT' ) ); ?></span>
 					</div>
 
 					<h2 class="sa-work-title">STAN</h2>
 					<span class="sa-work-fullname">Studio Avelin Notes</span>
 
-					<h3 class="sa-work-tagline">A focused space for ideas.</h3>
+					<h3 class="sa-work-tagline"><?php echo esc_html( sa_child_text( 'Ein fokussierter Ort für Ideen.', 'A focused space for ideas.' ) ); ?></h3>
 
 					<p class="sa-work-desc">
-						STAN is a focused notes and thinking app for collecting ideas, spaces, notes and tags. Designed to keep things simple: fewer distractions, clear structure and a calm place for thoughts that should not get lost.
+						<?php echo esc_html( sa_child_text( 'STAN ist eine fokussierte Notiz- und Denk-App zum Sammeln von Ideen, Bereichen, Notizen und Tags. Entwickelt, um die Dinge einfach zu halten: weniger Ablenkung, klare Struktur und ein ruhiger Ort für Gedanken, die nicht verloren gehen sollen.', 'STAN is a focused notes and thinking app for collecting ideas, spaces, notes and tags. Designed to keep things simple: fewer distractions, clear structure and a calm place for thoughts that should not get lost.' ) ); ?>
 					</p>
 
 					<!-- DETAILS ROW -->
 					<div class="sa-work-details-row">
 						<div class="sa-work-detail-item">
-							<span class="sa-work-detail-label">TYPE</span>
-							<span class="sa-work-detail-val">Personal productivity app</span>
+							<span class="sa-work-detail-label"><?php echo esc_html( sa_child_text( 'TYP', 'TYPE' ) ); ?></span>
+							<span class="sa-work-detail-val"><?php echo esc_html( sa_child_text( 'Persönliche Produktivitäts-App', 'Personal productivity app' ) ); ?></span>
 						</div>
 						<div class="sa-work-detail-item">
 							<span class="sa-work-detail-label">FOCUS</span>
-							<span class="sa-work-detail-val">Notes + thinking</span>
+							<span class="sa-work-detail-val"><?php echo esc_html( sa_child_text( 'Notizen + Denken', 'Notes + thinking' ) ); ?></span>
 						</div>
 						<div class="sa-work-detail-item">
-							<span class="sa-work-detail-label">BUILT WITH</span>
+							<span class="sa-work-detail-label"><?php echo esc_html( sa_child_text( 'TECHNIK', 'BUILT WITH' ) ); ?></span>
 							<span class="sa-work-detail-val">React / Supabase / Vercel</span>
 						</div>
 					</div>
 
 					<div class="sa-work-cta-box" style="margin-top: 2rem;">
 						<a class="sa-about-cta-btn" href="<?php echo esc_url( $sa_home . 'work/stan/' ); ?>">
-							<span>VIEW PROJECT</span>
+							<span><?php echo esc_html( sa_child_text( 'PROJEKT ANSEHEN', 'VIEW PROJECT' ) ); ?></span>
 							<span class="sa-about-cta-arrow">&rarr;</span>
 						</a>
 					</div>
@@ -171,19 +170,19 @@ $sa_footer_nav = sa_child_nav_items( 'footer' );
 					<div class="sa-work-meta-top">
 						<span class="sa-work-num">02</span>
 						<span class="sa-work-status-tag sa-work-status-tag--live"><span class="sa-work-status-dot"></span> LIVE</span>
-						<span class="sa-exp-card__eyebrow">CLIENT WEBSITE</span>
+						<span class="sa-exp-card__eyebrow"><?php echo esc_html( sa_child_text( 'KUNDENWEBSITE', 'CLIENT WEBSITE' ) ); ?></span>
 					</div>
 					<h2 class="sa-work-title">Portfolio Page</h2>
 					<span class="sa-work-fullname">MONROE Toyparty Landingpage</span>
-					<h3 class="sa-work-tagline">Warm, discreet and easy to approach.</h3>
-					<p class="sa-work-desc">A focused portfolio and landing page for an independent MONROE consultant. The visual direction balances warmth and discretion, while the structure makes the offer understandable and contact deliberately simple.</p>
+					<h3 class="sa-work-tagline"><?php echo esc_html( sa_child_text( 'Warm, diskret und zugänglich.', 'Warm, discreet and easy to approach.' ) ); ?></h3>
+					<p class="sa-work-desc"><?php echo esc_html( sa_child_text( 'Eine fokussierte Portfolio- und Landingpage für eine selbstständige MONROE-Beraterin. Die visuelle Richtung verbindet Wärme und Diskretion, während die Struktur das Angebot verständlich und die Kontaktaufnahme bewusst einfach macht.', 'A focused portfolio and landing page for an independent MONROE consultant. The visual direction balances warmth and discretion, while the structure makes the offer understandable and contact deliberately simple.' ) ); ?></p>
 					<div class="sa-work-details-row">
-						<div class="sa-work-detail-item"><span class="sa-work-detail-label">TYPE</span><span class="sa-work-detail-val">Client landing page</span></div>
-						<div class="sa-work-detail-item"><span class="sa-work-detail-label">ROLE</span><span class="sa-work-detail-val">Design, development, copy support</span></div>
-						<div class="sa-work-detail-item"><span class="sa-work-detail-label">FOCUS</span><span class="sa-work-detail-val">Identity, clarity, contact</span></div>
+						<div class="sa-work-detail-item"><span class="sa-work-detail-label"><?php echo esc_html( sa_child_text( 'TYP', 'TYPE' ) ); ?></span><span class="sa-work-detail-val"><?php echo esc_html( sa_child_text( 'Kunden-Landingpage', 'Client landing page' ) ); ?></span></div>
+						<div class="sa-work-detail-item"><span class="sa-work-detail-label"><?php echo esc_html( sa_child_text( 'ROLLE', 'ROLE' ) ); ?></span><span class="sa-work-detail-val"><?php echo esc_html( sa_child_text( 'Design, Entwicklung, Textunterstützung', 'Design, development, copy support' ) ); ?></span></div>
+						<div class="sa-work-detail-item"><span class="sa-work-detail-label">FOCUS</span><span class="sa-work-detail-val"><?php echo esc_html( sa_child_text( 'Identität, Klarheit, Kontakt', 'Identity, clarity, contact' ) ); ?></span></div>
 					</div>
 					<div class="sa-work-cta-box" style="margin-top: 2rem;">
-						<a class="sa-about-cta-btn" href="<?php echo esc_url( $sa_home . 'work/monroe-toyparty-landingpage/' ); ?>"><span>VIEW PROJECT</span><span class="sa-about-cta-arrow">&rarr;</span></a>
+						<a class="sa-about-cta-btn" href="<?php echo esc_url( $sa_home . 'work/monroe-toyparty-landingpage/' ); ?>"><span><?php echo esc_html( sa_child_text( 'PROJEKT ANSEHEN', 'VIEW PROJECT' ) ); ?></span><span class="sa-about-cta-arrow">&rarr;</span></a>
 					</div>
 				</div>
 				<div class="sa-work-featured-preview">
@@ -227,22 +226,22 @@ $sa_footer_nav = sa_child_nav_items( 'footer' );
 					<div class="sa-work-sec-body">
 						<div class="sa-work-meta-top">
 							<span class="sa-work-num">03</span>
-							<span class="sa-work-status-tag sa-work-status-tag--dev">IN DEVELOPMENT</span>
-							<span class="sa-exp-card__eyebrow">DIGITAL PRODUCT</span>
+							<span class="sa-work-status-tag sa-work-status-tag--dev"><?php echo esc_html( sa_child_text( 'IN ENTWICKLUNG', 'IN DEVELOPMENT' ) ); ?></span>
+							<span class="sa-exp-card__eyebrow"><?php echo esc_html( sa_child_text( 'DIGITALES PRODUKT', 'DIGITAL PRODUCT' ) ); ?></span>
 						</div>
 
 						<h2 class="sa-work-sec-title">StAT</h2>
 						<span class="sa-work-fullname">Studio Avelin Training</span>
 
-						<h3 class="sa-work-tagline">Training, without the noise.</h3>
+						<h3 class="sa-work-tagline"><?php echo esc_html( sa_child_text( 'Training ohne den Lärm.', 'Training, without the noise.' ) ); ?></h3>
 
 						<p class="sa-work-desc">
-							A private training app for planning, tracking and reviewing running, strength, goals, routes and progress. Built around useful data, clear routines and a calm overview instead of endless fitness metrics.
+							<?php echo esc_html( sa_child_text( 'Eine private Trainings-App zum Planen, Erfassen und Auswerten von Laufen, Krafttraining, Zielen, Strecken und Fortschritten. Aufgebaut rund um nützliche Daten, klare Routinen und eine ruhige Übersicht statt endloser Fitnessmetriken.', 'A private training app for planning, tracking and reviewing running, strength, goals, routes and progress. Built around useful data, clear routines and a calm overview instead of endless fitness metrics.' ) ); ?>
 						</p>
 
 						<div class="sa-work-sec-foot">
 							<span class="sa-exp-card__meta">PRODUCT DESIGN &middot; DEVELOPMENT &middot; DATA</span>
-							<span class="sa-exp-card__badge">IN PROGRESS</span>
+							<span class="sa-exp-card__badge"><?php echo esc_html( sa_child_text( 'IN ARBEIT', 'IN PROGRESS' ) ); ?></span>
 						</div>
 					</div>
 				</article>
@@ -270,22 +269,22 @@ $sa_footer_nav = sa_child_nav_items( 'footer' );
 					<div class="sa-work-sec-body">
 						<div class="sa-work-meta-top">
 							<span class="sa-work-num">04</span>
-							<span class="sa-work-status-tag sa-work-status-tag--concept">CONCEPT</span>
-							<span class="sa-exp-card__eyebrow">PRODUCT CONCEPT</span>
+							<span class="sa-work-status-tag sa-work-status-tag--concept"><?php echo esc_html( sa_child_text( 'KONZEPT', 'CONCEPT' ) ); ?></span>
+							<span class="sa-exp-card__eyebrow"><?php echo esc_html( sa_child_text( 'PRODUKTKONZEPT', 'PRODUCT CONCEPT' ) ); ?></span>
 						</div>
 
 						<h2 class="sa-work-sec-title">StAU</h2>
 						<span class="sa-work-fullname">Studio Avelin Travel Planner</span>
 
-						<h3 class="sa-work-tagline">Trips worth remembering.</h3>
+						<h3 class="sa-work-tagline"><?php echo esc_html( sa_child_text( 'Reisen, die in Erinnerung bleiben.', 'Trips worth remembering.' ) ); ?></h3>
 
 						<p class="sa-work-desc">
-							A calm travel planning and trip journal concept for collecting destinations, ideas, routes and memories in one place. Designed around the complete trip &mdash; from the first saved idea to the memories that remain afterwards.
+							<?php echo wp_kses_post( sa_child_text( 'Ein ruhiges Konzept für Reiseplanung und Reisetagebuch, das Ziele, Ideen, Routen und Erinnerungen an einem Ort sammelt. Gedacht für die gesamte Reise &ndash; von der ersten gespeicherten Idee bis zu den Erinnerungen, die danach bleiben.', 'A calm travel planning and trip journal concept for collecting destinations, ideas, routes and memories in one place. Designed around the complete trip &mdash; from the first saved idea to the memories that remain afterwards.' ) ); ?>
 						</p>
 
 						<div class="sa-work-sec-foot">
 							<span class="sa-exp-card__meta">PRODUCT DESIGN &middot; UX &middot; CONCEPT</span>
-							<span class="sa-exp-card__badge">CONCEPT</span>
+							<span class="sa-exp-card__badge"><?php echo esc_html( sa_child_text( 'KONZEPT', 'CONCEPT' ) ); ?></span>
 						</div>
 					</div>
 				</article>
@@ -295,43 +294,42 @@ $sa_footer_nav = sa_child_nav_items( 'footer' );
 
 		<!-- ================= MID-PAGE STATEMENT: THE APPROACH ================= -->
 		<section class="sa-exp-process-section" style="margin-top: 5rem;">
-			<span class="sa-about-eyebrow">THE APPROACH</span>
+			<span class="sa-about-eyebrow"><?php echo esc_html( sa_child_text( 'DER ANSATZ', 'THE APPROACH' ) ); ?></span>
 
 			<h2 class="sa-exp-process-headline">
-				small scope. <span class="sa-lime-text">strong ideas</span>.
+				<?php echo wp_kses_post( sa_child_text( 'kleiner Umfang. <span class="sa-lime-text">starke Ideen</span>.', 'small scope. <span class="sa-lime-text">strong ideas</span>.' ) ); ?>
 			</h2>
 
 			<p class="sa-exp-process-desc" style="max-width: 650px;">
-				I like building focused digital products around a clear purpose.<br />
-				Start small. Make it useful. Refine what matters.
+				<?php echo wp_kses_post( sa_child_text( 'Ich entwickle gern fokussierte digitale Produkte rund um einen klaren Zweck.<br />Klein anfangen. Nützlich machen. Verfeinern, was zählt.', 'I like building focused digital products around a clear purpose.<br />Start small. Make it useful. Refine what matters.' ) ); ?>
 			</p>
 
 			<!-- PROCESS STEPS LINE -->
 			<div class="sa-work-process-steps">
-				<div class="sa-work-step"><span>01</span> IDEA</div>
+				<div class="sa-work-step"><span>01</span> <?php echo esc_html( sa_child_text( 'IDEE', 'IDEA' ) ); ?></div>
 				<div class="sa-work-step-line"></div>
 				<div class="sa-work-step"><span>02</span> STRUCTURE</div>
 				<div class="sa-work-step-line"></div>
 				<div class="sa-work-step"><span>03</span> DESIGN</div>
 				<div class="sa-work-step-line"></div>
-				<div class="sa-work-step"><span>04</span> BUILD</div>
+				<div class="sa-work-step"><span>04</span> <?php echo esc_html( sa_child_text( 'UMSETZUNG', 'BUILD' ) ); ?></div>
 				<div class="sa-work-step-line"></div>
-				<div class="sa-work-step"><span>05</span> REFINE</div>
+				<div class="sa-work-step"><span>05</span> <?php echo esc_html( sa_child_text( 'VERFEINERN', 'REFINE' ) ); ?></div>
 			</div>
 		</section>
 
 		<!-- ================= FINAL CTA: SAY HELLO ================= -->
 		<section class="sa-work-contact-section">
-			<span class="sa-about-eyebrow">SAY HELLO</span>
-			<h2 class="sa-work-contact-title">Have an idea?</h2>
-			<p class="sa-work-contact-sub">Let’s make something useful.</p>
+			<span class="sa-about-eyebrow"><?php echo esc_html( sa_child_text( 'SAG HALLO', 'SAY HELLO' ) ); ?></span>
+			<h2 class="sa-work-contact-title"><?php echo esc_html( sa_child_text( 'Du hast eine Idee?', 'Have an idea?' ) ); ?></h2>
+			<p class="sa-work-contact-sub"><?php echo esc_html( sa_child_text( 'Lass uns etwas Nützliches daraus machen.', 'Let’s make something useful.' ) ); ?></p>
 
 			<div class="sa-work-contact-actions">
 				<a class="sa-work-contact-link" href="mailto:hello@studio-avelin.com?subject=Project%20inquiry%20%E2%80%94%20Studio%20Avelin">
 					HELLO@STUDIO-AVELIN.COM <span class="sa-exp-arrow">&rarr;</span>
 				</a>
 				<a class="sa-work-services-link" href="<?php echo esc_url( $sa_home . 'services/' ); ?>">
-					EXPLORE SERVICES <span aria-hidden="true">&rarr;</span>
+					<?php echo esc_html( sa_child_text( 'LEISTUNGEN ENTDECKEN', 'EXPLORE SERVICES' ) ); ?> <span aria-hidden="true">&rarr;</span>
 				</a>
 			</div>
 		</section>

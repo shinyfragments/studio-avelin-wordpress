@@ -464,6 +464,6 @@ add_action( 'template_redirect', function() {
 		}
 		exit;
 	}
-} );
+}, 0 );
 
 require_once get_stylesheet_directory() . '/inc/sa-journal.php';
