@@ -244,6 +244,39 @@ body.admin-bar .sa-front-header {
   padding: 0;
 }
 
+.sa-language-switch,
+.sa-mobile-menu__language {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--sa-font-display, "Geist", "Inter", sans-serif);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+}
+
+.sa-language-switch {
+  margin-left: 0.5rem;
+}
+
+.sa-language-switch__link {
+  color: rgba(21, 25, 34, 0.48);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+
+.sa-language-switch__link:hover,
+.sa-language-switch__link.is-active {
+  color: #151922;
+}
+
+.sa-language-switch__link.is-active {
+  text-decoration: underline;
+  text-decoration-color: #C7F000;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.3rem;
+}
+
 .sa-front-nav__link {
   font-family: var(--sa-font-display, "Geist", "Inter", sans-serif);
   font-size: 0.9375rem;
@@ -378,6 +411,11 @@ body.sa-menu-open {
   font-weight: 600;
   border-bottom: 2px solid #C7F000;
   padding-bottom: 0.25rem;
+}
+
+.sa-mobile-menu__language {
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
 }
 
 /* ---------- Shared page primitives ---------- */

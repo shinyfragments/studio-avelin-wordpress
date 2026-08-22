@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$sa_home         = trailingslashit( home_url( '/' ) );
+$sa_home         = trailingslashit( sa_child_language_url( sa_child_language() ) );
 $sa_nav          = sa_child_nav_items( 'header' );
 $sa_footer_nav   = sa_child_nav_items( 'footer' );
 $sa_portrait_path = get_stylesheet_directory() . '/assets/img/portrait.jpg';
@@ -33,7 +33,7 @@ $sa_portrait      = add_query_arg(
 <body <?php body_class( array( 'home', 'sa-front', 'sa-page', 'sa-page--about' ) ); ?>>
 <?php wp_body_open(); ?>
 
-<a class="sa-skip" href="#sa-main">Skip to content</a>
+<a class="sa-skip" href="#sa-main"><?php echo esc_html( sa_child_text( 'Zum Inhalt springen', 'Skip to content' ) ); ?></a>
 
 <?php get_template_part( 'parts/sa-header' ); ?>
 
@@ -44,18 +44,18 @@ $sa_portrait      = add_query_arg(
 
 			<!-- LEFT COLUMN -->
 			<div class="sa-about-col-left">
-				<span class="sa-about-eyebrow">ABOUT ME</span>
+				<span class="sa-about-eyebrow"><?php echo esc_html( sa_child_text( 'ÜBER MICH', 'ABOUT ME' ) ); ?></span>
 
 				<h1 class="sa-about-hero-headline">
-					hi, i’m <span class="sa-lime-text">Michael</span>.
+					<?php echo wp_kses_post( sa_child_text( 'Hi, ich bin <span class="sa-lime-text">Michael</span>.', 'hi, i’m <span class="sa-lime-text">Michael</span>.' ) ); ?>
 				</h1>
 
 				<div class="sa-about-intro">
 					<p>
-						Studio Avelin is an independent design and development studio by Michael Fiebus. I create visual identities, websites and digital products &mdash; combining clear design, thoughtful systems and hands-on development.
+						<?php echo wp_kses_post( sa_child_text( 'Studio Avelin ist das unabhängige Design- und Entwicklungsstudio von Michael Fiebus. Ich gestalte visuelle Identitäten, Websites und digitale Produkte &ndash; mit klarem Design, durchdachten Systemen und direkter technischer Umsetzung.', 'Studio Avelin is an independent design and development studio by Michael Fiebus. I create visual identities, websites and digital products &mdash; combining clear design, thoughtful systems and hands-on development.' ) ); ?>
 					</p>
 					<p>
-						I work directly with clients and collaborators, from the first idea to the finished result. The process stays close, clear and deliberately small.
+						<?php echo esc_html( sa_child_text( 'Ich arbeite direkt mit Kunden und Projektpartnern – von der ersten Idee bis zum fertigen Ergebnis. Der Prozess bleibt persönlich, klar und bewusst überschaubar.', 'I work directly with clients and collaborators, from the first idea to the finished result. The process stays close, clear and deliberately small.' ) ); ?>
 					</p>
 				</div>
 
@@ -71,8 +71,8 @@ $sa_portrait      = add_query_arg(
 							</svg>
 						</div>
 						<div class="sa-about-value-text">
-							<span>Design + development</span>
-							<span>in one process</span>
+							<span><?php echo esc_html( sa_child_text( 'Design + Entwicklung', 'Design + development' ) ); ?></span>
+							<span><?php echo esc_html( sa_child_text( 'in einem Prozess', 'in one process' ) ); ?></span>
 						</div>
 					</div>
 
@@ -84,8 +84,8 @@ $sa_portrait      = add_query_arg(
 							</svg>
 						</div>
 						<div class="sa-about-value-text">
-							<span>Direct collaboration</span>
-							<span>without detours</span>
+							<span><?php echo esc_html( sa_child_text( 'Direkte Zusammenarbeit', 'Direct collaboration' ) ); ?></span>
+							<span><?php echo esc_html( sa_child_text( 'ohne Umwege', 'without detours' ) ); ?></span>
 						</div>
 					</div>
 
@@ -99,8 +99,8 @@ $sa_portrait      = add_query_arg(
 							</svg>
 						</div>
 						<div class="sa-about-value-text">
-							<span>Clear systems</span>
-							<span>thoughtful details</span>
+							<span><?php echo esc_html( sa_child_text( 'Klare Systeme', 'Clear systems' ) ); ?></span>
+							<span><?php echo esc_html( sa_child_text( 'durchdachte Details', 'thoughtful details' ) ); ?></span>
 						</div>
 					</div>
 
@@ -112,8 +112,8 @@ $sa_portrait      = add_query_arg(
 							</svg>
 						</div>
 						<div class="sa-about-value-text">
-							<span>Built with purpose</span>
-							<span>made to last</span>
+							<span><?php echo esc_html( sa_child_text( 'Mit einem Ziel gebaut', 'Built with purpose' ) ); ?></span>
+							<span><?php echo esc_html( sa_child_text( 'auf Dauer gedacht', 'made to last' ) ); ?></span>
 						</div>
 					</div>
 				</div>
@@ -121,48 +121,48 @@ $sa_portrait      = add_query_arg(
 				<!-- PRIMARY CTA BUTTON -->
 				<div class="sa-about-cta-wrapper">
 					<a class="sa-about-cta-btn" href="<?php echo esc_url( $sa_home . 'work/' ); ?>">
-						<span>VIEW MY WORK</span>
+						<span><?php echo esc_html( sa_child_text( 'ARBEITEN ANSEHEN', 'VIEW MY WORK' ) ); ?></span>
 						<span class="sa-about-cta-arrow">&rarr;</span>
 					</a>
 					<a class="sa-about-cta-link" href="<?php echo esc_url( $sa_home . 'services/' ); ?>">
-						EXPLORE SERVICES <span aria-hidden="true">&rarr;</span>
+						<?php echo esc_html( sa_child_text( 'LEISTUNGEN ENTDECKEN', 'EXPLORE SERVICES' ) ); ?> <span aria-hidden="true">&rarr;</span>
 					</a>
 				</div>
 
 				<!-- PRACTICE -->
 				<div class="sa-about-skills-section">
-					<span class="sa-about-skills-label">WHAT I DO &amp; HOW I WORK</span>
+					<span class="sa-about-skills-label"><?php echo esc_html( sa_child_text( 'WAS ICH MACHE & WIE ICH ARBEITE', 'WHAT I DO & HOW I WORK' ) ); ?></span>
 					<div class="sa-about-skills-grid">
 						<!-- COL 1 -->
 						<div class="sa-about-skills-col">
-							<h4>DESIGN &amp; IDENTITY</h4>
+							<h4><?php echo esc_html( sa_child_text( 'DESIGN & IDENTITÄT', 'DESIGN & IDENTITY' ) ); ?></h4>
 							<ul>
-								<li>Visual identities</li>
-								<li>Interface design</li>
-								<li>Typography</li>
-								<li>Design systems</li>
+								<li><?php echo esc_html( sa_child_text( 'Visuelle Identitäten', 'Visual identities' ) ); ?></li>
+								<li><?php echo esc_html( sa_child_text( 'Interface-Design', 'Interface design' ) ); ?></li>
+								<li><?php echo esc_html( sa_child_text( 'Typografie', 'Typography' ) ); ?></li>
+								<li><?php echo esc_html( sa_child_text( 'Designsysteme', 'Design systems' ) ); ?></li>
 							</ul>
 						</div>
 
 						<!-- COL 2 -->
 						<div class="sa-about-skills-col">
-							<h4>WEBSITES &amp; PRODUCTS</h4>
+							<h4><?php echo esc_html( sa_child_text( 'WEBSITES & PRODUKTE', 'WEBSITES & PRODUCTS' ) ); ?></h4>
 							<ul>
-								<li>Websites</li>
-								<li>Digital products</li>
-								<li>Frontend development</li>
+								<li><?php echo esc_html( sa_child_text( 'Websites', 'Websites' ) ); ?></li>
+								<li><?php echo esc_html( sa_child_text( 'Digitale Produkte', 'Digital products' ) ); ?></li>
+								<li><?php echo esc_html( sa_child_text( 'Frontend-Entwicklung', 'Frontend development' ) ); ?></li>
 								<li>WordPress</li>
 							</ul>
 						</div>
 
 						<!-- COL 3 -->
 						<div class="sa-about-skills-col">
-							<h4>PROCESS</h4>
+							<h4><?php echo esc_html( sa_child_text( 'PROZESS', 'PROCESS' ) ); ?></h4>
 							<ul>
-								<li>Direct and collaborative</li>
-								<li>Design and code together</li>
-								<li>Clear systems and decisions</li>
-								<li>Small, deliberate iterations</li>
+								<li><?php echo esc_html( sa_child_text( 'Direkt und gemeinschaftlich', 'Direct and collaborative' ) ); ?></li>
+								<li><?php echo esc_html( sa_child_text( 'Design und Code zusammen gedacht', 'Design and code together' ) ); ?></li>
+								<li><?php echo esc_html( sa_child_text( 'Klare Systeme und Entscheidungen', 'Clear systems and decisions' ) ); ?></li>
+								<li><?php echo esc_html( sa_child_text( 'Kleine, bewusste Iterationen', 'Small, deliberate iterations' ) ); ?></li>
 							</ul>
 						</div>
 					</div>
@@ -179,7 +179,7 @@ $sa_portrait      = add_query_arg(
 								src="<?php echo esc_url( $sa_portrait ); ?>"
 								width="800"
 								height="900"
-								alt="Portrait of Michael Fiebus, the person behind Studio Avelin"
+								alt="<?php echo esc_attr( sa_child_text( 'Porträt von Michael Fiebus, der Person hinter Studio Avelin', 'Portrait of Michael Fiebus, the person behind Studio Avelin' ) ); ?>"
 								loading="eager"
 							/>
 						<?php else : ?>
@@ -200,13 +200,13 @@ $sa_portrait      = add_query_arg(
 						<svg class="sa-about-focus-star" viewBox="0 0 24 24" fill="none" stroke="currentColor">
 							<path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" fill="#C7F000" stroke="#C7F000"></path>
 						</svg>
-						<span>AVAILABLE FOR</span>
+						<span><?php echo esc_html( sa_child_text( 'VERFÜGBAR FÜR', 'AVAILABLE FOR' ) ); ?></span>
 					</div>
 					<ul class="sa-about-focus-list">
-						<li>Brand and identity projects</li>
-						<li>Websites and digital products</li>
-						<li>Selected collaborations</li>
-						<li>Long-term partnerships</li>
+						<li><?php echo esc_html( sa_child_text( 'Marken- und Identitätsprojekte', 'Brand and identity projects' ) ); ?></li>
+						<li><?php echo esc_html( sa_child_text( 'Websites und digitale Produkte', 'Websites and digital products' ) ); ?></li>
+						<li><?php echo esc_html( sa_child_text( 'Ausgewählte Kooperationen', 'Selected collaborations' ) ); ?></li>
+						<li><?php echo esc_html( sa_child_text( 'Langfristige Partnerschaften', 'Long-term partnerships' ) ); ?></li>
 					</ul>
 				</div>
 			</div>

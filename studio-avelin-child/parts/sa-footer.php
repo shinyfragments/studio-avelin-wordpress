@@ -11,7 +11,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$sa_home_url = trailingslashit( home_url( '/' ) );
+$sa_language = sa_child_language();
+$sa_home_url = function_exists( 'pll_home_url' ) ? trailingslashit( pll_home_url( $sa_language ) ) : trailingslashit( home_url( '/' ) );
 ?>
 
 <footer class="sa-front-footer" id="sa-footer">
@@ -38,18 +39,18 @@ $sa_home_url = trailingslashit( home_url( '/' ) );
 
 				<!-- COLUMN 1: EXPLORE -->
 				<div class="sa-footer-col">
-					<span class="sa-footer-col-label">EXPLORE</span>
+					<span class="sa-footer-col-label"><?php echo esc_html( sa_child_text( 'ENTDECKEN', 'EXPLORE' ) ); ?></span>
 					<ul class="sa-footer-links">
-						<li><a href="<?php echo esc_url( $sa_home_url . 'work/' ); ?>">Work</a></li>
-						<li><a href="<?php echo esc_url( $sa_home_url . 'services/' ); ?>">Services</a></li>
-						<li><a href="<?php echo esc_url( $sa_home_url . 'about-me/' ); ?>">About</a></li>
+						<li><a href="<?php echo esc_url( $sa_home_url . 'work/' ); ?>"><?php echo esc_html( sa_child_text( 'Arbeiten', 'Work' ) ); ?></a></li>
+						<li><a href="<?php echo esc_url( $sa_home_url . 'services/' ); ?>"><?php echo esc_html( sa_child_text( 'Leistungen', 'Services' ) ); ?></a></li>
+						<li><a href="<?php echo esc_url( $sa_home_url . 'about-me/' ); ?>"><?php echo esc_html( sa_child_text( 'Über mich', 'About' ) ); ?></a></li>
 						<li><a href="<?php echo esc_url( $sa_home_url . 'journal/' ); ?>">Journal</a></li>
 					</ul>
 				</div>
 
 				<!-- COLUMN 2: LEGAL -->
 				<div class="sa-footer-col">
-					<span class="sa-footer-col-label">LEGAL</span>
+					<span class="sa-footer-col-label"><?php echo esc_html( sa_child_text( 'RECHTLICHES', 'LEGAL' ) ); ?></span>
 					<ul class="sa-footer-links">
 						<li><a href="<?php echo esc_url( $sa_home_url . 'datenschutzerklaerung/' ); ?>">Datenschutzerkl&auml;rung</a></li>
 						<li><a href="<?php echo esc_url( $sa_home_url . 'impressum/' ); ?>">Impressum</a></li>
@@ -90,7 +91,7 @@ $sa_home_url = trailingslashit( home_url( '/' ) );
 			</div>
 
 			<div class="sa-footer-bottom-center">
-				Independent digital studio &middot; Germany
+				<?php echo esc_html( sa_child_text( 'Unabhängiges Digitalstudio · Deutschland', 'Independent digital studio · Germany' ) ); ?>
 			</div>
 
 			<div class="sa-footer-bottom-right">

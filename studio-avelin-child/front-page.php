@@ -13,7 +13,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$sa_home        = trailingslashit( home_url( '/' ) );
+$sa_language    = sa_child_language();
+$sa_home        = function_exists( 'pll_home_url' ) ? trailingslashit( pll_home_url( $sa_language ) ) : trailingslashit( home_url( '/' ) );
 $sa_nav         = sa_child_nav_items( 'header' );
 $sa_footer_nav  = sa_child_nav_items( 'footer' );
 $sa_portrait_path = get_stylesheet_directory() . '/assets/img/portrait.jpg';
@@ -29,7 +30,7 @@ $sa_projects = array(
 		'name'     => 'STAN',
 		'full'     => 'Studio Avelin Notes',
 		'status'   => 'Live',
-		'text'     => 'A focused notes and thinking app for collecting ideas, spaces, notes and tags.',
+		'text'     => sa_child_text( 'Eine fokussierte Notiz- und Denk-App zum Sammeln von Ideen, Bereichen, Notizen und Tags.', 'A focused notes and thinking app for collecting ideas, spaces, notes and tags.' ),
 		'url'      => 'https://stan.studio-avelin.com/',
 		'external' => true,
 		'visual'   => 'notes',
@@ -38,7 +39,7 @@ $sa_projects = array(
 		'name'     => 'Portfolio Page',
 		'full'     => 'MONROE Toyparty Landingpage',
 		'status'   => 'Live',
-		'text'     => 'A warm, discreet portfolio and landing page with a clear visual direction and a direct path from first impression to contact.',
+		'text'     => sa_child_text( 'Eine warme, zurückhaltende Portfolio- und Landingpage mit klarer visueller Richtung und einem direkten Weg vom ersten Eindruck bis zur Kontaktaufnahme.', 'A warm, discreet portfolio and landing page with a clear visual direction and a direct path from first impression to contact.' ),
 		'url'      => $sa_home . 'work/monroe-toyparty-landingpage/',
 		'external' => false,
 		'visual'   => 'maaike',
@@ -46,8 +47,8 @@ $sa_projects = array(
 	array(
 		'name'     => 'StAT',
 		'full'     => 'Studio Avelin Training',
-		'status'   => 'In Development',
-		'text'     => 'A private training log for running, strength, goals, routes and progress.',
+		'status'   => sa_child_text( 'In Entwicklung', 'In Development' ),
+		'text'     => sa_child_text( 'Ein privates Trainingstagebuch für Laufen, Krafttraining, Ziele, Strecken und Fortschritt.', 'A private training log for running, strength, goals, routes and progress.' ),
 		'url'      => '',
 		'external' => false,
 		'visual'   => 'training',
@@ -342,14 +343,14 @@ function sa_mark( $kind ) {
 <body <?php body_class( 'sa-front' ); ?>>
 <?php wp_body_open(); ?>
 
-<a class="sa-skip" href="#work">Skip to content</a>
+<a class="sa-skip" href="#work"><?php echo esc_html( sa_child_text( 'Zum Inhalt springen', 'Skip to content' ) ); ?></a>
 
 <?php get_template_part( 'parts/sa-header' ); ?>
 
 <main class="sa-main" id="sa-main">
 
 	<!-- ============================ HERO ============================ -->
-	<section class="sa-hero" id="top" aria-label="Introduction">
+	<section class="sa-hero" id="top" aria-label="<?php echo esc_attr( sa_child_text( 'Einführung', 'Introduction' ) ); ?>">
 		<div class="sa-hero__canvas-wrap" aria-hidden="true">
 			<canvas class="sa-hero__canvas" id="sa-hero-canvas"></canvas>
 		</div>
@@ -360,29 +361,28 @@ function sa_mark( $kind ) {
 			<div class="sa-hero__content sa-stagger">
 				<div class="sa-eyebrow-row sa-reveal">
 					<span class="sa-rule" aria-hidden="true"></span>
-					<span class="sa-eyebrow">Independent Web Design &amp; Development</span>
+					<span class="sa-eyebrow"><?php echo esc_html( sa_child_text( 'Unabhängiges Webdesign & Entwicklung', 'Independent Web Design & Development' ) ); ?></span>
 				</div>
 
 				<p class="sa-claim sa-reveal">DESIGN. <span>CODE.</span> CREATE.</p>
 
 				<h1 class="sa-hero__title sa-reveal">
-					Thoughtful websites.<br />
-					Designed and built with care.
+					<?php echo esc_html( sa_child_text( 'Durchdachte Websites.', 'Thoughtful websites.' ) ); ?><br />
+					<?php echo esc_html( sa_child_text( 'Sorgfältig gestaltet und entwickelt.', 'Designed and built with care.' ) ); ?>
 				</h1>
 
 				<div class="sa-hero__foot sa-reveal">
 					<p class="sa-hero__lead">
-						Studio Avelin creates custom websites for independent professionals,
-						small businesses and focused digital products.
+						<?php echo esc_html( sa_child_text( 'Studio Avelin gestaltet und entwickelt individuelle Websites für Selbstständige, kleine Unternehmen und fokussierte digitale Produkte.', 'Studio Avelin creates custom websites for independent professionals, small businesses and focused digital products.' ) ); ?>
 					</p>
 
 					<div class="sa-hero__actions">
 						<a class="sa-hero__cta" href="#work">
-							<span>View Work</span>
+							<span><?php echo esc_html( sa_child_text( 'Arbeiten ansehen', 'View Work' ) ); ?></span>
 							<span class="sa-btn__arrow" aria-hidden="true">&rarr;</span>
 						</a>
 						<a class="sa-link-lime sa-hero__project-link" href="#contact">
-							Start a Project <span class="sa-btn__arrow" aria-hidden="true">&rarr;</span>
+							<?php echo esc_html( sa_child_text( 'Projekt starten', 'Start a Project' ) ); ?> <span class="sa-btn__arrow" aria-hidden="true">&rarr;</span>
 						</a>
 					</div>
 				</div>
@@ -395,11 +395,10 @@ function sa_mark( $kind ) {
 	<section class="sa-section" id="work" aria-labelledby="sa-work-title">
 		<div class="sa-shell">
 			<div class="sa-section__head sa-stagger">
-				<p class="sa-eyebrow sa-eyebrow--dot sa-reveal">Projects &middot; 01&ndash;03</p>
-				<h2 class="sa-section__title sa-reveal" id="sa-work-title">Selected Work</h2>
+				<p class="sa-eyebrow sa-eyebrow--dot sa-reveal"><?php echo esc_html( sa_child_text( 'Projekte', 'Projects' ) ); ?> &middot; 01&ndash;03</p>
+				<h2 class="sa-section__title sa-reveal" id="sa-work-title"><?php echo esc_html( sa_child_text( 'Ausgewählte Arbeiten', 'Selected Work' ) ); ?></h2>
 				<p class="sa-section__intro sa-reveal">
-					Selected client work and independent products &mdash; clear in purpose,
-					designed and built with care.
+					<?php echo esc_html( sa_child_text( 'Ausgewählte Kundenarbeiten und eigene Produkte – klar im Zweck, sorgfältig gestaltet und entwickelt.', 'Selected client work and independent products — clear in purpose, designed and built with care.' ) ); ?>
 				</p>
 			</div>
 
@@ -437,10 +436,10 @@ function sa_mark( $kind ) {
 									<p class="sa-work__desc"><?php echo esc_html( $project['text'] ); ?></p>
 									<?php if ( $project['url'] ) : ?>
 										<span class="sa-inline-cta">
-											Visit project <span class="sa-btn__arrow" aria-hidden="true">&rarr;</span>
+											<?php echo esc_html( sa_child_text( 'Projekt ansehen', 'Visit project' ) ); ?> <span class="sa-btn__arrow" aria-hidden="true">&rarr;</span>
 										</span>
 									<?php else : ?>
-										<span class="sa-inline-cta sa-inline-cta--muted">In progress</span>
+										<span class="sa-inline-cta sa-inline-cta--muted"><?php echo esc_html( sa_child_text( 'In Arbeit', 'In progress' ) ); ?></span>
 									<?php endif; ?>
 								</div>
 							</div>
@@ -455,39 +454,39 @@ function sa_mark( $kind ) {
 	<section class="sa-section" id="services" aria-labelledby="sa-services-title">
 		<div class="sa-shell">
 			<div class="sa-section__head sa-stagger">
-				<p class="sa-eyebrow sa-eyebrow--dot sa-reveal">Services</p>
-				<h2 class="sa-section__title sa-reveal" id="sa-services-title">Design and development, kept focused.</h2>
+				<p class="sa-eyebrow sa-eyebrow--dot sa-reveal"><?php echo esc_html( sa_child_text( 'Leistungen', 'Services' ) ); ?></p>
+				<h2 class="sa-section__title sa-reveal" id="sa-services-title"><?php echo esc_html( sa_child_text( 'Design und Entwicklung, klar fokussiert.', 'Design and development, kept focused.' ) ); ?></h2>
 				<p class="sa-section__intro sa-reveal">
-					Direct collaboration from the first idea to a carefully built, responsive website.
+					<?php echo esc_html( sa_child_text( 'Direkte Zusammenarbeit von der ersten Idee bis zur sorgfältig umgesetzten, responsiven Website.', 'Direct collaboration from the first idea to a carefully built, responsive website.' ) ); ?>
 				</p>
 			</div>
 
 			<ul class="sa-services sa-stagger">
 				<li class="sa-services__item sa-reveal">
 					<span class="sa-services__index">01</span>
-					<h3 class="sa-services__title">Custom Websites</h3>
-					<p class="sa-services__text">Distinctive, responsive websites designed and built around a clear purpose.</p>
+					<h3 class="sa-services__title"><?php echo esc_html( sa_child_text( 'Individuelle Websites', 'Custom Websites' ) ); ?></h3>
+					<p class="sa-services__text"><?php echo esc_html( sa_child_text( 'Eigenständige, responsive Websites, gestaltet und entwickelt für ein klares Ziel.', 'Distinctive, responsive websites designed and built around a clear purpose.' ) ); ?></p>
 				</li>
 				<li class="sa-services__item sa-reveal">
 					<span class="sa-services__index">02</span>
-					<h3 class="sa-services__title">Landing Pages &amp; Portfolios</h3>
-					<p class="sa-services__text">Focused pages for independent professionals, services, products and launches.</p>
+					<h3 class="sa-services__title"><?php echo esc_html( sa_child_text( 'Landingpages & Portfolios', 'Landing Pages & Portfolios' ) ); ?></h3>
+					<p class="sa-services__text"><?php echo esc_html( sa_child_text( 'Fokussierte Seiten für Selbstständige, Dienstleistungen, Produkte und Launches.', 'Focused pages for independent professionals, services, products and launches.' ) ); ?></p>
 				</li>
 				<li class="sa-services__item sa-reveal">
 					<span class="sa-services__index">03</span>
-					<h3 class="sa-services__title">WordPress &amp; Editorial Systems</h3>
-					<p class="sa-services__text">Flexible publishing setups that remain easy to maintain after launch.</p>
+					<h3 class="sa-services__title"><?php echo esc_html( sa_child_text( 'WordPress & redaktionelle Systeme', 'WordPress & Editorial Systems' ) ); ?></h3>
+					<p class="sa-services__text"><?php echo esc_html( sa_child_text( 'Flexible Publishing-Systeme, die auch nach dem Launch einfach zu pflegen bleiben.', 'Flexible publishing setups that remain easy to maintain after launch.' ) ); ?></p>
 				</li>
 				<li class="sa-services__item sa-reveal">
 					<span class="sa-services__index">04</span>
-					<h3 class="sa-services__title">Website Refinement &amp; Ongoing Care</h3>
-					<p class="sa-services__text">Thoughtful improvements to design, structure, performance and usability &mdash; without rebuilding what already works.</p>
+					<h3 class="sa-services__title"><?php echo esc_html( sa_child_text( 'Website-Optimierung & laufende Betreuung', 'Website Refinement & Ongoing Care' ) ); ?></h3>
+					<p class="sa-services__text"><?php echo esc_html( sa_child_text( 'Gezielte Verbesserungen an Design, Struktur, Performance und Bedienbarkeit – ohne neu zu bauen, was bereits funktioniert.', 'Thoughtful improvements to design, structure, performance and usability — without rebuilding what already works.' ) ); ?></p>
 				</li>
 			</ul>
 
 			<div class="sa-section__foot sa-reveal">
 				<a class="sa-link-lime" href="<?php echo esc_url( $sa_home . 'services/' ); ?>">
-					Explore services <span class="sa-btn__arrow" aria-hidden="true">&rarr;</span>
+					<?php echo esc_html( sa_child_text( 'Leistungen entdecken', 'Explore services' ) ); ?> <span class="sa-btn__arrow" aria-hidden="true">&rarr;</span>
 				</a>
 			</div>
 		</div>
@@ -501,7 +500,7 @@ function sa_mark( $kind ) {
 					<div class="sa-about__frame">
 						<?php if ( $sa_has_portrait ) : ?>
 							<img class="sa-about__img" src="<?php echo esc_url( $sa_portrait ); ?>"
-								alt="Portrait of the person behind Studio Avelin" loading="lazy"
+								alt="<?php echo esc_attr( sa_child_text( 'Porträt der Person hinter Studio Avelin', 'Portrait of the person behind Studio Avelin' ) ); ?>" loading="lazy"
 								width="800" height="800" />
 						<?php else : ?>
 							<div class="sa-about__graphic">
@@ -524,12 +523,12 @@ function sa_mark( $kind ) {
 				</div>
 
 				<div class="sa-about__body sa-reveal">
-					<p class="sa-eyebrow sa-eyebrow--dot">About</p>
+					<p class="sa-eyebrow sa-eyebrow--dot"><?php echo esc_html( sa_child_text( 'Über mich', 'About' ) ); ?></p>
 					<h2 class="sa-about__title" id="sa-about-title">
-						Studio Avelin is the independent design and development practice of Michael Fiebus &mdash; focused on thoughtful websites, useful digital products and direct collaboration.
+						<?php echo esc_html( sa_child_text( 'Studio Avelin ist das unabhängige Design- und Entwicklungsstudio von Michael Fiebus – mit Fokus auf durchdachte Websites, nützliche digitale Produkte und direkte Zusammenarbeit.', 'Studio Avelin is the independent design and development practice of Michael Fiebus — focused on thoughtful websites, useful digital products and direct collaboration.' ) ); ?>
 					</h2>
 					<a class="sa-link-lime" href="<?php echo esc_url( $sa_home . 'about-me/' ); ?>">
-						More About Me <span class="sa-btn__arrow" aria-hidden="true">&rarr;</span>
+						<?php echo esc_html( sa_child_text( 'Mehr über mich', 'More About Me' ) ); ?> <span class="sa-btn__arrow" aria-hidden="true">&rarr;</span>
 					</a>
 				</div>
 			</div>
@@ -541,14 +540,14 @@ function sa_mark( $kind ) {
 		<div class="sa-shell">
 			<div class="sa-section__head-row">
 				<div class="sa-section__head sa-stagger">
-					<p class="sa-eyebrow sa-eyebrow--dot sa-reveal">Notes &amp; Writing</p>
+					<p class="sa-eyebrow sa-eyebrow--dot sa-reveal"><?php echo esc_html( sa_child_text( 'Notizen & Texte', 'Notes & Writing' ) ); ?></p>
 					<h2 class="sa-section__title sa-reveal" id="sa-journal-title">Journal</h2>
 					<p class="sa-section__intro sa-reveal">
-						Notes on design, code, webwork, process and small creative ideas.
+						<?php echo esc_html( sa_child_text( 'Notizen über Design, Code, Webarbeit, Prozesse und kleine kreative Ideen.', 'Notes on design, code, webwork, process and small creative ideas.' ) ); ?>
 					</p>
 				</div>
 				<a class="sa-link-lime sa-reveal" href="<?php echo esc_url( $sa_home . 'journal/' ); ?>">
-					All notes <span class="sa-btn__arrow" aria-hidden="true">&rarr;</span>
+					<?php echo esc_html( sa_child_text( 'Alle Notizen', 'All notes' ) ); ?> <span class="sa-btn__arrow" aria-hidden="true">&rarr;</span>
 				</a>
 			</div>
 
@@ -577,7 +576,7 @@ function sa_mark( $kind ) {
 									<span class="sa-journal__cat-dot" aria-hidden="true"></span>
 									<?php echo esc_html( $sa_journal_category ); ?>
 								</span>
-								<span class="sa-journal__read"><?php echo esc_html( sa_journal_reading_time() ); ?> min read</span>
+								<span class="sa-journal__read"><?php echo esc_html( sa_journal_reading_time() ); ?> <?php echo esc_html( sa_child_text( 'Min. Lesezeit', 'min read' ) ); ?></span>
 								<span class="sa-journal__sweep" aria-hidden="true"></span>
 							</div>
 							<h3 class="sa-journal__title"><span><?php the_title(); ?></span></h3>
@@ -599,19 +598,19 @@ function sa_mark( $kind ) {
 		<span class="sa-contact__glow" aria-hidden="true"></span>
 		<div class="sa-shell">
 			<div class="sa-stagger sa-contact__inner">
-				<p class="sa-eyebrow sa-eyebrow--dot sa-reveal">Start a Project</p>
+				<p class="sa-eyebrow sa-eyebrow--dot sa-reveal"><?php echo esc_html( sa_child_text( 'Projekt starten', 'Start a Project' ) ); ?></p>
 				<h2 class="sa-contact__title sa-reveal" id="sa-contact-title">
-					Have a website in mind?<br class="sa-br-md" /> Let&rsquo;s talk about it.
+					<?php echo esc_html( sa_child_text( 'Du hast eine Website im Kopf?', 'Have a website in mind?' ) ); ?><br class="sa-br-md" /> <?php echo esc_html( sa_child_text( 'Lass uns darüber sprechen.', 'Let’s talk about it.' ) ); ?>
 				</h2>
 
 				<p class="sa-contact__intro sa-reveal">
-					Tell me what you are working on, what the website should do and where you are in the process. A rough outline is enough to start.
+					<?php echo esc_html( sa_child_text( 'Erzähl mir, woran du arbeitest, was die Website leisten soll und wo du im Prozess stehst. Eine grobe Skizze reicht für den Anfang.', 'Tell me what you are working on, what the website should do and where you are in the process. A rough outline is enough to start.' ) ); ?>
 				</p>
 
-				<ul class="sa-contact__brief sa-stagger" aria-label="Useful details for a project enquiry">
-					<li class="sa-reveal"><span>01</span>Your idea or current website</li>
-					<li class="sa-reveal"><span>02</span>The scope you have in mind</li>
-					<li class="sa-reveal"><span>03</span>Your preferred timing</li>
+				<ul class="sa-contact__brief sa-stagger" aria-label="<?php echo esc_attr( sa_child_text( 'Hilfreiche Angaben für eine Projektanfrage', 'Useful details for a project enquiry' ) ); ?>">
+					<li class="sa-reveal"><span>01</span><?php echo esc_html( sa_child_text( 'Deine Idee oder bestehende Website', 'Your idea or current website' ) ); ?></li>
+					<li class="sa-reveal"><span>02</span><?php echo esc_html( sa_child_text( 'Der gewünschte Umfang', 'The scope you have in mind' ) ); ?></li>
+					<li class="sa-reveal"><span>03</span><?php echo esc_html( sa_child_text( 'Dein gewünschter Zeitrahmen', 'Your preferred timing' ) ); ?></li>
 				</ul>
 
 				<a class="sa-contact__mail sa-reveal" href="mailto:hello@studio-avelin.com?subject=Project%20inquiry%20%E2%80%94%20Studio%20Avelin">
@@ -620,7 +619,7 @@ function sa_mark( $kind ) {
 				</a>
 
 				<div class="sa-contact__social sa-reveal">
-					<span class="sa-contact__social-label">Elsewhere</span>
+					<span class="sa-contact__social-label"><?php echo esc_html( sa_child_text( 'Außerdem', 'Elsewhere' ) ); ?></span>
 					<a class="sa-link-lime" href="https://www.instagram.com/studio_avelin" target="_blank" rel="noopener noreferrer">
 						Instagram
 					</a>

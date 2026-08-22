@@ -13,6 +13,54 @@ if ( ! defined( 'SA_CHILD_VERSION' ) ) {
 	define( 'SA_CHILD_VERSION', '1.0.0' );
 }
 
+/** Return the active public language, with German as the safe default. */
+function sa_child_language() {
+	if ( function_exists( 'pll_current_language' ) ) {
+		$language = pll_current_language( 'slug' );
+		if ( $language ) {
+			return $language;
+		}
+	}
+
+	return 'de';
+}
+
+/**
+ * Select a short theme string for the active language.
+ *
+ * Editorial page and Journal content remain normal Polylang content; this
+ * helper is only for copy that is intentionally embedded in PHP templates.
+ *
+ * @param string $german  German copy.
+ * @param string $english English copy.
+ * @return string
+ */
+function sa_child_text( $german, $english ) {
+	return 'en' === sa_child_language() ? $english : $german;
+}
+
+/** Return the best available URL for a language-switch link. */
+function sa_child_language_url( $language ) {
+	if ( function_exists( 'pll_the_languages' ) ) {
+		$languages = pll_the_languages(
+			array(
+				'raw'           => 1,
+				'hide_if_empty' => 0,
+			)
+		);
+
+		if ( isset( $languages[ $language ]['url'] ) && empty( $languages[ $language ]['no_translation'] ) ) {
+			return $languages[ $language ]['url'];
+		}
+	}
+
+	if ( function_exists( 'pll_home_url' ) ) {
+		return pll_home_url( $language );
+	}
+
+	return home_url( '/' );
+}
+
 /** Output the Studio Avelin A/ browser icon. */
 function sa_child_favicon() {
 	$favicon_url = get_stylesheet_directory_uri() . '/assets/img/favicon.svg';
@@ -23,12 +71,13 @@ add_action( 'wp_head', 'sa_child_favicon', 100 );
 /** Return the intentional browser and search-result title for Studio pages. */
 function sa_child_document_title( $title ) {
 	$request_path = trim( (string) wp_parse_url( $_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH ), '/' );
+	$request_path = preg_replace( '#^(?:de|en)/#', '', $request_path );
 	$studio_titles = array(
-		'work'        => 'Work - Studio Avelin',
-		'services'    => 'Services - Studio Avelin',
+		'work'        => sa_child_text( 'Arbeiten - Studio Avelin', 'Work - Studio Avelin' ),
+		'services'    => sa_child_text( 'Leistungen - Studio Avelin', 'Services - Studio Avelin' ),
 		'experiments' => 'Experiments - Studio Avelin',
-		'about-me'    => 'About Me - Studio Avelin',
-		'about'       => 'About Me - Studio Avelin',
+		'about-me'    => sa_child_text( 'Über mich - Studio Avelin', 'About Me - Studio Avelin' ),
+		'about'       => sa_child_text( 'Über mich - Studio Avelin', 'About Me - Studio Avelin' ),
 		'work/stan'   => 'STAN - Studio Avelin',
 		'work/stat'   => 'StAT - Studio Avelin',
 		'work/stau'   => 'StAU - Studio Avelin',
@@ -36,7 +85,7 @@ function sa_child_document_title( $title ) {
 	);
 
 	if ( is_front_page() ) {
-		return 'Studio Avelin - Design. Code. Create.';
+		return sa_child_text( 'Studio Avelin – Design. Code. Create.', 'Studio Avelin - Design. Code. Create.' );
 	}
 
 	if ( isset( $studio_titles[ $request_path ] ) ) {
@@ -63,17 +112,18 @@ add_filter( 'wpseo_title', 'sa_child_document_title', 100 );
 /** Intentional descriptions for the homepage, Services and native Journal routes. */
 function sa_child_meta_description( $description = '' ) {
 	$request_path = trim( (string) wp_parse_url( $_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH ), '/' );
+	$request_path = preg_replace( '#^(?:de|en)/#', '', $request_path );
 
 	if ( is_front_page() ) {
-		return 'Studio Avelin designs and develops thoughtful custom websites for independent professionals, small businesses and focused digital products.';
+		return sa_child_text( 'Studio Avelin gestaltet und entwickelt durchdachte, individuelle Websites für Selbstständige, kleine Unternehmen und fokussierte digitale Produkte.', 'Studio Avelin designs and develops thoughtful custom websites for independent professionals, small businesses and focused digital products.' );
 	}
 
 	if ( 'services' === $request_path ) {
-		return 'Custom websites, landing pages, portfolios and WordPress systems designed and developed through one clear, direct process.';
+		return sa_child_text( 'Individuelle Websites, Landingpages, Portfolios und WordPress-Systeme – gestaltet und entwickelt in einem klaren, direkten Prozess.', 'Custom websites, landing pages, portfolios and WordPress systems designed and developed through one clear, direct process.' );
 	}
 
 	if ( is_post_type_archive( 'sa_journal' ) || is_singular( 'sa_journal' ) || is_tax( array( 'sa_journal_category', 'sa_journal_tag' ) ) ) {
-		return 'Notes from Studio Avelin on web design, development, digital products and the creative process.';
+		return sa_child_text( 'Notizen von Studio Avelin über Webdesign, Entwicklung, digitale Produkte und den kreativen Prozess.', 'Notes from Studio Avelin on web design, development, digital products and the creative process.' );
 	}
 
 	return $description;
@@ -270,23 +320,30 @@ add_action( 'init', 'sa_child_head_cleanup' );
  */
 function sa_child_nav_items( $context = 'header' ) {
 	$home = trailingslashit( home_url( '/' ) );
+	$labels = array(
+		'work'     => sa_child_text( 'Arbeiten', 'Work' ),
+		'services' => sa_child_text( 'Leistungen', 'Services' ),
+		'about'    => sa_child_text( 'Über mich', 'About' ),
+		'journal'  => 'Journal',
+		'contact'  => sa_child_text( 'Kontakt', 'Contact' ),
+	);
 
 	if ( 'footer' === $context ) {
 		return array(
 			array(
-				'label' => 'Work',
+				'label' => $labels['work'],
 				'url'   => $home . '#work',
 			),
 			array(
-				'label' => 'Services',
+				'label' => $labels['services'],
 				'url'   => $home . 'services/',
 			),
 			array(
-				'label' => 'About',
+				'label' => $labels['about'],
 				'url'   => $home . '#about',
 			),
 			array(
-				'label' => 'Journal',
+				'label' => $labels['journal'],
 				'url'   => $home . 'journal/',
 			),
 		);
@@ -297,23 +354,23 @@ function sa_child_nav_items( $context = 'header' ) {
 
 	return array(
 		array(
-			'label' => 'Work',
+			'label' => $labels['work'],
 			'url'   => $prefix . '#work',
 		),
 		array(
-			'label' => 'Services',
+			'label' => $labels['services'],
 			'url'   => $home . 'services/',
 		),
 		array(
-			'label' => 'About',
+			'label' => $labels['about'],
 			'url'   => $prefix . '#about',
 		),
 		array(
-			'label' => 'Journal',
+			'label' => $labels['journal'],
 			'url'   => $home . 'journal/',
 		),
 		array(
-			'label' => 'Contact',
+			'label' => $labels['contact'],
 			'url'   => 'mailto:hello@studio-avelin.com',
 		),
 	);
@@ -360,6 +417,7 @@ add_action( 'template_redirect', function() {
 		return;
 	}
 	$request_uri = trim( parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH ), '/' );
+	$request_uri = preg_replace( '#^(?:de|en)/#', '', $request_uri );
 	if ( 'work/maaike-fiebus' === $request_uri ) {
 		wp_safe_redirect( home_url( '/work/monroe-toyparty-landingpage/' ), 301 );
 		exit;
