@@ -31,7 +31,7 @@ $is_work        = ( 'work' === $request_uri || 0 === strpos( $request_uri, 'work
 $is_services    = ( 'services' === $request_uri );
 $is_about       = ( 'about-me' === $request_uri || 'about' === $request_uri );
 $is_journal     = ( 'journal' === $request_uri || 0 === strpos( $request_uri, 'journal/' ) );
-$is_contact     = false;
+$is_contact     = ( 'contact' === $request_uri || 'kontakt' === $request_uri );
 ?>
 
 <header class="sa-front-header" id="sa-header">
@@ -59,7 +59,7 @@ $is_contact     = false;
 					<a class="sa-front-nav__link<?php echo $is_journal ? ' is-active' : ''; ?>" href="<?php echo esc_url( $sa_home_url . 'journal/' ); ?>"><?php echo esc_html( $sa_labels['journal'] ); ?></a>
 				</li>
 				<li class="sa-front-nav__item">
-					<a class="sa-front-nav__link<?php echo $is_contact ? ' is-active' : ''; ?>" href="mailto:hello@studio-avelin.com"><?php echo esc_html( $sa_labels['contact'] ); ?></a>
+					<a class="sa-front-nav__link<?php echo $is_contact ? ' is-active' : ''; ?>" href="<?php echo esc_url( $sa_home_url . 'contact/' ); ?>"><?php echo esc_html( $sa_labels['contact'] ); ?></a>
 				</li>
 				<li class="sa-front-nav__item sa-language-switch" aria-label="<?php echo esc_attr( sa_child_text( 'Sprache wählen', 'Choose language' ) ); ?>">
 					<a class="sa-language-switch__link<?php echo 'de' === $sa_language ? ' is-active' : ''; ?>" href="<?php echo esc_url( sa_child_language_url( 'de' ) ); ?>" hreflang="de">DE</a>
@@ -97,7 +97,7 @@ $is_contact     = false;
 				<a class="sa-mobile-menu__link<?php echo $is_journal ? ' is-active' : ''; ?>" href="<?php echo esc_url( $sa_home_url . 'journal/' ); ?>"><?php echo esc_html( $sa_labels['journal'] ); ?></a>
 			</li>
 			<li>
-				<a class="sa-mobile-menu__link<?php echo $is_contact ? ' is-active' : ''; ?>" href="mailto:hello@studio-avelin.com"><?php echo esc_html( $sa_labels['contact'] ); ?></a>
+				<a class="sa-mobile-menu__link<?php echo $is_contact ? ' is-active' : ''; ?>" href="<?php echo esc_url( $sa_home_url . 'contact/' ); ?>"><?php echo esc_html( $sa_labels['contact'] ); ?></a>
 			</li>
 			<li class="sa-mobile-menu__language">
 				<a class="sa-language-switch__link<?php echo 'de' === $sa_language ? ' is-active' : ''; ?>" href="<?php echo esc_url( sa_child_language_url( 'de' ) ); ?>" hreflang="de">DE</a>

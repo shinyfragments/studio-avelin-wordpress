@@ -43,7 +43,7 @@ function sa_child_text( $german, $english ) {
 function sa_child_language_url( $language ) {
 	$request_path = trim( (string) wp_parse_url( $_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH ), '/' );
 	$request_path = preg_replace( '#^(?:de|en)/#', '', $request_path );
-	$legal_paths  = array( 'journal', 'datenschutzerklaerung', 'datenschutz', 'impressum' );
+	$legal_paths  = array( 'journal', 'contact', 'datenschutzerklaerung', 'datenschutz', 'impressum' );
 
 	if ( in_array( $request_path, $legal_paths, true ) ) {
 		$home = function_exists( 'pll_home_url' ) ? pll_home_url( $language ) : home_url( '/' );
@@ -101,6 +101,7 @@ function sa_child_document_title( $title ) {
 	$studio_titles = array(
 		'work'        => sa_child_text( 'Projekte - Studio Avelin', 'Work - Studio Avelin' ),
 		'services'    => sa_child_text( 'Leistungen - Studio Avelin', 'Services - Studio Avelin' ),
+		'contact'     => sa_child_text( 'Kontakt - Studio Avelin', 'Contact - Studio Avelin' ),
 		'experiments' => 'Experiments - Studio Avelin',
 		'about-me'    => sa_child_text( 'Über mich - Studio Avelin', 'About Me - Studio Avelin' ),
 		'about'       => sa_child_text( 'Über mich - Studio Avelin', 'About Me - Studio Avelin' ),
@@ -157,6 +158,7 @@ function sa_child_route_language_links() {
 
 	$direct_routes = array(
 		'services',
+		'contact',
 		'about-me',
 		'work',
 		'work/stan',
@@ -189,7 +191,7 @@ function sa_child_route_wpseo_canonical( $canonical ) {
 	$request_path = preg_replace( '#^(?:de|en)/#', '', $request_path );
 	$request_path = 'about' === $request_path ? 'about-me' : $request_path;
 	$request_path = 'datenschutz' === $request_path ? 'datenschutzerklaerung' : $request_path;
-	$direct_routes = array( 'services', 'about-me', 'work', 'work/stan', 'work/stat', 'work/stau', 'work/monroe-toyparty-landingpage', 'datenschutzerklaerung', 'impressum' );
+	$direct_routes = array( 'services', 'contact', 'about-me', 'work', 'work/stan', 'work/stat', 'work/stau', 'work/monroe-toyparty-landingpage', 'datenschutzerklaerung', 'impressum' );
 
 	return in_array( $request_path, $direct_routes, true ) ? false : $canonical;
 }
@@ -206,6 +208,10 @@ function sa_child_meta_description( $description = '' ) {
 
 	if ( 'services' === $request_path ) {
 		return sa_child_text( 'Individuelle Websites, Landingpages, Portfolios und WordPress-Systeme – von der ersten Idee bis zur technischen Umsetzung.', 'Custom websites, landing pages, portfolios and WordPress systems — from the first idea through to development and launch.' );
+	}
+
+	if ( 'contact' === $request_path ) {
+		return sa_child_text( 'Projektanfrage an Studio Avelin – persönlich, unkompliziert und direkt.', 'Send a project enquiry to Studio Avelin — personal, straightforward and direct.' );
 	}
 
 	if ( is_post_type_archive( 'sa_journal' ) || is_singular( 'sa_journal' ) || is_tax( array( 'sa_journal_category', 'sa_journal_tag' ) ) ) {
@@ -457,7 +463,7 @@ function sa_child_nav_items( $context = 'header' ) {
 		),
 		array(
 			'label' => $labels['contact'],
-			'url'   => 'mailto:hello@studio-avelin.com',
+			'url'   => $home . 'contact/',
 		),
 	);
 }
@@ -483,6 +489,12 @@ function sa_child_legal_template_include( $template ) {
 		}
 		if ( 'services' === $slug ) {
 			$php_template = get_stylesheet_directory() . '/page-services.php';
+			if ( file_exists( $php_template ) ) {
+				return $php_template;
+			}
+		}
+		if ( 'contact' === $slug || 'kontakt' === $slug ) {
+			$php_template = get_stylesheet_directory() . '/page-contact.php';
 			if ( file_exists( $php_template ) ) {
 				return $php_template;
 			}
@@ -518,6 +530,12 @@ add_action( 'template_redirect', function() {
 		status_header( 200 );
 		$GLOBALS['wp_query']->is_404 = false;
 		include get_stylesheet_directory() . '/page-services.php';
+		exit;
+	}
+	if ( 'contact' === $request_uri || 'kontakt' === $request_uri ) {
+		status_header( 200 );
+		$GLOBALS['wp_query']->is_404 = false;
+		include get_stylesheet_directory() . '/page-contact.php';
 		exit;
 	}
 	if ( 'datenschutzerklaerung' === $request_uri || 'datenschutz' === $request_uri ) {
@@ -563,5 +581,68 @@ add_action( 'template_redirect', function() {
 		exit;
 	}
 }, 0 );
+
+/** Return the public contact page URL for a supported language. */
+function sa_child_contact_url( $language = '' ) {
+	$language = in_array( $language, array( 'de', 'en' ), true ) ? $language : sa_child_language();
+	$home     = function_exists( 'pll_home_url' ) ? pll_home_url( $language ) : home_url( '/' );
+
+	return trailingslashit( $home ) . 'contact/';
+}
+
+/** Process a project enquiry and send it by email without database storage. */
+function sa_child_handle_contact_form() {
+	$language = isset( $_POST['sa_language'] ) && 'en' === sanitize_key( wp_unslash( $_POST['sa_language'] ) ) ? 'en' : 'de';
+	$redirect = sa_child_contact_url( $language );
+
+	if ( ! isset( $_POST['sa_contact_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['sa_contact_nonce'] ) ), 'sa_contact_submit' ) ) {
+		wp_safe_redirect( add_query_arg( 'contact', 'invalid', $redirect ) );
+		exit;
+	}
+
+	if ( ! empty( $_POST['sa_company'] ) ) {
+		wp_safe_redirect( add_query_arg( 'contact', 'sent', $redirect ) );
+		exit;
+	}
+
+	$name     = isset( $_POST['sa_name'] ) ? sanitize_text_field( wp_unslash( $_POST['sa_name'] ) ) : '';
+	$email    = isset( $_POST['sa_email'] ) ? sanitize_email( wp_unslash( $_POST['sa_email'] ) ) : '';
+	$project  = isset( $_POST['sa_project'] ) ? sanitize_key( wp_unslash( $_POST['sa_project'] ) ) : '';
+	$timeline = isset( $_POST['sa_timeline'] ) ? sanitize_text_field( wp_unslash( $_POST['sa_timeline'] ) ) : '';
+	$message  = isset( $_POST['sa_message'] ) ? sanitize_textarea_field( wp_unslash( $_POST['sa_message'] ) ) : '';
+	$consent  = ! empty( $_POST['sa_consent'] );
+	$projects = array(
+		'website'   => 'de' === $language ? 'Individuelle Website' : 'Custom website',
+		'landing'   => 'de' === $language ? 'Landingpage oder Portfolio' : 'Landing page or portfolio',
+		'wordpress' => 'WordPress',
+		'optimize'  => 'de' === $language ? 'Bestehende Website optimieren' : 'Improve an existing website',
+		'other'     => 'de' === $language ? 'Etwas anderes' : 'Something else',
+	);
+
+	if ( '' === $name || ! is_email( $email ) || ! isset( $projects[ $project ] ) || '' === $message || ! $consent ) {
+		wp_safe_redirect( add_query_arg( 'contact', 'missing', $redirect ) );
+		exit;
+	}
+
+	$rate_key = 'sa_contact_' . md5( (string) ( $_SERVER['REMOTE_ADDR'] ?? '' ) );
+	if ( get_transient( $rate_key ) ) {
+		wp_safe_redirect( add_query_arg( 'contact', 'later', $redirect ) );
+		exit;
+	}
+
+	$subject = sprintf( 'Projektanfrage von %s — Studio Avelin', $name );
+	$body    = "Name: {$name}\nE-Mail: {$email}\nProjekt: {$projects[$project]}\nZeitraum: " . ( $timeline ?: '–' ) . "\nSprache: " . strtoupper( $language ) . "\n\nNachricht:\n{$message}";
+	$headers = array( 'Reply-To: ' . $name . ' <' . $email . '>' );
+
+	if ( wp_mail( 'hello@studio-avelin.com', $subject, $body, $headers ) ) {
+		set_transient( $rate_key, 1, 2 * MINUTE_IN_SECONDS );
+		wp_safe_redirect( add_query_arg( 'contact', 'sent', $redirect ) );
+	} else {
+		wp_safe_redirect( add_query_arg( 'contact', 'failed', $redirect ) );
+	}
+	exit;
+}
+add_action( 'admin_post_sa_contact_submit', 'sa_child_handle_contact_form' );
+add_action( 'admin_post_nopriv_sa_contact_submit', 'sa_child_handle_contact_form' );
 
 require_once get_stylesheet_directory() . '/inc/sa-journal.php';

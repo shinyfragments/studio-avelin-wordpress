@@ -21,6 +21,7 @@ FILES=(
 	"page-experiments.php"
 	"page-about-me.php"
 	"page-services.php"
+	"page-contact.php"
 	"page-datenschutzerklaerung.php"
 	"page-impressum.php"
 	"page-work.php"

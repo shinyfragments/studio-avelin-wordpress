@@ -613,8 +613,8 @@ function sa_mark( $kind ) {
 					<li class="sa-reveal"><span>03</span><?php echo esc_html( sa_child_text( 'Dein gewünschter Zeitrahmen', 'Your preferred timing' ) ); ?></li>
 				</ul>
 
-				<a class="sa-contact__mail sa-reveal" href="mailto:hello@studio-avelin.com?subject=Project%20inquiry%20%E2%80%94%20Studio%20Avelin">
-					<span class="sa-contact__mail-text">hello@studio-avelin.com</span>
+				<a class="sa-contact__mail sa-reveal" href="<?php echo esc_url( $sa_home . 'contact/' ); ?>">
+					<span class="sa-contact__mail-text"><?php echo esc_html( sa_child_text( 'Projekt anfragen', 'Send a project enquiry' ) ); ?></span>
 					<span class="sa-btn__arrow" aria-hidden="true">&rarr;</span>
 				</a>
 

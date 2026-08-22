@@ -149,7 +149,7 @@ $sa_home = trailingslashit( sa_child_language_url( sa_child_language() ) );
 			<span class="sa-about-eyebrow"><?php echo esc_html( sa_child_text( 'PROJEKT STARTEN', 'START A PROJECT' ) ); ?></span>
 			<h2><?php echo esc_html( sa_child_text( 'Du hast etwas im Kopf?', 'Have something in mind?' ) ); ?></h2>
 			<p><?php echo esc_html( sa_child_text( 'Erzähl mir, woran du arbeitest, was die Website leisten soll und wo du gerade stehst.', 'Tell me what you are working on, what the website should do and where you are right now.' ) ); ?></p>
-			<a href="mailto:hello@studio-avelin.com">HELLO@STUDIO-AVELIN.COM <span aria-hidden="true">&rarr;</span></a>
+			<a href="<?php echo esc_url( $sa_home . 'contact/' ); ?>"><?php echo esc_html( sa_child_text( 'PROJEKT ANFRAGEN', 'SEND A PROJECT ENQUIRY' ) ); ?> <span aria-hidden="true">&rarr;</span></a>
 		</section>
 
 	</div>
