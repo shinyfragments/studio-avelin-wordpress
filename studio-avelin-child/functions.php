@@ -648,4 +648,27 @@ function sa_child_handle_contact_form() {
 add_action( 'admin_post_sa_contact_submit', 'sa_child_handle_contact_form' );
 add_action( 'admin_post_nopriv_sa_contact_submit', 'sa_child_handle_contact_form' );
 
+/**
+ * Send WordPress mail through the authenticated IONOS mailbox when its
+ * credentials are defined outside the theme in wp-config.php.
+ *
+ * @param PHPMailer\PHPMailer\PHPMailer $phpmailer WordPress mailer instance.
+ */
+function sa_child_configure_ionos_smtp( $phpmailer ) {
+	if ( ! defined( 'SA_SMTP_USER' ) || ! defined( 'SA_SMTP_PASSWORD' ) || ! SA_SMTP_USER || ! SA_SMTP_PASSWORD ) {
+		return;
+	}
+
+	$phpmailer->isSMTP();
+	$phpmailer->Host       = 'smtp.ionos.com';
+	$phpmailer->Port       = 587;
+	$phpmailer->SMTPSecure = 'tls';
+	$phpmailer->SMTPAuth   = true;
+	$phpmailer->Username   = SA_SMTP_USER;
+	$phpmailer->Password   = SA_SMTP_PASSWORD;
+	$phpmailer->setFrom( SA_SMTP_USER, 'Studio Avelin', false );
+	$phpmailer->Sender = SA_SMTP_USER;
+}
+add_action( 'phpmailer_init', 'sa_child_configure_ionos_smtp' );
+
 require_once get_stylesheet_directory() . '/inc/sa-journal.php';
