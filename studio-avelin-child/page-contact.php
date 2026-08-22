@@ -11,6 +11,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $sa_status = isset( $_GET['contact'] ) ? sanitize_key( wp_unslash( $_GET['contact'] ) ) : '';
 $sa_home   = function_exists( 'pll_home_url' ) ? trailingslashit( pll_home_url( sa_child_language() ) ) : trailingslashit( home_url( '/' ) );
+$sa_whatsapp_text = sa_child_text( 'Hallo Michael, ich habe eine Projektanfrage für Studio Avelin.', 'Hi Michael, I have a project enquiry for Studio Avelin.' );
+$sa_whatsapp_url  = 'https://wa.me/4915140077004?text=' . rawurlencode( $sa_whatsapp_text );
 $sa_notice = array(
 	'sent'    => sa_child_text( 'Danke – deine Anfrage wurde versendet. Ich melde mich so bald wie möglich.', 'Thank you — your enquiry has been sent. I’ll get back to you as soon as possible.' ),
 	'missing' => sa_child_text( 'Bitte fülle alle Pflichtfelder aus und prüfe deine E-Mail-Adresse.', 'Please complete all required fields and check your email address.' ),
@@ -101,8 +103,13 @@ $sa_notice = array(
 
 			<aside class="sa-contact-page__aside">
 				<span class="sa-about-eyebrow"><?php echo esc_html( sa_child_text( 'LIEBER DIREKT?', 'PREFER EMAIL?' ) ); ?></span>
-				<p><?php echo esc_html( sa_child_text( 'Du kannst mir auch einfach eine E-Mail schreiben.', 'You can also email me directly.' ) ); ?></p>
-				<a href="mailto:hello@studio-avelin.com">hello@studio-avelin.com</a>
+				<p><?php echo esc_html( sa_child_text( 'Du kannst mir auch direkt schreiben.', 'You can also contact me directly.' ) ); ?></p>
+				<div class="sa-contact-page__channels">
+					<a href="mailto:hello@studio-avelin.com">hello@studio-avelin.com</a>
+					<a href="<?php echo esc_url( $sa_whatsapp_url ); ?>" target="_blank" rel="noopener noreferrer">
+						WhatsApp <span aria-hidden="true">&rarr;</span>
+					</a>
+				</div>
 				<p class="sa-contact-page__response"><?php echo esc_html( sa_child_text( 'In der Regel antworte ich innerhalb von zwei Werktagen.', 'I usually reply within two working days.' ) ); ?></p>
 			</aside>
 		</div>

@@ -175,6 +175,27 @@
   overflow-wrap: anywhere;
 }
 
+.sa-contact-page__channels {
+  display: grid;
+  gap: 0.7rem;
+  justify-items: start;
+}
+
+.sa-contact-page__channels a:last-child {
+  color: #bef200;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.sa-contact-page__channels a:last-child:hover,
+.sa-contact-page__channels a:last-child:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
 .sa-contact-page__response {
   color: rgba(255, 255, 255, 0.68);
   font-size: 0.84rem;
