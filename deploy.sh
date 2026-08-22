@@ -44,6 +44,7 @@ FILES=(
 	"assets/css/home.css"
 	"assets/css/pages.css"
 	"assets/js/home.js"
+	"assets/js/consent-i18n.js"
   "assets/js/sa-journal.js"
 )
 

@@ -68,6 +68,23 @@ function sa_child_favicon() {
 }
 add_action( 'wp_head', 'sa_child_favicon', 100 );
 
+/** Localize the Complianz banner when its Polylang strings are unavailable. */
+function sa_child_enqueue_consent_i18n() {
+	if ( 'en' !== sa_child_language() ) {
+		return;
+	}
+
+	$script_path = get_stylesheet_directory() . '/assets/js/consent-i18n.js';
+	wp_enqueue_script(
+		'sa-consent-i18n',
+		get_stylesheet_directory_uri() . '/assets/js/consent-i18n.js',
+		array(),
+		file_exists( $script_path ) ? filemtime( $script_path ) : SA_CHILD_VERSION,
+		true
+	);
+}
+add_action( 'wp_enqueue_scripts', 'sa_child_enqueue_consent_i18n', 100 );
+
 /** Return the intentional browser and search-result title for Studio pages. */
 function sa_child_document_title( $title ) {
 	$request_path = trim( (string) wp_parse_url( $_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH ), '/' );
