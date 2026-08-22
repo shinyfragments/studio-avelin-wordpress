@@ -35,6 +35,9 @@ body.admin-bar .sa-journal-header { top:32px; }
 .sa-journal-nav a { position:relative; padding:.25rem 0; color:rgba(24,24,24,.7); font-family:var(--sa-font-display); font-size:.875rem; font-weight:500; text-decoration:none; transition:color .2s; }
 .sa-journal-nav a:hover,.sa-journal-nav a.is-active { color:#181818; }
 .sa-journal-nav a.is-active::after { position:absolute; right:0; bottom:-.2rem; left:0; height:2px; background:var(--j-lime,#c7f000); content:""; }
+.sa-journal-language { display:inline-flex; align-items:center; gap:.25rem; color:rgba(24,24,24,.35); font-family:var(--sa-font-display); font-size:.75rem; }
+.sa-journal-language a { padding:.25rem 0; font-size:.75rem; }
+.sa-journal-language a.is-current { color:#181818; font-weight:700; }
 @media screen and (max-width:782px) { body.admin-bar .sa-journal-header { top:46px; } }
 @media (max-width:640px) { .sa-journal-header__inner { width:min(calc(100% - 2rem),1280px); }.sa-journal-brand { gap:.5rem; }.sa-journal-brand__studio { display:none; }.sa-journal-brand__section { display:inline; }.sa-journal-nav { gap:1rem; }.sa-journal-nav a { font-size:.75rem; } }
 @media (max-width:410px) { .sa-journal-brand__section { display:none; }.sa-journal-nav { gap:.75rem; } }

@@ -43,7 +43,7 @@ function sa_child_text( $german, $english ) {
 function sa_child_language_url( $language ) {
 	$request_path = trim( (string) wp_parse_url( $_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH ), '/' );
 	$request_path = preg_replace( '#^(?:de|en)/#', '', $request_path );
-	$legal_paths  = array( 'datenschutzerklaerung', 'datenschutz', 'impressum' );
+	$legal_paths  = array( 'journal', 'datenschutzerklaerung', 'datenschutz', 'impressum' );
 
 	if ( in_array( $request_path, $legal_paths, true ) ) {
 		$home = function_exists( 'pll_home_url' ) ? pll_home_url( $language ) : home_url( '/' );

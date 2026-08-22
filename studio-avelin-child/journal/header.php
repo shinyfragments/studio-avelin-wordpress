@@ -17,6 +17,11 @@ $is_taxonomy   = is_tax( array( 'sa_journal_category', 'sa_journal_tag' ) );
 			<a class="<?php echo ! $is_taxonomy ? 'is-active' : ''; ?>" href="<?php echo esc_url( $archive_url ); ?>"><?php esc_html_e( 'Journal', 'studio-avelin-child' ); ?></a>
 			<a class="<?php echo $is_taxonomy ? 'is-active' : ''; ?>" href="<?php echo esc_url( $categories_url ); ?>"><?php echo esc_html( sa_child_text( 'Kategorien', 'Categories' ) ); ?></a>
 			<a href="<?php echo esc_url( function_exists( 'pll_home_url' ) ? pll_home_url( sa_child_language() ) : home_url( '/' ) ); ?>"><?php esc_html_e( 'Studio', 'studio-avelin-child' ); ?></a>
+			<span class="sa-journal-language" aria-label="<?php echo esc_attr( sa_child_text( 'Sprache wählen', 'Choose language' ) ); ?>">
+				<a class="<?php echo 'de' === sa_child_language() ? 'is-current' : ''; ?>" href="<?php echo esc_url( sa_child_language_url( 'de' ) ); ?>" hreflang="de">DE</a>
+				<span aria-hidden="true">/</span>
+				<a class="<?php echo 'en' === sa_child_language() ? 'is-current' : ''; ?>" href="<?php echo esc_url( sa_child_language_url( 'en' ) ); ?>" hreflang="en">EN</a>
+			</span>
 		</nav>
 	</div>
 </header>
