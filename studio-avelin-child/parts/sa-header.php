@@ -61,11 +61,13 @@ $is_contact     = ( 'contact' === $request_uri || 'kontakt' === $request_uri );
 				<li class="sa-front-nav__item">
 					<a class="sa-front-nav__link<?php echo $is_contact ? ' is-active' : ''; ?>" href="<?php echo esc_url( $sa_home_url . 'contact/' ); ?>"><?php echo esc_html( $sa_labels['contact'] ); ?></a>
 				</li>
+				<?php if ( SA_CHILD_BILINGUAL_ENABLED ) : ?>
 				<li class="sa-front-nav__item sa-language-switch" aria-label="<?php echo esc_attr( sa_child_text( 'Sprache wählen', 'Choose language' ) ); ?>">
 					<a class="sa-language-switch__link<?php echo 'de' === $sa_language ? ' is-active' : ''; ?>" href="<?php echo esc_url( sa_child_language_url( 'de' ) ); ?>" hreflang="de">DE</a>
 					<span aria-hidden="true">/</span>
 					<a class="sa-language-switch__link<?php echo 'en' === $sa_language ? ' is-active' : ''; ?>" href="<?php echo esc_url( sa_child_language_url( 'en' ) ); ?>" hreflang="en">EN</a>
 				</li>
+				<?php endif; ?>
 			</ul>
 
 			<!-- BASELINE & SLIDING LIME SEGMENT -->
@@ -99,11 +101,13 @@ $is_contact     = ( 'contact' === $request_uri || 'kontakt' === $request_uri );
 			<li>
 				<a class="sa-mobile-menu__link<?php echo $is_contact ? ' is-active' : ''; ?>" href="<?php echo esc_url( $sa_home_url . 'contact/' ); ?>"><?php echo esc_html( $sa_labels['contact'] ); ?></a>
 			</li>
+			<?php if ( SA_CHILD_BILINGUAL_ENABLED ) : ?>
 			<li class="sa-mobile-menu__language">
 				<a class="sa-language-switch__link<?php echo 'de' === $sa_language ? ' is-active' : ''; ?>" href="<?php echo esc_url( sa_child_language_url( 'de' ) ); ?>" hreflang="de">DE</a>
 				<span aria-hidden="true">/</span>
 				<a class="sa-language-switch__link<?php echo 'en' === $sa_language ? ' is-active' : ''; ?>" href="<?php echo esc_url( sa_child_language_url( 'en' ) ); ?>" hreflang="en">EN</a>
 			</li>
+			<?php endif; ?>
 		</ul>
 	</div>
 </header>

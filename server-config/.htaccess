@@ -24,6 +24,15 @@ RewriteRule ^experiments/matrix/?$ wp-content/experiments/matrix/index.html [L]
 RewriteRule ^experiments/matrix/(.+)$ wp-content/experiments/matrix/$1 [L]
 </IfModule>
 
+# Studio Avelin — temporary German-only mode (added 2026-08-29)
+# Remove this block together with re-enabling SA_CHILD_BILINGUAL_ENABLED
+# in functions.php when the English site comes back.
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule ^en/?$ / [R=302,L]
+RewriteRule ^en/(.*)$ /$1 [R=302,L]
+</IfModule>
+
 # BEGIN WordPress
 # Die Direktiven (Zeilen) zwischen „BEGIN WordPress“ und „END WordPress“ sind
 # dynamisch generiert und sollten nur über WordPress-Filter geändert werden.

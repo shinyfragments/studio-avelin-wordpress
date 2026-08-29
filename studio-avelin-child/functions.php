@@ -13,8 +13,24 @@ if ( ! defined( 'SA_CHILD_VERSION' ) ) {
 	define( 'SA_CHILD_VERSION', '1.0.0' );
 }
 
+/**
+ * Temporary switch: German-only mode.
+ *
+ * Set to true to bring the English site back. The language switcher, the
+ * hreflang/alternate tags below and the /en/ redirect in
+ * server-config/.htaccess were disabled together with this on 2026-08-29 —
+ * re-enable all three together.
+ */
+if ( ! defined( 'SA_CHILD_BILINGUAL_ENABLED' ) ) {
+	define( 'SA_CHILD_BILINGUAL_ENABLED', false );
+}
+
 /** Return the active public language, with German as the safe default. */
 function sa_child_language() {
+	if ( ! SA_CHILD_BILINGUAL_ENABLED ) {
+		return 'de';
+	}
+
 	if ( function_exists( 'pll_current_language' ) ) {
 		$language = pll_current_language( 'slug' );
 		if ( $language ) {
@@ -173,8 +189,14 @@ function sa_child_route_language_links() {
 	}
 
 	$de_home = function_exists( 'pll_home_url' ) ? trailingslashit( pll_home_url( 'de' ) ) : trailingslashit( home_url( '/' ) );
-	$en_home = function_exists( 'pll_home_url' ) ? trailingslashit( pll_home_url( 'en' ) ) : trailingslashit( home_url( '/en/' ) );
 	$de_url  = $de_home . trailingslashit( $request_path );
+
+	if ( ! SA_CHILD_BILINGUAL_ENABLED ) {
+		echo '<link rel="canonical" href="' . esc_url( $de_url ) . '">' . "\n";
+		return;
+	}
+
+	$en_home = function_exists( 'pll_home_url' ) ? trailingslashit( pll_home_url( 'en' ) ) : trailingslashit( home_url( '/en/' ) );
 	$en_url  = $en_home . trailingslashit( $request_path );
 	$current = 'en' === sa_child_language() ? $en_url : $de_url;
 
