@@ -70,7 +70,7 @@ while (have_posts()) :
 
         <div class="sa-article__foot">
           <a class="sa-back-link" href="<?php echo esc_url(home_url('/journal/')); ?>">
-            <span aria-hidden="true">&lt;-</span> Back to Journal
+            <span aria-hidden="true">&lt;-</span> Zurück zum Journal
           </a>
           <?php
           $sa_prev = get_previous_post();
@@ -78,10 +78,10 @@ while (have_posts()) :
           ?>
           <span class="sa-journal-meta">
             <?php if ($sa_next) : ?>
-              <a class="sa-back-link" href="<?php echo esc_url(get_permalink($sa_next)); ?>">Newer note <span aria-hidden="true">-&gt;</span></a>
+              <a class="sa-back-link" href="<?php echo esc_url(get_permalink($sa_next)); ?>">Neuere Notiz <span aria-hidden="true">-&gt;</span></a>
             <?php endif; ?>
             <?php if ($sa_prev) : ?>
-              <a class="sa-back-link" href="<?php echo esc_url(get_permalink($sa_prev)); ?>">Older note <span aria-hidden="true">-&gt;</span></a>
+              <a class="sa-back-link" href="<?php echo esc_url(get_permalink($sa_prev)); ?>">Ältere Notiz <span aria-hidden="true">-&gt;</span></a>
             <?php endif; ?>
           </span>
         </div>

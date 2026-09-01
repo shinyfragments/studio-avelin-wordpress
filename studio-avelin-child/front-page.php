@@ -1,6 +1,6 @@
 <?php
 /**
- * Studio Avelin — standalone homepage template.
+ * Studio Avelin — standalone homepage template (Ich-Marke).
  *
  * This template deliberately does NOT call get_header() or get_footer():
  * the Twenty Twenty-Four block header/footer must not appear on the homepage.
@@ -13,10 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$sa_language    = sa_child_language();
-$sa_home        = function_exists( 'pll_home_url' ) ? trailingslashit( pll_home_url( $sa_language ) ) : trailingslashit( home_url( '/' ) );
-$sa_nav         = sa_child_nav_items( 'header' );
-$sa_footer_nav  = sa_child_nav_items( 'footer' );
+$sa_home          = trailingslashit( home_url( '/' ) );
 $sa_portrait_path = get_stylesheet_directory() . '/assets/img/portrait.jpg';
 $sa_has_portrait  = file_exists( $sa_portrait_path );
 $sa_portrait      = add_query_arg(
@@ -25,33 +22,41 @@ $sa_portrait      = add_query_arg(
 	get_stylesheet_directory_uri() . '/assets/img/portrait.jpg'
 );
 
+/** The three offer levels, shown as cards directly under the hero. */
+$sa_arc = array(
+	array(
+		'title' => 'Aus Haltung wird Marke.',
+		'text'  => 'Klarheit über Positionierung, Zielgruppe und Tonalität – das Fundament für alles, was folgt.',
+	),
+	array(
+		'title' => 'Aus Marke wird Design.',
+		'text'  => 'Eine Website, die trägt, was deine Marke ausmacht – individuell gestaltet, klar geführt, sauber umgesetzt.',
+	),
+	array(
+		'title' => 'Aus Design wird Sichtbarkeit.',
+		'text'  => 'Begleitung, die bleibt: SEO, Content und Performance im Blick, damit gefunden wird, was gut gemacht ist.',
+	),
+);
+
+/** A small, honest selection of work for the homepage. The full list lives on /work/. */
 $sa_projects = array(
 	array(
-		'name'     => 'STAN',
-		'full'     => 'Studio Avelin Notes',
-		'status'   => 'Live',
-		'text'     => sa_child_text( 'Eine ruhige Notiz-App, die Ideen, Bereiche, Notizen und Tags an einem Ort zusammenhält.', 'A calm notes app that keeps ideas, spaces, notes and tags together in one place.' ),
-		'url'      => 'https://stan.studio-avelin.com/',
-		'external' => true,
-		'visual'   => 'notes',
+		'name'  => 'Hawaiimassage zu Hause',
+		'meta'  => 'Kundenprojekt · Website',
+		'text'  => 'Eine ruhige, warme Website für mobile Massagen zu Hause – klare Angebotsübersicht, viel Raum für Bild und Text.',
+		'url'   => $sa_home . 'work/hawaiimassage/',
 	),
 	array(
-		'name'     => 'Portfolio Page',
-		'full'     => 'MONROE Toyparty Landingpage',
-		'status'   => 'Live',
-		'text'     => sa_child_text( 'Eine warme, zurückhaltende Portfolio- und Landingpage, die Angebot, Persönlichkeit und Kontakt stimmig zusammenbringt.', 'A warm, discreet portfolio and landing page that balances personality with a clear offer and an easy path to contact.' ),
-		'url'      => $sa_home . 'work/monroe-toyparty-landingpage/',
-		'external' => false,
-		'visual'   => 'maaike',
+		'name'  => 'Portfolio Page – MONROE',
+		'meta'  => 'Kundenprojekt · Landingpage',
+		'text'  => 'Eine warme, zurückhaltende Portfolio- und Landingpage, die Persönlichkeit, Angebot und einen einfachen Weg zum Kontakt zusammenbringt.',
+		'url'   => $sa_home . 'work/monroe-toyparty-landingpage/',
 	),
 	array(
-		'name'     => 'StAT',
-		'full'     => 'Studio Avelin Training',
-		'status'   => sa_child_text( 'In Entwicklung', 'In Development' ),
-		'text'     => sa_child_text( 'Ein privates Trainingstagebuch für Laufen, Krafttraining, Ziele, Strecken und Fortschritte.', 'A private training log for running, strength work, goals, routes and progress.' ),
-		'url'      => '',
-		'external' => false,
-		'visual'   => 'training',
+		'name'  => 'STAN',
+		'meta'  => 'Eigenes Produkt · App',
+		'text'  => 'Eine ruhige Notiz-App, die Ideen, Bereiche, Notizen und Tags an einem Ort zusammenhält.',
+		'url'   => $sa_home . 'work/stan/',
 	),
 );
 
@@ -69,238 +74,20 @@ $sa_journal_posts = new WP_Query(
 $sa_journal_marks = array( 'process', 'webwork', 'notes' );
 
 /**
- * Inline SVG previews for the Work cards. Kept in the template so the theme
- * needs no image assets and no build step.
- *
- * @param string $kind Visual key.
- */
-function sa_project_visual( $kind ) {
-	switch ( $kind ) {
-	case 'maaike':
-			?>
-			<svg class="sa-visual" viewBox="0 0 480 300" role="img" aria-label="Editorial portfolio website preview" preserveAspectRatio="xMidYMid slice">
-				<rect width="480" height="300" fill="#f7f1ef" />
-				<rect width="480" height="28" fill="#fffaf7" />
-				<circle cx="16" cy="14" r="3.5" fill="#d9cfcc" />
-				<circle cx="28" cy="14" r="3.5" fill="#c9b4b1" />
-				<circle cx="40" cy="14" r="3.5" fill="#8e6668" />
-				<rect x="60" y="10" width="54" height="7" rx="3.5" fill="#2b2728" opacity="0.82" />
-				<g fill="#6f6263" opacity="0.7">
-					<rect x="338" y="11" width="28" height="5" rx="2.5" />
-					<rect x="378" y="11" width="28" height="5" rx="2.5" />
-					<rect x="418" y="11" width="38" height="5" rx="2.5" />
-				</g>
-				<rect y="28" width="480" height="184" fill="#fffaf7" />
-				<rect x="28" y="54" width="52" height="5" rx="2.5" fill="#a77b7c" />
-				<rect x="28" y="76" width="186" height="15" rx="2" fill="#2b2728" />
-				<rect x="28" y="99" width="154" height="15" rx="2" fill="#2b2728" />
-				<rect x="28" y="128" width="172" height="6" rx="3" fill="#cfc2bf" />
-				<rect x="28" y="142" width="150" height="6" rx="3" fill="#ded3d0" />
-				<rect x="28" y="165" width="72" height="24" rx="12" fill="#8e6668" />
-				<rect x="112" y="174" width="58" height="6" rx="3" fill="#6f6263" opacity="0.52" />
-				<rect x="244" y="48" width="208" height="146" rx="2" fill="#ead6d2" />
-				<path d="M244 48 H368 C338 80 322 121 326 194 H244 Z" fill="#d5aaa5" />
-				<path d="M452 48 V194 H326 C360 162 382 113 390 48 Z" fill="#8e6668" />
-				<circle cx="388" cy="112" r="40" fill="#f3e7e2" opacity="0.88" />
-				<circle cx="388" cy="112" r="24" fill="#c58e8d" opacity="0.82" />
-				<path d="M356 180 C372 154 397 145 432 148" fill="none" stroke="#fffaf7" stroke-width="2" opacity="0.75" />
-				<rect y="212" width="480" height="88" fill="#f0e6e2" />
-				<rect x="28" y="232" width="92" height="8" rx="4" fill="#2b2728" opacity="0.78" />
-				<rect x="28" y="250" width="154" height="5" rx="2.5" fill="#c9bbb8" />
-				<rect x="28" y="262" width="126" height="5" rx="2.5" fill="#d8ccc8" />
-				<rect x="224" y="228" width="66" height="50" rx="2" fill="#c99996" />
-				<rect x="302" y="228" width="66" height="50" rx="2" fill="#8e6668" />
-				<rect x="380" y="228" width="72" height="50" rx="2" fill="#2b2728" />
-			</svg>
-			<?php
-			break;
-
-		case 'notes':
-			?>
-			<svg class="sa-visual" viewBox="0 0 480 300" role="img" aria-label="Notes app interface preview" preserveAspectRatio="xMidYMid slice">
-				<rect width="480" height="300" fill="#f8f8f8" />
-				<rect x="0" y="0" width="480" height="26" fill="#eeeeec" />
-				<circle cx="16" cy="13" r="3.5" fill="#c9c9c6" />
-				<circle cx="28" cy="13" r="3.5" fill="#c9c9c6" />
-				<circle cx="40" cy="13" r="3.5" fill="#c7f000" />
-				<rect x="60" y="8" width="120" height="10" rx="5" fill="#e2e2df" />
-				<rect x="0" y="26" width="124" height="274" fill="#f1f1ef" />
-				<rect x="16" y="46" width="70" height="8" rx="4" fill="#d3d3d0" />
-				<rect x="16" y="70" width="92" height="8" rx="4" fill="#151922" opacity="0.75" />
-				<rect x="16" y="90" width="78" height="8" rx="4" fill="#d3d3d0" />
-				<rect x="16" y="110" width="86" height="8" rx="4" fill="#d3d3d0" />
-				<rect x="16" y="130" width="64" height="8" rx="4" fill="#d3d3d0" />
-				<rect x="10" y="64" width="3" height="20" fill="#c7f000" />
-				<rect x="150" y="52" width="212" height="16" rx="3" fill="#151922" opacity="0.85" />
-				<rect x="150" y="90" width="290" height="7" rx="3.5" fill="#dededb" />
-				<rect x="150" y="106" width="256" height="7" rx="3.5" fill="#dededb" />
-				<rect x="150" y="122" width="278" height="7" rx="3.5" fill="#dededb" />
-				<rect x="150" y="138" width="180" height="7" rx="3.5" fill="#dededb" />
-				<rect x="150" y="170" width="60" height="20" rx="10" fill="#c7f000" />
-				<rect x="220" y="170" width="52" height="20" rx="10" fill="#e6e6e3" />
-				<rect x="282" y="170" width="44" height="20" rx="10" fill="#e6e6e3" />
-				<rect x="150" y="212" width="290" height="7" rx="3.5" fill="#e6e6e3" />
-				<rect x="150" y="228" width="230" height="7" rx="3.5" fill="#e6e6e3" />
-				<rect x="150" y="244" width="264" height="7" rx="3.5" fill="#e6e6e3" />
-			</svg>
-			<?php
-			break;
-
-		case 'training':
-			?>
-			<svg class="sa-visual" viewBox="0 0 480 300" role="img" aria-label="Training log dashboard preview" preserveAspectRatio="xMidYMid slice">
-				<rect width="480" height="300" fill="#f8f8f8" />
-				<rect x="0" y="0" width="480" height="26" fill="#eeeeec" />
-				<rect x="16" y="9" width="96" height="9" rx="4.5" fill="#d5d5d2" />
-				<rect x="24" y="46" width="132" height="12" rx="6" fill="#151922" opacity="0.8" />
-				<rect x="24" y="76" width="200" height="120" fill="#ffffff" stroke="#e2e2df" />
-				<polyline points="36,168 66,150 96,158 126,120 156,132 186,96 210,104"
-					fill="none" stroke="#151922" stroke-width="2" opacity="0.7" />
-				<polyline points="36,182 66,176 96,180 126,164 156,170 186,150 210,156"
-					fill="none" stroke="#c7f000" stroke-width="2.5" />
-				<circle cx="186" cy="96" r="4" fill="#c7f000" stroke="#151922" stroke-width="1.5" />
-				<rect x="36" y="90" width="60" height="7" rx="3.5" fill="#e4e4e1" />
-				<rect x="248" y="76" width="208" height="56" fill="#ffffff" stroke="#e2e2df" />
-				<rect x="262" y="90" width="70" height="8" rx="4" fill="#151922" opacity="0.7" />
-				<rect x="262" y="108" width="120" height="7" rx="3.5" fill="#e4e4e1" />
-				<rect x="248" y="140" width="208" height="56" fill="#ffffff" stroke="#e2e2df" />
-				<rect x="262" y="154" width="54" height="8" rx="4" fill="#151922" opacity="0.7" />
-				<rect x="262" y="172" width="150" height="7" rx="3.5" fill="#e4e4e1" />
-				<rect x="440" y="154" width="4" height="26" fill="#c7f000" />
-				<g fill="#e9e9e6">
-					<rect x="24" y="216" width="42" height="42" />
-					<rect x="76" y="216" width="42" height="42" />
-					<rect x="128" y="216" width="42" height="42" />
-					<rect x="180" y="216" width="42" height="42" />
-					<rect x="232" y="216" width="42" height="42" />
-					<rect x="284" y="216" width="42" height="42" />
-					<rect x="336" y="216" width="42" height="42" />
-				</g>
-				<rect x="128" y="216" width="42" height="42" fill="#151922" opacity="0.14" />
-				<rect x="284" y="216" width="42" height="42" fill="#c7f000" opacity="0.85" />
-			</svg>
-			<?php
-			break;
-
-		default:
-			?>
-			<svg class="sa-visual" viewBox="0 0 480 300" role="img" aria-label="Travel planner and trip journal preview" preserveAspectRatio="xMidYMid slice">
-				<rect width="480" height="300" fill="#f8f8f8" />
-				<rect x="0" y="0" width="480" height="26" fill="#eeeeec" />
-				<rect x="16" y="9" width="110" height="9" rx="4.5" fill="#d5d5d2" />
-				<rect x="24" y="46" width="268" height="150" fill="#f1f1ef" stroke="#e2e2df" />
-				<g stroke="#dcdcda" stroke-width="1">
-					<path d="M24 96 H292" />
-					<path d="M24 146 H292" />
-					<path d="M108 46 V196" />
-					<path d="M200 46 V196" />
-				</g>
-				<path d="M46 176 C 92 150, 78 108, 128 96 S 208 108, 232 68"
-					fill="none" stroke="#151922" stroke-width="2" stroke-linecap="round"
-					stroke-dasharray="7 6" opacity="0.75" />
-				<circle cx="46" cy="176" r="5" fill="#151922" />
-				<circle cx="128" cy="96" r="5" fill="#151922" />
-				<circle cx="232" cy="68" r="7" fill="#c7f000" stroke="#151922" stroke-width="1.5" />
-				<rect x="56" y="164" width="44" height="7" rx="3.5" fill="#dcdcda" />
-				<rect x="138" y="84" width="52" height="7" rx="3.5" fill="#dcdcda" />
-				<rect x="240" y="56" width="40" height="7" rx="3.5" fill="#151922" opacity="0.6" />
-				<rect x="308" y="46" width="148" height="150" fill="#ffffff" stroke="#e2e2df" />
-				<rect x="322" y="60" width="66" height="8" rx="4" fill="#151922" opacity="0.7" />
-				<rect x="322" y="82" width="120" height="6" rx="3" fill="#e6e6e3" />
-				<rect x="322" y="96" width="100" height="6" rx="3" fill="#e6e6e3" />
-				<rect x="322" y="116" width="120" height="6" rx="3" fill="#e6e6e3" />
-				<rect x="322" y="130" width="84" height="6" rx="3" fill="#e6e6e3" />
-				<rect x="322" y="152" width="56" height="18" rx="9" fill="#c7f000" />
-				<g>
-					<rect x="24" y="214" width="138" height="62" fill="#ffffff" stroke="#e2e2df" />
-					<rect x="34" y="224" width="42" height="42" fill="#ececea" />
-					<rect x="86" y="228" width="60" height="6" rx="3" fill="#dcdcda" />
-					<rect x="86" y="242" width="46" height="6" rx="3" fill="#e8e8e5" />
-					<rect x="86" y="254" width="54" height="6" rx="3" fill="#e8e8e5" />
-					<rect x="172" y="214" width="138" height="62" fill="#ffffff" stroke="#e2e2df" />
-					<rect x="182" y="224" width="42" height="42" fill="#ececea" />
-					<rect x="234" y="228" width="60" height="6" rx="3" fill="#dcdcda" />
-					<rect x="234" y="242" width="46" height="6" rx="3" fill="#e8e8e5" />
-					<rect x="234" y="254" width="54" height="6" rx="3" fill="#e8e8e5" />
-					<rect x="320" y="214" width="136" height="62" fill="#ffffff" stroke="#e2e2df" />
-					<rect x="330" y="224" width="42" height="42" fill="#ececea" />
-					<rect x="382" y="228" width="60" height="6" rx="3" fill="#dcdcda" />
-					<rect x="382" y="242" width="46" height="6" rx="3" fill="#e8e8e5" />
-					<rect x="382" y="254" width="54" height="6" rx="3" fill="#e8e8e5" />
-				</g>
-			</svg>
-			<?php
-			break;
-	}
-}
-
-/**
- * Inline SVG marks for experiment tiles and journal covers.
+ * Inline SVG marks for journal covers without a featured image.
  *
  * @param string $kind Mark key.
  */
 function sa_mark( $kind ) {
 	switch ( $kind ) {
-		case 'matrix':
-			?>
-			<svg class="sa-mark" viewBox="0 0 120 120" aria-hidden="true">
-				<g font-family="monospace" font-size="11" fill="#151922" opacity="0.55">
-					<text x="14" y="24">0 1 1 0</text>
-					<text x="14" y="46">1 0 1 1</text>
-					<text x="14" y="68">0 1 0 0</text>
-					<text x="14" y="90">1 1 0 1</text>
-				</g>
-				<rect x="70" y="36" width="12" height="12" fill="#c7f000" />
-				<path d="M14 104 H106" stroke="#151922" stroke-width="1" opacity="0.35" />
-			</svg>
-			<?php
-			break;
-
-		case 'grid':
-			?>
-			<svg class="sa-mark" viewBox="0 0 120 120" aria-hidden="true">
-				<g stroke="#151922" stroke-width="1" opacity="0.35">
-					<path d="M20 20 H100 M20 44 H100 M20 68 H100 M20 92 H100" />
-					<path d="M20 20 V92 M44 20 V92 M68 20 V92 M92 20 V92" />
-				</g>
-				<circle cx="44" cy="44" r="5" fill="#151922" />
-				<circle cx="68" cy="68" r="8" fill="#c7f000" />
-				<circle cx="92" cy="20" r="4" fill="#151922" opacity="0.6" />
-			</svg>
-			<?php
-			break;
-
-		case 'poster':
-			?>
-			<svg class="sa-mark" viewBox="0 0 120 120" aria-hidden="true">
-				<rect x="26" y="16" width="68" height="88" fill="none" stroke="#151922" opacity="0.45" />
-				<rect x="36" y="28" width="48" height="26" fill="#c7f000" />
-				<rect x="36" y="64" width="48" height="5" fill="#151922" opacity="0.5" />
-				<rect x="36" y="76" width="34" height="5" fill="#151922" opacity="0.3" />
-				<rect x="36" y="88" width="42" height="5" fill="#151922" opacity="0.3" />
-			</svg>
-			<?php
-			break;
-
-		case 'future':
-			?>
-			<svg class="sa-mark" viewBox="0 0 120 120" aria-hidden="true">
-				<circle cx="60" cy="60" r="34" fill="none" stroke="#151922" stroke-width="1"
-					stroke-dasharray="5 7" opacity="0.45" />
-				<path d="M60 40 V60 L74 70" stroke="#151922" stroke-width="1.5" fill="none" opacity="0.6" />
-				<circle cx="60" cy="60" r="3" fill="#c7f000" />
-			</svg>
-			<?php
-			break;
-
 		case 'process':
 			?>
 			<svg class="sa-mark" viewBox="0 0 120 120" aria-hidden="true">
 				<path d="M20 84 C 44 84, 44 36, 68 36 S 92 60, 100 52"
-					fill="none" stroke="#151922" stroke-width="1.5" opacity="0.6" />
-				<circle cx="20" cy="84" r="4" fill="#151922" />
+					fill="none" stroke="#3D3D3D" stroke-width="1.5" opacity="0.6" />
+				<circle cx="20" cy="84" r="4" fill="#3D3D3D" />
 				<circle cx="68" cy="36" r="6" fill="#c7f000" />
-				<path d="M20 100 H100" stroke="#151922" opacity="0.25" />
+				<path d="M20 100 H100" stroke="#3D3D3D" opacity="0.25" />
 			</svg>
 			<?php
 			break;
@@ -308,11 +95,11 @@ function sa_mark( $kind ) {
 		case 'webwork':
 			?>
 			<svg class="sa-mark" viewBox="0 0 120 120" aria-hidden="true">
-				<rect x="18" y="26" width="84" height="60" fill="none" stroke="#151922" opacity="0.45" />
-				<path d="M18 40 H102" stroke="#151922" opacity="0.35" />
+				<rect x="18" y="26" width="84" height="60" fill="none" stroke="#3D3D3D" opacity="0.45" />
+				<path d="M18 40 H102" stroke="#3D3D3D" opacity="0.35" />
 				<rect x="26" y="50" width="30" height="26" fill="#e6e6e3" />
-				<rect x="62" y="50" width="32" height="5" fill="#151922" opacity="0.4" />
-				<rect x="62" y="62" width="24" height="5" fill="#151922" opacity="0.25" />
+				<rect x="62" y="50" width="32" height="5" fill="#3D3D3D" opacity="0.4" />
+				<rect x="62" y="62" width="24" height="5" fill="#3D3D3D" opacity="0.25" />
 				<rect x="62" y="74" width="28" height="5" fill="#c7f000" />
 			</svg>
 			<?php
@@ -321,9 +108,9 @@ function sa_mark( $kind ) {
 		default:
 			?>
 			<svg class="sa-mark" viewBox="0 0 120 120" aria-hidden="true">
-				<rect x="24" y="24" width="72" height="72" fill="none" stroke="#151922" opacity="0.4" />
-				<path d="M24 60 H96 M60 24 V96" stroke="#151922" opacity="0.25" />
-				<circle cx="60" cy="60" r="18" fill="none" stroke="#151922" opacity="0.5" />
+				<rect x="24" y="24" width="72" height="72" fill="none" stroke="#3D3D3D" opacity="0.4" />
+				<path d="M24 60 H96 M60 24 V96" stroke="#3D3D3D" opacity="0.25" />
+				<circle cx="60" cy="60" r="18" fill="none" stroke="#3D3D3D" opacity="0.5" />
 				<circle cx="78" cy="42" r="6" fill="#c7f000" />
 			</svg>
 			<?php
@@ -343,150 +130,114 @@ function sa_mark( $kind ) {
 <body <?php body_class( 'sa-front' ); ?>>
 <?php wp_body_open(); ?>
 
-<a class="sa-skip" href="#work"><?php echo esc_html( sa_child_text( 'Zum Inhalt springen', 'Skip to content' ) ); ?></a>
+<a class="sa-skip" href="#sa-main">Zum Inhalt springen</a>
 
 <?php get_template_part( 'parts/sa-header' ); ?>
 
 <main class="sa-main" id="sa-main">
 
 	<!-- ============================ HERO ============================ -->
-	<section class="sa-hero" id="top" aria-label="<?php echo esc_attr( sa_child_text( 'Einführung', 'Introduction' ) ); ?>">
-		<div class="sa-hero__canvas-wrap" aria-hidden="true">
-			<canvas class="sa-hero__canvas" id="sa-hero-canvas"></canvas>
-		</div>
+	<section class="sa-hero sa-hero--portrait" id="top" aria-label="Einführung">
 		<span class="sa-hero__glow sa-hero__glow--a" aria-hidden="true"></span>
-		<span class="sa-hero__glow sa-hero__glow--b" aria-hidden="true"></span>
 
 		<div class="sa-hero__inner sa-shell">
 			<div class="sa-hero__content sa-stagger">
 				<div class="sa-eyebrow-row sa-reveal">
 					<span class="sa-rule" aria-hidden="true"></span>
-					<span class="sa-eyebrow"><?php echo esc_html( sa_child_text( 'Unabhängiges Webdesign & Entwicklung', 'Independent Web Design & Development' ) ); ?></span>
+					<span class="sa-eyebrow">Design-Studio · Ich-Marke</span>
 				</div>
-
-				<p class="sa-claim sa-reveal">DESIGN. <span>CODE.</span> CREATE.</p>
 
 				<h1 class="sa-hero__title sa-reveal">
-					<?php echo esc_html( sa_child_text( 'Websites mit Charakter.', 'Websites with character.' ) ); ?><br />
-					<?php echo esc_html( sa_child_text( 'Gut gestaltet. Sauber umgesetzt.', 'Designed with care. Built to work.' ) ); ?>
+					Design, das deiner Marke<br />
+					<span class="sa-lime-text">eine Stimme gibt.</span>
 				</h1>
 
-				<div class="sa-hero__foot sa-reveal">
-					<p class="sa-hero__lead">
-						<?php echo esc_html( sa_child_text( 'Studio Avelin gestaltet und entwickelt individuelle Websites für Selbstständige und kleine Unternehmen – persönlich, verlässlich und passend zur Aufgabe.', 'Studio Avelin designs and builds custom websites for independent professionals and small businesses — personal, reliable and shaped around the work they need to do.' ) ); ?>
-					</p>
+				<p class="sa-hero__lead sa-reveal">
+					Ich begleite dich persönlich – von der Positionierung bis zur Sichtbarkeit.
+				</p>
 
-					<div class="sa-hero__actions">
-						<a class="sa-hero__cta" href="#work">
-							<span><?php echo esc_html( sa_child_text( 'Projekte ansehen', 'View Work' ) ); ?></span>
-							<span class="sa-btn__arrow" aria-hidden="true">&rarr;</span>
-						</a>
-						<a class="sa-link-lime sa-hero__project-link" href="#contact">
-							<?php echo esc_html( sa_child_text( 'Projekt starten', 'Start a Project' ) ); ?> <span class="sa-btn__arrow" aria-hidden="true">&rarr;</span>
-						</a>
-					</div>
+				<p class="sa-hero__signature sa-reveal">Michael, Studio Avelin</p>
+
+				<div class="sa-hero__actions sa-reveal">
+					<a class="sa-btn sa-btn--dark" href="<?php echo esc_url( $sa_home . 'contact/' ); ?>">
+						<span class="sa-btn__text">Projekt besprechen</span>
+						<span class="sa-btn__arrow" aria-hidden="true">&rarr;</span>
+					</a>
+					<a class="sa-link-lime" href="#work">
+						Projekte ansehen <span class="sa-btn__arrow" aria-hidden="true">&rarr;</span>
+					</a>
 				</div>
 			</div>
-		</div>
 
+			<div class="sa-hero__portrait sa-reveal">
+				<div class="sa-hero__portrait-frame">
+					<?php if ( $sa_has_portrait ) : ?>
+						<img class="sa-hero__portrait-img" src="<?php echo esc_url( $sa_portrait ); ?>"
+							alt="Porträt von Michael, dem Designer hinter Studio Avelin"
+							width="800" height="1000" loading="eager" />
+					<?php else : ?>
+						<div class="sa-hero__portrait-placeholder"><span>MICHAEL</span></div>
+					<?php endif; ?>
+					<span class="sa-hero__portrait-accent" aria-hidden="true"></span>
+				</div>
+				<span class="sa-hero__portrait-mark" aria-hidden="true">A<span>/</span></span>
+			</div>
+		</div>
+	</section>
+
+	<!-- ==================== VON DER HALTUNG BIS ZUR SICHTBARKEIT ==================== -->
+	<section class="sa-section sa-arc" aria-labelledby="sa-arc-title">
+		<div class="sa-shell">
+			<div class="sa-section__head sa-stagger">
+				<p class="sa-eyebrow sa-eyebrow--dot sa-reveal">Von der Haltung bis zur Sichtbarkeit</p>
+				<h2 class="sa-section__title sa-reveal" id="sa-arc-title">Design, Marke und Sichtbarkeit – aus einer Hand.</h2>
+			</div>
+
+			<ul class="sa-arc__list sa-stagger">
+				<?php foreach ( $sa_arc as $index => $step ) : ?>
+					<li class="sa-arc__item sa-reveal">
+						<span class="sa-arc__index"><?php echo esc_html( str_pad( (string) ( $index + 1 ), 2, '0', STR_PAD_LEFT ) ); ?></span>
+						<h3 class="sa-arc__title"><?php echo esc_html( $step['title'] ); ?></h3>
+						<p class="sa-arc__text"><?php echo esc_html( $step['text'] ); ?></p>
+					</li>
+				<?php endforeach; ?>
+			</ul>
+
+			<div class="sa-section__foot sa-reveal">
+				<a class="sa-link-lime" href="<?php echo esc_url( $sa_home . 'services/' ); ?>">
+					Leistungen entdecken <span class="sa-btn__arrow" aria-hidden="true">&rarr;</span>
+				</a>
+			</div>
+		</div>
 	</section>
 
 	<!-- ============================ WORK ============================ -->
 	<section class="sa-section" id="work" aria-labelledby="sa-work-title">
 		<div class="sa-shell">
 			<div class="sa-section__head sa-stagger">
-				<p class="sa-eyebrow sa-eyebrow--dot sa-reveal"><?php echo esc_html( sa_child_text( 'Projekte', 'Projects' ) ); ?> &middot; 01&ndash;03</p>
-				<h2 class="sa-section__title sa-reveal" id="sa-work-title"><?php echo esc_html( sa_child_text( 'Ausgewählte Projekte', 'Selected Work' ) ); ?></h2>
+				<p class="sa-eyebrow sa-eyebrow--dot sa-reveal">Projekte</p>
+				<h2 class="sa-section__title sa-reveal" id="sa-work-title">Ausgewählte Projekte</h2>
 				<p class="sa-section__intro sa-reveal">
-					<?php echo esc_html( sa_child_text( 'Kundenprojekte und eigene Produkte, die Gestaltung und technische Umsetzung zusammenbringen.', 'Client projects and independent products that bring design and development together.' ) ); ?>
+					Kundenprojekte und eigene Produkte – gestaltet, entwickelt und verfeinert im direkten Austausch.
 				</p>
 			</div>
 
-			<ul class="sa-work sa-stagger">
-				<?php foreach ( $sa_projects as $index => $project ) : ?>
-					<li class="sa-work__item sa-reveal<?php echo ( 1 === $index % 2 ) ? ' sa-work__item--reverse' : ''; ?>">
-						<?php
-						$sa_tag        = $project['url'] ? 'a' : 'div';
-						$sa_attributes = '';
-						if ( $project['url'] ) {
-							$sa_attributes = ' href="' . esc_url( $project['url'] ) . '"';
-							if ( $project['external'] ) {
-								$sa_attributes .= ' target="_blank" rel="noopener noreferrer"';
-							}
-						}
-						?>
-						<<?php echo esc_html( $sa_tag ) . $sa_attributes; // phpcs:ignore WordPress.Security.EscapeOutput ?> class="sa-work__link">
-							<div class="sa-work__visual">
-								<span class="sa-bracket sa-bracket--tl" aria-hidden="true"></span>
-								<span class="sa-bracket sa-bracket--br" aria-hidden="true"></span>
-								<div class="sa-work__frame">
-									<?php sa_project_visual( $project['visual'] ); ?>
-								</div>
-							</div>
-
-							<div class="sa-work__body">
-								<span class="sa-work__index"><?php echo esc_html( str_pad( (string) ( $index + 1 ), 2, '0', STR_PAD_LEFT ) ); ?></span>
-								<div class="sa-work__text">
-									<h3 class="sa-work__name"><?php echo esc_html( $project['name'] ); ?></h3>
-									<p class="sa-work__full"><?php echo esc_html( $project['full'] ); ?></p>
-									<span class="sa-pill sa-pill--<?php echo esc_attr( sanitize_title( $project['status'] ) ); ?>">
-										<span class="sa-pill__dot" aria-hidden="true"></span>
-										<?php echo esc_html( $project['status'] ); ?>
-									</span>
-									<p class="sa-work__desc"><?php echo esc_html( $project['text'] ); ?></p>
-									<?php if ( $project['url'] ) : ?>
-										<span class="sa-inline-cta">
-											<?php echo esc_html( sa_child_text( 'Projekt ansehen', 'Visit project' ) ); ?> <span class="sa-btn__arrow" aria-hidden="true">&rarr;</span>
-										</span>
-									<?php else : ?>
-										<span class="sa-inline-cta sa-inline-cta--muted"><?php echo esc_html( sa_child_text( 'In Arbeit', 'In progress' ) ); ?></span>
-									<?php endif; ?>
-								</div>
-							</div>
-						</<?php echo esc_html( $sa_tag ); ?>>
+			<ul class="sa-projects sa-stagger">
+				<?php foreach ( $sa_projects as $project ) : ?>
+					<li class="sa-projects__item sa-reveal">
+						<a class="sa-projects__link" href="<?php echo esc_url( $project['url'] ); ?>">
+							<span class="sa-projects__meta"><?php echo esc_html( $project['meta'] ); ?></span>
+							<h3 class="sa-projects__name"><?php echo esc_html( $project['name'] ); ?></h3>
+							<p class="sa-projects__text"><?php echo esc_html( $project['text'] ); ?></p>
+							<span class="sa-inline-cta">Projekt ansehen <span class="sa-btn__arrow" aria-hidden="true">&rarr;</span></span>
+						</a>
 					</li>
 				<?php endforeach; ?>
 			</ul>
-		</div>
-	</section>
-
-	<!-- ========================== SERVICES ========================== -->
-	<section class="sa-section" id="services" aria-labelledby="sa-services-title">
-		<div class="sa-shell">
-			<div class="sa-section__head sa-stagger">
-				<p class="sa-eyebrow sa-eyebrow--dot sa-reveal"><?php echo esc_html( sa_child_text( 'Leistungen', 'Services' ) ); ?></p>
-				<h2 class="sa-section__title sa-reveal" id="sa-services-title"><?php echo esc_html( sa_child_text( 'Von der ersten Idee bis zur fertigen Website.', 'From the first idea to the finished website.' ) ); ?></h2>
-				<p class="sa-section__intro sa-reveal">
-					<?php echo esc_html( sa_child_text( 'Konzept, Design und Entwicklung kommen aus einer Hand – mit direkter Abstimmung und ohne wechselnde Ansprechpartner.', 'Strategy, design and development stay together — with direct communication and no hand-offs.' ) ); ?>
-				</p>
-			</div>
-
-			<ul class="sa-services sa-stagger">
-				<li class="sa-services__item sa-reveal">
-					<span class="sa-services__index">01</span>
-					<h3 class="sa-services__title"><?php echo esc_html( sa_child_text( 'Individuelle Websites', 'Custom Websites' ) ); ?></h3>
-					<p class="sa-services__text"><?php echo esc_html( sa_child_text( 'Individuelle, responsive Websites, die zur Arbeit, zur Zielgruppe und zum Alltag passen.', 'Custom responsive websites shaped around the work, the audience and everyday use.' ) ); ?></p>
-				</li>
-				<li class="sa-services__item sa-reveal">
-					<span class="sa-services__index">02</span>
-					<h3 class="sa-services__title"><?php echo esc_html( sa_child_text( 'Landingpages & Portfolios', 'Landing Pages & Portfolios' ) ); ?></h3>
-					<p class="sa-services__text"><?php echo esc_html( sa_child_text( 'Kompakte Auftritte für Selbstständige, Dienstleistungen, Produkte und Launches.', 'Compact websites for independent professionals, services, products and launches.' ) ); ?></p>
-				</li>
-				<li class="sa-services__item sa-reveal">
-					<span class="sa-services__index">03</span>
-					<h3 class="sa-services__title"><?php echo esc_html( sa_child_text( 'WordPress & redaktionelle Systeme', 'WordPress & Editorial Systems' ) ); ?></h3>
-					<p class="sa-services__text"><?php echo esc_html( sa_child_text( 'Flexible Publishing-Systeme, mit denen Inhalte auch nach dem Launch einfach gepflegt werden können.', 'Flexible publishing systems that stay straightforward to use after launch.' ) ); ?></p>
-				</li>
-				<li class="sa-services__item sa-reveal">
-					<span class="sa-services__index">04</span>
-					<h3 class="sa-services__title"><?php echo esc_html( sa_child_text( 'Website-Optimierung & laufende Betreuung', 'Website Refinement & Ongoing Care' ) ); ?></h3>
-					<p class="sa-services__text"><?php echo esc_html( sa_child_text( 'Verbesserungen an Design, Struktur, Performance und Bedienbarkeit – ohne funktionierende Grundlagen unnötig neu zu bauen.', 'Improvements to design, structure, performance and usability — without rebuilding foundations that already work.' ) ); ?></p>
-				</li>
-			</ul>
 
 			<div class="sa-section__foot sa-reveal">
-				<a class="sa-link-lime" href="<?php echo esc_url( $sa_home . 'services/' ); ?>">
-					<?php echo esc_html( sa_child_text( 'Leistungen entdecken', 'Explore services' ) ); ?> <span class="sa-btn__arrow" aria-hidden="true">&rarr;</span>
+				<a class="sa-link-lime" href="<?php echo esc_url( $sa_home . 'work/' ); ?>">
+					Alle Projekte <span class="sa-btn__arrow" aria-hidden="true">&rarr;</span>
 				</a>
 			</div>
 		</div>
@@ -500,17 +251,17 @@ function sa_mark( $kind ) {
 					<div class="sa-about__frame">
 						<?php if ( $sa_has_portrait ) : ?>
 							<img class="sa-about__img" src="<?php echo esc_url( $sa_portrait ); ?>"
-								alt="<?php echo esc_attr( sa_child_text( 'Porträt der Person hinter Studio Avelin', 'Portrait of the person behind Studio Avelin' ) ); ?>" loading="lazy"
+								alt="Porträt der Person hinter Studio Avelin" loading="lazy"
 								width="800" height="800" />
 						<?php else : ?>
 							<div class="sa-about__graphic">
 								<svg viewBox="0 0 320 320" aria-hidden="true">
 									<rect width="320" height="320" fill="#f8f8f8" />
-									<g stroke="#151922" opacity="0.12">
+									<g stroke="#3D3D3D" opacity="0.12">
 										<path d="M0 80 H320 M0 160 H320 M0 240 H320" />
 										<path d="M80 0 V320 M160 0 V320 M240 0 V320" />
 									</g>
-									<circle cx="160" cy="160" r="80" fill="none" stroke="#151922" opacity="0.45" />
+									<circle cx="160" cy="160" r="80" fill="none" stroke="#3D3D3D" opacity="0.45" />
 									<circle cx="216" cy="120" r="14" fill="#c7f000" />
 								</svg>
 							</div>
@@ -523,12 +274,18 @@ function sa_mark( $kind ) {
 				</div>
 
 				<div class="sa-about__body sa-reveal">
-					<p class="sa-eyebrow sa-eyebrow--dot"><?php echo esc_html( sa_child_text( 'Über mich', 'About' ) ); ?></p>
+					<p class="sa-eyebrow sa-eyebrow--dot">Über mich</p>
 					<h2 class="sa-about__title" id="sa-about-title">
-						<?php echo esc_html( sa_child_text( 'Ich bin Michael Fiebus, Designer und Entwickler hinter Studio Avelin. Ich verbinde Gestaltung und Technik zu Websites und digitalen Produkten, die im Alltag funktionieren.', 'I’m Michael Fiebus, the designer and developer behind Studio Avelin. I bring design and technology together in websites and digital products made for everyday use.' ) ); ?>
+						Design mit Haltung, für Marken, die mehr sind als eine Website.
 					</h2>
+					<p class="sa-about__text">
+						Ich bin Michael, Designer und Gründer von Studio Avelin. Ich arbeite mit kleinen,
+						inhabergeführten Marken – von der Personenmarke bis zum eigenen Laden. Keine Agentur
+						mit vielen Zwischenstationen, sondern ein direkter Ansprechpartner: von der
+						Positionierung über das Design bis zur Sichtbarkeit.
+					</p>
 					<a class="sa-link-lime" href="<?php echo esc_url( $sa_home . 'about-me/' ); ?>">
-						<?php echo esc_html( sa_child_text( 'Mehr über mich', 'More About Me' ) ); ?> <span class="sa-btn__arrow" aria-hidden="true">&rarr;</span>
+						Mehr über mich <span class="sa-btn__arrow" aria-hidden="true">&rarr;</span>
 					</a>
 				</div>
 			</div>
@@ -540,14 +297,15 @@ function sa_mark( $kind ) {
 		<div class="sa-shell">
 			<div class="sa-section__head-row">
 				<div class="sa-section__head sa-stagger">
-					<p class="sa-eyebrow sa-eyebrow--dot sa-reveal"><?php echo esc_html( sa_child_text( 'Notizen & Texte', 'Notes & Writing' ) ); ?></p>
-					<h2 class="sa-section__title sa-reveal" id="sa-journal-title">Journal</h2>
+					<p class="sa-eyebrow sa-eyebrow--dot sa-reveal">Journal</p>
+					<h2 class="sa-section__title sa-reveal" id="sa-journal-title">Abseits der Arbeit</h2>
 					<p class="sa-section__intro sa-reveal">
-						<?php echo esc_html( sa_child_text( 'Notizen aus Design, Entwicklung und dem Studioalltag.', 'Notes from design, development and day-to-day studio work.' ) ); ?>
+						Kein Marketing-Blog – ein Einblick in die Person hinter Studio Avelin: Reisen,
+						Lauftraining, Bücher.
 					</p>
 				</div>
 				<a class="sa-link-lime sa-reveal" href="<?php echo esc_url( $sa_home . 'journal/' ); ?>">
-					<?php echo esc_html( sa_child_text( 'Alle Notizen', 'All notes' ) ); ?> <span class="sa-btn__arrow" aria-hidden="true">&rarr;</span>
+					Alle Notizen <span class="sa-btn__arrow" aria-hidden="true">&rarr;</span>
 				</a>
 			</div>
 
@@ -557,7 +315,7 @@ function sa_mark( $kind ) {
 				<?php while ( $sa_journal_posts->have_posts() ) : ?>
 					<?php
 					$sa_journal_posts->the_post();
-					$sa_journal_terms   = get_the_terms( get_the_ID(), 'sa_journal_category' );
+					$sa_journal_terms    = get_the_terms( get_the_ID(), 'sa_journal_category' );
 					$sa_journal_category = ( $sa_journal_terms && ! is_wp_error( $sa_journal_terms ) ) ? $sa_journal_terms[0]->name : 'Journal';
 					$sa_journal_excerpt  = get_the_excerpt();
 					$sa_journal_mark     = $sa_journal_marks[ $sa_journal_index % count( $sa_journal_marks ) ];
@@ -576,7 +334,7 @@ function sa_mark( $kind ) {
 									<span class="sa-journal__cat-dot" aria-hidden="true"></span>
 									<?php echo esc_html( $sa_journal_category ); ?>
 								</span>
-								<span class="sa-journal__read"><?php echo esc_html( sa_journal_reading_time() ); ?> <?php echo esc_html( sa_child_text( 'Min. Lesezeit', 'min read' ) ); ?></span>
+								<span class="sa-journal__read"><?php echo esc_html( sa_journal_reading_time() ); ?> Min. Lesezeit</span>
 								<span class="sa-journal__sweep" aria-hidden="true"></span>
 							</div>
 							<h3 class="sa-journal__title"><span><?php the_title(); ?></span></h3>
@@ -593,33 +351,25 @@ function sa_mark( $kind ) {
 		</div>
 	</section>
 
-	<!-- ======================== START A PROJECT ======================== -->
+	<!-- ======================== ABSCHLUSS-CTA ======================== -->
 	<section class="sa-section sa-contact" id="contact" aria-labelledby="sa-contact-title">
 		<span class="sa-contact__glow" aria-hidden="true"></span>
 		<div class="sa-shell">
 			<div class="sa-stagger sa-contact__inner">
-				<p class="sa-eyebrow sa-eyebrow--dot sa-reveal"><?php echo esc_html( sa_child_text( 'Projekt starten', 'Start a Project' ) ); ?></p>
-				<h2 class="sa-contact__title sa-reveal" id="sa-contact-title">
-					<?php echo esc_html( sa_child_text( 'Du hast eine Website im Kopf?', 'Have a website in mind?' ) ); ?><br class="sa-br-md" /> <?php echo esc_html( sa_child_text( 'Lass uns darüber sprechen.', 'Let’s talk about it.' ) ); ?>
-				</h2>
+				<p class="sa-eyebrow sa-eyebrow--dot sa-reveal">Projekt besprechen</p>
+				<h2 class="sa-contact__title sa-reveal" id="sa-contact-title">Bereit?</h2>
 
 				<p class="sa-contact__intro sa-reveal">
-					<?php echo esc_html( sa_child_text( 'Erzähl mir, woran du arbeitest, was die Website leisten soll und wo du im Prozess stehst. Eine grobe Skizze reicht für den Anfang.', 'Tell me what you are working on, what the website should do and where you are in the process. A rough outline is enough to start.' ) ); ?>
+					Ob erste Idee oder konkretes Projekt – lass uns sprechen, ob und wie ich dich begleiten kann.
 				</p>
 
-				<ul class="sa-contact__brief sa-stagger" aria-label="<?php echo esc_attr( sa_child_text( 'Hilfreiche Angaben für eine Projektanfrage', 'Useful details for a project enquiry' ) ); ?>">
-					<li class="sa-reveal"><span>01</span><?php echo esc_html( sa_child_text( 'Deine Idee oder bestehende Website', 'Your idea or current website' ) ); ?></li>
-					<li class="sa-reveal"><span>02</span><?php echo esc_html( sa_child_text( 'Der gewünschte Umfang', 'The scope you have in mind' ) ); ?></li>
-					<li class="sa-reveal"><span>03</span><?php echo esc_html( sa_child_text( 'Dein gewünschter Zeitrahmen', 'Your preferred timing' ) ); ?></li>
-				</ul>
-
 				<a class="sa-contact__mail sa-reveal" href="<?php echo esc_url( $sa_home . 'contact/' ); ?>">
-					<span class="sa-contact__mail-text"><?php echo esc_html( sa_child_text( 'Projekt anfragen', 'Send a project enquiry' ) ); ?></span>
+					<span class="sa-contact__mail-text">Projekt besprechen</span>
 					<span class="sa-btn__arrow" aria-hidden="true">&rarr;</span>
 				</a>
 
 				<div class="sa-contact__social sa-reveal">
-					<span class="sa-contact__social-label"><?php echo esc_html( sa_child_text( 'Außerdem', 'Elsewhere' ) ); ?></span>
+					<span class="sa-contact__social-label">Außerdem</span>
 					<a class="sa-link-lime" href="https://www.instagram.com/studio_avelin" target="_blank" rel="noopener noreferrer">
 						Instagram
 					</a>

@@ -8,19 +8,12 @@
 ?>
 
 <div class="sa-legal-hero">
-	<span class="sa-legal-hero__eyebrow">Legal Notice</span>
-	<h1 class="sa-legal-hero__title"><?php echo esc_html( sa_child_text( 'Datenschutzerklärung', 'Privacy Policy' ) ); ?></h1>
-	<span class="sa-legal-hero__meta"><?php echo esc_html( sa_child_text( 'Stand: ', 'German original · Updated: ' ) ); ?><?php echo esc_html( wp_date( 'm/Y' ) ); ?></span>
+	<span class="sa-legal-hero__eyebrow">Rechtliches</span>
+	<h1 class="sa-legal-hero__title">Datenschutzerklärung</h1>
+	<span class="sa-legal-hero__meta">Stand: <?php echo esc_html( wp_date( 'm/Y' ) ); ?></span>
 </div>
 
 <div class="sa-legal-content">
-	<?php if ( 'en' === sa_child_language() ) : ?>
-		<section class="sa-legal-card sa-legal-card--language-note">
-			<div class="sa-legal-card__num">EN</div>
-			<h2>About this privacy policy</h2>
-			<p>This page retains the complete German privacy policy below. The German text is the authoritative legal version. If you have questions about how Studio Avelin handles personal data, please contact <a href="mailto:hello@studio-avelin.com">hello@studio-avelin.com</a>.</p>
-		</section>
-	<?php endif; ?>
 
 	<!-- 01. DATENSCHUTZ AUF EINEN BLICK -->
 	<section class="sa-legal-card">
@@ -48,7 +41,7 @@
 		<h2>2. Hosting</h2>
 		<p>Wir hosten die Inhalte unserer Website bei folgendem Anbieter:</p>
 		
-		<div style="background: rgba(21, 25, 34, 0.02); border: 1px solid var(--sa-line, rgba(21, 25, 34, 0.12)); padding: 1.25rem 1.5rem; margin: 1.25rem 0; border-radius: 4px;">
+		<div style="background: rgba(61, 61, 61, 0.02); border: 1px solid var(--sa-line, rgba(61, 61, 61, 0.12)); padding: 1.25rem 1.5rem; margin: 1.25rem 0; border-radius: 4px;">
 			<p style="margin: 0; font-weight: 600; color: var(--sa-ink);">IONOS SE</p>
 			<p style="margin: 0.25rem 0 0 0; color: var(--sa-muted); font-size: 0.95rem;">Elgendorfer Str. 57 &bull; 56410 Montabaur, Deutschland</p>
 			<p style="margin: 0.4rem 0 0 0; font-size: 0.9rem;"><a href="https://www.ionos.de/schutz-datenschutz" target="_blank" rel="noreferrer noopener">www.ionos.de/schutz-datenschutz &rarr;</a></p>
@@ -70,7 +63,7 @@
 		<h3>Hinweis zur verantwortlichen Stelle</h3>
 		<p>Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:</p>
 		
-		<div style="background: rgba(21, 25, 34, 0.02); border: 1px solid var(--sa-line, rgba(21, 25, 34, 0.12)); padding: 1.25rem 1.5rem; margin: 1.25rem 0; border-radius: 4px;">
+		<div style="background: rgba(61, 61, 61, 0.02); border: 1px solid var(--sa-line, rgba(61, 61, 61, 0.12)); padding: 1.25rem 1.5rem; margin: 1.25rem 0; border-radius: 4px;">
 			<p style="margin: 0; font-weight: 600; color: var(--sa-ink);">Studio Avelin</p>
 			<p style="margin: 0.2rem 0 0 0; color: var(--sa-ink);">Michael Fiebus</p>
 			<p style="margin: 0.2rem 0 0 0; color: var(--sa-muted); font-size: 0.95rem;">Wolfstr. 34 &bull; 52134 Herzogenrath</p>

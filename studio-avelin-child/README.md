@@ -1,6 +1,7 @@
 # Studio Avelin Child Theme
 
-Child theme for **Twenty Twenty-Four** containing the Studio Avelin homepage.
+Child theme for **Twenty Twenty-Four**. German-only Ich-Marke site for
+studio-avelin.com (rebuilt 2026-09).
 
 ## Upload
 
@@ -8,55 +9,56 @@ Upload the folder `studio-avelin-child/` to:
 
     /wp-content/themes/studio-avelin-child/
 
-Requirements: the parent theme **Twenty Twenty-Four** must be installed
-(it does not need to be activated). Then activate "Studio Avelin Child"
-under Appearance > Themes.
+Requirements: the parent theme **Twenty Twenty-Four** must be installed (it does
+not need to be activated). Then activate "Studio Avelin Child" under
+Appearance > Themes.
 
-## Homepage
+Use `../deploy.sh` (production) or `../deploy-staging.sh` (staging) to push the
+maintained files over SFTP.
 
-WordPress uses `front-page.php` automatically for the site front page —
-no page assignment needed. Under Settings > Reading either option works
-("Your latest posts" or a static page).
+## Routing
 
-The template is standalone: it prints its own `<head>`, calls `wp_head()`,
-`wp_body_open()` and `wp_footer()`, and deliberately does **not** call
-`get_header()` / `get_footer()`, so the Twenty Twenty-Four block header and
-footer (and "Proudly powered by WordPress") never appear on the homepage.
+`functions.php` renders most routes itself via a `template_redirect` hook:
+
+    /                         front-page.php (person-centred homepage)
+    /work/                    page-work.php (client projects + own products)
+    /work/<slug>/             page-work-<slug>.php  (project notes)
+    /services/                page-services.php (Website- / Branding-Projekt, Begleitung)
+    /about-me/                page-about-me.php
+    /contact/                 page-contact.php (enquiry form, email only)
+    /journal/                 native sa_journal post type (inc/sa-journal.php)
+    /experiments/             page-experiments.php
+    /impressum/, /datenschutzerklaerung/
+
+The homepage template is standalone: it prints its own `<head>`, calls
+`wp_head()` / `wp_body_open()` / `wp_footer()` and deliberately does **not** call
+`get_header()` / `get_footer()`, so the Twenty Twenty-Four block header/footer
+never appears.
 
 ## Files
 
     style.css                 Theme header + global brand tokens
-    functions.php             Asset loading, fonts, navigation data
-    front-page.php            Standalone homepage (header, hero, sections, footer)
+    functions.php             Routing, asset loading, fonts, favicons, contact form, SMTP
+    front-page.php            Homepage (portrait hero, offer arc, project cards, journal, CTA)
     theme.json                Brand palette / typography for the block editor
-    assets/css/home.css       Homepage stylesheet (all .sa-* classes)
-    assets/js/home.js         Canvas hero + reveals + smooth scroll + mobile nav
-    assets/img/portrait.jpg   About portrait
-
-Optional: place a `js/sa-work-slider.js` in the theme root and it is
-enqueued automatically on the homepage only.
+    parts/sa-header.php       Flat header: A/ wordmark, nav, "Projekt besprechen" CTA
+    parts/sa-footer.php       Editorial footer
+    parts/sa-project-note.php Shared project-note renderer for /work/<slug>/
+    inc/sa-journal.php        Native Journal content model + templates in journal/
+    assets/css/               sa-base.css (chrome), home.css (homepage), pages.css (inner pages)
+    assets/js/home.js         Reveals, sticky header, sliding nav indicator, mobile nav, hero drift
+    assets/img/favicons/      Favicon set (lime variant) + site.webmanifest
+    assets/img/portrait.jpg   Portrait used on the homepage and About page
 
 ## Editing content
 
-Projects, experiments and journal teaser entries are plain PHP arrays at the
-top of `front-page.php` (`$sa_projects`, `$sa_experiments`, `$sa_posts`).
-Navigation lives in `sa_child_nav_items()` in `functions.php`.
+Homepage project cards, the offer arc and the work-page project lists are plain
+PHP arrays at the top of the respective templates. Header/footer navigation is
+hardcoded in `parts/sa-header.php` and `parts/sa-footer.php`.
 
-## Expected URLs
+## Brand
 
-    /experiments/
-    /experiments/matrix/
-    /experiments/avelin-signal-grid/
-    /experiments/poster-generator/
-    /journal/
-    /about-me/
-    /datenschutzerklaerung/
-    /impressum/
-
-## Hero animation
-
-`assets/js/home.js` draws a generative Canvas 2D field (flow-field particles,
-layered ribbons, technical structure lines, pulsing lime signal nodes).
-It is full-bleed inside the hero and reaches the right viewport edge.
-It pauses when the tab is hidden or the hero scrolls out of view, and respects
-`prefers-reduced-motion` (single static frame instead of animation).
+- Colours: Off White `#F2F2F2`, Charcoal `#3D3D3D`, Lime `#C7F000`
+- Type: Poppins (display), Raleway (body)
+- Animations are deliberately restrained: scroll reveals, hover transitions and a
+  single hero-portrait drift, all disabled under `prefers-reduced-motion`.

@@ -1,28 +1,28 @@
 <?php
 /**
- * Template Name: Studio Avelin – Work: StAU
- * Project note: /work/stau/
+ * Template Name: Studio Avelin – Projekt: StAU
+ * Projektnotiz: /work/stau/
  */
-if (!defined('ABSPATH')) {
-    exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
 $sa_project = array(
-    'title'        => 'StAU — Studio Avelin Travel Planner',
-    'summary'      => 'A small travel planning and trip journal concept for organizing ideas, routes and memories.',
-    'status'       => 'Concept / future project',
-    'role'         => 'Concept, design',
-    'stack'        => 'Undecided, likely a small web app',
-    'state'        => 'Concept, collected notes and sketches',
-    'link'         => '',
-    'link_display' => '',
-    'link_label'   => '',
-    'description'  => array(
-        'StAU is a travel planning concept: collect ideas before a trip, plan loose routes during it, and keep the good parts afterwards.',
-        'The interesting part is the shift between the three modes. Planning wants lists and maps, travelling wants very little, remembering wants photos and text.',
-        'Nothing is built yet. This page keeps the idea visible while it waits its turn.',
-    ),
+	'title'        => 'StAU — Studio Avelin Travel Planner',
+	'summary'      => 'Ein Konzept für Reiseplanung und Reisetagebuch, das Ideen, Routen und Erinnerungen sammelt.',
+	'status'       => 'Konzept / künftiges Projekt',
+	'role'         => 'Konzept, Design',
+	'stack'        => 'Noch offen, vermutlich eine kleine Web-App',
+	'state'        => 'Konzept, gesammelte Notizen und Skizzen',
+	'link'         => '',
+	'link_display' => '',
+	'link_label'   => '',
+	'description'  => array(
+		'StAU ist ein Reiseplanungs-Konzept: Ideen vor der Reise sammeln, unterwegs lose Routen planen und danach die guten Teile behalten.',
+		'Das Spannende ist der Wechsel zwischen den drei Modi. Planen will Listen und Karten, Reisen will sehr wenig, Erinnern will Fotos und Text.',
+		'Es ist noch nichts gebaut. Diese Seite hält die Idee sichtbar, bis sie an der Reihe ist.',
+	),
 );
 
-set_query_var('sa_project', $sa_project);
-get_template_part('parts/sa-project-note');
+set_query_var( 'sa_project', $sa_project );
+get_template_part( 'parts/sa-project-note' );

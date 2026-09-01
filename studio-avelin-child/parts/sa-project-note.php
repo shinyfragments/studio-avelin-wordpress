@@ -2,15 +2,15 @@
 /**
  * Studio Avelin – shared project note renderer.
  * Expects $sa_project (array) to be defined before including this part:
- *   title, status, role, stack, state, description (array of paragraphs),
- *   link (url|''), link_label
+ *   title, summary, status, role, stack, state, description (array of paragraphs),
+ *   link (url|''), link_display, link_label
  */
-if (!defined('ABSPATH')) {
-    exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
-if (empty($sa_project) || !is_array($sa_project)) {
-    return;
+if ( empty( $sa_project ) || ! is_array( $sa_project ) ) {
+	return;
 }
 ?>
 <!doctype html>
@@ -28,7 +28,7 @@ if (empty($sa_project) || !is_array($sa_project)) {
 <main id="primary" class="sa-page">
   <section class="sa-page-head" aria-labelledby="sa-project-title">
     <div class="sa-page__inner sa-page-head__inner">
-      <p class="sa-front-eyebrow sa-front-eyebrow--line"><?php echo esc_html( sa_child_text( 'Projektnotiz', 'Project Note' ) ); ?></p>
+      <p class="sa-front-eyebrow sa-front-eyebrow--line">Projektnotiz</p>
       <h1 id="sa-project-title"><?php echo esc_html($sa_project['title']); ?></h1>
       <p class="sa-page-head__lead"><?php echo esc_html($sa_project['summary']); ?></p>
       <div class="sa-front-actions">
@@ -42,7 +42,7 @@ if (empty($sa_project) || !is_array($sa_project)) {
     </div>
   </section>
 
-  <section class="sa-page-section" aria-label="<?php echo esc_attr( sa_child_text( 'Projektdetails', 'Project details' ) ); ?>">
+  <section class="sa-page-section" aria-label="Projektdetails">
     <div class="sa-page__inner">
       <div class="sa-project-body">
         <?php foreach ($sa_project['description'] as $sa_paragraph) : ?>
@@ -51,9 +51,9 @@ if (empty($sa_project) || !is_array($sa_project)) {
 
         <ul class="sa-detail-list">
           <li><span class="sa-detail-label">Status</span><span><?php echo esc_html($sa_project['status']); ?></span></li>
-          <li><span class="sa-detail-label"><?php echo esc_html( sa_child_text( 'Rolle', 'Role' ) ); ?></span><span><?php echo esc_html($sa_project['role']); ?></span></li>
+          <li><span class="sa-detail-label">Rolle</span><span><?php echo esc_html($sa_project['role']); ?></span></li>
           <li><span class="sa-detail-label">Stack</span><span><?php echo esc_html($sa_project['stack']); ?></span></li>
-          <li><span class="sa-detail-label"><?php echo esc_html( sa_child_text( 'Aktueller Stand', 'Current state' ) ); ?></span><span><?php echo esc_html($sa_project['state']); ?></span></li>
+          <li><span class="sa-detail-label">Aktueller Stand</span><span><?php echo esc_html($sa_project['state']); ?></span></li>
           <?php if (!empty($sa_project['link'])) : ?>
             <li><span class="sa-detail-label">Live</span><span><a class="sa-front-link" href="<?php echo esc_url($sa_project['link']); ?>"<?php echo (strpos($sa_project['link'], 'http') === 0) ? ' target="_blank" rel="noopener noreferrer"' : ''; ?>><?php echo esc_html($sa_project['link_display']); ?> <span aria-hidden="true">-&gt;</span></a></span></li>
           <?php endif; ?>
@@ -71,9 +71,9 @@ if (empty($sa_project) || !is_array($sa_project)) {
       </div>
 
       <div class="sa-page-foot">
-        <?php $sa_language_home = function_exists( 'pll_home_url' ) ? trailingslashit( pll_home_url( sa_child_language() ) ) : trailingslashit( home_url( '/' ) ); ?>
-        <a class="sa-back-link" href="<?php echo esc_url( $sa_language_home . 'work/' ); ?>"><span aria-hidden="true">&lt;-</span> <?php echo esc_html( sa_child_text( 'Zurück zu den Projekten', 'Back to Work' ) ); ?></a>
-        <a class="sa-front-link" href="<?php echo esc_url( $sa_language_home . 'about-me/' ); ?>"><?php echo esc_html( sa_child_text( 'Über das Studio', 'About the studio' ) ); ?> <span aria-hidden="true">-&gt;</span></a>
+        <?php $sa_language_home = trailingslashit( home_url( '/' ) ); ?>
+        <a class="sa-back-link" href="<?php echo esc_url( $sa_language_home . 'work/' ); ?>"><span aria-hidden="true">&lt;-</span> Zurück zu den Projekten</a>
+        <a class="sa-front-link" href="<?php echo esc_url( $sa_language_home . 'about-me/' ); ?>">Über das Studio <span aria-hidden="true">-&gt;</span></a>
       </div>
     </div>
   </section>

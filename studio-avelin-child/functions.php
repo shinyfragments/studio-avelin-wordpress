@@ -2,6 +2,9 @@
 /**
  * Studio Avelin Child — theme setup and asset loading.
  *
+ * German-only. The site was bilingual until 2026-09; the Polylang / language
+ * switcher scaffolding was removed with the Ich-Marke rebuild.
+ *
  * @package studio-avelin-child
  */
 
@@ -10,128 +13,46 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'SA_CHILD_VERSION' ) ) {
-	define( 'SA_CHILD_VERSION', '1.0.0' );
+	define( 'SA_CHILD_VERSION', '2.0.0' );
 }
 
-/**
- * Temporary switch: German-only mode.
- *
- * Set to true to bring the English site back. The language switcher, the
- * hreflang/alternate tags below and the /en/ redirect in
- * server-config/.htaccess were disabled together with this on 2026-08-29 —
- * re-enable all three together.
- */
-if ( ! defined( 'SA_CHILD_BILINGUAL_ENABLED' ) ) {
-	define( 'SA_CHILD_BILINGUAL_ENABLED', false );
-}
-
-/** Return the active public language, with German as the safe default. */
-function sa_child_language() {
-	if ( ! SA_CHILD_BILINGUAL_ENABLED ) {
-		return 'de';
-	}
-
-	if ( function_exists( 'pll_current_language' ) ) {
-		$language = pll_current_language( 'slug' );
-		if ( $language ) {
-			return $language;
-		}
-	}
-
-	return 'de';
-}
-
-/**
- * Select a short theme string for the active language.
- *
- * Editorial page and Journal content remain normal Polylang content; this
- * helper is only for copy that is intentionally embedded in PHP templates.
- *
- * @param string $german  German copy.
- * @param string $english English copy.
- * @return string
- */
-function sa_child_text( $german, $english ) {
-	return 'en' === sa_child_language() ? $english : $german;
-}
-
-/** Return the best available URL for a language-switch link. */
-function sa_child_language_url( $language ) {
-	$request_path = trim( (string) wp_parse_url( $_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH ), '/' );
-	$request_path = preg_replace( '#^(?:de|en)/#', '', $request_path );
-	$legal_paths  = array( 'journal', 'contact', 'datenschutzerklaerung', 'datenschutz', 'impressum' );
-
-	if ( in_array( $request_path, $legal_paths, true ) ) {
-		$home = function_exists( 'pll_home_url' ) ? pll_home_url( $language ) : home_url( '/' );
-		return trailingslashit( $home ) . trailingslashit( $request_path );
-	}
-
-	if ( function_exists( 'pll_the_languages' ) ) {
-		$languages = pll_the_languages(
-			array(
-				'raw'           => 1,
-				'hide_if_empty' => 0,
-			)
-		);
-
-		if ( isset( $languages[ $language ]['url'] ) && empty( $languages[ $language ]['no_translation'] ) ) {
-			return $languages[ $language ]['url'];
-		}
-	}
-
-	if ( function_exists( 'pll_home_url' ) ) {
-		return pll_home_url( $language );
-	}
-
-	return home_url( '/' );
-}
-
-/** Output the Studio Avelin A/ browser icon. */
+/** Output the Studio Avelin browser icon set. */
 function sa_child_favicon() {
-	$favicon_url = get_stylesheet_directory_uri() . '/assets/img/favicon.svg';
-	echo '<link rel="icon" href="' . esc_url( $favicon_url ) . '" type="image/svg+xml">' . "\n";
+	$base = get_stylesheet_directory_uri() . '/assets/img/favicons';
+	echo '<link rel="icon" href="' . esc_url( $base . '/favicon.svg' ) . '" type="image/svg+xml">' . "\n";
+	echo '<link rel="icon" type="image/png" sizes="32x32" href="' . esc_url( $base . '/favicon-32x32.png' ) . '">' . "\n";
+	echo '<link rel="icon" type="image/png" sizes="16x16" href="' . esc_url( $base . '/favicon-16x16.png' ) . '">' . "\n";
+	echo '<link rel="apple-touch-icon" sizes="180x180" href="' . esc_url( $base . '/apple-touch-icon.png' ) . '">' . "\n";
+	echo '<link rel="shortcut icon" href="' . esc_url( $base . '/favicon.ico' ) . '">' . "\n";
+	echo '<link rel="manifest" href="' . esc_url( $base . '/site.webmanifest' ) . '">' . "\n";
 }
 add_action( 'wp_head', 'sa_child_favicon', 100 );
-
-/** Localize the Complianz banner when its Polylang strings are unavailable. */
-function sa_child_enqueue_consent_i18n() {
-	if ( 'en' !== sa_child_language() ) {
-		return;
-	}
-
-	$script_path = get_stylesheet_directory() . '/assets/js/consent-i18n.js';
-	wp_enqueue_script(
-		'sa-consent-i18n',
-		get_stylesheet_directory_uri() . '/assets/js/consent-i18n.js',
-		array(),
-		file_exists( $script_path ) ? filemtime( $script_path ) : SA_CHILD_VERSION,
-		true
-	);
-}
-add_action( 'wp_enqueue_scripts', 'sa_child_enqueue_consent_i18n', 100 );
 
 /** Return the intentional browser and search-result title for Studio pages. */
 function sa_child_document_title( $title ) {
 	$request_path = trim( (string) wp_parse_url( $_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH ), '/' );
-	$request_path = preg_replace( '#^(?:de|en)/#', '', $request_path );
+
 	$studio_titles = array(
-		'work'        => sa_child_text( 'Projekte - Studio Avelin', 'Work - Studio Avelin' ),
-		'services'    => sa_child_text( 'Leistungen - Studio Avelin', 'Services - Studio Avelin' ),
-		'contact'     => sa_child_text( 'Kontakt - Studio Avelin', 'Contact - Studio Avelin' ),
-		'experiments' => 'Experiments - Studio Avelin',
-		'about-me'    => sa_child_text( 'Über mich - Studio Avelin', 'About Me - Studio Avelin' ),
-		'about'       => sa_child_text( 'Über mich - Studio Avelin', 'About Me - Studio Avelin' ),
-		'datenschutzerklaerung' => sa_child_text( 'Datenschutzerklärung - Studio Avelin', 'Privacy Policy - Studio Avelin' ),
-		'datenschutz' => sa_child_text( 'Datenschutzerklärung - Studio Avelin', 'Privacy Policy - Studio Avelin' ),
-		'impressum'   => sa_child_text( 'Impressum - Studio Avelin', 'Legal Notice - Studio Avelin' ),
-		'work/stan'   => 'STAN - Studio Avelin',
-		'work/stat'   => 'StAT - Studio Avelin',
-		'work/stau'   => 'StAU - Studio Avelin',
-		'work/monroe-toyparty-landingpage' => 'Portfolio Page - Studio Avelin',
+		'work'                             => 'Projekte – Studio Avelin',
+		'services'                         => 'Leistungen – Studio Avelin',
+		'contact'                          => 'Kontakt – Studio Avelin',
+		'experiments'                      => 'Experiments – Studio Avelin',
+		'about-me'                         => 'Über mich – Studio Avelin',
+		'about'                            => 'Über mich – Studio Avelin',
+		'datenschutzerklaerung'            => 'Datenschutzerklärung – Studio Avelin',
+		'datenschutz'                      => 'Datenschutzerklärung – Studio Avelin',
+		'impressum'                        => 'Impressum – Studio Avelin',
+		'work/stan'                        => 'STAN – Studio Avelin',
+		'work/stat'                        => 'StAT – Studio Avelin',
+		'work/stau'                        => 'StAU – Studio Avelin',
+		'work/hawaiimassage'               => 'Hawaiimassage zu Hause – Studio Avelin',
+		'work/doula-anja'                  => 'Doula Anja – Studio Avelin',
+		'work/baeckerei-curfs'             => 'Bäckerei Curfs – Studio Avelin',
+		'work/monroe-toyparty-landingpage' => 'Portfolio Page – Studio Avelin',
 	);
 
 	if ( is_front_page() ) {
-		return sa_child_text( 'Studio Avelin – Design. Code. Create.', 'Studio Avelin - Design. Code. Create.' );
+		return 'Studio Avelin – Design, das deiner Marke eine Stimme gibt.';
 	}
 
 	if ( isset( $studio_titles[ $request_path ] ) ) {
@@ -139,15 +60,15 @@ function sa_child_document_title( $title ) {
 	}
 
 	if ( 0 === strpos( $request_path, 'experiments/' ) ) {
-		return ucwords( str_replace( '-', ' ', basename( $request_path ) ) ) . ' - Studio Avelin';
+		return ucwords( str_replace( '-', ' ', basename( $request_path ) ) ) . ' – Studio Avelin';
 	}
 
 	if ( is_post_type_archive( 'sa_journal' ) ) {
-		return 'Journal - Studio Avelin';
+		return 'Journal – Studio Avelin';
 	}
 
 	if ( is_singular( 'sa_journal' ) ) {
-		return get_the_title() . ' - Studio Avelin';
+		return get_the_title() . ' – Studio Avelin';
 	}
 
 	return $title;
@@ -156,16 +77,14 @@ add_filter( 'pre_get_document_title', 'sa_child_document_title', 100 );
 add_filter( 'wpseo_title', 'sa_child_document_title', 100 );
 
 /**
- * Add canonical and language-alternate URLs for routes rendered directly by
- * the child theme, where WordPress and Polylang do not have a normal queried
- * translation pair from which to generate these tags.
+ * Add a canonical URL for routes rendered directly by the child theme, where
+ * WordPress does not have a normal queried object to generate one from.
  */
-function sa_child_route_language_links() {
+function sa_child_route_canonical_link() {
 	$request_path = trim( (string) wp_parse_url( $_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH ), '/' );
-	$request_path = preg_replace( '#^(?:de|en)/#', '', $request_path );
 
 	$aliases = array(
-		'about'      => 'about-me',
+		'about'       => 'about-me',
 		'datenschutz' => 'datenschutzerklaerung',
 	);
 	if ( isset( $aliases[ $request_path ] ) ) {
@@ -180,6 +99,9 @@ function sa_child_route_language_links() {
 		'work/stan',
 		'work/stat',
 		'work/stau',
+		'work/hawaiimassage',
+		'work/doula-anja',
+		'work/baeckerei-curfs',
 		'work/monroe-toyparty-landingpage',
 		'datenschutzerklaerung',
 		'impressum',
@@ -188,32 +110,17 @@ function sa_child_route_language_links() {
 		return;
 	}
 
-	$de_home = function_exists( 'pll_home_url' ) ? trailingslashit( pll_home_url( 'de' ) ) : trailingslashit( home_url( '/' ) );
-	$de_url  = $de_home . trailingslashit( $request_path );
-
-	if ( ! SA_CHILD_BILINGUAL_ENABLED ) {
-		echo '<link rel="canonical" href="' . esc_url( $de_url ) . '">' . "\n";
-		return;
-	}
-
-	$en_home = function_exists( 'pll_home_url' ) ? trailingslashit( pll_home_url( 'en' ) ) : trailingslashit( home_url( '/en/' ) );
-	$en_url  = $en_home . trailingslashit( $request_path );
-	$current = 'en' === sa_child_language() ? $en_url : $de_url;
-
-	echo '<link rel="canonical" href="' . esc_url( $current ) . '">' . "\n";
-	echo '<link rel="alternate" hreflang="de" href="' . esc_url( $de_url ) . '">' . "\n";
-	echo '<link rel="alternate" hreflang="en" href="' . esc_url( $en_url ) . '">' . "\n";
-	echo '<link rel="alternate" hreflang="x-default" href="' . esc_url( $de_url ) . '">' . "\n";
+	$url = trailingslashit( home_url( '/' ) ) . trailingslashit( $request_path );
+	echo '<link rel="canonical" href="' . esc_url( $url ) . '">' . "\n";
 }
-add_action( 'wp_head', 'sa_child_route_language_links', 2 );
+add_action( 'wp_head', 'sa_child_route_canonical_link', 2 );
 
 /** Avoid a duplicate Yoast canonical on the routes covered above. */
 function sa_child_route_wpseo_canonical( $canonical ) {
 	$request_path = trim( (string) wp_parse_url( $_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH ), '/' );
-	$request_path = preg_replace( '#^(?:de|en)/#', '', $request_path );
 	$request_path = 'about' === $request_path ? 'about-me' : $request_path;
 	$request_path = 'datenschutz' === $request_path ? 'datenschutzerklaerung' : $request_path;
-	$direct_routes = array( 'services', 'contact', 'about-me', 'work', 'work/stan', 'work/stat', 'work/stau', 'work/monroe-toyparty-landingpage', 'datenschutzerklaerung', 'impressum' );
+	$direct_routes = array( 'services', 'contact', 'about-me', 'work', 'work/stan', 'work/stat', 'work/stau', 'work/hawaiimassage', 'work/doula-anja', 'work/baeckerei-curfs', 'work/monroe-toyparty-landingpage', 'datenschutzerklaerung', 'impressum' );
 
 	return in_array( $request_path, $direct_routes, true ) ? false : $canonical;
 }
@@ -222,22 +129,25 @@ add_filter( 'wpseo_canonical', 'sa_child_route_wpseo_canonical', 100 );
 /** Intentional descriptions for the homepage, Services and native Journal routes. */
 function sa_child_meta_description( $description = '' ) {
 	$request_path = trim( (string) wp_parse_url( $_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH ), '/' );
-	$request_path = preg_replace( '#^(?:de|en)/#', '', $request_path );
 
 	if ( is_front_page() ) {
-		return sa_child_text( 'Studio Avelin gestaltet und entwickelt individuelle Websites für Selbstständige und kleine Unternehmen – persönlich, verlässlich und passend zur Aufgabe.', 'Studio Avelin designs and builds custom websites for independent professionals and small businesses — personal, reliable and shaped around the work they need to do.' );
+		return 'Ich bin Michael, Designer und Gründer von Studio Avelin. Ich begleite kleine, inhabergeführte Marken persönlich – von der Positionierung über das Design bis zur Sichtbarkeit.';
 	}
 
 	if ( 'services' === $request_path ) {
-		return sa_child_text( 'Individuelle Websites, Landingpages, Portfolios und WordPress-Systeme – von der ersten Idee bis zur technischen Umsetzung.', 'Custom websites, landing pages, portfolios and WordPress systems — from the first idea through to development and launch.' );
+		return 'Drei Ebenen: Website-Projekt, Branding-Projekt und langfristige Begleitung – Design, Marke und Sichtbarkeit aus einer Hand.';
+	}
+
+	if ( 'work' === $request_path ) {
+		return 'Ausgewählte Kundenprojekte und eigene digitale Produkte von Studio Avelin – gestaltet, entwickelt und verfeinert im direkten Austausch.';
 	}
 
 	if ( 'contact' === $request_path ) {
-		return sa_child_text( 'Projektanfrage an Studio Avelin – persönlich, unkompliziert und direkt.', 'Send a project enquiry to Studio Avelin — personal, straightforward and direct.' );
+		return 'Projektanfrage an Studio Avelin – persönlich, unkompliziert und direkt.';
 	}
 
 	if ( is_post_type_archive( 'sa_journal' ) || is_singular( 'sa_journal' ) || is_tax( array( 'sa_journal_category', 'sa_journal_tag' ) ) ) {
-		return sa_child_text( 'Notizen von Studio Avelin über Webdesign, Entwicklung, digitale Produkte und den kreativen Prozess.', 'Notes from Studio Avelin on web design, development, digital products and the creative process.' );
+		return 'Kein Marketing-Blog – ein Einblick in die Person hinter Studio Avelin: Reisen, Lauftraining und Bücher.';
 	}
 
 	return $description;
@@ -300,10 +210,10 @@ function sa_child_enqueue_assets() {
 	$theme_dir = get_stylesheet_directory();
 	$theme_uri = get_stylesheet_directory_uri();
 
-	// Google Fonts — Inter + Poppins + Raleway.
+	// Google Fonts — Poppins (display) + Raleway (body).
 	wp_enqueue_style(
 		'sa-google-fonts',
-		'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@200;300;400;500&family=Raleway:wght@300;400;500;600&display=swap',
+		'https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&family=Raleway:wght@300;400;500;600&display=swap',
 		array(),
 		null
 	);
@@ -368,20 +278,6 @@ function sa_child_enqueue_assets() {
 			(string) filemtime( $pages_css )
 		);
 	}
-
-	// Optional work slider — only loaded when on front page and file exists.
-	if ( is_front_page() ) {
-		$slider_path = $theme_dir . '/js/sa-work-slider.js';
-		if ( file_exists( $slider_path ) ) {
-			wp_enqueue_script(
-				'sa-work-slider',
-				$theme_uri . '/js/sa-work-slider.js',
-				array(),
-				(string) filemtime( $slider_path ),
-				true
-			);
-		}
-	}
 }
 add_action( 'wp_enqueue_scripts', 'sa_child_enqueue_assets' );
 
@@ -427,72 +323,8 @@ function sa_child_head_cleanup() {
 add_action( 'init', 'sa_child_head_cleanup' );
 
 /**
- * Studio Avelin navigation used by the header and the footer.
- *
- * @param string $context Either 'header' or 'footer'.
- * @return array
- */
-function sa_child_nav_items( $context = 'header' ) {
-	$home = trailingslashit( home_url( '/' ) );
-	$labels = array(
-		'work'     => sa_child_text( 'Projekte', 'Work' ),
-		'services' => sa_child_text( 'Leistungen', 'Services' ),
-		'about'    => sa_child_text( 'Über mich', 'About' ),
-		'journal'  => 'Journal',
-		'contact'  => sa_child_text( 'Kontakt', 'Contact' ),
-	);
-
-	if ( 'footer' === $context ) {
-		return array(
-			array(
-				'label' => $labels['work'],
-				'url'   => $home . '#work',
-			),
-			array(
-				'label' => $labels['services'],
-				'url'   => $home . 'services/',
-			),
-			array(
-				'label' => $labels['about'],
-				'url'   => $home . '#about',
-			),
-			array(
-				'label' => $labels['journal'],
-				'url'   => $home . 'journal/',
-			),
-		);
-	}
-
-	// On the homepage the anchors stay local; elsewhere they point back home.
-	$prefix = is_front_page() ? '' : $home;
-
-	return array(
-		array(
-			'label' => $labels['work'],
-			'url'   => $prefix . '#work',
-		),
-		array(
-			'label' => $labels['services'],
-			'url'   => $home . 'services/',
-		),
-		array(
-			'label' => $labels['about'],
-			'url'   => $prefix . '#about',
-		),
-		array(
-			'label' => $labels['journal'],
-			'url'   => $home . 'journal/',
-		),
-		array(
-			'label' => $labels['contact'],
-			'url'   => $home . 'contact/',
-		),
-	);
-}
-
-/**
- * Route legal pages (Datenschutz, Impressum) to their custom Studio Avelin PHP templates
- * so they use the exact flat Studio Avelin header & footer matching the homepage.
+ * Route legal, About, Services and Contact pages to their custom Studio Avelin
+ * PHP templates so they use the exact flat Studio Avelin header and footer.
  */
 function sa_child_legal_template_include( $template ) {
 	if ( is_page() ) {
@@ -537,7 +369,6 @@ add_action( 'template_redirect', function() {
 		return;
 	}
 	$request_uri = trim( parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH ), '/' );
-	$request_uri = preg_replace( '#^(?:de|en)/#', '', $request_uri );
 	if ( 'work/maaike-fiebus' === $request_uri ) {
 		wp_safe_redirect( home_url( '/work/monroe-toyparty-landingpage/' ), 301 );
 		exit;
@@ -593,8 +424,8 @@ add_action( 'template_redirect', function() {
 	if ( 0 === strpos( $request_uri, 'work/' ) ) {
 		status_header( 200 );
 		$GLOBALS['wp_query']->is_404 = false;
-		$sub = trim( str_replace( 'work/', '', $request_uri ), '/' );
-		$file = get_stylesheet_directory() . '/page-work-' . $sub . '.php';
+		$sub  = trim( str_replace( 'work/', '', $request_uri ), '/' );
+		$file = get_stylesheet_directory() . '/page-work-' . sanitize_file_name( $sub ) . '.php';
 		if ( file_exists( $file ) ) {
 			include $file;
 		} else {
@@ -604,18 +435,14 @@ add_action( 'template_redirect', function() {
 	}
 }, 0 );
 
-/** Return the public contact page URL for a supported language. */
-function sa_child_contact_url( $language = '' ) {
-	$language = in_array( $language, array( 'de', 'en' ), true ) ? $language : sa_child_language();
-	$home     = function_exists( 'pll_home_url' ) ? pll_home_url( $language ) : home_url( '/' );
-
-	return trailingslashit( $home ) . 'contact/';
+/** Return the public contact page URL. */
+function sa_child_contact_url() {
+	return trailingslashit( home_url( '/' ) ) . 'contact/';
 }
 
 /** Process a project enquiry and send it by email without database storage. */
 function sa_child_handle_contact_form() {
-	$language = isset( $_POST['sa_language'] ) && 'en' === sanitize_key( wp_unslash( $_POST['sa_language'] ) ) ? 'en' : 'de';
-	$redirect = sa_child_contact_url( $language );
+	$redirect = sa_child_contact_url();
 
 	if ( ! isset( $_POST['sa_contact_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['sa_contact_nonce'] ) ), 'sa_contact_submit' ) ) {
 		wp_safe_redirect( add_query_arg( 'contact', 'invalid', $redirect ) );
@@ -634,11 +461,10 @@ function sa_child_handle_contact_form() {
 	$message  = isset( $_POST['sa_message'] ) ? sanitize_textarea_field( wp_unslash( $_POST['sa_message'] ) ) : '';
 	$consent  = ! empty( $_POST['sa_consent'] );
 	$projects = array(
-		'website'   => 'de' === $language ? 'Individuelle Website' : 'Custom website',
-		'landing'   => 'de' === $language ? 'Landingpage oder Portfolio' : 'Landing page or portfolio',
-		'wordpress' => 'WordPress',
-		'optimize'  => 'de' === $language ? 'Bestehende Website optimieren' : 'Improve an existing website',
-		'other'     => 'de' === $language ? 'Etwas anderes' : 'Something else',
+		'website'  => 'Website-Projekt',
+		'branding' => 'Branding-Projekt',
+		'support'  => 'Langfristige Begleitung',
+		'other'    => 'Etwas anderes',
 	);
 
 	if ( '' === $name || ! is_email( $email ) || ! isset( $projects[ $project ] ) || '' === $message || ! $consent ) {
@@ -653,7 +479,7 @@ function sa_child_handle_contact_form() {
 	}
 
 	$subject = sprintf( 'Projektanfrage von %s — Studio Avelin', $name );
-	$body    = "Name: {$name}\nE-Mail: {$email}\nProjekt: {$projects[$project]}\nZeitraum: " . ( $timeline ?: '–' ) . "\nSprache: " . strtoupper( $language ) . "\n\nNachricht:\n{$message}";
+	$body    = "Name: {$name}\nE-Mail: {$email}\nProjekt: {$projects[$project]}\nZeitraum: " . ( $timeline ?: '–' ) . "\n\nNachricht:\n{$message}";
 	$headers = array(
 		'From: Studio Avelin <hello@studio-avelin.com>',
 		'Reply-To: ' . $name . ' <' . $email . '>',

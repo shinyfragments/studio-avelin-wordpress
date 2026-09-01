@@ -1,25 +1,25 @@
 <?php
 /** Journal-specific footer. */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
-$home_url = function_exists( 'pll_home_url' ) ? trailingslashit( pll_home_url( sa_child_language() ) ) : trailingslashit( home_url( '/' ) );
+$home_url = trailingslashit( home_url( '/' ) );
 ?>
 <footer class="sa-journal-footer">
 	<div class="sa-journal-footer__main">
 		<div class="sa-journal-footer__brand">
 			<p class="sa-journal-footer__mark">A<span>/</span></p>
-			<p class="sa-journal-footer__name"><?php esc_html_e( 'Studio Avelin Journal', 'studio-avelin-child' ); ?></p>
-			<p class="sa-journal-footer__tagline"><?php esc_html_e( 'Design. Code. Create.', 'studio-avelin-child' ); ?></p>
+			<p class="sa-journal-footer__name">Studio Avelin Journal</p>
+			<p class="sa-journal-footer__tagline">Ein Einblick in die Person hinter Studio Avelin.</p>
 		</div>
-		<nav class="sa-journal-footer__nav" aria-label="<?php echo esc_attr( sa_child_text( 'Studio- und Social-Links', 'Studio and social links' ) ); ?>">
+		<nav class="sa-journal-footer__nav" aria-label="Studio- und Social-Links">
 			<ul>
-				<li><a href="<?php echo esc_url( $home_url ); ?>"><?php esc_html_e( 'Studio Avelin', 'studio-avelin-child' ); ?></a></li>
+				<li><a href="<?php echo esc_url( $home_url ); ?>">Studio Avelin</a></li>
 				<li><a href="https://www.instagram.com/studio_avelin" target="_blank" rel="noopener noreferrer">Instagram</a></li>
 			</ul>
 		</nav>
-		<nav class="sa-journal-footer__nav" aria-label="<?php echo esc_attr( sa_child_text( 'Rechtliche Links', 'Legal links' ) ); ?>">
+		<nav class="sa-journal-footer__nav" aria-label="Rechtliche Links">
 			<ul>
-				<li><a href="<?php echo esc_url( $home_url . 'impressum/' ); ?>"><?php esc_html_e( 'Impressum', 'studio-avelin-child' ); ?></a></li>
-				<li><a href="<?php echo esc_url( $home_url . 'datenschutzerklaerung/' ); ?>"><?php echo esc_html( sa_child_text( 'Datenschutzerklärung', 'Privacy Policy' ) ); ?></a></li>
+				<li><a href="<?php echo esc_url( $home_url . 'impressum/' ); ?>">Impressum</a></li>
+				<li><a href="<?php echo esc_url( $home_url . 'datenschutzerklaerung/' ); ?>">Datenschutzerklärung</a></li>
 			</ul>
 		</nav>
 	</div>

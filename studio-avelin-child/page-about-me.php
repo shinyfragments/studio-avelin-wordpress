@@ -1,6 +1,6 @@
 <?php
 /**
- * Studio Avelin — About Me page template.
+ * Studio Avelin — Über mich (Ich-Marke).
  *
  * Uses the exact Studio Avelin header and footer matching the homepage and legal pages.
  *
@@ -11,9 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$sa_home         = trailingslashit( sa_child_language_url( sa_child_language() ) );
-$sa_nav          = sa_child_nav_items( 'header' );
-$sa_footer_nav   = sa_child_nav_items( 'footer' );
+$sa_home          = trailingslashit( home_url( '/' ) );
 $sa_portrait_path = get_stylesheet_directory() . '/assets/img/portrait.jpg';
 $sa_has_portrait  = file_exists( $sa_portrait_path );
 $sa_portrait      = add_query_arg(
@@ -33,35 +31,42 @@ $sa_portrait      = add_query_arg(
 <body <?php body_class( array( 'home', 'sa-front', 'sa-page', 'sa-page--about' ) ); ?>>
 <?php wp_body_open(); ?>
 
-<a class="sa-skip" href="#sa-main"><?php echo esc_html( sa_child_text( 'Zum Inhalt springen', 'Skip to content' ) ); ?></a>
+<a class="sa-skip" href="#sa-main">Zum Inhalt springen</a>
 
 <?php get_template_part( 'parts/sa-header' ); ?>
 
-<!-- ========================= MAIN CONTENT ========================= -->
 <main class="sa-main" id="sa-main" style="padding-top: 3.5rem; padding-bottom: 5rem;">
 	<div class="sa-about-container">
 		<div class="sa-about-grid">
 
 			<!-- LEFT COLUMN -->
 			<div class="sa-about-col-left">
-				<span class="sa-about-eyebrow"><?php echo esc_html( sa_child_text( 'ÜBER MICH', 'ABOUT ME' ) ); ?></span>
+				<span class="sa-about-eyebrow">ÜBER MICH</span>
 
 				<h1 class="sa-about-hero-headline">
-					<?php echo wp_kses_post( sa_child_text( 'Hi, ich bin <span class="sa-lime-text">Michael</span>.', 'hi, i’m <span class="sa-lime-text">Michael</span>.' ) ); ?>
+					<?php echo wp_kses_post( 'Hi, ich bin <span class="sa-lime-text">Michael</span>.' ); ?>
 				</h1>
 
 				<div class="sa-about-intro">
 					<p>
-						<?php echo wp_kses_post( sa_child_text( 'Ich bin Designer und Entwickler hinter Studio Avelin. Ich gestalte visuelle Identitäten, Websites und digitale Produkte &ndash; und setze sie auch technisch um.', 'I’m the designer and developer behind Studio Avelin. I create visual identities, websites and digital products — and build them too.' ) ); ?>
+						Design mit Haltung, für Marken, die mehr sind als eine Website. Ich bin Designer
+						und Gründer von Studio Avelin und arbeite mit kleinen, inhabergeführten Marken –
+						von der Personenmarke bis zum eigenen Laden.
 					</p>
 					<p>
-						<?php echo esc_html( sa_child_text( 'Ich arbeite direkt mit Kunden und Projektpartnern – von der ersten Idee bis zum fertigen Ergebnis. Die Zusammenarbeit bleibt persönlich, transparent und gut überschaubar.', 'I work directly with clients and collaborators, from the first idea to the finished result. The collaboration stays personal, transparent and focused.' ) ); ?>
+						Keine Agentur mit vielen Zwischenstationen, sondern ein direkter Ansprechpartner:
+						von der Positionierung über das Design bis zur Sichtbarkeit. Design ist mein
+						Handwerk – und Branding, SEO und digitale Sichtbarkeit gehören für mich genauso dazu.
+					</p>
+					<p>
+						Fokussierung und ein Gespür fürs Wesentliche ziehen sich durch alles, was ich tue –
+						auch abseits der Arbeit, ob beim Laufen, auf Reisen oder beim Lesen. Mehr davon im
+						<a class="sa-lime-text" href="<?php echo esc_url( $sa_home . 'journal/' ); ?>">Journal</a>.
 					</p>
 				</div>
 
 				<!-- VALUES ROW -->
 				<div class="sa-about-values">
-					<!-- ITEM 1 -->
 					<div class="sa-about-value-item">
 						<div class="sa-about-value-icon">
 							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -71,12 +76,11 @@ $sa_portrait      = add_query_arg(
 							</svg>
 						</div>
 						<div class="sa-about-value-text">
-							<span><?php echo esc_html( sa_child_text( 'Design + Entwicklung', 'Design + development' ) ); ?></span>
-							<span><?php echo esc_html( sa_child_text( 'gemeinsam gedacht', 'developed together' ) ); ?></span>
+							<span>Marke, Design &amp; Sichtbarkeit</span>
+							<span>von Anfang an zusammen gedacht</span>
 						</div>
 					</div>
 
-					<!-- ITEM 2 -->
 					<div class="sa-about-value-item">
 						<div class="sa-about-value-icon">
 							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -84,12 +88,11 @@ $sa_portrait      = add_query_arg(
 							</svg>
 						</div>
 						<div class="sa-about-value-text">
-							<span><?php echo esc_html( sa_child_text( 'Direkte Zusammenarbeit', 'Direct collaboration' ) ); ?></span>
-							<span><?php echo esc_html( sa_child_text( 'mit festen Ansprechpartnern', 'with one point of contact' ) ); ?></span>
+							<span>Direkte Zusammenarbeit</span>
+							<span>mit einem festen Ansprechpartner</span>
 						</div>
 					</div>
 
-					<!-- ITEM 3 -->
 					<div class="sa-about-value-item">
 						<div class="sa-about-value-icon">
 							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -99,12 +102,11 @@ $sa_portrait      = add_query_arg(
 							</svg>
 						</div>
 						<div class="sa-about-value-text">
-							<span><?php echo esc_html( sa_child_text( 'Solide Systeme', 'Solid systems' ) ); ?></span>
-							<span><?php echo esc_html( sa_child_text( 'sorgfältige Details', 'careful details' ) ); ?></span>
+							<span>Fokussierung</span>
+							<span>und ein Gespür fürs Wesentliche</span>
 						</div>
 					</div>
 
-					<!-- ITEM 4 -->
 					<div class="sa-about-value-item">
 						<div class="sa-about-value-icon">
 							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -112,8 +114,8 @@ $sa_portrait      = add_query_arg(
 							</svg>
 						</div>
 						<div class="sa-about-value-text">
-							<span><?php echo esc_html( sa_child_text( 'Für den Alltag gemacht', 'Made for everyday use' ) ); ?></span>
-							<span><?php echo esc_html( sa_child_text( 'auf Dauer angelegt', 'built to last' ) ); ?></span>
+							<span>Design mit Substanz</span>
+							<span>durchdacht statt dekorativ</span>
 						</div>
 					</div>
 				</div>
@@ -121,48 +123,45 @@ $sa_portrait      = add_query_arg(
 				<!-- PRIMARY CTA BUTTON -->
 				<div class="sa-about-cta-wrapper">
 					<a class="sa-about-cta-btn" href="<?php echo esc_url( $sa_home . 'work/' ); ?>">
-						<span><?php echo esc_html( sa_child_text( 'PROJEKTE ANSEHEN', 'VIEW MY WORK' ) ); ?></span>
+						<span>PROJEKTE ANSEHEN</span>
 						<span class="sa-about-cta-arrow">&rarr;</span>
 					</a>
 					<a class="sa-about-cta-link" href="<?php echo esc_url( $sa_home . 'services/' ); ?>">
-						<?php echo esc_html( sa_child_text( 'LEISTUNGEN ENTDECKEN', 'EXPLORE SERVICES' ) ); ?> <span aria-hidden="true">&rarr;</span>
+						LEISTUNGEN ENTDECKEN <span aria-hidden="true">&rarr;</span>
 					</a>
 				</div>
 
 				<!-- PRACTICE -->
 				<div class="sa-about-skills-section">
-					<span class="sa-about-skills-label"><?php echo esc_html( sa_child_text( 'WAS ICH MACHE & WIE ICH ARBEITE', 'WHAT I DO & HOW I WORK' ) ); ?></span>
+					<span class="sa-about-skills-label">WAS ICH MACHE &amp; WIE ICH ARBEITE</span>
 					<div class="sa-about-skills-grid">
-						<!-- COL 1 -->
 						<div class="sa-about-skills-col">
-							<h4><?php echo esc_html( sa_child_text( 'DESIGN & IDENTITÄT', 'DESIGN & IDENTITY' ) ); ?></h4>
+							<h4>MARKE &amp; DESIGN</h4>
 							<ul>
-								<li><?php echo esc_html( sa_child_text( 'Visuelle Identitäten', 'Visual identities' ) ); ?></li>
-								<li><?php echo esc_html( sa_child_text( 'Interface-Design', 'Interface design' ) ); ?></li>
-								<li><?php echo esc_html( sa_child_text( 'Typografie', 'Typography' ) ); ?></li>
-								<li><?php echo esc_html( sa_child_text( 'Designsysteme', 'Design systems' ) ); ?></li>
+								<li>Positionierung &amp; Tonalität</li>
+								<li>Visuelle Identität</li>
+								<li>Interface-Design</li>
+								<li>Designsysteme</li>
 							</ul>
 						</div>
 
-						<!-- COL 2 -->
 						<div class="sa-about-skills-col">
-							<h4><?php echo esc_html( sa_child_text( 'WEBSITES & PRODUKTE', 'WEBSITES & PRODUCTS' ) ); ?></h4>
+							<h4>WEBSITES &amp; UMSETZUNG</h4>
 							<ul>
-								<li><?php echo esc_html( sa_child_text( 'Websites', 'Websites' ) ); ?></li>
-								<li><?php echo esc_html( sa_child_text( 'Digitale Produkte', 'Digital products' ) ); ?></li>
-								<li><?php echo esc_html( sa_child_text( 'Frontend-Entwicklung', 'Frontend development' ) ); ?></li>
+								<li>Individuelle Websites</li>
+								<li>Landingpages &amp; Portfolios</li>
+								<li>Frontend-Entwicklung</li>
 								<li>WordPress</li>
 							</ul>
 						</div>
 
-						<!-- COL 3 -->
 						<div class="sa-about-skills-col">
-							<h4><?php echo esc_html( sa_child_text( 'PROZESS', 'PROCESS' ) ); ?></h4>
+							<h4>SICHTBARKEIT</h4>
 							<ul>
-								<li><?php echo esc_html( sa_child_text( 'Direkt und partnerschaftlich', 'Direct and collaborative' ) ); ?></li>
-								<li><?php echo esc_html( sa_child_text( 'Design und Code zusammen gedacht', 'Design and code together' ) ); ?></li>
-								<li><?php echo esc_html( sa_child_text( 'Klare Systeme und Entscheidungen', 'Clear systems and decisions' ) ); ?></li>
-								<li><?php echo esc_html( sa_child_text( 'Nachvollziehbare Schritte', 'Practical, visible steps' ) ); ?></li>
+								<li>Technisches SEO</li>
+								<li>Content-Empfehlungen</li>
+								<li>Performance-Review</li>
+								<li>GEO-Check (KI-Suche)</li>
 							</ul>
 						</div>
 					</div>
@@ -179,34 +178,34 @@ $sa_portrait      = add_query_arg(
 								src="<?php echo esc_url( $sa_portrait ); ?>"
 								width="800"
 								height="900"
-								alt="<?php echo esc_attr( sa_child_text( 'Porträt von Michael Fiebus, der Person hinter Studio Avelin', 'Portrait of Michael Fiebus, the person behind Studio Avelin' ) ); ?>"
+								alt="Porträt von Michael, dem Designer hinter Studio Avelin"
 								loading="eager"
 							/>
 						<?php else : ?>
 							<div class="sa-about-portrait-placeholder">
-								<span>MICHAEL FIEBUS</span>
+								<span>MICHAEL</span>
 							</div>
 						<?php endif; ?>
 					</div>
 
 					<div class="sa-about-vertical-name" aria-hidden="true">
-						<span>MICHAEL FIEBUS</span>
+						<span>MICHAEL</span>
 					</div>
 				</div>
 
-				<!-- MY FOCUS PANEL -->
+				<!-- AVAILABLE FOR PANEL -->
 				<div class="sa-about-focus-panel">
 					<div class="sa-about-focus-header">
 						<svg class="sa-about-focus-star" viewBox="0 0 24 24" fill="none" stroke="currentColor">
 							<path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" fill="#C7F000" stroke="#C7F000"></path>
 						</svg>
-						<span><?php echo esc_html( sa_child_text( 'VERFÜGBAR FÜR', 'AVAILABLE FOR' ) ); ?></span>
+						<span>VERFÜGBAR FÜR</span>
 					</div>
 					<ul class="sa-about-focus-list">
-						<li><?php echo esc_html( sa_child_text( 'Marken- und Identitätsprojekte', 'Brand and identity projects' ) ); ?></li>
-						<li><?php echo esc_html( sa_child_text( 'Websites und digitale Produkte', 'Websites and digital products' ) ); ?></li>
-						<li><?php echo esc_html( sa_child_text( 'Ausgewählte Kooperationen', 'Selected collaborations' ) ); ?></li>
-						<li><?php echo esc_html( sa_child_text( 'Langfristige Partnerschaften', 'Long-term partnerships' ) ); ?></li>
+						<li>Branding- und Website-Projekte</li>
+						<li>Personenmarken mit Design-Anspruch</li>
+						<li>Kleine, ästhetikgetriebene Betriebe</li>
+						<li>Langfristige Begleitung</li>
 					</ul>
 				</div>
 			</div>

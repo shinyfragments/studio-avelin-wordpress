@@ -1,11 +1,11 @@
 /*
 Theme Name: Studio Avelin Child
 Theme URI: https://studio-avelin.com/
-Description: Studio Avelin child theme for Twenty Twenty-Four. Provides the custom Studio Avelin homepage (front-page.php) with a generative canvas hero, editorial sections and a flat custom header/footer.
+Description: Studio Avelin child theme for Twenty Twenty-Four. German-only Ich-Marke site: a person-centred homepage (front-page.php), a three-tier services page, a work page split into client projects and own products, a native Journal and a flat custom header/footer.
 Author: Studio Avelin
 Author URI: https://studio-avelin.com/
 Template: twentytwentyfour
-Version: 1.0.0
+Version: 2.0.0
 Requires at least: 6.4
 Tested up to: 6.7
 Requires PHP: 7.4
@@ -23,7 +23,7 @@ Text Domain: studio-avelin-child
 :root {
   --sa-bg: #f2f2f2;
   --sa-surface: #f8f8f8;
-  --sa-ink: #151922;
+  --sa-ink: #3D3D3D;
   --sa-ink-soft: #2a2a27;
   --sa-muted: #6b6f76;
   --sa-line: #dcdcda;

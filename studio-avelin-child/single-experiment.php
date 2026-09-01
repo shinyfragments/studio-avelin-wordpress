@@ -11,9 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$sa_home        = trailingslashit( home_url( '/' ) );
-$sa_nav         = sa_child_nav_items( 'header' );
-$sa_footer_nav = sa_child_nav_items( 'footer' );
+$sa_home = trailingslashit( home_url( '/' ) );
 
 $request_uri = trim( parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH ), '/' );
 $exp_slug    = str_replace( 'experiments/', '', $request_uri );
@@ -192,11 +190,11 @@ document.addEventListener('DOMContentLoaded', function() {
 			ctx.fillStyle = '#C7F000';
 			ctx.fillRect(40, 110, 120, 4);
 
-			ctx.fillStyle = '#151922';
+			ctx.fillStyle = '#3D3D3D';
 			ctx.font = '16px monospace';
 			ctx.fillText('CREATIVE CODING & TYPOGRAPHY SYSTEM', 40, 150);
 
-			ctx.strokeStyle = '#151922';
+			ctx.strokeStyle = '#3D3D3D';
 			ctx.lineWidth = 1;
 			ctx.strokeRect(40, 180, w - 80, h - 220);
 

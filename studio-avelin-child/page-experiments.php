@@ -11,9 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$sa_home        = trailingslashit( home_url( '/' ) );
-$sa_nav         = sa_child_nav_items( 'header' );
-$sa_footer_nav = sa_child_nav_items( 'footer' );
+$sa_home = trailingslashit( home_url( '/' ) );
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>

@@ -8,26 +8,19 @@
 ?>
 
 <div class="sa-legal-hero">
-	<span class="sa-legal-hero__eyebrow">Legal Notice</span>
-	<h1 class="sa-legal-hero__title"><?php echo esc_html( sa_child_text( 'Impressum', 'Legal Notice' ) ); ?></h1>
-	<span class="sa-legal-hero__meta"><?php echo wp_kses_post( sa_child_text( 'Angaben gem&auml;&szlig; &sect; 5 DDG', 'Information pursuant to Section 5 DDG' ) ); ?></span>
+	<span class="sa-legal-hero__eyebrow">Rechtliches</span>
+	<h1 class="sa-legal-hero__title">Impressum</h1>
+	<span class="sa-legal-hero__meta">Angaben gem&auml;&szlig; &sect; 5 DDG</span>
 </div>
 
 <div class="sa-legal-content">
-	<?php if ( 'en' === sa_child_language() ) : ?>
-		<section class="sa-legal-card sa-legal-card--language-note">
-			<div class="sa-legal-card__num">EN</div>
-			<h2>About this legal notice</h2>
-			<p>The complete German legal notice is reproduced unchanged below. The German text is the authoritative legal version.</p>
-		</section>
-	<?php endif; ?>
 
 	<!-- 01. ANGABEN GEMÄSS § 5 DDG -->
 	<section class="sa-legal-card">
 		<div class="sa-legal-card__num">01</div>
 		<h2>Angaben gem&auml;&szlig; &sect; 5 DDG</h2>
 
-		<div style="background: rgba(21, 25, 34, 0.02); border: 1px solid var(--sa-line, rgba(21, 25, 34, 0.12)); padding: 1.5rem 1.75rem; margin: 1.25rem 0; border-radius: 4px;">
+		<div style="background: rgba(61, 61, 61, 0.02); border: 1px solid var(--sa-line, rgba(61, 61, 61, 0.12)); padding: 1.5rem 1.75rem; margin: 1.25rem 0; border-radius: 4px;">
 			<p style="margin: 0; font-weight: 600; font-size: 1.15rem; color: var(--sa-ink);">Studio Avelin</p>
 			<p style="margin: 0.25rem 0 0 0; color: var(--sa-ink); font-size: 1.05rem;">Michael Fiebus</p>
 			<p style="margin: 0.25rem 0 0 0; color: var(--sa-muted); font-size: 1rem;">Wolfstr. 34</p>

@@ -24,13 +24,13 @@ RewriteRule ^experiments/matrix/?$ wp-content/experiments/matrix/index.html [L]
 RewriteRule ^experiments/matrix/(.+)$ wp-content/experiments/matrix/$1 [L]
 </IfModule>
 
-# Studio Avelin — temporary German-only mode (added 2026-08-29)
-# Remove this block together with re-enabling SA_CHILD_BILINGUAL_ENABLED
-# in functions.php when the English site comes back.
+# Studio Avelin — German-only site (the English version was retired in the
+# 2026-09 Ich-Marke rebuild). Old /en/ URLs are redirected to their German
+# equivalent so existing links and search results keep working.
 <IfModule mod_rewrite.c>
 RewriteEngine On
-RewriteRule ^en/?$ / [R=302,L]
-RewriteRule ^en/(.*)$ /$1 [R=302,L]
+RewriteRule ^en/?$ / [R=301,L]
+RewriteRule ^en/(.*)$ /$1 [R=301,L]
 </IfModule>
 
 # BEGIN WordPress

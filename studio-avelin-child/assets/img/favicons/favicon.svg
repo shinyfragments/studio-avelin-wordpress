@@ -1,4 +1,4 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Studio Avelin">
-  <text x="3" y="50" fill="#151922" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="900" letter-spacing="-5">A</text>
+  <text x="3" y="50" fill="#3D3D3D" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="900" letter-spacing="-5">A</text>
   <path d="M48 12h7L43 54h-7z" fill="#c7f000"/>
 </svg>

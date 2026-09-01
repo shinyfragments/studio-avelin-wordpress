@@ -2,7 +2,7 @@
 /**
  * Studio Avelin global footer component.
  *
- * Premium editorial footer matching the Studio Avelin design system.
+ * Editorial footer matching the Studio Avelin design system.
  *
  * @package studio-avelin-child
  */
@@ -11,8 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$sa_language = sa_child_language();
-$sa_home_url = function_exists( 'pll_home_url' ) ? trailingslashit( pll_home_url( $sa_language ) ) : trailingslashit( home_url( '/' ) );
+$sa_home_url = trailingslashit( home_url( '/' ) );
 ?>
 
 <footer class="sa-front-footer" id="sa-footer">
@@ -29,8 +28,8 @@ $sa_home_url = function_exists( 'pll_home_url' ) ? trailingslashit( pll_home_url
 				</div>
 
 				<h2 class="sa-footer-statement">
-					<span class="sa-stmt-dark">Design. Code.</span>
-					<span class="sa-stmt-outline">Create.</span>
+					<span class="sa-stmt-dark">Design, das deiner Marke</span>
+					<span class="sa-stmt-outline">eine Stimme gibt.</span>
 				</h2>
 			</div>
 
@@ -39,21 +38,21 @@ $sa_home_url = function_exists( 'pll_home_url' ) ? trailingslashit( pll_home_url
 
 				<!-- COLUMN 1: EXPLORE -->
 				<div class="sa-footer-col">
-					<span class="sa-footer-col-label"><?php echo esc_html( sa_child_text( 'ENTDECKEN', 'EXPLORE' ) ); ?></span>
+					<span class="sa-footer-col-label">ENTDECKEN</span>
 					<ul class="sa-footer-links">
-						<li><a href="<?php echo esc_url( $sa_home_url . 'work/' ); ?>"><?php echo esc_html( sa_child_text( 'Projekte', 'Work' ) ); ?></a></li>
-						<li><a href="<?php echo esc_url( $sa_home_url . 'services/' ); ?>"><?php echo esc_html( sa_child_text( 'Leistungen', 'Services' ) ); ?></a></li>
-						<li><a href="<?php echo esc_url( $sa_home_url . 'about-me/' ); ?>"><?php echo esc_html( sa_child_text( 'Über mich', 'About' ) ); ?></a></li>
+						<li><a href="<?php echo esc_url( $sa_home_url . 'work/' ); ?>">Projekte</a></li>
+						<li><a href="<?php echo esc_url( $sa_home_url . 'services/' ); ?>">Leistungen</a></li>
+						<li><a href="<?php echo esc_url( $sa_home_url . 'about-me/' ); ?>">Über mich</a></li>
 						<li><a href="<?php echo esc_url( $sa_home_url . 'journal/' ); ?>">Journal</a></li>
 					</ul>
 				</div>
 
 				<!-- COLUMN 2: LEGAL -->
 				<div class="sa-footer-col">
-					<span class="sa-footer-col-label"><?php echo esc_html( sa_child_text( 'RECHTLICHES', 'LEGAL' ) ); ?></span>
+					<span class="sa-footer-col-label">RECHTLICHES</span>
 					<ul class="sa-footer-links">
-						<li><a href="<?php echo esc_url( $sa_home_url . 'datenschutzerklaerung/' ); ?>"><?php echo esc_html( sa_child_text( 'Datenschutzerklärung', 'Privacy Policy' ) ); ?></a></li>
-						<li><a href="<?php echo esc_url( $sa_home_url . 'impressum/' ); ?>"><?php echo esc_html( sa_child_text( 'Impressum', 'Legal Notice' ) ); ?></a></li>
+						<li><a href="<?php echo esc_url( $sa_home_url . 'datenschutzerklaerung/' ); ?>">Datenschutzerklärung</a></li>
+						<li><a href="<?php echo esc_url( $sa_home_url . 'impressum/' ); ?>">Impressum</a></li>
 					</ul>
 				</div>
 
@@ -91,7 +90,7 @@ $sa_home_url = function_exists( 'pll_home_url' ) ? trailingslashit( pll_home_url
 			</div>
 
 			<div class="sa-footer-bottom-center">
-				<?php echo esc_html( sa_child_text( 'Unabhängiges Digitalstudio · Deutschland', 'Independent digital studio · Germany' ) ); ?>
+				Unabhängiges Design-Studio &middot; Deutschland
 			</div>
 
 			<div class="sa-footer-bottom-right">

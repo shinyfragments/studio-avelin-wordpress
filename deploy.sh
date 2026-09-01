@@ -15,8 +15,11 @@ LOCAL_DIR="${IONOS_LOCAL_DIR:-studio-avelin-child}"
 BACKUP_DIR="${IONOS_BACKUP_DIR:-.deploy-backups/$(date +%Y%m%d-%H%M%S)}"
 
 FILES=(
+  "style.css"
+  "theme.json"
   "front-page.php"
   "functions.php"
+	"single.php"
 	"single-experiment.php"
 	"page-experiments.php"
 	"page-about-me.php"
@@ -25,9 +28,22 @@ FILES=(
 	"page-datenschutzerklaerung.php"
 	"page-impressum.php"
 	"page-work.php"
-	"page-work-stan.php"
+	"page-work-hawaiimassage.php"
 	"page-work-monroe-toyparty-landingpage.php"
-	"assets/img/favicon.svg"
+	"page-work-doula-anja.php"
+	"page-work-baeckerei-curfs.php"
+	"page-work-stan.php"
+	"page-work-stat.php"
+	"page-work-stau.php"
+	"assets/img/favicons/favicon.svg"
+	"assets/img/favicons/favicon.ico"
+	"assets/img/favicons/favicon-16x16.png"
+	"assets/img/favicons/favicon-32x32.png"
+	"assets/img/favicons/favicon-48x48.png"
+	"assets/img/favicons/apple-touch-icon.png"
+	"assets/img/favicons/android-chrome-192x192.png"
+	"assets/img/favicons/android-chrome-512x512.png"
+	"assets/img/favicons/site.webmanifest"
 	"assets/img/portrait.jpg"
 	"assets/img/project-portfolio-visual.svg"
 	"parts/sa-header.php"
@@ -49,7 +65,6 @@ FILES=(
 	"assets/css/home.css"
 	"assets/css/pages.css"
 	"assets/js/home.js"
-	"assets/js/consent-i18n.js"
   "assets/js/sa-journal.js"
 )
 
@@ -61,6 +76,7 @@ for file in "${FILES[@]}"; do
 done
 
 mkdir -p "${BACKUP_DIR}/parts" "${BACKUP_DIR}/patterns" "${BACKUP_DIR}/assets/css" "${BACKUP_DIR}/assets/img" "${BACKUP_DIR}/assets/js"
+echo "Uploading ${#FILES[@]} files. New files (favicons, new work pages, style.css, theme.json) are not backed up because they do not exist on the server yet."
 echo "Deploying ${#FILES[@]} child-theme files to IONOS..."
 
 expect -f - "$REMOTE_USER" "$REMOTE_HOST" "$REMOTE_DIR" "$LOCAL_DIR" "$BACKUP_DIR" "${FILES[@]}" <<'EXPECT'
@@ -100,7 +116,7 @@ expect {
 }
 wait_for_prompt "authentication"
 
-foreach file [list "front-page.php" "functions.php" "single-experiment.php" "page-experiments.php" "page-about-me.php" "page-services.php" "page-datenschutzerklaerung.php" "page-impressum.php" "page-work.php" "page-work-stan.php" "page-work-monroe-toyparty-landingpage.php" "parts/sa-header.php" "parts/sa-project-note.php" "parts/sa-footer.php" "patterns/datenschutz.php" "patterns/impressum.php" "assets/img/portrait.jpg" "assets/img/project-portfolio-visual.svg" "assets/css/home.css" "assets/css/pages.css" "assets/css/sa-base.css" "assets/js/home.js"] {
+foreach file [list "style.css" "front-page.php" "functions.php" "single.php" "single-experiment.php" "page-experiments.php" "page-about-me.php" "page-services.php" "page-datenschutzerklaerung.php" "page-impressum.php" "page-work.php" "page-work-stan.php" "page-work-monroe-toyparty-landingpage.php" "parts/sa-header.php" "parts/sa-project-note.php" "parts/sa-footer.php" "patterns/datenschutz.php" "patterns/impressum.php" "assets/img/portrait.jpg" "assets/img/project-portfolio-visual.svg" "assets/css/home.css" "assets/css/pages.css" "assets/css/sa-base.css" "assets/js/home.js"] {
   send -- "get $remote_dir/$file $backup_dir/$file\r"
   wait_for_prompt "backup of $file"
 }
@@ -113,6 +129,7 @@ foreach directory [list \
   "$remote_dir/assets" \
   "$remote_dir/assets/css" \
   "$remote_dir/assets/img" \
+  "$remote_dir/assets/img/favicons" \
   "$remote_dir/assets/js"] {
   send -- "mkdir $directory\r"
   wait_for_prompt "creating $directory" 1
