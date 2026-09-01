@@ -301,7 +301,7 @@ function sa_mark( $kind ) {
 					<h2 class="sa-section__title sa-reveal" id="sa-journal-title">Abseits der Arbeit</h2>
 					<p class="sa-section__intro sa-reveal">
 						Kein Marketing-Blog – ein Einblick in die Person hinter Studio Avelin: Reisen,
-						Lauftraining, Bücher.
+						Training, Bücher.
 					</p>
 				</div>
 				<a class="sa-link-lime sa-reveal" href="<?php echo esc_url( $sa_home . 'journal/' ); ?>">

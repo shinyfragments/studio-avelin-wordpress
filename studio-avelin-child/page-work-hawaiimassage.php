@@ -3,8 +3,7 @@
  * Template Name: Studio Avelin – Projekt: Hawaiimassage zu Hause
  * Projektnotiz: /work/hawaiimassage/
  *
- * TODO: Live-Link ergänzen, sobald die Seite öffentlich ist. Bild-/Detailmaterial
- * folgt von Michael.
+ * Die Website selbst liegt als eigenständige statische Seite unter /hawaiimassage/.
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -13,17 +12,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 $sa_project = array(
 	'title'        => 'Hawaiimassage zu Hause',
 	'summary'      => 'Eine ruhige, warme Website für mobile Wellnessmassagen zu Hause – Lomi Lomi, Schwangerschafts-, Hot-Stone-, Aromaöl- und Babymassage.',
-	'status'       => 'In Vorbereitung',
+	'status'       => 'Statische Website, live',
 	'role'         => 'Design, Entwicklung, Textunterstützung',
 	'stack'        => 'Statische Seite, Cormorant Garamond & DM Sans',
-	'state'        => 'Fertig gestaltet, Veröffentlichung steht noch aus',
-	'link'         => '',
-	'link_display' => '',
-	'link_label'   => '',
+	'state'        => 'Live und als eigenständige statische Seite gepflegt',
+	'link'         => '/hawaiimassage/',
+	'link_display' => 'studio-avelin.com/hawaiimassage/',
+	'link_label'   => 'Website öffnen',
 	'description'  => array(
 		'Ausgangslage: Eine mobile Masseurin bietet Wellnessmassagen bei Kundinnen zu Hause an und brauchte einen Auftritt, der genauso entspannt wirkt wie die Behandlung selbst.',
 		'Ansatz: Eine klare Angebotsübersicht mit viel Raum für Bild und Text, warme Typografie und eine ruhige Farbwelt. Die Seite führt von der ersten Neugier bis zur Terminanfrage, ohne zu drängen.',
-		'Ergebnis: Eine fertig gestaltete Website, die vor dem Launch steht. Details und Bilder folgen hier, sobald die Seite öffentlich ist.',
+		'Ergebnis: Eine live gestellte, statisch umgesetzte Website mit eigener visueller Identität – unabhängig vom Designsystem von Studio Avelin und ohne WordPress.',
 	),
 );
 

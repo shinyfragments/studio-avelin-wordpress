@@ -3,7 +3,7 @@
  * Template Name: Studio Avelin – Projekt: Bäckerei Curfs
  * Projektnotiz: /work/baeckerei-curfs/
  *
- * TODO: Live-Link und Freigabe von Michael. Detailtext ggf. mit der Kundschaft abstimmen.
+ * Live-Link ergänzen, sobald die URL feststeht.
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -22,7 +22,7 @@ $sa_project = array(
 	'description'  => array(
 		'Ausgangslage: Eine kleine Bäckerei mit klarem handwerklichem Anspruch wollte einen Auftritt, der die Qualität der Produkte auch digital spürbar macht.',
 		'Ansatz: Eine reduzierte, ästhetikgetriebene Gestaltung, die Bild und Text Raum gibt und die wichtigsten Informationen – Angebot, Öffnungszeiten, Standort – ohne Umwege zeigt.',
-		'Ergebnis: Eine live gestellte Website, die zur Marke passt und einfach zu pflegen bleibt. Weitere Details folgen.',
+		'Ergebnis: Eine live gestellte Website, die zur Marke passt und einfach zu pflegen bleibt.',
 	),
 );
 

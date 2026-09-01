@@ -16,7 +16,7 @@ $sa_home = trailingslashit( home_url( '/' ) );
 $sa_clients = array(
 	array(
 		'name'  => 'Hawaiimassage zu Hause',
-		'meta'  => 'Website · in Vorbereitung',
+		'meta'  => 'Website · live',
 		'text'  => 'Eine ruhige, warme Website für mobile Wellnessmassagen zu Hause – klare Angebotsübersicht, viel Raum für Bild und Text.',
 		'url'   => $sa_home . 'work/hawaiimassage/',
 	),

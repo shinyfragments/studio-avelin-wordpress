@@ -3,7 +3,7 @@
  * Template Name: Studio Avelin – Projekt: Doula Anja
  * Projektnotiz: /work/doula-anja/
  *
- * TODO: Live-Link und Freigabe von Michael. Detailtext ggf. mit der Kundin abstimmen.
+ * Live-Link ergänzen, sobald die URL feststeht.
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -22,7 +22,7 @@ $sa_project = array(
 	'description'  => array(
 		'Ausgangslage: Eine selbstständige Doula begleitet Familien vor, während und nach der Geburt und wollte einen Auftritt, der Nähe und Vertrauen vermittelt.',
 		'Ansatz: Eine klare Struktur entlang der Angebote – Geburtsvorbereitung, Doula-Begleitung, Begleitung nach einer Fehlgeburt – mit ruhiger Gestaltung und einem einfachen Weg zur Kontaktaufnahme.',
-		'Ergebnis: Eine live gestellte Website, die die einzelnen Angebote verständlich erklärt und persönlich wirkt. Weitere Details folgen.',
+		'Ergebnis: Eine live gestellte Website, die die einzelnen Angebote verständlich erklärt und persönlich wirkt.',
 	),
 );
 

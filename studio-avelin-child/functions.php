@@ -147,7 +147,7 @@ function sa_child_meta_description( $description = '' ) {
 	}
 
 	if ( is_post_type_archive( 'sa_journal' ) || is_singular( 'sa_journal' ) || is_tax( array( 'sa_journal_category', 'sa_journal_tag' ) ) ) {
-		return 'Kein Marketing-Blog – ein Einblick in die Person hinter Studio Avelin: Reisen, Lauftraining und Bücher.';
+		return 'Kein Marketing-Blog – ein Einblick in die Person hinter Studio Avelin: Reisen, Training und Bücher.';
 	}
 
 	return $description;
