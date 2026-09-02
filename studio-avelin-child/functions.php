@@ -304,6 +304,7 @@ add_action( 'wp_enqueue_scripts', 'sa_child_dequeue_block_noise', 100 );
 function sa_child_front_page_body_class( $classes ) {
 	if ( is_front_page() ) {
 		$classes[] = 'sa-front-body';
+		$classes[] = 'sa-home';
 	}
 
 	return $classes;

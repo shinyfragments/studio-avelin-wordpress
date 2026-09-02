@@ -439,6 +439,70 @@ body.sa-menu-open {
   font-size: 0.875rem;
 }
 
+/* =====================================================================
+   Split A/ monogram — fixed in the top corners on every page.
+   ===================================================================== */
+.sa-cornermark {
+  position: fixed;
+  top: clamp(1rem, 2.2vw, 1.9rem);
+  z-index: 1200;
+  font-family: var(--sa-font-display, "Poppins", sans-serif);
+  font-weight: 500;
+  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  line-height: 1;
+  color: #fff;
+  mix-blend-mode: difference;
+  text-decoration: none;
+  transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1), opacity 400ms ease;
+}
+.sa-cornermark--a { left: clamp(1rem, 2vw, 1.8rem); }
+.sa-cornermark--slash { right: clamp(1rem, 2vw, 1.8rem); pointer-events: none; }
+
+body.is-scrolled .sa-cornermark { opacity: 0; pointer-events: none; }
+body.is-scrolled .sa-cornermark--slash { transform: translateY(-2px) rotate(10deg); }
+
+@media (prefers-reduced-motion: reduce) {
+  .sa-cornermark { transition: opacity 200ms ease; }
+}
+
+/* =====================================================================
+   Homepage: header sits transparent over the dark hero, then docks solid.
+   ===================================================================== */
+body.sa-home .sa-front-header {
+  position: fixed;
+  background: transparent !important;
+  border-bottom-color: transparent;
+}
+body.sa-home .sa-front-header,
+body.sa-home .sa-brand__name,
+body.sa-home .sa-front-nav__link,
+body.sa-home .sa-nav-cta,
+body.sa-home .sa-nav-toggle {
+  color: #F2F2F2;
+}
+body.sa-home .sa-nav-cta { border-color: rgba(242, 242, 242, 0.4); }
+body.sa-home .sa-nav-baseline { background-color: rgba(242, 242, 242, 0.22); }
+
+body.sa-home.is-scrolled .sa-front-header {
+  background: rgba(242, 242, 242, 0.92) !important;
+  -webkit-backdrop-filter: saturate(150%) blur(14px);
+  backdrop-filter: saturate(150%) blur(14px);
+  border-bottom-color: rgba(61, 61, 61, 0.12);
+}
+body.sa-home.is-scrolled .sa-front-header,
+body.sa-home.is-scrolled .sa-brand__name,
+body.sa-home.is-scrolled .sa-front-nav__link,
+body.sa-home.is-scrolled .sa-nav-cta,
+body.sa-home.is-scrolled .sa-nav-toggle {
+  color: #3D3D3D;
+}
+body.sa-home.is-scrolled .sa-nav-cta { border-color: rgba(61, 61, 61, 0.22); }
+body.sa-home.is-scrolled .sa-nav-baseline { background-color: rgba(61, 61, 61, 0.14); }
+
+/* the homepage hero already carries big top padding, so the fixed header
+   does not need to reserve layout space */
+body.sa-home .sa-main { padding-top: 0; }
+
 /* ---------- Shared page primitives ---------- */
 
 .sa-page__inner {
@@ -758,16 +822,14 @@ body.sa-menu-open {
 }
 
 .sa-footer-statement {
-  font-family: var(--sa-font-display, "Geist", "Inter", sans-serif);
-  font-size: clamp(1.75rem, 3vw, 2.4rem);
-  font-weight: 400;
-  line-height: 1.15;
-  letter-spacing: -0.025em;
+  font-family: var(--sa-font-display, "Poppins", sans-serif);
+  font-size: clamp(1.75rem, 3.6vw, 3rem);
+  font-weight: 300;
+  line-height: 1.06;
+  letter-spacing: -0.03em;
   margin: 0;
   display: flex;
-  align-items: baseline;
-  gap: 0.25em;
-  white-space: nowrap;
+  flex-direction: column;
 }
 
 .sa-stmt-dark {
