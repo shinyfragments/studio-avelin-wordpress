@@ -72,9 +72,10 @@ $sa_notice        = array(
 					<label for="sa-project">Worum geht es? <span>*</span></label>
 					<select id="sa-project" name="sa_project" required>
 						<option value="">Bitte auswählen</option>
-						<option value="website">Website-Projekt</option>
-						<option value="branding">Branding-Projekt</option>
-						<option value="support">Langfristige Begleitung</option>
+						<option value="website">Individuelle Website</option>
+						<option value="landing">Landingpage oder Portfolio</option>
+						<option value="wordpress">WordPress</option>
+						<option value="optimize">Bestehende Website optimieren</option>
 						<option value="other">Etwas anderes</option>
 					</select>
 				</div>

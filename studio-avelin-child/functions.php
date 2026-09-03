@@ -52,7 +52,7 @@ function sa_child_document_title( $title ) {
 	);
 
 	if ( is_front_page() ) {
-		return 'Studio Avelin – Design, das deiner Marke eine Stimme gibt.';
+		return 'Studio Avelin – Design. Code. Create.';
 	}
 
 	if ( isset( $studio_titles[ $request_path ] ) ) {
@@ -131,11 +131,11 @@ function sa_child_meta_description( $description = '' ) {
 	$request_path = trim( (string) wp_parse_url( $_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH ), '/' );
 
 	if ( is_front_page() ) {
-		return 'Ich bin Michael, Designer und Gründer von Studio Avelin. Ich begleite kleine, inhabergeführte Marken persönlich – von der Positionierung über das Design bis zur Sichtbarkeit.';
+		return 'Studio Avelin gestaltet und entwickelt individuelle Websites für Selbstständige und kleine Unternehmen – persönlich betreut, von der ersten Idee bis zur Sichtbarkeit.';
 	}
 
 	if ( 'services' === $request_path ) {
-		return 'Drei Ebenen: Website-Projekt, Branding-Projekt und langfristige Begleitung – Design, Marke und Sichtbarkeit aus einer Hand.';
+		return 'Individuelle Websites, Landingpages, Portfolios und WordPress-Systeme – Konzept, Design, Entwicklung und Betreuung aus einer Hand.';
 	}
 
 	if ( 'work' === $request_path ) {
@@ -462,10 +462,11 @@ function sa_child_handle_contact_form() {
 	$message  = isset( $_POST['sa_message'] ) ? sanitize_textarea_field( wp_unslash( $_POST['sa_message'] ) ) : '';
 	$consent  = ! empty( $_POST['sa_consent'] );
 	$projects = array(
-		'website'  => 'Website-Projekt',
-		'branding' => 'Branding-Projekt',
-		'support'  => 'Langfristige Begleitung',
-		'other'    => 'Etwas anderes',
+		'website'   => 'Individuelle Website',
+		'landing'   => 'Landingpage oder Portfolio',
+		'wordpress' => 'WordPress',
+		'optimize'  => 'Bestehende Website optimieren',
+		'other'     => 'Etwas anderes',
 	);
 
 	if ( '' === $name || ! is_email( $email ) || ! isset( $projects[ $project ] ) || '' === $message || ! $consent ) {
