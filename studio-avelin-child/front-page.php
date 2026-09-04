@@ -39,14 +39,14 @@ $sa_services = array(
 /** Two featured projects. The full list lives on /work/. */
 $sa_projects = array(
 	array(
-		'name'   => 'STAN',
-		'full'   => 'Studio Avelin Notes',
+		'name'   => 'Hawaiimassage zu Hause',
+		'full'   => 'Anja Krampe · Kelkheim',
 		'status' => 'Live',
-		'meta'   => 'Eigenes Produkt · App',
-		'text'   => 'Eine ruhige Notiz-App, die Ideen, Bereiche, Notizen und Tags an einem Ort zusammenhält – reduziert, schnell und für den Alltag gemacht.',
-		'url'    => $sa_home . 'work/stan/',
-		'image'  => '',
-		'tint'   => 'cool',
+		'meta'   => 'Kundenprojekt · Website',
+		'text'   => 'Eine ruhige, warme Website für mobile Wellnessmassagen zu Hause – klare Angebotsübersicht, viel Raum für Bild und Text.',
+		'url'    => $sa_home . 'work/hawaiimassage/',
+		'image'  => $sa_uri . '/assets/img/work/hawaiimassage/hero.jpg',
+		'tint'   => 'warm',
 	),
 	array(
 		'name'   => 'Portfolio Page',
@@ -55,7 +55,7 @@ $sa_projects = array(
 		'meta'   => 'Kundenprojekt · Landingpage',
 		'text'   => 'Eine warme, zurückhaltende Portfolio- und Landingpage, die Angebot, Persönlichkeit und Kontakt stimmig zusammenbringt.',
 		'url'    => $sa_home . 'work/monroe-toyparty-landingpage/',
-		'image'  => $sa_uri . '/assets/img/project-portfolio-visual.svg',
+		'image'  => $sa_uri . '/assets/img/work/monroe/hero.jpg',
 		'tint'   => 'rose',
 	),
 );
@@ -123,7 +123,7 @@ $sa_journal_posts = new WP_Query(
 							<span class="sa-btn__arrow" aria-hidden="true">&rarr;</span>
 						</a>
 						<a class="sa-btn sa-btn--outline" href="<?php echo esc_url( $sa_home . 'contact/' ); ?>">
-							<span>Projekt starten</span>
+							<span>Projekt besprechen</span>
 							<span class="sa-btn__arrow" aria-hidden="true">&rarr;</span>
 						</a>
 					</div>
@@ -261,7 +261,7 @@ $sa_journal_posts = new WP_Query(
 	<!-- ============================ PROJEKT STARTEN ============================ -->
 	<section class="sa-section sa-section--dark sa-closing" id="contact" aria-labelledby="sa-closing-title">
 		<div class="sa-shell">
-			<span class="sa-sec-kicker sa-reveal">Projekt starten</span>
+			<span class="sa-sec-kicker sa-reveal">Projekt besprechen</span>
 			<h2 class="sa-closing__h sa-reveal" id="sa-closing-title">Du hast eine Website im Kopf?</h2>
 			<p class="sa-closing__p sa-reveal">
 				Erzähl mir, woran du arbeitest, was die Website leisten soll und wo du im Prozess stehst.
@@ -275,7 +275,7 @@ $sa_journal_posts = new WP_Query(
 			</ul>
 
 			<a class="sa-btn sa-btn--light sa-reveal" href="<?php echo esc_url( $sa_home . 'contact/' ); ?>">
-				Projekt anfragen <span class="sa-btn__arrow" aria-hidden="true">&rarr;</span>
+				Projekt besprechen <span class="sa-btn__arrow" aria-hidden="true">&rarr;</span>
 			</a>
 
 			<div class="sa-closing__social sa-reveal">

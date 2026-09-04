@@ -25,7 +25,7 @@ $sa_project = array(
 		'Ergebnis: Eine live gestellte, statisch umgesetzte Landingpage mit eigener visueller Identität – unabhängig vom Designsystem von Studio Avelin und ohne WordPress.',
 	),
 	'hero'    => get_stylesheet_directory_uri() . '/assets/img/work/monroe/hero.jpg',
-	'gallery' => array( get_stylesheet_directory_uri() . '/assets/img/project-portfolio-visual.svg' ),
+	'gallery' => array(),
 );
 
 set_query_var( 'sa_project', $sa_project );

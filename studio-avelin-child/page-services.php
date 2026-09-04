@@ -167,7 +167,7 @@ $sa_process = array(
 			<span class="sa-about-eyebrow">PROJEKT STARTEN</span>
 			<h2>Du hast etwas im Kopf?</h2>
 			<p>Erzähl mir, woran du arbeitest, was die Website leisten soll und wo du gerade stehst.</p>
-			<a href="<?php echo esc_url( $sa_home . 'contact/' ); ?>">PROJEKT ANFRAGEN <span aria-hidden="true">&rarr;</span></a>
+			<a href="<?php echo esc_url( $sa_home . 'contact/' ); ?>">Projekt besprechen <span aria-hidden="true">&rarr;</span></a>
 		</section>
 
 	</div>

@@ -23,7 +23,7 @@ $sa_clients = array(
 		'status' => 'Live',
 		'text'   => 'Eine ruhige, warme Website für mobile Wellnessmassagen zu Hause. Klare Angebotsübersicht, viel Raum für Bild und Text, ein einfacher Weg zur Terminanfrage.',
 		'url'    => $sa_home . 'work/hawaiimassage/',
-		'image'  => '',
+		'image'  => $sa_uri . '/assets/img/work/hawaiimassage/hero.jpg',
 		'tint'   => 'warm',
 	),
 	array(
@@ -33,7 +33,7 @@ $sa_clients = array(
 		'status' => 'Live',
 		'text'   => 'Eine warme, diskrete Portfolio- und Landingpage für eine selbstständige MONROE-Beraterin – stilvoll, einladend und mit einem einfachen Weg zum Kontakt.',
 		'url'    => $sa_home . 'work/monroe-toyparty-landingpage/',
-		'image'  => $sa_uri . '/assets/img/project-portfolio-visual.svg',
+		'image'  => $sa_uri . '/assets/img/work/monroe/hero.jpg',
 		'tint'   => 'rose',
 	),
 	array(
@@ -43,7 +43,7 @@ $sa_clients = array(
 		'status' => 'Live',
 		'text'   => 'Ein stilvoller digitaler Auftritt für eine kleine, handwerkliche Bäckerei – reduziert, ästhetikgetrieben und einfach zu pflegen.',
 		'url'    => $sa_home . 'work/baeckerei-curfs/',
-		'image'  => '',
+		'image'  => $sa_uri . '/assets/img/work/baeckerei-curfs/hero.jpg',
 		'tint'   => 'warm',
 	),
 );
@@ -72,9 +72,9 @@ $sa_products = array(
 	array(
 		'name'   => 'StAU',
 		'full'   => 'Studio Avelin Travel Planner',
-		'meta'   => 'Produktkonzept',
-		'status' => 'Konzept',
-		'text'   => 'Ein Konzept für Reiseplanung und Reisetagebuch, das Ideen, Routen und Erinnerungen an einem Ort sammelt – von der ersten gespeicherten Idee bis zum Rückblick.',
+		'meta'   => 'Eigenes Produkt · App',
+		'status' => 'Live',
+		'text'   => 'Eine ruhige App für Reiseplanung und Reisetagebuch, die Ideen, Routen und Erinnerungen an einem Ort sammelt – von der ersten gespeicherten Idee bis zum Rückblick.',
 		'url'    => $sa_home . 'work/stau/',
 		'image'  => '',
 		'tint'   => 'rose',
