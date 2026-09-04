@@ -126,10 +126,15 @@ $sa_facts = array(
 		<section class="sa-section" aria-labelledby="sa-about-available-title">
 			<div class="sa-split">
 				<div class="sa-reveal">
-					<span class="sa-sec-kicker">Verfügbar für</span>
-					<h2 class="sa-sec-title" id="sa-about-available-title">Aktuell offen für neue Projekte.</h2>
+					<span class="sa-sec-kicker">Zusammenarbeit</span>
+					<h2 class="sa-sec-title" id="sa-about-available-title">Neue Projekte entstehen auf Anfrage.</h2>
 				</div>
 				<div class="sa-reveal d1">
+					<p class="sa-sec-intro" style="margin-top:0;max-width:46ch">
+						Ich arbeite an wenigen Projekten gleichzeitig und sehe mir jede Anfrage
+						persönlich an. Passt es zeitlich und inhaltlich, hörst du zeitnah von mir –
+						mit einem konkreten nächsten Schritt.
+					</p>
 					<ul class="sa-checklist">
 						<?php foreach ( $sa_available as $item ) : ?>
 							<li><?php echo esc_html( $item ); ?></li>
