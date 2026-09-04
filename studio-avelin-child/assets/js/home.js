@@ -62,6 +62,14 @@
     );
 
     for (var j = 0; j < items.length; j++) observer.observe(items[j]);
+
+    // Failsafe: if the observer never fires (page loaded in a background tab,
+    // where IntersectionObserver and rAF are paused), reveal everything anyway
+    // so nothing is stuck invisible.
+    setTimeout(function () {
+      var hidden = document.querySelectorAll(".sa-reveal:not(.is-visible)");
+      for (var k = 0; k < hidden.length; k++) hidden[k].classList.add("is-visible");
+    }, 2200);
   }
 
   /* ------------------------------------ Sliding lime nav indicator --- */
