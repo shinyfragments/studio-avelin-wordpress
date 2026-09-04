@@ -1903,17 +1903,21 @@ body.sa-home {
 
 body.sa-home .sa-main { overflow: clip; }
 
-/* ------------------------------------------------------- shared bits --- */
+/* ------------------------------------------------------- shared bits ---
+   Spacing convention here: labels/kickers carry NO bottom margin; the
+   following element owns the gap via margin-top. That keeps the vertical
+   rhythm predictable and stops margins from compounding. */
 .sa-front .sa-sec-kicker {
-  display: inline-flex;
+  display: flex;
+  width: fit-content;
   align-items: center;
   gap: 0.7rem;
+  margin: 0;
   font-family: var(--sa-font-display);
   font-size: 0.66rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--sa-muted);
-  margin-bottom: clamp(1.4rem, 3vw, 2.25rem);
 }
 .sa-front .sa-sec-kicker::before {
   content: "";
@@ -1926,6 +1930,7 @@ body.sa-home .sa-main { overflow: clip; }
 body.sa-home .sa-section--dark .sa-sec-kicker { color: var(--sa-muted-dark); }
 
 .sa-front .sa-sec-title {
+  margin-top: clamp(0.95rem, 2vw, 1.2rem);
   font-family: var(--sa-font-display);
   font-weight: 300;
   letter-spacing: -0.03em;
@@ -1934,13 +1939,13 @@ body.sa-home .sa-section--dark .sa-sec-kicker { color: var(--sa-muted-dark); }
   max-width: 20ch;
 }
 .sa-front .sa-sec-intro {
-  margin-top: 1.6rem;
+  margin-top: 1.25rem;
   max-width: 42ch;
   color: var(--sa-muted);
   font-size: 1.05rem;
   line-height: 1.7;
 }
-.sa-front .sa-sec-foot { margin-top: clamp(2.5rem, 5vw, 4rem); }
+.sa-front .sa-sec-foot { margin-top: clamp(2.75rem, 5vw, 4rem); }
 
 .sa-front .sa-textlink {
   display: inline-flex;
@@ -2037,7 +2042,7 @@ body.sa-home .sa-hero__eyebrow-row {
   display: flex;
   align-items: center;
   gap: 0.9rem;
-  margin-bottom: clamp(1.6rem, 4vw, 2.5rem);
+  margin: 0;
 }
 body.sa-home .sa-hero__rule { display: block; width: 2.5rem; height: 1px; background: var(--sa-lime); flex: none; }
 body.sa-home .sa-hero__eyebrow {
@@ -2049,15 +2054,16 @@ body.sa-home .sa-hero__eyebrow {
 }
 
 body.sa-home .sa-hero__claim {
+  margin-top: clamp(1.5rem, 4vw, 2.25rem);
   font-family: var(--sa-font-display);
   font-size: clamp(0.7rem, 1.1vw, 0.8rem);
   letter-spacing: 0.42em;
   color: rgba(242, 242, 242, 0.5);
-  margin-bottom: clamp(1.5rem, 4vw, 2.25rem);
 }
 body.sa-home .sa-hero__claim span { color: var(--sa-bg); }
 
 body.sa-home .sa-hero__title {
+  margin-top: clamp(1.4rem, 3.5vw, 2rem);
   font-family: var(--sa-font-display);
   font-weight: 300;
   font-size: clamp(2.5rem, 6.4vw, 5.4rem);
@@ -2211,21 +2217,33 @@ body.sa-home .sa-arc__p { margin-top: 1rem; color: var(--sa-muted); font-size: 1
 }
 .sa-front .sa-feat__index {
   display: block;
+  margin: 0 0 1.5rem;
   font-family: var(--sa-font-display);
   font-size: 0.8rem;
   letter-spacing: 0.2em;
   color: var(--sa-muted);
-  margin-bottom: 1.25rem;
 }
 .sa-front .sa-feat__meta {
+  display: block;
   font-family: var(--sa-font-display);
   font-size: 0.66rem;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--sa-muted);
 }
+.sa-front .sa-feat__meta-status { color: var(--sa-ink); white-space: nowrap; }
+.sa-front .sa-feat__meta-status::before {
+  content: "";
+  display: inline-block;
+  width: 0.4rem;
+  height: 0.4rem;
+  margin: 0 0.5rem 0 0.9rem;
+  border-radius: 50%;
+  background: var(--sa-lime);
+  vertical-align: 0.08em;
+}
 .sa-front .sa-feat__name {
-  margin-top: 0.7rem;
+  margin-top: 0.85rem;
   font-family: var(--sa-font-display);
   font-weight: 300;
   font-size: clamp(2rem, 4.4vw, 3.4rem);
@@ -2238,21 +2256,9 @@ body.sa-home .sa-arc__p { margin-top: 1rem; color: var(--sa-muted); font-size: 1
   color: var(--sa-muted);
   font-size: 0.95rem;
 }
-.sa-front .sa-feat__pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: 1.1rem;
-  font-family: var(--sa-font-display);
-  font-size: 0.7rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--sa-ink);
-}
-.sa-front .sa-feat__pill-dot { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--sa-lime); }
-.sa-front .sa-feat__desc { margin-top: 1.25rem; color: var(--sa-muted); line-height: 1.7; max-width: 44ch; }
+.sa-front .sa-feat__desc { margin-top: 1.5rem; color: var(--sa-muted); line-height: 1.7; max-width: 44ch; }
 .sa-front .sa-feat__link {
-  margin-top: 1.6rem;
+  margin-top: 1.75rem;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -2300,6 +2306,7 @@ body.sa-home .sa-about2__name {
   color: var(--sa-muted-dark);
 }
 body.sa-home .sa-about2__h {
+  margin-top: 1.2rem;
   font-family: var(--sa-font-display);
   font-weight: 300;
   font-size: clamp(1.4rem, 2.7vw, 2.2rem);
@@ -2350,14 +2357,15 @@ body.sa-home .sa-jrn__date { font-family: var(--sa-font-display); font-size: 0.7
 body.sa-home .sa-closing { text-align: center; }
 body.sa-home .sa-closing .sa-sec-kicker { justify-content: center; }
 body.sa-home .sa-closing__h {
+  margin-top: 1.4rem;
   font-family: var(--sa-font-display);
   font-weight: 300;
-  font-size: clamp(3rem, 11vw, 9rem);
+  font-size: clamp(2.6rem, 9vw, 7rem);
   letter-spacing: -0.05em;
   line-height: 1;
 }
 body.sa-home .sa-closing__p {
-  margin: 1.75rem auto 0;
+  margin: 1.6rem auto 0;
   color: var(--sa-muted-dark);
   font-size: 1.05rem;
   max-width: 46ch;
@@ -2443,7 +2451,7 @@ body.sa-page--work .sa-section:last-of-type { border-bottom: 0; }
 
 body.sa-page--work .sa-workpage-hero { padding-bottom: clamp(3rem, 7vw, 5rem); }
 body.sa-page--work .sa-workpage-hero__h {
-  margin-top: 1.25rem;
+  margin-top: 1.2rem;
   font-family: var(--sa-font-display);
   font-weight: 300;
   font-size: clamp(2.4rem, 6vw, 4.6rem);
@@ -2463,14 +2471,14 @@ body.sa-page--work .sa-feat { margin-top: clamp(3rem, 7vw, 5rem); gap: clamp(4re
 
 body.sa-page--work .sa-workpage-cta { text-align: left; }
 body.sa-page--work .sa-workpage-cta__h {
-  margin-top: 1.1rem;
+  margin-top: 1.2rem;
   font-family: var(--sa-font-display);
   font-weight: 300;
   font-size: clamp(2rem, 5vw, 3.5rem);
   letter-spacing: -0.04em;
   line-height: 1.03;
 }
-body.sa-page--work .sa-workpage-cta__p { margin-top: 1.1rem; color: var(--sa-muted); font-size: 1.05rem; }
+body.sa-page--work .sa-workpage-cta__p { margin-top: 1.25rem; color: var(--sa-muted); font-size: 1.05rem; }
 body.sa-page--work .sa-workpage-cta__actions {
   margin-top: 2.25rem;
   display: flex;
@@ -2494,7 +2502,7 @@ body.sa-page--work .sa-workpage-cta__actions {
 
 .sa-pn__head { max-width: 46rem; }
 .sa-pn__title {
-  margin-top: 1.1rem;
+  margin-top: 1.2rem;
   font-family: var(--sa-font-display);
   font-weight: 300;
   font-size: clamp(2.3rem, 5.5vw, 4.2rem);

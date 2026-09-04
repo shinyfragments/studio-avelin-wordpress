@@ -183,10 +183,9 @@ $sa_journal_posts = new WP_Query(
 						</div>
 						<div class="sa-feat__body">
 							<span class="sa-feat__index"><?php echo esc_html( str_pad( (string) ( $index + 1 ), 2, '0', STR_PAD_LEFT ) ); ?></span>
-							<span class="sa-feat__meta"><?php echo esc_html( $project['meta'] ); ?></span>
+							<span class="sa-feat__meta"><?php echo esc_html( $project['meta'] ); ?><span class="sa-feat__meta-status"><?php echo esc_html( $project['status'] ); ?></span></span>
 							<h3 class="sa-feat__name"><?php echo esc_html( $project['name'] ); ?></h3>
 							<span class="sa-feat__full"><?php echo esc_html( $project['full'] ); ?></span>
-							<span class="sa-feat__pill"><span class="sa-feat__pill-dot" aria-hidden="true"></span><?php echo esc_html( $project['status'] ); ?></span>
 							<p class="sa-feat__desc"><?php echo esc_html( $project['text'] ); ?></p>
 							<span class="sa-feat__link">Projekt ansehen <span aria-hidden="true">&rarr;</span></span>
 						</div>
