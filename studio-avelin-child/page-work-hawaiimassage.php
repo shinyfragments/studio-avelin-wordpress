@@ -11,6 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $sa_project = array(
 	'title'        => 'Hawaiimassage zu Hause',
+	'subtitle'     => 'Mobile Wellnessmassage · Kelkheim',
 	'summary'      => 'Eine ruhige, warme Website für mobile Wellnessmassagen zu Hause – Lomi Lomi, Schwangerschafts-, Hot-Stone-, Aromaöl- und Babymassage.',
 	'status'       => 'Statische Website, live',
 	'role'         => 'Design, Entwicklung, Textunterstützung',

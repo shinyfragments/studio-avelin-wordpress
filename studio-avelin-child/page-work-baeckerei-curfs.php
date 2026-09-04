@@ -11,6 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $sa_project = array(
 	'title'        => 'Bäckerei Curfs',
+	'subtitle'     => 'Handwerksbäckerei',
 	'summary'      => 'Ein stilvoller digitaler Auftritt für eine kleine, handwerkliche Bäckerei.',
 	'status'       => 'Live',
 	'role'         => 'Design, Entwicklung',

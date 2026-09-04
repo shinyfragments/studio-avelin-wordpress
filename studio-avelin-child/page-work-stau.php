@@ -8,7 +8,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $sa_project = array(
-	'title'        => 'StAU — Studio Avelin Travel Planner',
+	'title'        => 'StAU',
+	'subtitle'     => 'Studio Avelin Travel Planner',
 	'summary'      => 'Ein Konzept für Reiseplanung und Reisetagebuch, das Ideen, Routen und Erinnerungen sammelt.',
 	'status'       => 'Konzept / künftiges Projekt',
 	'role'         => 'Konzept, Design',

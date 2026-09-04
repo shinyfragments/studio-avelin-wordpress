@@ -8,7 +8,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $sa_project = array(
-	'title'        => 'StAT — Studio Avelin Training',
+	'title'        => 'StAT',
+	'subtitle'     => 'Studio Avelin Training',
 	'summary'      => 'Ein privates Trainingstagebuch für Laufen, Krafttraining, Ziele, Strecken und Fortschritte.',
 	'status'       => 'Lokales MVP / in Arbeit',
 	'role'         => 'Konzept, Design, Frontend',

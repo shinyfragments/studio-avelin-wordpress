@@ -8,7 +8,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $sa_project = array(
-	'title'        => 'STAN — Studio Avelin Notes',
+	'title'        => 'STAN',
+	'subtitle'     => 'Studio Avelin Notes',
 	'summary'      => 'Eine ruhige Notiz- und Denk-App, die Ideen, Bereiche, Notizen und Tags an einem Ort zusammenhält.',
 	'status'       => 'Live-MVP',
 	'role'         => 'Konzept, Design, Frontend, Datenmodell',

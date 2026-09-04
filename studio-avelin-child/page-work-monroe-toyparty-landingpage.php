@@ -9,7 +9,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $sa_project = array(
-	'title'        => 'Portfolio Page — MONROE Toyparty Landingpage',
+	'title'        => 'Portfolio Page',
+	'subtitle'     => 'MONROE Toyparty Landingpage',
 	'summary'      => 'Eine warme, diskrete Portfolio- und Landingpage für eine selbstständige MONROE-Beraterin.',
 	'status'       => 'Statische Landingpage, live',
 	'role'         => 'Design, Entwicklung, Textunterstützung',

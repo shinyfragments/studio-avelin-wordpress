@@ -41,6 +41,9 @@ $sa_link_ext  = ! empty( $sa_project['link'] ) && 0 === strpos( $sa_project['lin
     <header class="sa-pn__head sa-reveal">
       <span class="sa-sec-kicker">Projektnotiz</span>
       <h1 class="sa-pn__title"><?php echo esc_html( $sa_project['title'] ); ?></h1>
+      <?php if ( ! empty( $sa_project['subtitle'] ) ) : ?>
+        <p class="sa-pn__subtitle"><?php echo esc_html( $sa_project['subtitle'] ); ?></p>
+      <?php endif; ?>
       <p class="sa-pn__lead"><?php echo esc_html( $sa_project['summary'] ); ?></p>
       <div class="sa-pn__meta">
         <span class="sa-pn__pill"><span class="sa-pn__pill-dot" aria-hidden="true"></span><?php echo esc_html( $sa_project['status'] ); ?></span>
@@ -54,7 +57,7 @@ $sa_link_ext  = ! empty( $sa_project['link'] ) && 0 === strpos( $sa_project['lin
 
     <?php if ( $sa_hero_img ) : ?>
       <figure class="sa-pn__hero sa-reveal">
-        <img src="<?php echo esc_url( $sa_hero_img ); ?>" alt="<?php echo esc_attr( $sa_project['title'] ); ?>" loading="eager" />
+        <img src="<?php echo esc_url( $sa_hero_img ); ?>" alt="<?php echo esc_attr( trim( $sa_project['title'] . ( ! empty( $sa_project['subtitle'] ) ? ' – ' . $sa_project['subtitle'] : '' ) ) ); ?>" loading="eager" />
       </figure>
     <?php else : ?>
       <div class="sa-pn__hero sa-pn__hero--placeholder sa-reveal" aria-hidden="true">
