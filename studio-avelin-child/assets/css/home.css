@@ -2721,8 +2721,8 @@ body.sa-page--contact .sa-section:last-of-type { border-bottom: 0; }
   font-size: 1.15rem;
   letter-spacing: -0.02em;
 }
-.sa-front .sa-steps li > p { margin: 0.35rem 0 0; color: var(--sa-muted); line-height: 1.6; max-width: 44ch; }
-@media (min-width: 800px) { .sa-front .sa-steps li > p { margin-top: 0; } }
+.sa-front .sa-steps li > p { grid-column: 2 / -1; margin: 0.35rem 0 0; color: var(--sa-muted); line-height: 1.6; max-width: 44ch; }
+@media (min-width: 800px) { .sa-front .sa-steps li > p { grid-column: auto; margin-top: 0; } }
 
 /* checklist */
 .sa-front .sa-checklist {
