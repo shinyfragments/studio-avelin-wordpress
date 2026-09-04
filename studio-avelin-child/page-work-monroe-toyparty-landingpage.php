@@ -23,6 +23,8 @@ $sa_project = array(
 		'Ansatz: Die Landingpage erklärt, wie ein Toyparty-Abend abläuft, stellt die Gastgeberin vor und macht die Kontaktaufnahme unkompliziert. Das Layout gibt den Bildern Raum und führt ohne Umwege zum Kontaktformular.',
 		'Ergebnis: Eine live gestellte, statisch umgesetzte Landingpage mit eigener visueller Identität – unabhängig vom Designsystem von Studio Avelin und ohne WordPress.',
 	),
+	'hero'    => get_stylesheet_directory_uri() . '/assets/img/work/monroe/hero.jpg',
+	'gallery' => array( get_stylesheet_directory_uri() . '/assets/img/project-portfolio-visual.svg' ),
 );
 
 set_query_var( 'sa_project', $sa_project );

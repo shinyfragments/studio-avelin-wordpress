@@ -22,6 +22,8 @@ $sa_project = array(
 		'Die Oberfläche ist auf einen einfachen Ablauf ausgelegt: Gedanken schnell festhalten und später ordnen. Bereiche bündeln zusammengehörige Arbeit, Tags schaffen Verbindungen und die Suche findet den Rest.',
 		'STAN ist ein eigenständiges Produkt und wird unabhängig von dieser Website entwickelt. Diese Projektnotiz gibt einen Einblick in Idee und Umsetzung – ein Design-Beispiel, kein Verkaufsangebot.',
 	),
+	'hero'    => '',
+	'gallery' => array(),
 );
 
 set_query_var( 'sa_project', $sa_project );

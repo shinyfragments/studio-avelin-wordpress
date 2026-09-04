@@ -24,6 +24,8 @@ $sa_project = array(
 		'Ansatz: Eine klare Angebotsübersicht mit viel Raum für Bild und Text, warme Typografie und eine ruhige Farbwelt. Die Seite führt von der ersten Neugier bis zur Terminanfrage, ohne zu drängen.',
 		'Ergebnis: Eine live gestellte, statisch umgesetzte Website mit eigener visueller Identität – unabhängig vom Designsystem von Studio Avelin und ohne WordPress.',
 	),
+	'hero'    => get_stylesheet_directory_uri() . '/assets/img/work/hawaiimassage/hero.jpg',
+	'gallery' => array( get_stylesheet_directory_uri() . '/assets/img/work/hawaiimassage/lomi.jpg', get_stylesheet_directory_uri() . '/assets/img/work/hawaiimassage/aromaoel.jpg', get_stylesheet_directory_uri() . '/assets/img/work/hawaiimassage/hotstone.jpg' ),
 );
 
 set_query_var( 'sa_project', $sa_project );

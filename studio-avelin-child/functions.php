@@ -46,7 +46,6 @@ function sa_child_document_title( $title ) {
 		'work/stat'                        => 'StAT – Studio Avelin',
 		'work/stau'                        => 'StAU – Studio Avelin',
 		'work/hawaiimassage'               => 'Hawaiimassage zu Hause – Studio Avelin',
-		'work/doula-anja'                  => 'Doula Anja – Studio Avelin',
 		'work/baeckerei-curfs'             => 'Bäckerei Curfs – Studio Avelin',
 		'work/monroe-toyparty-landingpage' => 'Portfolio Page – Studio Avelin',
 	);
@@ -100,7 +99,6 @@ function sa_child_route_canonical_link() {
 		'work/stat',
 		'work/stau',
 		'work/hawaiimassage',
-		'work/doula-anja',
 		'work/baeckerei-curfs',
 		'work/monroe-toyparty-landingpage',
 		'datenschutzerklaerung',
@@ -120,7 +118,7 @@ function sa_child_route_wpseo_canonical( $canonical ) {
 	$request_path = trim( (string) wp_parse_url( $_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH ), '/' );
 	$request_path = 'about' === $request_path ? 'about-me' : $request_path;
 	$request_path = 'datenschutz' === $request_path ? 'datenschutzerklaerung' : $request_path;
-	$direct_routes = array( 'services', 'contact', 'about-me', 'work', 'work/stan', 'work/stat', 'work/stau', 'work/hawaiimassage', 'work/doula-anja', 'work/baeckerei-curfs', 'work/monroe-toyparty-landingpage', 'datenschutzerklaerung', 'impressum' );
+	$direct_routes = array( 'services', 'contact', 'about-me', 'work', 'work/stan', 'work/stat', 'work/stau', 'work/hawaiimassage', 'work/baeckerei-curfs', 'work/monroe-toyparty-landingpage', 'datenschutzerklaerung', 'impressum' );
 
 	return in_array( $request_path, $direct_routes, true ) ? false : $canonical;
 }

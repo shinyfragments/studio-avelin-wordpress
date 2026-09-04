@@ -22,6 +22,8 @@ $sa_project = array(
 		'Der Punkt ist Ehrlichkeit statt Gamification. Kein Streak-Druck, keine Badges, sondern lesbare Historie und ein paar Auswertungen, die zeigen, ob sich etwas bewegt.',
 		'StAT läuft aktuell lokal, während sich das Datenmodell setzt. Hier steht es als Projektnotiz, nicht als Produkt.',
 	),
+	'hero'    => '',
+	'gallery' => array(),
 );
 
 set_query_var( 'sa_project', $sa_project );

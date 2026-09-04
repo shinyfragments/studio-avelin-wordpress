@@ -102,7 +102,7 @@ $sa_journal_posts = new WP_Query(
 			<div class="sa-hero__content">
 				<div class="sa-hero__eyebrow-row">
 					<span class="sa-hero__rule" aria-hidden="true"></span>
-					<span class="sa-hero__eyebrow">Unabhängiges Webdesign &amp; Entwicklung</span>
+					<span class="sa-hero__eyebrow">Unabhängiges Webdesign, Entwicklung &amp; Marketing</span>
 				</div>
 
 				<p class="sa-hero__claim">DESIGN. <span>CODE.</span> CREATE.</p>
@@ -119,10 +119,12 @@ $sa_journal_posts = new WP_Query(
 					</p>
 					<div class="sa-hero__actions">
 						<a class="sa-btn sa-btn--lime" href="#work">
-							Projekte ansehen <span class="sa-btn__arrow" aria-hidden="true">&rarr;</span>
+							<span>Projekte ansehen</span>
+							<span class="sa-btn__arrow" aria-hidden="true">&rarr;</span>
 						</a>
-						<a class="sa-hero__ghost" href="<?php echo esc_url( $sa_home . 'contact/' ); ?>">
-							Projekt starten <span class="sa-btn__arrow" aria-hidden="true">&rarr;</span>
+						<a class="sa-btn sa-btn--outline" href="<?php echo esc_url( $sa_home . 'contact/' ); ?>">
+							<span>Projekt starten</span>
+							<span class="sa-btn__arrow" aria-hidden="true">&rarr;</span>
 						</a>
 					</div>
 				</div>
@@ -209,7 +211,7 @@ $sa_journal_posts = new WP_Query(
 				<div class="sa-about2__body sa-reveal d1">
 					<span class="sa-sec-kicker">Über mich</span>
 					<h2 class="sa-about2__h" id="sa-about-title">
-						Ich bin Michael Fiebus, Designer und Entwickler hinter Studio Avelin. Ich verbinde
+						Ich bin Michael, Designer und Entwickler hinter Studio Avelin. Ich verbinde
 						Gestaltung und Technik zu Websites und digitalen Produkten, die im Alltag funktionieren.
 					</h2>
 					<p class="sa-about2__p">
@@ -278,7 +280,6 @@ $sa_journal_posts = new WP_Query(
 			</a>
 
 			<div class="sa-closing__social sa-reveal">
-				<span>Außerdem</span>
 				<a href="https://www.instagram.com/studio_avelin" target="_blank" rel="noopener noreferrer">Instagram</a>
 				<a href="https://github.com/studio-avelin" target="_blank" rel="noopener noreferrer">GitHub</a>
 			</div>

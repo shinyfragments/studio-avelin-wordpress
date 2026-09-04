@@ -22,6 +22,8 @@ $sa_project = array(
 		'Das Spannende ist der Wechsel zwischen den drei Modi. Planen will Listen und Karten, Reisen will sehr wenig, Erinnern will Fotos und Text.',
 		'Es ist noch nichts gebaut. Diese Seite hält die Idee sichtbar, bis sie an der Reihe ist.',
 	),
+	'hero'    => '',
+	'gallery' => array(),
 );
 
 set_query_var( 'sa_project', $sa_project );

@@ -24,6 +24,8 @@ $sa_project = array(
 		'Ansatz: Eine reduzierte, ästhetikgetriebene Gestaltung, die Bild und Text Raum gibt und die wichtigsten Informationen – Angebot, Öffnungszeiten, Standort – ohne Umwege zeigt.',
 		'Ergebnis: Eine live gestellte Website, die zur Marke passt und einfach zu pflegen bleibt.',
 	),
+	'hero'    => get_stylesheet_directory_uri() . '/assets/img/work/baeckerei-curfs/hero.jpg',
+	'gallery' => array( get_stylesheet_directory_uri() . '/assets/img/work/baeckerei-curfs/brood.jpg', get_stylesheet_directory_uri() . '/assets/img/work/baeckerei-curfs/vlaai.jpg', get_stylesheet_directory_uri() . '/assets/img/work/baeckerei-curfs/winkel.jpg' ),
 );
 
 set_query_var( 'sa_project', $sa_project );

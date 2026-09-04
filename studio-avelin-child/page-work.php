@@ -37,16 +37,6 @@ $sa_clients = array(
 		'tint'   => 'rose',
 	),
 	array(
-		'name'   => 'Doula Anja',
-		'full'   => 'Geburtsbegleitung im Main-Taunus-Kreis',
-		'meta'   => 'Kundenprojekt · Website',
-		'status' => 'Live',
-		'text'   => 'Eine persönliche Website für eine Doula – Geburtsvorbereitung, Begleitung und Unterstützung nach einer Fehlgeburt. Ruhig gestaltet, nah und verständlich strukturiert.',
-		'url'    => $sa_home . 'work/doula-anja/',
-		'image'  => '',
-		'tint'   => 'cool',
-	),
-	array(
 		'name'   => 'Bäckerei Curfs',
 		'full'   => 'Handwerksbäckerei',
 		'meta'   => 'Kundenprojekt · Website',

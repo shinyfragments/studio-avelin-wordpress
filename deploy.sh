@@ -30,7 +30,6 @@ FILES=(
 	"page-work.php"
 	"page-work-hawaiimassage.php"
 	"page-work-monroe-toyparty-landingpage.php"
-	"page-work-doula-anja.php"
 	"page-work-baeckerei-curfs.php"
 	"page-work-stan.php"
 	"page-work-stat.php"
@@ -46,6 +45,15 @@ FILES=(
 	"assets/img/favicons/site.webmanifest"
 	"assets/img/portrait.jpg"
 	"assets/img/project-portfolio-visual.svg"
+	"assets/img/work/hawaiimassage/hero.jpg"
+	"assets/img/work/hawaiimassage/lomi.jpg"
+	"assets/img/work/hawaiimassage/aromaoel.jpg"
+	"assets/img/work/hawaiimassage/hotstone.jpg"
+	"assets/img/work/monroe/hero.jpg"
+	"assets/img/work/baeckerei-curfs/hero.jpg"
+	"assets/img/work/baeckerei-curfs/brood.jpg"
+	"assets/img/work/baeckerei-curfs/vlaai.jpg"
+	"assets/img/work/baeckerei-curfs/winkel.jpg"
 	"parts/sa-header.php"
 	"parts/sa-project-note.php"
   "parts/sa-footer.php"
@@ -130,6 +138,10 @@ foreach directory [list \
   "$remote_dir/assets/css" \
   "$remote_dir/assets/img" \
   "$remote_dir/assets/img/favicons" \
+  "$remote_dir/assets/img/work" \
+  "$remote_dir/assets/img/work/hawaiimassage" \
+  "$remote_dir/assets/img/work/monroe" \
+  "$remote_dir/assets/img/work/baeckerei-curfs" \
   "$remote_dir/assets/js"] {
   send -- "mkdir $directory\r"
   wait_for_prompt "creating $directory" 1

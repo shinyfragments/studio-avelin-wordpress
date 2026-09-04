@@ -183,49 +183,67 @@ body.admin-bar .sa-front-header {
   }
 }
 
-/* Brand & Custom A/ Monogram Logo */
+/* Brand — A/ monogram + wordmark. On scroll the wordmark collapses away and
+   the slash tilts, so the mark condenses to "A/". Two separate elements,
+   animated independently (purplus.team-style). */
 .sa-brand {
   display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.5rem;
   text-decoration: none;
   color: #3D3D3D;
   background: none !important;
 }
 
-.sa-brand__mark {
+.sa-brand__mono {
   flex-shrink: 0;
-  display: block;
-  font-family: var(--sa-font-display, "Geist", "Inter", sans-serif);
-  font-size: 1.25rem;
-  font-weight: 900;
-  line-height: 1;
-  letter-spacing: -0.04em;
-}
-
-.sa-brand__mark span {
-  color: #C7F000;
-}
-
-.sa-brand__name {
-  position: relative;
+  display: inline-flex;
+  align-items: baseline;
   font-family: var(--sa-font-display, "Poppins", sans-serif);
-  font-size: 1.05rem;
+  font-size: 1.4rem;
   font-weight: 600;
-  color: #3D3D3D;
+  line-height: 1;
+  letter-spacing: -0.06em;
+  color: inherit;
+}
+
+.sa-brand__slash {
+  display: inline-block;
+  color: #C7F000;
+  margin-left: 0.04em;
+  transform-origin: 50% 60%;
+  transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1), margin 500ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sa-brand__word {
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 12rem;
+  opacity: 1;
+  font-family: var(--sa-font-display, "Poppins", sans-serif);
+  font-size: 1rem;
+  font-weight: 500;
+  color: inherit;
   letter-spacing: -0.01em;
   line-height: 1;
+  transition: max-width 550ms cubic-bezier(0.16, 1, 0.3, 1), opacity 320ms ease,
+    margin 550ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Lime accent dot after the wordmark (wortmarke-konzept.svg, Variante 2). */
-.sa-brand__name .sa-brand__dot {
-  display: inline-block;
-  width: 5px;
-  height: 5px;
-  margin-left: 3px;
-  border-radius: 50%;
-  background: #C7F000;
-  vertical-align: baseline;
+body.is-scrolled .sa-brand__word {
+  max-width: 0;
+  opacity: 0;
+  margin-left: -0.5rem;
+}
+
+body.is-scrolled .sa-brand__slash {
+  transform: rotate(16deg);
+  margin-left: 0.02em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sa-brand__slash,
+  .sa-brand__word { transition-duration: 1ms; }
 }
 
 .sa-brand::after,
@@ -440,32 +458,6 @@ body.sa-menu-open {
 }
 
 /* =====================================================================
-   Split A/ monogram — fixed in the top corners on every page.
-   ===================================================================== */
-.sa-cornermark {
-  position: fixed;
-  top: clamp(1rem, 2.2vw, 1.9rem);
-  z-index: 1200;
-  font-family: var(--sa-font-display, "Poppins", sans-serif);
-  font-weight: 500;
-  font-size: clamp(1.4rem, 2.4vw, 2rem);
-  line-height: 1;
-  color: #fff;
-  mix-blend-mode: difference;
-  text-decoration: none;
-  transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1), opacity 400ms ease;
-}
-.sa-cornermark--a { left: clamp(1rem, 2vw, 1.8rem); }
-.sa-cornermark--slash { right: clamp(1rem, 2vw, 1.8rem); pointer-events: none; }
-
-body.is-scrolled .sa-cornermark { opacity: 0; pointer-events: none; }
-body.is-scrolled .sa-cornermark--slash { transform: translateY(-2px) rotate(10deg); }
-
-@media (prefers-reduced-motion: reduce) {
-  .sa-cornermark { transition: opacity 200ms ease; }
-}
-
-/* =====================================================================
    Homepage: header sits transparent over the dark hero, then docks solid.
    ===================================================================== */
 body.sa-home .sa-front-header {
@@ -474,7 +466,7 @@ body.sa-home .sa-front-header {
   border-bottom-color: transparent;
 }
 body.sa-home .sa-front-header,
-body.sa-home .sa-brand__name,
+body.sa-home .sa-brand,
 body.sa-home .sa-front-nav__link,
 body.sa-home .sa-nav-cta,
 body.sa-home .sa-nav-toggle {
@@ -490,7 +482,7 @@ body.sa-home.is-scrolled .sa-front-header {
   border-bottom-color: rgba(61, 61, 61, 0.12);
 }
 body.sa-home.is-scrolled .sa-front-header,
-body.sa-home.is-scrolled .sa-brand__name,
+body.sa-home.is-scrolled .sa-brand,
 body.sa-home.is-scrolled .sa-front-nav__link,
 body.sa-home.is-scrolled .sa-nav-cta,
 body.sa-home.is-scrolled .sa-nav-toggle {

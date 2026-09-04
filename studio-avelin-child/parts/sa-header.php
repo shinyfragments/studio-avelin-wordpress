@@ -24,16 +24,14 @@ $is_journal  = ( 'journal' === $request_uri || 0 === strpos( $request_uri, 'jour
 $is_contact  = ( 'contact' === $request_uri || 'kontakt' === $request_uri );
 ?>
 
-<!-- SPLIT A/ MONOGRAM — fixed in the top corners, persists past the hero -->
-<a class="sa-cornermark sa-cornermark--a" href="<?php echo esc_url( $sa_home_url ); ?>" aria-label="Startseite von Studio Avelin">A</a>
-<span class="sa-cornermark sa-cornermark--slash" aria-hidden="true">/</span>
-
 <header class="sa-front-header" id="sa-header">
 	<div class="sa-front-header__inner">
 
-		<!-- BRAND: WORDMARK WITH LIME ACCENT DOT (the A/ mark lives in the corners) -->
+		<!-- BRAND: A/ monogram + wordmark; the wordmark collapses on scroll,
+		     the slash tilts, leaving the A/ mark. -->
 		<a class="sa-brand" href="<?php echo esc_url( $sa_home_url ); ?>" aria-label="Startseite von Studio Avelin">
-			<span class="sa-brand__name">Studio Avelin<span class="sa-brand__dot" aria-hidden="true"></span></span>
+			<span class="sa-brand__mono" aria-hidden="true"><span class="sa-brand__a">A</span><span class="sa-brand__slash">/</span></span>
+			<span class="sa-brand__word">Studio Avelin</span>
 		</a>
 
 		<!-- DESKTOP NAVIGATION WITH BASELINE & SLIDING INDICATOR -->
