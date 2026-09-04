@@ -45,9 +45,9 @@ jobs:
           T="${{ github.event.inputs.target }}"
           [ -n "$T" ] || T="staging"
           if [ "$T" = "production" ]; then
-            echo "dir=clickandbuilds/StudioAvelin/wp-content/themes/studio-avelin-child" >> "$GITHUB_OUTPUT"
+            echo "dir=clickandbuilds/StudioAvelin/wp-content/themes/studio-avelin-child/" >> "$GITHUB_OUTPUT"
           else
-            echo "dir=clickandbuilds/StudioAvelinStaging/wp-content/themes/studio-avelin-child" >> "$GITHUB_OUTPUT"
+            echo "dir=clickandbuilds/StudioAvelinStaging/wp-content/themes/studio-avelin-child/" >> "$GITHUB_OUTPUT"
           fi
           echo "name=$T" >> "$GITHUB_OUTPUT"
 
@@ -56,35 +56,38 @@ jobs:
           sudo apt-get update -qq && sudo apt-get install -y -qq php-cli
           fail=0
           while IFS= read -r -d '' f; do
-            php -l "$f" >/dev/null || { echo "SYNTAX ERROR: $f"; fail=1; }
+            php -l "$f" >/dev/null || { echo "::error file=$f::PHP syntax error"; fail=1; }
           done < <(find studio-avelin-child -name '*.php' -print0)
           exit $fail
 
-      - name: Install lftp
-        run: sudo apt-get install -y -qq lftp
+      - name: Check secrets
+        env:
+          H: ${{ secrets.IONOS_SFTP_HOST }}
+          U: ${{ secrets.IONOS_SFTP_USER }}
+          P: ${{ secrets.IONOS_SFTP_PASSWORD }}
+        run: |
+          [ -n "$H" ] || { echo "::error::secret IONOS_SFTP_HOST is empty or missing"; exit 1; }
+          [ -n "$U" ] || { echo "::error::secret IONOS_SFTP_USER is empty or missing"; exit 1; }
+          [ -n "$P" ] || { echo "::error::secret IONOS_SFTP_PASSWORD is empty or missing"; exit 1; }
+          echo "host=$H user=$U password=${#P} chars target=${{ steps.t.outputs.dir }}"
 
       - name: Deploy ${{ steps.t.outputs.name }}
-        env:
-          LFTP_PASSWORD: ${{ secrets.IONOS_SFTP_PASSWORD }}
-          SFTP_HOST: ${{ secrets.IONOS_SFTP_HOST }}
-          SFTP_USER: ${{ secrets.IONOS_SFTP_USER }}
-          REMOTE_DIR: ${{ steps.t.outputs.dir }}
-        run: |
-          set -e
-          [ -n "$SFTP_HOST" ]     || { echo "::error::secret IONOS_SFTP_HOST is empty"; exit 1; }
-          [ -n "$SFTP_USER" ]     || { echo "::error::secret IONOS_SFTP_USER is empty"; exit 1; }
-          [ -n "$LFTP_PASSWORD" ] || { echo "::error::secret IONOS_SFTP_PASSWORD is empty"; exit 1; }
-          echo "host $SFTP_HOST / user $SFTP_USER / password ${#LFTP_PASSWORD} chars"
-          echo "target $REMOTE_DIR"
-          lftp --env-password -u "$SFTP_USER" "sftp://$SFTP_HOST" <<LFTP
-          set cmd:fail-exit yes
-          set sftp:auto-confirm yes
-          set net:max-retries 2
-          set net:timeout 15
-          set mirror:parallel-transfer-count 3
-          mirror -R --verbose --no-perms --exclude-glob .DS_Store --exclude-glob Icon --exclude .git --exclude node_modules --exclude-glob *.map studio-avelin-child/ "$REMOTE_DIR/"
-          bye
-          LFTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        with:
+          protocol: sftp
+          server: ${{ secrets.IONOS_SFTP_HOST }}
+          port: 22
+          username: ${{ secrets.IONOS_SFTP_USER }}
+          password: ${{ secrets.IONOS_SFTP_PASSWORD }}
+          local-dir: ./studio-avelin-child/
+          server-dir: ${{ steps.t.outputs.dir }}
+          timeout: 60000
+          exclude: |
+            **/.git*
+            **/.DS_Store
+            **/Icon*
+            **/node_modules/**
+            **/*.map
 
       - name: Summary
         run: |
