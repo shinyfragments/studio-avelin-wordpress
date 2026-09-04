@@ -44,6 +44,7 @@ FILES=(
 	"assets/img/favicons/android-chrome-512x512.png"
 	"assets/img/favicons/site.webmanifest"
 	"assets/img/portrait.jpg"
+	"assets/img/about/michael.jpg"
 	"assets/img/project-portfolio-visual.svg"
 	"assets/img/work/hawaiimassage/hero.jpg"
 	"assets/img/work/hawaiimassage/lomi.jpg"
@@ -138,6 +139,7 @@ foreach directory [list \
   "$remote_dir/assets/css" \
   "$remote_dir/assets/img" \
   "$remote_dir/assets/img/favicons" \
+  "$remote_dir/assets/img/about" \
   "$remote_dir/assets/img/work" \
   "$remote_dir/assets/img/work/hawaiimassage" \
   "$remote_dir/assets/img/work/monroe" \

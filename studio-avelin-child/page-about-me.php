@@ -30,6 +30,12 @@ $sa_available = array(
 	'Optimierung bestehender Websites',
 	'Laufende Betreuung und Beratung',
 );
+
+$sa_facts = array(
+	'Standort'                => 'Rhein-Main',
+	'Arbeitsweise'            => 'direkt & persönlich',
+	'Abseits vom Schreibtisch' => 'Laufen, Reisen, Lesen',
+);
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -62,6 +68,26 @@ $sa_available = array(
 				abseits der Arbeit, ob beim Laufen, auf Reisen oder beim Lesen. Mehr davon im
 				<a class="sa-lime-text" href="<?php echo esc_url( $sa_home . 'journal/' ); ?>">Journal</a>.
 			</p>
+		</section>
+
+		<section class="sa-section sa-afig sa-reveal" aria-labelledby="sa-about-figure-title">
+			<div class="sa-afig__panel">
+				<figure class="sa-afig__media">
+					<img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/img/about/michael.jpg' ); ?>" alt="Michael, Gründer von Studio Avelin" loading="lazy" width="1014" height="1200" />
+				</figure>
+				<div class="sa-afig__text">
+					<span class="sa-sec-kicker">Wer dahintersteht</span>
+					<p class="sa-afig__quote" id="sa-about-figure-title">„Kein Team, kein Umweg. Von der ersten Idee bis zum Launch arbeitest du direkt mit mir.“</p>
+					<dl class="sa-afig__facts">
+						<?php foreach ( $sa_facts as $label => $value ) : ?>
+							<div>
+								<dt><?php echo esc_html( $label ); ?></dt>
+								<dd><?php echo esc_html( $value ); ?></dd>
+							</div>
+						<?php endforeach; ?>
+					</dl>
+				</div>
+			</div>
 		</section>
 
 		<section class="sa-section" aria-labelledby="sa-about-work-title">
