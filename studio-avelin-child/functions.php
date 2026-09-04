@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'SA_CHILD_VERSION' ) ) {
-	define( 'SA_CHILD_VERSION', '2.1.0' );
+	define( 'SA_CHILD_VERSION', '2.1.1' );
 }
 
 /** Output the Studio Avelin browser icon set. */
@@ -195,25 +195,16 @@ function sa_child_og_desc( $desc ) {
 add_filter( 'wpseo_opengraph_desc', 'sa_child_og_desc', 20 );
 add_filter( 'wpseo_twitter_description', 'sa_child_og_desc', 20 );
 
-add_filter( 'wpseo_opengraph_image', 'sa_child_social_image_url', 20 );
-add_filter( 'wpseo_twitter_image', 'sa_child_social_image_url', 20 );
-add_filter( 'wpseo_opengraph_image_size', function () { return 'full'; }, 20 );
-
 /**
- * Emit a sharing image for the routes the child theme renders itself. These
- * have no queried object, so Yoast produces no og:image for them; the custom
- * routes never carry a post thumbnail, so there is nothing to duplicate.
+ * Emit a default sharing image. Yoast currently ships no og:image on this
+ * install, so we add one everywhere except on singular content that has its
+ * own featured image (there Yoast emits the thumbnail and we must not double up).
  */
-function sa_child_route_social_image() {
+function sa_child_fallback_social_image() {
 	if ( is_admin() ) {
 		return;
 	}
-	$path   = trim( (string) wp_parse_url( $_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH ), '/' );
-	$routes = array( 'work', 'services', 'contact', 'about-me', 'about', 'impressum', 'datenschutzerklaerung', 'datenschutz', 'experiments' );
-	$is_route = in_array( $path, $routes, true )
-		|| 0 === strpos( $path, 'work/' )
-		|| 0 === strpos( $path, 'experiments/' );
-	if ( ! is_front_page() && ! $is_route ) {
+	if ( is_singular() && has_post_thumbnail() ) {
 		return;
 	}
 	$img = esc_url( sa_child_social_image_url() );
@@ -222,7 +213,7 @@ function sa_child_route_social_image() {
 	echo '<meta property="og:image:height" content="630">' . "\n";
 	echo '<meta name="twitter:image" content="' . $img . '">' . "\n";
 }
-add_action( 'wp_head', 'sa_child_route_social_image', 6 );
+add_action( 'wp_head', 'sa_child_fallback_social_image', 6 );
 
 /**
  * Basic theme supports. Twenty Twenty-Four already declares most of these,
@@ -431,6 +422,10 @@ add_action( 'template_redirect', function() {
 	$request_uri = trim( parse_url( $_SERVER['REQUEST_URI'], PHP_URL_PATH ), '/' );
 	if ( 'work/maaike-fiebus' === $request_uri ) {
 		wp_safe_redirect( home_url( '/work/monroe-toyparty-landingpage/' ), 301 );
+		exit;
+	}
+	if ( 'work/doula-anja' === $request_uri ) {
+		wp_safe_redirect( home_url( '/work/' ), 301 );
 		exit;
 	}
 	if ( 'about-me' === $request_uri || 'about' === $request_uri ) {
