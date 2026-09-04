@@ -312,7 +312,7 @@ body.is-scrolled .sa-brand__slash {
   }
 }
 
-.sa-mobile-menu__link--cta {
+.sa-mobile-menu .sa-mobile-menu__link--cta {
   color: #3D3D3D;
 }
 
@@ -434,7 +434,7 @@ body.sa-menu-open {
   gap: clamp(1.5rem, 4vh, 2.25rem);
 }
 
-.sa-mobile-menu__link {
+.sa-mobile-menu .sa-mobile-menu__link {
   font-family: var(--sa-font-display, "Geist", "Inter", sans-serif);
   font-size: 1.5rem;
   font-weight: 500;
@@ -446,7 +446,7 @@ body.sa-menu-open {
   width: fit-content;
 }
 
-.sa-mobile-menu__link.is-active {
+.sa-mobile-menu .sa-mobile-menu__link.is-active {
   font-weight: 600;
   border-bottom: 2px solid #C7F000;
   padding-bottom: 0.25rem;
@@ -489,6 +489,18 @@ body.sa-home.is-scrolled .sa-nav-toggle {
   color: #3D3D3D;
 }
 body.sa-home.is-scrolled .sa-nav-cta { border-color: rgba(61, 61, 61, 0.22); }
+
+/* Homepage: while the mobile menu is open, dock the header solid so the
+   toggle and brand stay legible against the light panel. */
+body.sa-home.sa-menu-open .sa-front-header {
+  background: #F2F2F2 !important;
+  border-bottom-color: rgba(61, 61, 61, 0.12);
+}
+body.sa-home.sa-menu-open .sa-front-header,
+body.sa-home.sa-menu-open .sa-brand,
+body.sa-home.sa-menu-open .sa-nav-toggle {
+  color: #3D3D3D;
+}
 body.sa-home.is-scrolled .sa-nav-baseline { background-color: rgba(61, 61, 61, 0.14); }
 
 /* the homepage hero already carries big top padding, so the fixed header
