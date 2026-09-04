@@ -72,22 +72,14 @@ jobs:
           echo "host=$H user=$U password=${#P} chars target=${{ steps.t.outputs.dir }}"
 
       - name: Deploy ${{ steps.t.outputs.name }}
-        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
-        with:
-          protocol: sftp
-          server: ${{ secrets.IONOS_SFTP_HOST }}
-          port: 22
-          username: ${{ secrets.IONOS_SFTP_USER }}
-          password: ${{ secrets.IONOS_SFTP_PASSWORD }}
-          local-dir: ./studio-avelin-child/
-          server-dir: ${{ steps.t.outputs.dir }}
-          timeout: 60000
-          exclude: |
-            **/.git*
-            **/.DS_Store
-            **/Icon*
-            **/node_modules/**
-            **/*.map
+        env:
+          SFTP_HOST: ${{ secrets.IONOS_SFTP_HOST }}
+          SFTP_USER: ${{ secrets.IONOS_SFTP_USER }}
+          SFTP_PASS: ${{ secrets.IONOS_SFTP_PASSWORD }}
+          REMOTE_DIR: ${{ steps.t.outputs.dir }}
+        run: |
+          sudo apt-get install -y -qq lftp
+          lftp -c "set cmd:fail-exit yes; set sftp:auto-confirm yes; set net:timeout 20; set net:max-retries 2; set net:reconnect-interval-base 5; set mirror:parallel-transfer-count 3; open -u \"$SFTP_USER,$SFTP_PASS\" \"sftp://$SFTP_HOST\"; mirror -R --verbose --no-perms -X .DS_Store -X 'Icon*' -X '*.map' -x '/[.]git' -x '/node_modules/' studio-avelin-child/ \"$REMOTE_DIR\"; bye"
 
       - name: Summary
         run: |
