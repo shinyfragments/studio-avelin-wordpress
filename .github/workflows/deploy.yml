@@ -1,0 +1,79 @@
+name: Deploy child theme
+
+# Deploys studio-avelin-child/ to IONOS over SFTP.
+#
+# Trigger it manually from the Actions tab ("Run workflow" -> choose staging or
+# production) — works from a phone browser too. Pushes to this branch that touch
+# the theme also deploy to staging automatically.
+#
+# Repository secrets required (Settings -> Secrets and variables -> Actions):
+#   IONOS_SFTP_HOST      e.g. access-5020051294.webspace-host.com
+#   IONOS_SFTP_USER      e.g. su1946186
+#   IONOS_SFTP_PASSWORD  the SFTP password
+
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: "Where to deploy"
+        type: choice
+        options:
+          - staging
+          - production
+        default: staging
+  push:
+    branches:
+      - feature/ich-marke-umbau
+    paths:
+      - "studio-avelin-child/**"
+      - ".github/workflows/deploy.yml"
+
+concurrency:
+  group: deploy-${{ github.event.inputs.target || 'staging' }}
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Resolve target
+        id: t
+        run: |
+          T="${{ github.event.inputs.target }}"
+          [ -n "$T" ] || T="staging"
+          if [ "$T" = "production" ]; then
+            echo "dir=clickandbuilds/StudioAvelin/wp-content/themes/studio-avelin-child" >> "$GITHUB_OUTPUT"
+          else
+            echo "dir=clickandbuilds/StudioAvelinStaging/wp-content/themes/studio-avelin-child" >> "$GITHUB_OUTPUT"
+          fi
+          echo "name=$T" >> "$GITHUB_OUTPUT"
+
+      - name: PHP lint
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq php-cli
+          fail=0
+          while IFS= read -r -d '' f; do
+            php -l "$f" >/dev/null || { echo "SYNTAX ERROR: $f"; fail=1; }
+          done < <(find studio-avelin-child -name '*.php' -print0)
+          exit $fail
+
+      - name: Install lftp
+        run: sudo apt-get install -y -qq lftp
+
+      - name: Deploy ${{ steps.t.outputs.name }}
+        env:
+          LFTP_PASSWORD: ${{ secrets.IONOS_SFTP_PASSWORD }}
+          SFTP_HOST: ${{ secrets.IONOS_SFTP_HOST }}
+          SFTP_USER: ${{ secrets.IONOS_SFTP_USER }}
+          REMOTE_DIR: ${{ steps.t.outputs.dir }}
+        run: |
+          lftp -c "set cmd:fail-exit yes; set sftp:auto-confirm yes; set net:max-retries 2; set net:timeout 15; set mirror:parallel-transfer-count 3; open --env-password -u '$SFTP_USER' 'sftp://$SFTP_HOST'; mirror -R --verbose --no-perms --exclude-glob .DS_Store --exclude-glob 'Icon*' --exclude-glob node_modules/ --exclude-glob '*.map' studio-avelin-child/ '$REMOTE_DIR/'"
+
+      - name: Summary
+        run: |
+          echo "### Deployed to ${{ steps.t.outputs.name }} :rocket:" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "\`${{ steps.t.outputs.dir }}\`" >> "$GITHUB_STEP_SUMMARY"
