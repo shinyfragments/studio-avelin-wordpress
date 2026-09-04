@@ -109,7 +109,8 @@ $sa_journal_posts = new WP_Query(
 
 				<h1 class="sa-hero__title">
 					<span class="sa-rw"><span>Websites mit Charakter.</span></span><br />
-					<span class="sa-rw"><span>Gut gestaltet. Sauber umgesetzt.</span></span>
+					<span class="sa-rw"><span>Gut gestaltet.</span></span><br />
+					<span class="sa-rw"><span>Sauber umgesetzt.</span></span>
 				</h1>
 
 				<div class="sa-hero__foot">

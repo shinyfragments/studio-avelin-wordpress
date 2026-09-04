@@ -2068,15 +2068,16 @@ body.sa-home .sa-hero__title {
   font-weight: 300;
   font-size: clamp(2.5rem, 6.4vw, 5.4rem);
   letter-spacing: -0.04em;
-  line-height: 1.05;
-  max-width: 20ch;
+  line-height: 1.08;
+  max-width: 26ch;
 }
 body.sa-home .sa-rw {
   display: inline-block;
   overflow: hidden;
   vertical-align: top;
-  padding: 0.12em 0.05em 0.06em;
-  margin: -0.12em -0.05em -0.06em;
+  white-space: nowrap;
+  padding: 0.12em 0.06em 0.12em;
+  margin: -0.12em -0.06em -0.12em;
 }
 body.sa-home .sa-rw > span { display: inline-block; }
 body.sa-home.anim .sa-rw > span {
@@ -2084,8 +2085,16 @@ body.sa-home.anim .sa-rw > span {
   transition: transform 900ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 body.sa-home.anim .sa-hero.is-in .sa-rw > span { transform: translateY(0); }
-body.sa-home .sa-hero__title .sa-rw:nth-child(1) > span { transition-delay: 80ms; }
-body.sa-home .sa-hero__title .sa-rw:nth-child(3) > span { transition-delay: 190ms; }
+body.sa-home .sa-hero__title .sa-rw:nth-of-type(1) > span { transition-delay: 60ms; }
+body.sa-home .sa-hero__title .sa-rw:nth-of-type(2) > span { transition-delay: 150ms; }
+body.sa-home .sa-hero__title .sa-rw:nth-of-type(3) > span { transition-delay: 240ms; }
+
+/* small screens: let the headline wrap instead of clipping the reveal mask */
+@media (max-width: 600px) {
+  body.sa-home .sa-hero__title { max-width: none; }
+  body.sa-home .sa-rw { white-space: normal; overflow: visible; padding: 0; margin: 0; }
+  body.sa-home.anim .sa-rw > span { transform: none; }
+}
 
 body.sa-home .sa-hero__foot {
   display: flex;

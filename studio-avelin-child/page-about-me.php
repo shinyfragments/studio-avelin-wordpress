@@ -32,8 +32,8 @@ $sa_available = array(
 );
 
 $sa_facts = array(
-	'Standort'                => 'Rhein-Main',
-	'Arbeitsweise'            => 'direkt & persönlich',
+	'Zusammenarbeit'           => 'ortsunabhängig, komplett digital',
+	'Arbeitsweise'             => 'direkt & persönlich',
 	'Abseits vom Schreibtisch' => 'Laufen, Reisen, Lesen',
 );
 ?>

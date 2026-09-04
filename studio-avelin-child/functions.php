@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'SA_CHILD_VERSION' ) ) {
-	define( 'SA_CHILD_VERSION', '2.0.3' );
+	define( 'SA_CHILD_VERSION', '2.0.4' );
 }
 
 /** Output the Studio Avelin browser icon set. */
