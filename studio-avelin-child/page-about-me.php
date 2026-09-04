@@ -1,8 +1,6 @@
 <?php
 /**
- * Studio Avelin — Über mich (Ich-Marke).
- *
- * Uses the exact Studio Avelin header and footer matching the homepage and legal pages.
+ * Studio Avelin — Über mich.
  *
  * @package studio-avelin-child
  */
@@ -11,13 +9,26 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$sa_home          = trailingslashit( home_url( '/' ) );
-$sa_portrait_path = get_stylesheet_directory() . '/assets/img/portrait.jpg';
-$sa_has_portrait  = file_exists( $sa_portrait_path );
-$sa_portrait      = add_query_arg(
-	'ver',
-	$sa_has_portrait ? filemtime( $sa_portrait_path ) : SA_CHILD_VERSION,
-	get_stylesheet_directory_uri() . '/assets/img/portrait.jpg'
+$sa_home = trailingslashit( home_url( '/' ) );
+
+$sa_values = array(
+	array( 'Design + Entwicklung', 'kommen aus einer Hand, nicht nacheinander' ),
+	array( 'Ein Ansprechpartner', 'kein anonymer Prozess, keine Zwischenstationen' ),
+	array( 'Fokussierung', 'ein Gespür fürs Wesentliche, im Design wie im Alltag' ),
+	array( 'Für den Alltag gemacht', 'durchdacht statt dekorativ, auf Dauer angelegt' ),
+);
+
+$sa_skills = array(
+	'Design'     => array( 'Visuelle Identität', 'Interface-Design', 'Typografie', 'Designsysteme' ),
+	'Umsetzung'  => array( 'Individuelle Websites', 'Landingpages & Portfolios', 'Frontend-Entwicklung', 'WordPress' ),
+	'Sichtbarkeit' => array( 'Technisches SEO', 'Content-Empfehlungen', 'Performance-Review', 'Beratung zu Marketing' ),
+);
+
+$sa_available = array(
+	'Website- und Landingpage-Projekte',
+	'WordPress- und redaktionelle Systeme',
+	'Optimierung bestehender Websites',
+	'Laufende Betreuung und Beratung',
 );
 ?>
 <!DOCTYPE html>
@@ -28,190 +39,96 @@ $sa_portrait      = add_query_arg(
 	<?php wp_head(); ?>
 </head>
 
-<body <?php body_class( array( 'home', 'sa-front', 'sa-page', 'sa-page--about' ) ); ?>>
+<body <?php body_class( array( 'sa-front', 'sa-page', 'sa-page--about' ) ); ?>>
 <?php wp_body_open(); ?>
 
 <a class="sa-skip" href="#sa-main">Zum Inhalt springen</a>
 
 <?php get_template_part( 'parts/sa-header' ); ?>
 
-<main class="sa-main" id="sa-main" style="padding-top: 3.5rem; padding-bottom: 5rem;">
-	<div class="sa-about-container">
-		<div class="sa-about-grid">
+<main class="sa-main" id="sa-main">
+	<div class="sa-shell">
 
-			<!-- LEFT COLUMN -->
-			<div class="sa-about-col-left">
-				<span class="sa-about-eyebrow">ÜBER MICH</span>
+		<section class="sa-phero sa-reveal">
+			<span class="sa-sec-kicker">Über mich</span>
+			<h1 class="sa-phero__h">Ich bin <span class="sa-lime-text">Michael</span>, Designer und Entwickler hinter Studio Avelin.</h1>
+			<p class="sa-phero__lede">
+				Ich verbinde Gestaltung und Technik zu Websites und digitalen Produkten, die im Alltag
+				funktionieren. Keine Agentur mit vielen Zwischenstationen, sondern ein direkter
+				Ansprechpartner – von der ersten Idee über Design und Umsetzung bis zur Betreuung nach dem Launch.
+			</p>
+			<p class="sa-phero__lede">
+				Fokussierung und ein Gespür fürs Wesentliche ziehen sich durch alles, was ich tue – auch
+				abseits der Arbeit, ob beim Laufen, auf Reisen oder beim Lesen. Mehr davon im
+				<a class="sa-lime-text" href="<?php echo esc_url( $sa_home . 'journal/' ); ?>">Journal</a>.
+			</p>
+		</section>
 
-				<h1 class="sa-about-hero-headline">
-					<?php echo wp_kses_post( 'Hi, ich bin <span class="sa-lime-text">Michael</span>.' ); ?>
-				</h1>
-
-				<div class="sa-about-intro">
-					<p>
-						Design mit Haltung, für Marken, die mehr sind als eine Website. Ich bin Designer
-						und Gründer von Studio Avelin und arbeite mit kleinen, inhabergeführten Marken –
-						von der Personenmarke bis zum eigenen Laden.
-					</p>
-					<p>
-						Keine Agentur mit vielen Zwischenstationen, sondern ein direkter Ansprechpartner:
-						von der Positionierung über das Design bis zur Sichtbarkeit. Design ist mein
-						Handwerk – und Branding, SEO und digitale Sichtbarkeit gehören für mich genauso dazu.
-					</p>
-					<p>
-						Fokussierung und ein Gespür fürs Wesentliche ziehen sich durch alles, was ich tue –
-						auch abseits der Arbeit, ob beim Laufen, auf Reisen oder beim Lesen. Mehr davon im
-						<a class="sa-lime-text" href="<?php echo esc_url( $sa_home . 'journal/' ); ?>">Journal</a>.
-					</p>
-				</div>
-
-				<!-- VALUES ROW -->
-				<div class="sa-about-values">
-					<div class="sa-about-value-item">
-						<div class="sa-about-value-icon">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-								<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-								<polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-								<line x1="12" y1="22.08" x2="12" y2="12"></line>
-							</svg>
-						</div>
-						<div class="sa-about-value-text">
-							<span>Marke, Design &amp; Sichtbarkeit</span>
-							<span>von Anfang an zusammen gedacht</span>
+		<section class="sa-section" aria-labelledby="sa-about-work-title">
+			<span class="sa-sec-kicker sa-reveal">Wie ich arbeite</span>
+			<h2 class="sa-sec-title sa-reveal" id="sa-about-work-title">Direkt, fokussiert, für den Alltag gemacht.</h2>
+			<div class="sa-arc">
+				<?php foreach ( $sa_values as $index => $v ) : ?>
+					<div class="sa-arc__item sa-reveal">
+						<span class="sa-arc__n"><?php echo esc_html( str_pad( (string) ( $index + 1 ), 2, '0', STR_PAD_LEFT ) ); ?></span>
+						<div>
+							<h3 class="sa-arc__h"><?php echo esc_html( $v[0] ); ?></h3>
+							<p class="sa-arc__p"><?php echo esc_html( $v[1] ); ?></p>
 						</div>
 					</div>
-
-					<div class="sa-about-value-item">
-						<div class="sa-about-value-icon">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-								<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-							</svg>
-						</div>
-						<div class="sa-about-value-text">
-							<span>Direkte Zusammenarbeit</span>
-							<span>mit einem festen Ansprechpartner</span>
-						</div>
-					</div>
-
-					<div class="sa-about-value-item">
-						<div class="sa-about-value-icon">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-								<circle cx="12" cy="12" r="10"></circle>
-								<circle cx="12" cy="12" r="6"></circle>
-								<circle cx="12" cy="12" r="2"></circle>
-							</svg>
-						</div>
-						<div class="sa-about-value-text">
-							<span>Fokussierung</span>
-							<span>und ein Gespür fürs Wesentliche</span>
-						</div>
-					</div>
-
-					<div class="sa-about-value-item">
-						<div class="sa-about-value-icon">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-								<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-							</svg>
-						</div>
-						<div class="sa-about-value-text">
-							<span>Design mit Substanz</span>
-							<span>durchdacht statt dekorativ</span>
-						</div>
-					</div>
-				</div>
-
-				<!-- PRIMARY CTA BUTTON -->
-				<div class="sa-about-cta-wrapper">
-					<a class="sa-about-cta-btn" href="<?php echo esc_url( $sa_home . 'work/' ); ?>">
-						<span>PROJEKTE ANSEHEN</span>
-						<span class="sa-about-cta-arrow">&rarr;</span>
-					</a>
-					<a class="sa-about-cta-link" href="<?php echo esc_url( $sa_home . 'services/' ); ?>">
-						LEISTUNGEN ENTDECKEN <span aria-hidden="true">&rarr;</span>
-					</a>
-				</div>
-
-				<!-- PRACTICE -->
-				<div class="sa-about-skills-section">
-					<span class="sa-about-skills-label">WAS ICH MACHE &amp; WIE ICH ARBEITE</span>
-					<div class="sa-about-skills-grid">
-						<div class="sa-about-skills-col">
-							<h4>MARKE &amp; DESIGN</h4>
-							<ul>
-								<li>Positionierung &amp; Tonalität</li>
-								<li>Visuelle Identität</li>
-								<li>Interface-Design</li>
-								<li>Designsysteme</li>
-							</ul>
-						</div>
-
-						<div class="sa-about-skills-col">
-							<h4>WEBSITES &amp; UMSETZUNG</h4>
-							<ul>
-								<li>Individuelle Websites</li>
-								<li>Landingpages &amp; Portfolios</li>
-								<li>Frontend-Entwicklung</li>
-								<li>WordPress</li>
-							</ul>
-						</div>
-
-						<div class="sa-about-skills-col">
-							<h4>SICHTBARKEIT</h4>
-							<ul>
-								<li>Technisches SEO</li>
-								<li>Content-Empfehlungen</li>
-								<li>Performance-Review</li>
-								<li>GEO-Check (KI-Suche)</li>
-							</ul>
-						</div>
-					</div>
-				</div>
+				<?php endforeach; ?>
 			</div>
+		</section>
 
-			<!-- RIGHT COLUMN -->
-			<div class="sa-about-col-right">
-				<div class="sa-about-portrait-wrapper">
-					<div class="sa-about-portrait-box">
-						<?php if ( $sa_has_portrait ) : ?>
-							<img
-								class="sa-about-portrait-img"
-								src="<?php echo esc_url( $sa_portrait ); ?>"
-								width="800"
-								height="900"
-								alt="Porträt von Michael, dem Designer hinter Studio Avelin"
-								loading="eager"
-							/>
-						<?php else : ?>
-							<div class="sa-about-portrait-placeholder">
-								<span>MICHAEL</span>
-							</div>
-						<?php endif; ?>
+		<section class="sa-section" aria-labelledby="sa-about-skills-title">
+			<span class="sa-sec-kicker sa-reveal">Was ich mache</span>
+			<h2 class="sa-sec-title sa-reveal" id="sa-about-skills-title">Drei Bereiche, ein Prozess.</h2>
+			<div class="sa-skillgrid sa-reveal">
+				<?php foreach ( $sa_skills as $group => $items ) : ?>
+					<div class="sa-skillgrid__col">
+						<h3><?php echo esc_html( $group ); ?></h3>
+						<ul>
+							<?php foreach ( $items as $item ) : ?>
+								<li><?php echo esc_html( $item ); ?></li>
+							<?php endforeach; ?>
+						</ul>
 					</div>
+				<?php endforeach; ?>
+			</div>
+		</section>
 
-					<div class="sa-about-vertical-name" aria-hidden="true">
-						<span>MICHAEL</span>
-					</div>
+		<section class="sa-section" aria-labelledby="sa-about-available-title">
+			<div class="sa-split">
+				<div class="sa-reveal">
+					<span class="sa-sec-kicker">Verfügbar für</span>
+					<h2 class="sa-sec-title" id="sa-about-available-title">Aktuell offen für neue Projekte.</h2>
 				</div>
-
-				<!-- AVAILABLE FOR PANEL -->
-				<div class="sa-about-focus-panel">
-					<div class="sa-about-focus-header">
-						<svg class="sa-about-focus-star" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-							<path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" fill="#C7F000" stroke="#C7F000"></path>
-						</svg>
-						<span>VERFÜGBAR FÜR</span>
-					</div>
-					<ul class="sa-about-focus-list">
-						<li>Branding- und Website-Projekte</li>
-						<li>Personenmarken mit Design-Anspruch</li>
-						<li>Kleine, ästhetikgetriebene Betriebe</li>
-						<li>Langfristige Begleitung</li>
+				<div class="sa-reveal d1">
+					<ul class="sa-checklist">
+						<?php foreach ( $sa_available as $item ) : ?>
+							<li><?php echo esc_html( $item ); ?></li>
+						<?php endforeach; ?>
 					</ul>
 				</div>
 			</div>
+		</section>
 
-		</div>
 	</div>
+
+	<section class="sa-section sa-section--dark sa-ctaband sa-reveal">
+		<div class="sa-shell">
+			<span class="sa-sec-kicker">Projekt besprechen</span>
+			<h2 class="sa-ctaband__h">Klingt nach einer Zusammenarbeit?</h2>
+			<p class="sa-ctaband__p">Erzähl mir, woran du arbeitest und was die Website leisten soll. Eine grobe Skizze reicht.</p>
+			<a class="sa-btn sa-btn--lime" href="<?php echo esc_url( $sa_home . 'contact/' ); ?>">
+				Projekt besprechen <span class="sa-btn__arrow" aria-hidden="true">&rarr;</span>
+			</a>
+			<div class="sa-ctaband__links">
+				<a class="sa-textlink" href="<?php echo esc_url( $sa_home . 'work/' ); ?>">Projekte ansehen <span aria-hidden="true">&rarr;</span></a>
+				<a class="sa-textlink" href="<?php echo esc_url( $sa_home . 'services/' ); ?>">Leistungen entdecken <span aria-hidden="true">&rarr;</span></a>
+			</div>
+		</div>
+	</section>
 </main>
 
 <?php get_template_part( 'parts/sa-footer' ); ?>

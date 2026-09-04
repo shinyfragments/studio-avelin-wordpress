@@ -2124,43 +2124,45 @@ body.sa-home .sa-section {
   padding: clamp(5rem, 11vw, 9.5rem) 0;
   border-bottom: 1px solid var(--sa-line);
 }
-body.sa-home .sa-section--tint { background: var(--sa-surface); }
-body.sa-home .sa-section--dark {
+.sa-front .sa-section--tint { background: var(--sa-surface); }
+.sa-front .sa-section--dark {
   background: var(--sa-ink-900);
   color: var(--sa-bg);
-  border-bottom: 0;
+  border-bottom: 0 !important;
 }
+.sa-front .sa-section--dark .sa-sec-kicker,
+.sa-front .sa-section--dark .sa-sec-intro { color: var(--sa-muted-dark); }
 body.sa-home .sa-section:last-of-type { border-bottom: 0; }
 
 /* ----------------------------------------------------------------- arc --- */
-body.sa-home .sa-arc {
+.sa-front .sa-arc {
   margin-top: clamp(3rem, 7vw, 5.5rem);
   display: flex;
   flex-direction: column;
 }
-body.sa-home .sa-arc__item {
+.sa-front .sa-arc__item {
   display: grid;
   grid-template-columns: 3.5rem 1fr;
   gap: clamp(1rem, 4vw, 3rem);
   padding-block: clamp(1.75rem, 4vw, 2.75rem);
   border-top: 1px solid var(--sa-line);
 }
-body.sa-home .sa-arc__item:last-child { border-bottom: 1px solid var(--sa-line); }
-body.sa-home .sa-arc__n {
+.sa-front .sa-arc__item:last-child { border-bottom: 1px solid var(--sa-line); }
+.sa-front .sa-arc__n {
   font-family: var(--sa-font-display);
   font-size: 0.8rem;
   letter-spacing: 0.2em;
   color: var(--sa-muted);
   padding-top: 0.55rem;
 }
-body.sa-home .sa-arc__h {
+.sa-front .sa-arc__h {
   font-family: var(--sa-font-display);
   font-weight: 300;
   font-size: clamp(1.55rem, 3.5vw, 2.8rem);
   letter-spacing: -0.03em;
   line-height: 1.08;
 }
-body.sa-home .sa-arc__p { margin-top: 1rem; color: var(--sa-muted); font-size: 1.02rem; line-height: 1.65; max-width: 52ch; }
+.sa-front .sa-arc__p { margin-top: 1rem; color: var(--sa-muted); font-size: 1.02rem; line-height: 1.65; max-width: 52ch; }
 
 /* ------------------------------------------------------- featured work --- */
 .sa-front .sa-feat {
@@ -2615,4 +2617,187 @@ body.sa-page--work .sa-workpage-cta__actions {
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 1rem 2rem;
+}
+
+/* ===========================================================================
+   Inner pages (services / about / contact) — same elevated language as the
+   homepage. All these bodies carry .sa-front .sa-page.
+   =========================================================================== */
+
+body.sa-page .sa-main { padding-top: clamp(6rem, 12vw, 9rem); }
+body.sa-page .sa-main > .sa-shell { max-width: 1200px; }
+
+body.sa-page--services .sa-section,
+body.sa-page--about .sa-section,
+body.sa-page--contact .sa-section {
+  padding: clamp(4rem, 9vw, 7rem) 0;
+  border-bottom: 1px solid var(--sa-line);
+}
+body.sa-page--services .sa-section:last-of-type,
+body.sa-page--about .sa-section:last-of-type,
+body.sa-page--contact .sa-section:last-of-type { border-bottom: 0; }
+
+/* page hero (kicker + big headline + lede) */
+.sa-front .sa-phero { padding-bottom: clamp(3rem, 7vw, 5rem); }
+.sa-front .sa-phero__h {
+  margin-top: 1.2rem;
+  font-family: var(--sa-font-display);
+  font-weight: 300;
+  font-size: clamp(2.4rem, 6vw, 4.6rem);
+  letter-spacing: -0.04em;
+  line-height: 1.02;
+  max-width: 18ch;
+}
+.sa-front .sa-phero__lede {
+  margin-top: 1.75rem;
+  max-width: 52ch;
+  color: var(--sa-muted);
+  font-size: 1.12rem;
+  line-height: 1.75;
+}
+.sa-front .sa-phero__lede + .sa-phero__lede { margin-top: 1rem; }
+
+/* arc bullet list (services detail) */
+.sa-front .sa-arc__details {
+  list-style: none;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+}
+.sa-front .sa-arc__details li {
+  position: relative;
+  padding-left: 1rem;
+  font-size: 0.92rem;
+  color: var(--sa-muted);
+}
+.sa-front .sa-arc__details li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 0.32rem;
+  height: 0.32rem;
+  border-radius: 50%;
+  background: var(--sa-lime);
+}
+
+/* numbered process steps */
+.sa-front .sa-steps {
+  list-style: none;
+  margin: clamp(2.5rem, 6vw, 4rem) 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  border-top: 1px solid var(--sa-line);
+}
+.sa-front .sa-steps li {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  gap: 0.4rem 1.5rem;
+  padding-block: clamp(1.5rem, 3vw, 2.25rem);
+  border-bottom: 1px solid var(--sa-line);
+}
+@media (min-width: 800px) { .sa-front .sa-steps li { grid-template-columns: 3rem 14rem 1fr; align-items: baseline; } }
+.sa-front .sa-steps li > span {
+  font-family: var(--sa-font-display);
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  color: var(--sa-muted);
+}
+.sa-front .sa-steps li > strong {
+  font-family: var(--sa-font-display);
+  font-weight: 400;
+  font-size: 1.15rem;
+  letter-spacing: -0.02em;
+}
+.sa-front .sa-steps li > p { margin: 0.35rem 0 0; color: var(--sa-muted); line-height: 1.6; max-width: 44ch; }
+@media (min-width: 800px) { .sa-front .sa-steps li > p { margin-top: 0; } }
+
+/* checklist */
+.sa-front .sa-checklist {
+  list-style: none;
+  margin: clamp(1.75rem, 4vw, 2.5rem) 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+  max-width: 48rem;
+}
+.sa-front .sa-checklist li {
+  position: relative;
+  padding-left: 1.75rem;
+  font-size: 1.02rem;
+  line-height: 1.6;
+}
+.sa-front .sa-checklist li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 0.7rem;
+  height: 0.4rem;
+  border-left: 2px solid var(--sa-lime);
+  border-bottom: 2px solid var(--sa-lime);
+  transform: rotate(-45deg);
+}
+
+/* two-column split for services fit / about intro */
+.sa-front .sa-split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(2rem, 5vw, 3.5rem);
+}
+@media (min-width: 900px) { .sa-front .sa-split { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); } }
+
+/* dark CTA band, reusable */
+.sa-front .sa-ctaband { text-align: center; }
+.sa-front .sa-ctaband .sa-sec-kicker { justify-content: center; margin-inline: auto; }
+.sa-front .sa-ctaband__h {
+  margin: 1.3rem auto 0;
+  font-family: var(--sa-font-display);
+  font-weight: 300;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  letter-spacing: -0.04em;
+  line-height: 1.04;
+  max-width: 20ch;
+}
+.sa-front .sa-ctaband__p { margin: 1.4rem auto 2.4rem; color: var(--sa-muted-dark); font-size: 1.05rem; max-width: 46ch; }
+.sa-front .sa-ctaband__links {
+  margin-top: 2.6rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem 2rem;
+}
+
+/* about — skills as three quiet columns */
+.sa-front .sa-skillgrid {
+  margin-top: clamp(2.5rem, 6vw, 4rem);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(2rem, 4vw, 2.75rem);
+  border-top: 1px solid var(--sa-line);
+  padding-top: clamp(2rem, 4vw, 3rem);
+}
+@media (min-width: 760px) { .sa-front .sa-skillgrid { grid-template-columns: repeat(3, 1fr); } }
+.sa-front .sa-skillgrid__col h3 {
+  margin: 0;
+  font-family: var(--sa-font-display);
+  font-weight: 400;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--sa-muted);
+}
+.sa-front .sa-skillgrid__col ul {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+.sa-front .sa-skillgrid__col li {
+  font-size: 1.02rem;
+  line-height: 1.5;
 }
