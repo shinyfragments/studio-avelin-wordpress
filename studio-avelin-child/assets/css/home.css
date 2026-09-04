@@ -2357,12 +2357,14 @@ body.sa-home .sa-jrn__date { font-family: var(--sa-font-display); font-size: 0.7
 body.sa-home .sa-closing { text-align: center; }
 body.sa-home .sa-closing .sa-sec-kicker { justify-content: center; }
 body.sa-home .sa-closing__h {
-  margin-top: 1.4rem;
+  margin-top: 1.3rem;
   font-family: var(--sa-font-display);
   font-weight: 300;
-  font-size: clamp(2.6rem, 9vw, 7rem);
-  letter-spacing: -0.05em;
-  line-height: 1;
+  font-size: clamp(2.4rem, 6vw, 4.6rem);
+  letter-spacing: -0.04em;
+  line-height: 1.04;
+  max-width: 18ch;
+  margin-inline: auto;
 }
 body.sa-home .sa-closing__p {
   margin: 1.6rem auto 0;
