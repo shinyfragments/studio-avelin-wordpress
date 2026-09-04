@@ -2432,8 +2432,8 @@ body.sa-home .sa-front-footer a:hover { color: var(--sa-bg); }
 body.sa-home .sa-footer-brand-name,
 body.sa-home .sa-stmt-dark { color: var(--sa-bg); }
 body.sa-home .sa-stmt-outline {
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(242, 242, 242, 0.45);
+  color: rgba(242, 242, 242, 0.5);
+  -webkit-text-stroke: 0;
 }
 body.sa-home .sa-footer-col-label { color: var(--sa-muted-dark); }
 body.sa-home .sa-footer-bottom-left,
