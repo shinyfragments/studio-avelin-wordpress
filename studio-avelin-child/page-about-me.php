@@ -132,8 +132,8 @@ $sa_facts = array(
 				<div class="sa-reveal d1">
 					<p class="sa-sec-intro" style="margin-top:0;max-width:46ch">
 						Ich arbeite an wenigen Projekten gleichzeitig und sehe mir jede Anfrage
-						persönlich an. Passt es zeitlich und inhaltlich, hörst du zeitnah von mir –
-						mit einem konkreten nächsten Schritt.
+						persönlich an. Eine Antwort bekommst du auf jeden Fall – und wenn es
+						zeitlich und inhaltlich passt, mit einem konkreten nächsten Schritt.
 					</p>
 					<ul class="sa-checklist">
 						<?php foreach ( $sa_available as $item ) : ?>
