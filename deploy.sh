@@ -19,6 +19,7 @@ FILES=(
   "theme.json"
   "front-page.php"
   "functions.php"
+  "404.php"
 	"single.php"
 	"single-experiment.php"
 	"page-experiments.php"
@@ -45,6 +46,7 @@ FILES=(
 	"assets/img/favicons/site.webmanifest"
 	"assets/img/portrait.jpg"
 	"assets/img/about/michael.jpg"
+	"assets/img/og-default.png"
 	"assets/img/project-portfolio-visual.svg"
 	"assets/img/work/hawaiimassage/hero.jpg"
 	"assets/img/work/hawaiimassage/lomi.jpg"
@@ -69,12 +71,23 @@ FILES=(
   "journal/template-card.php"
   "journal/header.php"
   "journal/footer.php"
+	"assets/css/sa-fonts.css"
 	"assets/css/sa-base.css"
   "assets/css/sa-journal.css"
 	"assets/css/home.css"
 	"assets/css/pages.css"
 	"assets/js/home.js"
   "assets/js/sa-journal.js"
+	"assets/fonts/poppins-300-latin.woff2"
+	"assets/fonts/poppins-300-latin-ext.woff2"
+	"assets/fonts/poppins-400-latin.woff2"
+	"assets/fonts/poppins-400-latin-ext.woff2"
+	"assets/fonts/poppins-500-latin.woff2"
+	"assets/fonts/poppins-500-latin-ext.woff2"
+	"assets/fonts/poppins-600-latin.woff2"
+	"assets/fonts/poppins-600-latin-ext.woff2"
+	"assets/fonts/raleway-latin.woff2"
+	"assets/fonts/raleway-latin-ext.woff2"
 )
 
 for file in "${FILES[@]}"; do
@@ -137,6 +150,7 @@ foreach directory [list \
 	"$remote_dir/patterns" \
   "$remote_dir/assets" \
   "$remote_dir/assets/css" \
+  "$remote_dir/assets/fonts" \
   "$remote_dir/assets/img" \
   "$remote_dir/assets/img/favicons" \
   "$remote_dir/assets/img/about" \

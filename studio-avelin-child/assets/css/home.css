@@ -2811,6 +2811,17 @@ body.sa-page--contact .sa-section:last-of-type { border-bottom: 0; }
   line-height: 1.5;
 }
 
+/* 404 */
+body.sa-page--404 .sa-main { display: flex; align-items: center; min-height: 68vh; }
+body.sa-page--404 .sa-phero { padding-bottom: 0; }
+.sa-front .sa-404__links {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.75rem;
+}
+
 /* about — dark portrait panel, breaks the light scroll */
 body.sa-page--about .sa-afig { border-bottom: 0; }
 .sa-front .sa-afig__panel {

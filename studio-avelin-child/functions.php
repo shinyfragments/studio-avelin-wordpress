@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'SA_CHILD_VERSION' ) ) {
-	define( 'SA_CHILD_VERSION', '2.0.9' );
+	define( 'SA_CHILD_VERSION', '2.1.0' );
 }
 
 /** Output the Studio Avelin browser icon set. */
@@ -166,6 +166,65 @@ function sa_child_meta_description_tag() {
 add_action( 'wp_head', 'sa_child_meta_description_tag', 2 );
 
 /**
+ * Open Graph / Twitter Card polish.
+ *
+ * Yoast emits Open Graph tags but, on this install, with a generic title
+ * ("Startseite - Studio-Avelin"), no description and no image, so shared links
+ * render bare. We feed it the intentional title/description and a default
+ * sharing image.
+ *
+ * Note: the leftover "og:locale:alternate" / hreflang "en" come from Polylang
+ * still having an English language configured — that needs the Polylang
+ * setting, not theme code.
+ */
+function sa_child_social_image_url() {
+	return get_stylesheet_directory_uri() . '/assets/img/og-default.png';
+}
+
+function sa_child_og_title( $title ) {
+	$intentional = sa_child_document_title( '' );
+	return $intentional ? $intentional : $title;
+}
+add_filter( 'wpseo_opengraph_title', 'sa_child_og_title', 20 );
+add_filter( 'wpseo_twitter_title', 'sa_child_og_title', 20 );
+
+function sa_child_og_desc( $desc ) {
+	$intentional = sa_child_meta_description( '' );
+	return $intentional ? $intentional : $desc;
+}
+add_filter( 'wpseo_opengraph_desc', 'sa_child_og_desc', 20 );
+add_filter( 'wpseo_twitter_description', 'sa_child_og_desc', 20 );
+
+add_filter( 'wpseo_opengraph_image', 'sa_child_social_image_url', 20 );
+add_filter( 'wpseo_twitter_image', 'sa_child_social_image_url', 20 );
+add_filter( 'wpseo_opengraph_image_size', function () { return 'full'; }, 20 );
+
+/**
+ * Emit a sharing image for the routes the child theme renders itself. These
+ * have no queried object, so Yoast produces no og:image for them; the custom
+ * routes never carry a post thumbnail, so there is nothing to duplicate.
+ */
+function sa_child_route_social_image() {
+	if ( is_admin() ) {
+		return;
+	}
+	$path   = trim( (string) wp_parse_url( $_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH ), '/' );
+	$routes = array( 'work', 'services', 'contact', 'about-me', 'about', 'impressum', 'datenschutzerklaerung', 'datenschutz', 'experiments' );
+	$is_route = in_array( $path, $routes, true )
+		|| 0 === strpos( $path, 'work/' )
+		|| 0 === strpos( $path, 'experiments/' );
+	if ( ! is_front_page() && ! $is_route ) {
+		return;
+	}
+	$img = esc_url( sa_child_social_image_url() );
+	echo '<meta property="og:image" content="' . $img . '">' . "\n";
+	echo '<meta property="og:image:width" content="1200">' . "\n";
+	echo '<meta property="og:image:height" content="630">' . "\n";
+	echo '<meta name="twitter:image" content="' . $img . '">' . "\n";
+}
+add_action( 'wp_head', 'sa_child_route_social_image', 6 );
+
+/**
  * Basic theme supports. Twenty Twenty-Four already declares most of these,
  * but the child theme keeps them explicit so nothing depends on parent order.
  */
@@ -184,14 +243,15 @@ add_action( 'after_setup_theme', 'sa_child_setup' );
  * @return array
  */
 function sa_child_resource_hints( $urls, $relation_type ) {
-	if ( 'preconnect' === $relation_type ) {
-		$urls[] = array(
-			'href' => 'https://fonts.googleapis.com',
-		);
-		$urls[] = array(
-			'href'        => 'https://fonts.gstatic.com',
-			'crossorigin' => 'anonymous',
-		);
+	if ( 'preload' === $relation_type ) {
+		foreach ( array( 'poppins-300-latin.woff2', 'raleway-latin.woff2' ) as $font ) {
+			$urls[] = array(
+				'href'        => get_stylesheet_directory_uri() . '/assets/fonts/' . $font,
+				'as'          => 'font',
+				'type'        => 'font/woff2',
+				'crossorigin' => 'anonymous',
+			);
+		}
 	}
 
 	return $urls;
@@ -208,12 +268,13 @@ function sa_child_enqueue_assets() {
 	$theme_dir = get_stylesheet_directory();
 	$theme_uri = get_stylesheet_directory_uri();
 
-	// Google Fonts — Poppins (display) + Raleway (body).
+	// Self-hosted webfonts — Poppins (display) + Raleway (body).
+	// No third-party request; @font-face rules live in assets/css/sa-fonts.css.
 	wp_enqueue_style(
-		'sa-google-fonts',
-		'https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&family=Raleway:wght@300;400;500;600&display=swap',
+		'sa-fonts',
+		$theme_uri . '/assets/css/sa-fonts.css',
 		array(),
-		null
+		(string) filemtime( $theme_dir . '/assets/css/sa-fonts.css' )
 	);
 
 	// Parent theme stylesheet (Twenty Twenty-Four is a block theme; this is a no-op
@@ -231,7 +292,7 @@ function sa_child_enqueue_assets() {
 	wp_enqueue_style(
 		'sa-child-style',
 		$theme_uri . '/style.css',
-		array( 'sa-google-fonts' ),
+		array( 'sa-fonts' ),
 		SA_CHILD_VERSION
 	);
 
@@ -421,15 +482,17 @@ add_action( 'template_redirect', function() {
 		exit;
 	}
 	if ( 0 === strpos( $request_uri, 'work/' ) ) {
-		status_header( 200 );
-		$GLOBALS['wp_query']->is_404 = false;
 		$sub  = trim( str_replace( 'work/', '', $request_uri ), '/' );
 		$file = get_stylesheet_directory() . '/page-work-' . sanitize_file_name( $sub ) . '.php';
-		if ( file_exists( $file ) ) {
-			include $file;
-		} else {
-			include get_stylesheet_directory() . '/page-work.php';
+		if ( ! file_exists( $file ) ) {
+			// Unknown or retired project slug (e.g. the removed "doula-anja"):
+			// send it to the projects index instead of showing a soft 404.
+			wp_safe_redirect( home_url( '/work/' ), 301 );
+			exit;
 		}
+		status_header( 200 );
+		$GLOBALS['wp_query']->is_404 = false;
+		include $file;
 		exit;
 	}
 }, 0 );
